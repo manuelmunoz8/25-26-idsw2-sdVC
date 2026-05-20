@@ -1,6 +1,6 @@
 # Dashboard de seguimiento - 25-26-idsw2-sdVC
 
-> Generado: 2026-05-20 18:47:54 CEST
+> Generado: 2026-05-20 19:30:56 CEST
 >
 > Leyenda: X = presente/relleno | - = vacio/original | ? = error
 
