@@ -1,26 +1,37 @@
-# Sesiones de VibeCoding / idsw2 / gII · uneatlantico
+# Rama AUDIT - Seguimiento de forks de alumnos
 
-Construcción de un sistema con AI. Todo en el repositorio. [#2Think](2Think.md)
+## Primera vez (en cada maquina)
 
-**Primer commit:** [`QUE_HACE.md`](QUE_HACE.md).
+```bash
+git clone https://github.com/mmasias/25-26-idsw2-sdVC.git
+cd 25-26-idsw2-sdVC
+git checkout AUDIT
+bash scripts/setup.sh
+git checkout main
+```
 
-## Artefactos
+## Uso diario
 
-||||
-|-|-|-|
-|0|**`QUE_HACE.md`**|En el primer commit. Luego no se modifica.|
-|1|**README.md**|Este archivo, reescrito con la presentación del sistema construido.|
-|2|Código fuente|`/src`, o `/backend` y `/frontend` según el stack.|
-|3|Diagramas UML|Fuentes `.puml` en `/modelosUML`. SVGs en `/images`.|
-|4|Imágenes|En `/images`, referenciadas desde el README.|
-|5|Documentación adicional|En `/documents`.|
-|6|**`conversation-log.md`**|Ver [`conversation-log.md`](conversation-log.md).|
+```bash
+git audit
+```
 
-> Todos los artefactos, correctamente relacionados, son **obligatorios**.
+Esto ejecuta `scripts/update-dashboard.sh`, que:
+1. Cambia a la rama `AUDIT`
+2. Ejecuta `scripts/monitor.sh` (consulta todos los forks via GitHub API)
+3. Genera `DASHBOARD.md` con el estado de cada alumno
+4. Commitea, pushea y vuelve a `main`
 
-## Qué se evalúa
+## Ficheros
 
-- Sistema funcional.
-- Proceso de creación, en la forma de commits. *Innegociable.*
-- [`conversation-log.md`](conversation-log.md): completo, honesto, cronológico. *Innegociable.*
-- Análisis del resultado frente a los contenidos de las asignaturas. *Innegociable.*
+| Fichero | Funcion |
+|---|---|
+| `scripts/setup.sh` | Configura el alias `git audit` en `~/.gitconfig` |
+| `scripts/update-dashboard.sh` | Wrapper: checkout, ejecutar monitor, commit, push |
+| `scripts/monitor.sh` | Logica de consulta a la GitHub API |
+| `DASHBOARD.md` | Reporte generado (no editar a mano) |
+
+## Requisitos
+
+- `gh` (GitHub CLI) autenticado
+- `jq`
