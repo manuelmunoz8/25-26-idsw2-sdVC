@@ -92,7 +92,7 @@ log "Encontrados $TOTAL forks."
     echo ">"
     echo "> Leyenda: X = presente/relleno | - = vacio/original | ? = error"
     echo ""
-    echo "| # | Alumno | Commits | Ultima actividad | QUE_HACE | ConvLog | README | Src | UML | Ultimo commit |"
+    echo "| # | Alumno | Commits | Ult. act. | QUE_HACE | ConvLog | README | Src | UML | Ultimo commit |"
     echo "|---|---|---|---|---|---|---|---|---|---|"
 
     IDX=0
@@ -104,21 +104,36 @@ log "Encontrados $TOTAL forks."
         LAST_DATE=$(get_last_commit_date "$user")
         LAST_MSG=$(get_last_commit_msg "$user")
 
-        QUE_HACE=$(check_file_has_content "$user" "QUE_HACE.md" "En una frase" 2>/dev/null || echo "?")
-        CONVLOG=$(check_file_has_content "$user" "conversation-log.md" "lo que le dijo al AI para arrancar" 2>/dev/null || echo "?")
+        REPO_URL="https://github.com/$user/25-26-idsw2-sdVC"
+        QUE_HACE_URL="$REPO_URL/blob/main/QUE_HACE.md"
+        CONVLOG_URL="$REPO_URL/blob/main/conversation-log.md"
+
+        QUE_HACE_STATUS=$(check_file_has_content "$user" "QUE_HACE.md" "En una frase" 2>/dev/null || echo "?")
+        CONVLOG_STATUS=$(check_file_has_content "$user" "conversation-log.md" "lo que le dijo al AI para arrancar" 2>/dev/null || echo "?")
         README=$(check_readme_rewritten "$user" 2>/dev/null || echo "?")
         SRC=$(check_dir_has_files "$user" "src" 2>/dev/null || echo "?")
         UML=$(check_dir_has_files "$user" "modelosUML" 2>/dev/null || echo "?")
 
-        IQ=$(icon "$QUE_HACE")
-        IC=$(icon "$CONVLOG")
         IR=$(icon "$README")
         IS=$(icon "$SRC")
         IU=$(icon "$UML")
 
+        if [ "$QUE_HACE_STATUS" = "relleno" ]; then
+            QUE_HACE_LINK="[QH]($QUE_HACE_URL)"
+        else
+            QUE_HACE_LINK="-"
+        fi
+
+        if [ "$CONVLOG_STATUS" = "relleno" ]; then
+            CONVLOG_LINK="[CL]($CONVLOG_URL)"
+        else
+            CONVLOG_LINK="-"
+        fi
+
+        ALUMNO_LINK="[$user]($REPO_URL)"
         SHORT_DATE=$(echo "$LAST_DATE" | cut -dT -f1)
 
-        echo "| $IDX | $user | $COMMITS | $SHORT_DATE | $IQ | $IC | $IR | $IS | $IU | $LAST_MSG |"
+        echo "| $IDX | $ALUMNO_LINK | $COMMITS | $SHORT_DATE | $QUE_HACE_LINK | $CONVLOG_LINK | $IR | $IS | $IU | $LAST_MSG |"
     done
 
     echo ""
