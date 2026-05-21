@@ -1,3 +1,3 @@
 # ¿Qué hace el sistema?
 
-> *En una frase. No qué gestiona: **qué hace**.*
+> El sistema permite asignar trabajos de investigacion a docentes e investigadores de la compañia FUNIBER, a su vez habilita la comunicacion entre los investigadores asignados a un proyecto.
