@@ -1,11 +1,9 @@
-# Decisiones Frontend
+# Registro de Decisiones - Frontend
 
-## [HH:MM] Estructura inicial del frontend
+## [10:00] Elección del Stack Tecnológico
 
-### Decisión
-Se utilizará arquitectura basada en componentes reutilizables.
-
-### Motivo
-Facilitar mantenibilidad y escalabilidad futura.
+**Decisión:** Se ha seleccionado React con TypeScript y Vanilla CSS.
+**Motivo:** Flexibilidad para crear una interfaz dinámica y ágil (UX), ecosistema amplio de componentes y coherencia con el tipado del backend. Se evita TailwindCSS por preferencia de diseño original (Vanilla CSS).
+**Impacto:** Facilita la creación de componentes reutilizables y una navegación fluida entre el Panel Principal y los detalles de proyectos.
 
 ---
