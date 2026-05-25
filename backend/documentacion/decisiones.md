@@ -1,5 +1,21 @@
 # Registro de Decisiones - Backend
 
+## [20:00] (25/05/2026) Arquitectura Modular y Persistencia con TypeORM
+
+**Decisión:** Adoptar una estructura modular de NestJS y usar TypeORM como ORM principal.
+**Motivo:** TypeORM es el estándar de la industria para NestJS y permite manejar las relaciones complejas del dominio de investigación de forma segura. La estructura modular permite aislar la lógica de Usuarios, Proyectos y Entregables.
+**Impacto:** Facilita el mantenimiento y permite que Render despliegue el código de forma predecible.
+
+---
+
+## [19:15] (25/05/2026) Infraestructura de Producción (Render & Supabase)
+
+**Decisión:** Utilizar Render para el hospedaje del Web Service y Supabase para la base de datos PostgreSQL.
+**Motivo:** Necesidad de un entorno real con persistencia de datos persistente y conectividad externa.
+**Impacto:** El backend requiere configuración de CORS para aceptar peticiones desde GitHub Pages.
+
+---
+
 ## [18:45] (25/05/2026) Adopción de Navegación por Enlaces Anclados
 
 **Decisión:** Integrar anclas de sección en las referencias cruzadas de la documentación.

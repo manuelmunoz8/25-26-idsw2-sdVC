@@ -1,28 +1,57 @@
 # AI Log - Backend
 
+## [20:10] (25/05/2026) Unificación de .gitignore en la Raíz
+
+**Prompt:** "Duda, porque pusiste un gitignore dentro de frontend y backend, no bastaria con uno solamente en la raiz... Haz la opcion B"
+
+**Resultado:** 
+- Eliminación de `backend/.gitignore`.
+- Centralización de reglas en el `.gitignore` de la raíz.
+
+**Decisión:** Simplificación de la configuración de Git para mejorar la mantenibilidad del repositorio.
+
+---
+
+## [20:00] (25/05/2026) Implementación de Scaffolding y Configuración Base
+
+**Prompt:** "Vale empieza con el Scaffolding"
+
+**Resultado:** 
+- Instalación de dependencias de persistencia (`typeorm`, `pg`) y validación.
+- Creación de estructura de carpetas modular (`src/modules`, `src/common`, etc.).
+- Implementación de `main.ts` con soporte para el puerto dinámico de Render y CORS.
+- Configuración de `app.module.ts` con integración asíncrona de TypeORM para Supabase.
+- Configuración de scripts en `package.json` para producción.
+
+**Decisión:** Se establece una arquitectura modular que facilita la escalabilidad. Se habilita CORS globalmente para permitir la comunicación con GitHub Pages.
+
+---
+
+## [19:15] (25/05/2026) Configuración de Infraestructura de Producción
+
+**Prompt:** "Preferio la real, indicame que configuraciones haras dentro del proyecto y que acciones yo debo tomar en los servicios externos... Si, haz la automatizacion"
+
+**Resultado:** 
+- Definición de Render y Supabase como stack de infraestructura.
+- Actualización de decisiones globales y locales.
+
+**Decisión:** Se inicia la preparación del backend para un entorno de nube real.
+
+---
+
+## [18:55] (25/05/2026) Inicialización técnica y gestión de dependencias
+
+**Prompt:** "Bien estamos listo para la parte tecnica, primero importacion y creacion de dependencias"
+
+**Resultado:** 
+- Creación de `package.json` en `/backend`.
+- Instalación de dependencias core: `@nestjs/core`, `@nestjs/common`, `@nestjs/platform-express`, `reflect-metadata`, `rxjs`.
+- Inicialización de `tsconfig.json`.
+
+**Decisión:** Se opta por una instalación manual de dependencias de NestJS para tener control total sobre la estructura inicial antes de generar el scaffolding completo.
+
+---
+
 ## [18:45] (25/05/2026) Implementación de Deep Linking en documentación
 
-**Prompt:** "bien ahora actualiza decisiones_globales.md y conversation-log.md para que se refleje los cambios que te pedi sobre los enlaces hacia los archivos"
-
-**Resultado:** 
-- Actualización de `decisiones_globales.md` con el nuevo estándar de navegación.
-- Creación del evento **DOC-002** en `conversation-log.md` con enlaces anclados.
-- Sincronización de logs locales.
-
-**Decisión:** Se formaliza el uso de anclas para mejorar la experiencia de revisión técnica utilizando la hora real del sistema.
-
----
-
-## [16:05] (25/05/2026) Análisis inicial y definición técnica
-
-**Prompt:** "Vale prefiero tu recomendacion, dado este caso, empieza los logs desde el principio de esta conversacion segun lo planteado en los .md que leiste previamente"
-
-**Resultado:** 
-- Investigación de la documentación raíz (`README.md`, `QUE_HACE.md`, `2Think.md`) y del modelo de dominio.
-- Identificación de entidades clave: Proyecto, Investigador, Entregable, Convocatoria.
-- Propuesta y aceptación del stack: Node.js (NestJS) + PostgreSQL.
-- Creación de la estructura de logs.
-
-**Decisión:** Se inicia el registro cronológico siguiendo el formato obligatorio definido en `backend/GEMINI.md`. Se prioriza la trazabilidad desde el primer contacto con la hora real del sistema.
-
----
+...

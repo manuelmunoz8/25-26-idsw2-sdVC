@@ -15,6 +15,97 @@ Cada entrada debe incluir referencias a los logs locales cuando aplique.
 
 # Timeline
 
+## [20:10] (25/05/2026) INIT-004 - Unificación de Control de Versiones (.gitignore)
+
+### Área
+Global | Gestión de Código
+
+### Prompt
+"Duda, porque pusiste un gitignore dentro de frontend y backend, no bastaria con uno solamente en la raiz... Haz la opcion B"
+
+### Resultado
+- Eliminación de los archivos `.gitignore` locales en `/backend` y `/frontend`.
+- Centralización de todas las reglas en el `.gitignore` de la raíz, incluyendo rutas relativas.
+
+### Decisión
+Se prioriza la simplicidad y la limpieza del repositorio centralizando la configuración de Git, lo que facilita la visualización global de las exclusiones del proyecto.
+
+### Referencias
+- [.gitignore](./.gitignore)
+- [documents/arquitectura/decisiones_globales.md](./documents/arquitectura/decisiones_globales.md#2010-25052026-unificación-de-control-de-versiones-gitignore)
+
+---
+
+## [20:00] (25/05/2026) INIT-003 - Implementación de Scaffolding y Estructura Base
+
+### Área
+Backend | Frontend | Arquitectura
+
+### Prompt
+"Vale empieza con el Scaffolding"
+
+### Resultado
+- Creación de la estructura de carpetas profesional en ambos módulos.
+- Configuración de NestJS con soporte para Render y Supabase (TypeORM).
+- Configuración de React con Axios y centralización de servicios API.
+- Preparación de scripts de producción en `package.json`.
+
+### Decisión
+Se establece la estructura ósea del proyecto. El backend queda preparado para el despliegue automático en Render y el frontend listo para empezar a consumir datos.
+
+### Referencias
+- [backend/src/main.ts](./backend/src/main.ts)
+- [backend/src/app.module.ts](./backend/src/app.module.ts)
+- [frontend/src/services/api.ts](./frontend/src/services/api.ts)
+- [documents/arquitectura/decisiones_globales.md](./documents/arquitectura/decisiones_globales.md#2000-25052026-scaffolding-arquitectónico-modular)
+
+---
+
+## [19:15] (25/05/2026) INIT-002 - Configuración de CI/CD y Estrategia de Despliegue Híbrido
+
+### Área
+Global | Arquitectura | CI/CD
+
+### Prompt
+"Preferio la real, indicame que configuraciones haras dentro del proyecto y que acciones yo debo tomar en los servicios externos... Si, haz la automatizacion"
+
+### Resultado
+- Creación de `.github/workflows/deploy.yml` para automatizar el despliegue del frontend.
+- Definición de la infraestructura: GitHub Pages + Render + Supabase.
+- Especificación de parámetros técnicos para el Web Service de Render (Root Directory: backend, Branch: develop, variables de entorno).
+- Documentación de la estrategia en `decisiones_globales.md`.
+
+### Decisión
+Se establece un flujo de CI/CD profesional para garantizar que los cambios en la rama `develop` se reflejen automáticamente en el entorno de producción (GitHub Pages).
+
+### Referencias
+- [.github/workflows/deploy.yml](./.github/workflows/deploy.yml)
+- [documents/arquitectura/decisiones_globales.md](./documents/arquitectura/decisiones_globales.md#1915-25052026-estrategia-de-despliegue-híbrido-y-cicd)
+
+---
+
+## [18:55] (25/05/2026) INIT-001 - Inicialización Técnica y Gestión de Dependencias
+
+### Área
+Backend | Frontend | Global
+
+### Prompt
+"Bien estamos listo para la parte tecnica, primero importacion y creacion de dependencias"
+
+### Resultado
+- Inicialización de `package.json` y `tsconfig.json` en `/backend` y `/frontend`.
+- Instalación de dependencias base para NestJS y React.
+- Verificación del entorno de ejecución (Node/NPM).
+
+### Decisión
+Se establecen los cimientos técnicos del proyecto siguiendo el stack aprobado. Se prioriza la instalación de dependencias core antes de la implementación de lógica de negocio.
+
+### Referencias
+- [backend/documentacion/ai_log.md](./backend/documentacion/ai_log.md#1855-25052026-inicialización-técnica-y-gestión-de-dependencias)
+- [frontend/documentacion/ai_log.md](./frontend/documentacion/ai_log.md#1855-25052026-inicialización-técnica-y-gestión-de-dependencias)
+
+---
+
 ## [18:45] (25/05/2026) DOC-002 - Implementación de Sistema de Navegación por Enlaces Anclados
 
 ### Área

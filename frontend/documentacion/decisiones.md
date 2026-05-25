@@ -1,5 +1,21 @@
 # Registro de Decisiones - Frontend
 
+## [20:00] (25/05/2026) Arquitectura de Carpetas y Gestión de API con Axios
+
+**Decisión:** Organizar el proyecto en carpetas funcionales (`pages`, `components`, `services`) y usar Axios para la comunicación con el Backend.
+**Motivo:** Separar la lógica de negocio (servicios) de la representación (componentes) para mejorar la testabilidad. Axios facilita la inyección de la URL de Render mediante variables de entorno.
+**Impacto:** Permite que el frontend sea agnóstico de dónde corre el backend.
+
+---
+
+## [19:15] (25/05/2026) Automatización de Despliegue con GitHub Actions
+
+**Decisión:** Configurar GitHub Actions para compilar y desplegar automáticamente en GitHub Pages cada vez que se realice un push a la rama `develop`.
+**Motivo:** Automatización del flujo de entrega y garantía de que el entorno de producción esté siempre actualizado con los últimos cambios de desarrollo.
+**Impacto:** Se requiere configuración manual en GitHub Settings para habilitar el despliegue desde Actions.
+
+---
+
 ## [18:45] (25/05/2026) Adopción de Navegación por Enlaces Anclados
 
 **Decisión:** Integrar anclas de sección en las referencias cruzadas de la documentación.

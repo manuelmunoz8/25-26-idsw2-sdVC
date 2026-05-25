@@ -1,27 +1,55 @@
 # AI Log - Frontend
 
+## [20:10] (25/05/2026) Unificación de .gitignore en la Raíz
+
+**Prompt:** "Duda, porque pusiste un gitignore dentro de frontend y backend, no bastaria con uno solamente en la raiz... Haz la opcion B"
+
+**Resultado:** 
+- Eliminación de `frontend/.gitignore`.
+- Centralización de reglas en el `.gitignore` de la raíz.
+
+**Decisión:** Reducción de la complejidad de archivos de configuración.
+
+---
+
+## [20:00] (25/05/2026) Implementación de Scaffolding y Configuración Base
+
+**Prompt:** "Vale empieza con el Scaffolding"
+
+**Resultado:** 
+- Instalación de `axios` para gestión de peticiones HTTP.
+- Creación de estructura de carpetas modular (`src/components`, `src/pages`, `src/services`, etc.).
+- Implementación de `src/services/api.ts` para centralizar la conexión con el backend de Render.
+
+**Decisión:** Se adopta una estructura basada en carpetas funcionales. Se utiliza `axios` por su facilidad para interceptores y manejo de errores.
+
+---
+
+## [19:15] (25/05/2026) Automatización de Despliegue (GitHub Actions)
+
+**Prompt:** "Preferio la real, indicame que configuraciones haras dentro del proyecto y que acciones yo debo tomar en los servicios externos... Si, haz la automatizacion"
+
+**Resultado:** 
+- Creación de `.github/workflows/deploy.yml`.
+- Configuración de la estrategia de despliegue automático.
+
+**Decisión:** Se garantiza un ciclo de vida de desarrollo moderno y automatizado.
+
+---
+
+## [18:55] (25/05/2026) Inicialización técnica y gestión de dependencias
+
+**Prompt:** "Bien estamos listo para la parte tecnica, primero importacion y creacion de dependencias"
+
+**Resultado:** 
+- Creación de `package.json` en `/frontend`.
+- Instalación de dependencias core: `react`, `react-dom`, `react-scripts`.
+- Configuración inicial de TypeScript (`tsconfig.json`).
+
+**Decisión:** Se utiliza `react-scripts` para una configuración rápida del entorno de desarrollo, manteniendo la estructura de carpetas definida en la arquitectura.
+
+---
+
 ## [18:45] (25/05/2026) Implementación de Deep Linking en documentación
 
-**Prompt:** "bien ahora actualiza decisiones_globales.md y conversation-log.md para que se refleje los cambios que te pedi sobre los enlaces hacia los archivos"
-
-**Resultado:** 
-- Actualización de `decisiones_globales.md` con el nuevo estándar de navegación.
-- Creación del evento **DOC-002** en `conversation-log.md` con enlaces anclados.
-- Sincronización de logs locales.
-
-**Decisión:** Se formaliza el uso de anclas para mejorar la experiencia de revisión técnica utilizando la hora real del sistema.
-
----
-
-## [16:05] (25/05/2026) Análisis inicial y definición técnica
-
-**Prompt:** "Vale prefiero tu recomendacion, dado este caso, empieza los logs desde el principio de esta conversacion segun lo planteado en los .md que leiste previamente"
-
-**Resultado:** 
-- Análisis de los casos de uso (Coordinador vs Investigador) y priorización P0/P1/P2.
-- Definición de la arquitectura base: React (TS) + Vanilla CSS.
-- Sincronización con las reglas de documentación de `frontend/GEMINI.md`.
-
-**Decisión:** Registro inicial de la conversación y definición de herramientas. El frontend se enfocará inicialmente en la estructura de navegación P0 (Login y Panel Principal). Se utiliza la hora real del sistema.
-
----
+...
