@@ -15,6 +15,29 @@ Cada entrada debe incluir referencias a los logs locales cuando aplique.
 
 # Timeline
 
+## [20:20] (25/05/2026) BE-001 - Resolución de Conflictos de Módulos (ESM Migration)
+
+### Área
+Backend | Infraestructura
+
+### Prompt
+"Vale han habido cuatro error en render te los enumero en orden... error TS1287... error TS1295..."
+
+### Resultado
+- Migración del Backend a Módulos ECMAScript (ESM) mediante `"type": "module"` en `package.json`.
+- Refactorización de `tsconfig.json` para compatibilidad con NestJS y NodeNext.
+- Corrección de rutas de importación con extensiones `.js`.
+
+### Decisión
+Se abandona CommonJS en favor de ESM para cumplir con las restricciones de compilación de Render y utilizar estándares modernos de TypeScript/Node.js.
+
+### Referencias
+- [backend/package.json](./backend/package.json)
+- [backend/tsconfig.json](./backend/tsconfig.json)
+- [backend/src/main.ts](./backend/src/main.ts#L3)
+
+---
+
 ## [20:10] (25/05/2026) INIT-004 - Unificación de Control de Versiones (.gitignore)
 
 ### Área

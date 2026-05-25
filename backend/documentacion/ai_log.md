@@ -1,5 +1,19 @@
 # AI Log - Backend
 
+## [20:20] (25/05/2026) Resolución de Errores de Módulos (ESM vs CommonJS)
+
+**Prompt:** "Vale han habido cuatro error en render te los enumero en orden..."
+
+**Resultado:** 
+- Configuración de `"type": "module"` en `package.json`.
+- Reescritura de `tsconfig.json` para usar `NodeNext` y eliminar `verbatimModuleSyntax`.
+- Activación de `experimentalDecorators` y `emitDecoratorMetadata` para NestJS.
+- Corrección de imports internos añadiendo extensiones `.js` requeridas por ESM.
+
+**Decisión:** Se migra el backend a ESM puro para alinearse con los estándares modernos de Node.js y resolver los conflictos de compilación en Render.
+
+---
+
 ## [20:10] (25/05/2026) Unificación de .gitignore en la Raíz
 
 **Prompt:** "Duda, porque pusiste un gitignore dentro de frontend y backend, no bastaria con uno solamente en la raiz... Haz la opcion B"
