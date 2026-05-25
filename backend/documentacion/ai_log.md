@@ -1,6 +1,6 @@
 # AI Log - Backend
 
-## [10:05] Análisis inicial y definición técnica
+## [16:05] (25/05/2026) Análisis inicial y definición técnica
 
 **Prompt:** "Vale prefiero tu recomendacion, dado este caso, empieza los logs desde el principio de esta conversacion segun lo planteado en los .md que leiste previamente"
 
@@ -10,6 +10,6 @@
 - Propuesta y aceptación del stack: Node.js (NestJS) + PostgreSQL.
 - Creación de la estructura de logs.
 
-**Decisión:** Se inicia el registro cronológico siguiendo el formato obligatorio definido en `backend/GEMINI.md`. Se prioriza la trazabilidad desde el primer contacto.
+**Decisión:** Se inicia el registro cronológico siguiendo el formato obligatorio definido en `backend/GEMINI.md`. Se prioriza la trazabilidad desde el primer contacto con la hora real del sistema.
 
 ---

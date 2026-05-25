@@ -15,7 +15,7 @@ Cada entrada debe incluir referencias a los logs locales cuando aplique.
 
 # Timeline
 
-## [10:00] (25/05/2026) DOC-001 - Definición del Stack Tecnológico y Sincronización de Logs
+## [16:24] (25/05/2026) DOC-001 - Definición del Stack Tecnológico y Sincronización de Logs
 
 ### Área
 Global | Frontend | Backend | Documentación
@@ -29,7 +29,7 @@ Global | Frontend | Backend | Documentación
 - Se realizó una investigación exhaustiva de la documentación existente (`README.md`, `QUE_HACE.md`, `2Think.md`, `priorizacionCasosDeUso.md`).
 
 ### Decisión
-Se adoptó un stack basado en tipado fuerte (TypeScript) y arquitectura modular (NestJS) para garantizar la mantenibilidad y escalabilidad del sistema de gestión de investigación. Se estableció el inicio de la trazabilidad formal.
+Se adoptó un stack basado en tipado fuerte (TypeScript) y arquitectura modular (NestJS) para garantizar la mantenibilidad y escalabilidad del sistema de gestión de investigación. Se estableció el inicio de la trazabilidad formal con la hora correcta.
 
 ### Referencias
 - /frontend/documentacion/decisiones.md
@@ -125,12 +125,21 @@ Se aceptó la estructura modular con logs independientes por módulo y documenta
 
 # Reglas de mantenimiento del log
 
-- Las nuevas entradas se añaden siempre **al principio** de la sección Timeline (orden cronológico inverso).
+- Nunca sobrescribir entradas existentes.
+- Añadir nuevas entradas siempre al final.
 - Usar identificadores únicos (FE-xxx, BE-xxx, INIT-xxx, DOC-xxx).
 - Cada entrada debe referenciar logs locales si aplica.
 - Mantener consistencia entre decisiones globales y locales.
-- **Relación con logs locales:** Este archivo actúa como índice cronológico global y no reemplaza los logs internos de cada módulo.
-    - Frontend → /frontEnd/documentacion/ai_log.md
-    - Backend → /backEnd/documentacion/ai_log.md
-    - Arquitectura → /documentacion/arquitectura/
-    - Decisiones → /documentacion/.../decisiones.md
+
+---
+
+# Relación con logs locales
+
+Este archivo no reemplaza los logs internos de cada módulo.
+
+- Frontend → /frontEnd/documentacion/ai_log.md
+- Backend → /backEnd/documentacion/ai_log.md
+- Arquitectura → /documentacion/arquitectura/
+- Decisiones → /documentacion/.../decisiones.md
+
+Este archivo actúa como índice cronológico global del proyecto.

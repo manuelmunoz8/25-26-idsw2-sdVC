@@ -1,6 +1,6 @@
 # Registro de Decisiones - Backend
 
-## [10:00] Elección del Stack Tecnológico
+## [16:00] (25/05/2026) Elección del Stack Tecnológico
 
 **Decisión:** Se ha seleccionado Node.js con NestJS y PostgreSQL.
 **Motivo:** Necesidad de una arquitectura modular, tipado fuerte con TypeScript y manejo robusto de relaciones complejas entre Proyectos, Investigadores y Entregables.
