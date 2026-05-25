@@ -1,6 +1,6 @@
 # Conversation Log (Global Timeline)
 
-Este documento registra eventos relevantes del proyecto de forma cronológica.
+Este documento registra eventos relevantes del proyecto de forma cronológica inversa (lo más reciente arriba).
 
 No contiene todas las interacciones, solo aquellas que implican:
 - decisiones de arquitectura
@@ -13,95 +13,34 @@ Cada entrada debe incluir referencias a los logs locales cuando aplique.
 
 ---
 
-# Formato obligatorio
+# Timeline
 
-## [HH:MM] ID - Título del evento
+## [10:00] (25/05/2026) DOC-001 - Definición del Stack Tecnológico y Sincronización de Logs
 
 ### Área
 Global | Frontend | Backend | Documentación
 
 ### Prompt
-Descripción fiel o resumida de lo solicitado al AI.
+"Especifica mas porque elejirias cada tecnologia y dame los detalles de lo que te permitiria... Vale prefiero tu recomendacion, dado este caso, empieza los logs desde el principio de esta conversacion segun lo planteado en los .md que leiste previamente"
 
 ### Resultado
-Qué se generó, modificó o propuso.
+- Se propuso y aceptó el stack: **Node.js (NestJS) + React (TypeScript) + PostgreSQL**.
+- Se inicializaron los logs locales en ambos módulos (`ai_log.md` y `decisiones.md`).
+- Se realizó una investigación exhaustiva de la documentación existente (`README.md`, `QUE_HACE.md`, `2Think.md`, `priorizacionCasosDeUso.md`).
 
 ### Decisión
-Qué se aceptó, rechazó o ajustó y por qué.
+Se adoptó un stack basado en tipado fuerte (TypeScript) y arquitectura modular (NestJS) para garantizar la mantenibilidad y escalabilidad del sistema de gestión de investigación. Se estableció el inicio de la trazabilidad formal.
 
 ### Referencias
-Archivos afectados o relacionados:
-- /frontEnd/documentacion/ai_log.md
-- /backEnd/documentacion/ai_log.md
-- /documentacion/arquitectura/...
-- /documentacion/requisitos/...
+- /frontend/documentacion/decisiones.md
+- /backend/documentacion/decisiones.md
+- /frontend/documentacion/ai_log.md
+- /backend/documentacion/ai_log.md
+- /documents/casosDeUso/priorizacionCasosDeUso.md
 
 ---
 
-# Timeline
-
-## [HH:MM] INIT-001 - Inicialización del sistema de proyecto
-
-### Área
-Global
-
-### Prompt
-Definir estructura base del proyecto con separación frontend, backend y documentación.
-
-### Resultado
-Se propuso una arquitectura modular con separación clara por dominios.
-
-### Decisión
-Se aceptó la estructura modular con logs independientes por módulo y documentación global.
-
-### Referencias
-- /frontEnd/GEMINI.md
-- /backEnd/GEMINI.md
-- /documentacion/GEMINI.md
-
----
-
-## [HH:MM] FE-001 - Definición de arquitectura frontend
-
-### Área
-Frontend
-
-### Prompt
-Definir estructura inicial de componentes y sistema de organización UI.
-
-### Resultado
-Se estableció un sistema basado en componentes reutilizables.
-
-### Decisión
-Se adoptó arquitectura basada en componentes desacoplados.
-
-### Referencias
-- /frontEnd/documentacion/componentes.md
-- /frontEnd/documentacion/ai_log.md
-
----
-
-## [HH:MM] BE-001 - Definición de arquitectura backend
-
-### Área
-Backend
-
-### Prompt
-Definir estructura del backend con separación por capas.
-
-### Resultado
-Se definió arquitectura por capas: controllers, services, repositories, models.
-
-### Decisión
-Se adoptó patrón service-layer con separación estricta de responsabilidades.
-
-### Referencias
-- /backEnd/documentacion/arquitectura.md
-- /backEnd/documentacion/ai_log.md
-
----
-
-## [HH:MM] DOC-001 - Estructura de documentación global
+## [HH:MM] DOC-000 - Estructura de documentación global (Histórico)
 
 ### Área
 Documentación
@@ -123,23 +62,75 @@ Se aprobó separación de documentación por dominios de ingeniería de software
 
 ---
 
-# Reglas de mantenimiento del log
+## [HH:MM] BE-000 - Definición de arquitectura backend (Histórico)
 
-- Nunca sobrescribir entradas existentes.
-- Añadir nuevas entradas siempre al final.
-- Usar identificadores únicos (FE-xxx, BE-xxx, INIT-xxx, DOC-xxx).
-- Cada entrada debe referenciar logs locales si aplica.
-- Mantener consistencia entre decisiones globales y locales.
+### Área
+Backend
+
+### Prompt
+Definir estructura del backend con separación por capas.
+
+### Resultado
+Se definió arquitectura por capas: controllers, services, repositories, models.
+
+### Decisión
+Se adoptó patrón service-layer con separación estricta de responsabilidades.
+
+### Referencias
+- /backEnd/documentacion/arquitectura.md
+- /backEnd/documentacion/ai_log.md
 
 ---
 
-# Relación con logs locales
+## [HH:MM] FE-000 - Definición de arquitectura frontend (Histórico)
 
-Este archivo no reemplaza los logs internos de cada módulo.
+### Área
+Frontend
 
-- Frontend → /frontEnd/documentacion/ai_log.md
-- Backend → /backEnd/documentacion/ai_log.md
-- Arquitectura → /documentacion/arquitectura/
-- Decisiones → /documentacion/.../decisiones.md
+### Prompt
+Definir estructura inicial de componentes y sistema de organización UI.
 
-Este archivo actúa como índice cronológico global del proyecto.
+### Resultado
+Se estableció un sistema basado en componentes reutilizables.
+
+### Decisión
+Se adoptó arquitectura basada en componentes desacoplados.
+
+### Referencias
+- /frontEnd/documentacion/componentes.md
+- /frontEnd/documentacion/ai_log.md
+
+---
+
+## [HH:MM] INIT-000 - Inicialización del sistema de proyecto (Histórico)
+
+### Área
+Global
+
+### Prompt
+Definir estructura base del proyecto con separación frontend, backend y documentación.
+
+### Resultado
+Se propuso una arquitectura modular con separación clara por dominios.
+
+### Decisión
+Se aceptó la estructura modular con logs independientes por módulo y documentación global.
+
+### Referencias
+- /frontEnd/GEMINI.md
+- /backEnd/GEMINI.md
+- /documentacion/GEMINI.md
+
+---
+
+# Reglas de mantenimiento del log
+
+- Las nuevas entradas se añaden siempre **al principio** de la sección Timeline (orden cronológico inverso).
+- Usar identificadores únicos (FE-xxx, BE-xxx, INIT-xxx, DOC-xxx).
+- Cada entrada debe referenciar logs locales si aplica.
+- Mantener consistencia entre decisiones globales y locales.
+- **Relación con logs locales:** Este archivo actúa como índice cronológico global y no reemplaza los logs internos de cada módulo.
+    - Frontend → /frontEnd/documentacion/ai_log.md
+    - Backend → /backEnd/documentacion/ai_log.md
+    - Arquitectura → /documentacion/arquitectura/
+    - Decisiones → /documentacion/.../decisiones.md
