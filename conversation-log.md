@@ -15,6 +15,31 @@ Cada entrada debe incluir referencias a los logs locales cuando aplique.
 
 # Timeline
 
+## [18:45] (25/05/2026) DOC-002 - Implementación de Sistema de Navegación por Enlaces Anclados
+
+### Área
+Documentación | Global
+
+### Prompt
+"Una duda, puedes hacer que las lineas de referencias en conversation-log te lleve directamente a los .md correspondientes? ... Vale cerca pero te falto añadir la seccion exacta del .md al que vamos ejemplo: [Texto visible para el usuario](./ruta/del/archivo.md#nombre-de-la-sección)"
+
+### Resultado
+- Se implementaron enlaces relativos con anclajes (#) en `conversation-log.md`.
+- Se documentó la decisión en `documents/arquitectura/decisiones_globales.md`.
+- Se actualizaron las referencias de eventos previos para soportar navegación quirúrgica.
+
+### Decisión
+Se adopta el estándar de "Deep Linking" en la documentación para maximizar la eficiencia en la revisión de logs y trazabilidad de decisiones utilizando la hora real del sistema (18:45).
+
+### Referencias
+- [documents/arquitectura/decisiones_globales.md](./documents/arquitectura/decisiones_globales.md#1845-25052026-sistema-de-navegación-por-enlaces-anclados)
+- [backend/documentacion/decisiones.md](./backend/documentacion/decisiones.md#1845-25052026-adopción-de-navegación-por-enlaces-anclados)
+- [frontend/documentacion/decisiones.md](./frontend/documentacion/decisiones.md#1845-25052026-adopción-de-navegación-por-enlaces-anclados)
+- [backend/documentacion/ai_log.md](./backend/documentacion/ai_log.md#1845-25052026-implementación-de-deep-linking-en-documentación)
+- [frontend/documentacion/ai_log.md](./frontend/documentacion/ai_log.md#1845-25052026-implementación-de-deep-linking-en-documentación)
+
+---
+
 ## [16:24] (25/05/2026) DOC-001 - Definición del Stack Tecnológico y Sincronización de Logs
 
 ### Área
@@ -96,8 +121,8 @@ Se estableció un sistema basado en componentes reutilizables.
 Se adoptó arquitectura basada en componentes desacoplados.
 
 ### Referencias
-- [frontend/documentacion/componentes.md](./frontend/documentacion/componentes.md)
-- [frontend/documentacion/ai_log.md](./frontend/documentacion/ai_log.md)
+- [frontend/documentacion/componentes.md](./frontend/frontend/documentacion/componentes.md)
+- [frontend/documentacion/ai_log.md](./frontend/frontend/documentacion/ai_log.md)
 
 ---
 

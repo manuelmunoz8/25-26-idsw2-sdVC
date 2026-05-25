@@ -47,6 +47,8 @@ Cada módulo mantiene su propio:
 
 Los logs son incrementales y nunca deben reescribirse.
 
+**Regla Crítica:** Todas las marcas temporales ([HH:MM]) deben coincidir estrictamente con la **hora del sistema del usuario** en el momento de la ejecución.
+
 Formato obligatorio:
 
 ## [HH:MM] Título breve
