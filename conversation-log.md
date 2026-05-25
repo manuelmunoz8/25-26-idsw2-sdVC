@@ -32,11 +32,11 @@ Global | Frontend | Backend | Documentación
 Se adoptó un stack basado en tipado fuerte (TypeScript) y arquitectura modular (NestJS) para garantizar la mantenibilidad y escalabilidad del sistema de gestión de investigación. Se estableció el inicio de la trazabilidad formal con la hora correcta.
 
 ### Referencias
-- /frontend/documentacion/decisiones.md
-- /backend/documentacion/decisiones.md
-- /frontend/documentacion/ai_log.md
-- /backend/documentacion/ai_log.md
-- /documents/casosDeUso/priorizacionCasosDeUso.md
+- [frontend/documentacion/decisiones.md](./frontend/documentacion/decisiones.md#1600-25052026-elección-del-stack-tecnológico)
+- [backend/documentacion/decisiones.md](./backend/documentacion/decisiones.md#1600-25052026-elección-del-stack-tecnológico)
+- [frontend/documentacion/ai_log.md](./frontend/documentacion/ai_log.md#1605-25052026-análisis-inicial-y-definición-técnica)
+- [backend/documentacion/ai_log.md](./backend/documentacion/ai_log.md#1605-25052026-análisis-inicial-y-definición-técnica)
+- [documents/casosDeUso/priorizacionCasosDeUso.md](./documents/casosDeUso/priorizacionCasosDeUso.md)
 
 ---
 
@@ -55,10 +55,9 @@ Se definió estructura de documentación técnica y funcional separada.
 Se aprobó separación de documentación por dominios de ingeniería de software.
 
 ### Referencias
-- /documentacion/requisitos/
-- /documentacion/dominio/
-- /documentacion/arquitectura/
-- /documentacion/gestion/
+- [documents/casosDeUso/casosDeUso.md](./documents/casosDeUso/casosDeUso.md)
+- [documents/modeloDelDominio/modeloDominio.md](./documents/modeloDelDominio/modeloDominio.md)
+- [documents/arquitectura/decisiones_globales.md](./documents/arquitectura/decisiones_globales.md)
 
 ---
 
@@ -77,8 +76,8 @@ Se definió arquitectura por capas: controllers, services, repositories, models.
 Se adoptó patrón service-layer con separación estricta de responsabilidades.
 
 ### Referencias
-- /backEnd/documentacion/arquitectura.md
-- /backEnd/documentacion/ai_log.md
+- [backend/documentacion/arquitectura.md](./backend/documentacion/arquitectura.md)
+- [backend/documentacion/ai_log.md](./backend/documentacion/ai_log.md)
 
 ---
 
@@ -97,8 +96,8 @@ Se estableció un sistema basado en componentes reutilizables.
 Se adoptó arquitectura basada en componentes desacoplados.
 
 ### Referencias
-- /frontEnd/documentacion/componentes.md
-- /frontEnd/documentacion/ai_log.md
+- [frontend/documentacion/componentes.md](./frontend/documentacion/componentes.md)
+- [frontend/documentacion/ai_log.md](./frontend/documentacion/ai_log.md)
 
 ---
 
@@ -117,9 +116,9 @@ Se propuso una arquitectura modular con separación clara por dominios.
 Se aceptó la estructura modular con logs independientes por módulo y documentación global.
 
 ### Referencias
-- /frontEnd/GEMINI.md
-- /backEnd/GEMINI.md
-- /documentacion/GEMINI.md
+- [frontend/GEMINI.md](./frontend/GEMINI.md)
+- [backend/GEMINI.md](./backend/GEMINI.md)
+- [documents/GEMINI.md](./documents/GEMINI.md)
 
 ---
 
@@ -137,9 +136,9 @@ Se aceptó la estructura modular con logs independientes por módulo y documenta
 
 Este archivo no reemplaza los logs internos de cada módulo.
 
-- Frontend → /frontEnd/documentacion/ai_log.md
-- Backend → /backEnd/documentacion/ai_log.md
-- Arquitectura → /documentacion/arquitectura/
-- Decisiones → /documentacion/.../decisiones.md
+- Frontend → [frontend/documentacion/ai_log.md](./frontend/documentacion/ai_log.md)
+- Backend → [backend/documentacion/ai_log.md](./backend/documentacion/ai_log.md)
+- Arquitectura → [documents/arquitectura/](./documents/arquitectura/)
+- Decisiones → [documents/casosDeUso/priorizacionCasosDeUso.md](./documents/casosDeUso/priorizacionCasosDeUso.md)
 
 Este archivo actúa como índice cronológico global del proyecto.
