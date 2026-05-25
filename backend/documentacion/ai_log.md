@@ -1,5 +1,18 @@
 # AI Log - Backend
 
+## [20:20] (25/05/2026) Depuración de Conexión a DB (Invalid URL)
+
+**Prompt:** "Vale ha pasado 9 veces este error al tratar de hacer el deploy... Retrying (9)... TypeError: Invalid URL"
+
+**Resultado:** 
+- Mejora de la validación en `app.module.ts` para capturar la ausencia de `DATABASE_URL`.
+- Configuración de `retryAttempts` y `retryDelay` en TypeORM.
+- Revisión de la carga de variables de entorno en producción.
+
+**Decisión:** Se añade una validación explícita para evitar que el proceso falle con un error genérico de URL, facilitando el diagnóstico en los logs de Render.
+
+---
+
 ## [20:12] (25/05/2026) Corrección de Sintaxis en tsconfig.json
 
 **Prompt:** "Vale mas errores: tsconfig.json(15,5): error TS5025: Unknown compiler option 'forceConsistentCasingInFileNames: true'..."

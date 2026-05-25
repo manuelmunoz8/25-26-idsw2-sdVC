@@ -15,6 +15,27 @@ Cada entrada debe incluir referencias a los logs locales cuando aplique.
 
 # Timeline
 
+## [20:20] (25/05/2026) BE-003 - Depuración de Conexión a Base de Datos (Invalid URL)
+
+### Área
+Backend | Infraestructura
+
+### Prompt
+"Vale ha pasado 9 veces este error al tratar de hacer el deploy... Unable to connect to the database. Retrying (9)... TypeError: Invalid URL"
+
+### Resultado
+- Implementación de validación de `DATABASE_URL` en `app.module.ts`.
+- Ajuste de parámetros de reintento en TypeORM para mejorar la resiliencia en el despliegue.
+
+### Decisión
+Se refuerza la configuración de conexión para manejar posibles retrasos en la inyección de variables de entorno en Render y evitar fallos por URL malformada.
+
+### Referencias
+- [backend/src/app.module.ts](./backend/src/app.module.ts#L17)
+- [backend/documentacion/ai_log.md](./backend/documentacion/ai_log.md#2020-25052026-depuración-de-conexión-a-db-invalid-url)
+
+---
+
 ## [20:12] (25/05/2026) BE-002 - Corrección de Sintaxis en tsconfig.json
 
 ### Área

@@ -13,15 +13,27 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        url: configService.get<string>('DATABASE_URL'),
-        autoLoadEntities: true,
-        synchronize: true, // ¡OJO! Solo para desarrollo, sincroniza el esquema automáticamente
-        ssl: {
-          rejectUnauthorized: false, // Necesario para conexiones SSL con Supabase/Render
-        },
-      }),
+      useFactory: (configService: ConfigService) => {
+        const dbUrl = configService.get<string>('DATABASE_URL');
+        
+        // Validación de seguridad para evitar el error "Invalid URL"
+        if (!dbUrl) {
+          console.error('CRÍTICO: La variable DATABASE_URL no está definida.');
+        }
+
+        return {
+          type: 'postgres',
+          url: dbUrl,
+          autoLoadEntities: true,
+          synchronize: true,
+          ssl: {
+            rejectUnauthorized: false, // Obligatorio para Supabase
+          },
+          // Añadimos parámetros de reintento para ser más resilientes en Render
+          retryAttempts: 3,
+          retryDelay: 3000,
+        };
+      },
     }),
   ],
   controllers: [],
