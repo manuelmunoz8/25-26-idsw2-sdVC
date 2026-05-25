@@ -15,7 +15,27 @@ Cada entrada debe incluir referencias a los logs locales cuando aplique.
 
 # Timeline
 
-## [20:20] (25/05/2026) BE-001 - Resolución de Conflictos de Módulos (ESM Migration)
+## [20:12] (25/05/2026) BE-002 - Corrección de Sintaxis en tsconfig.json
+
+### Área
+Backend | Configuración
+
+### Prompt
+"Vale mas errores: tsconfig.json(15,5): error TS5025: Unknown compiler option 'forceConsistentCasingInFileNames: true'..."
+
+### Resultado
+- Se corrigió el error de sintaxis en `backend/tsconfig.json` (falta de comillas y dos puntos).
+
+### Decisión
+Corrección inmediata de errores de configuración detectados durante el despliegue.
+
+### Referencias
+- [backend/tsconfig.json](./backend/tsconfig.json)
+- [backend/documentacion/ai_log.md](./backend/documentacion/ai_log.md#2012-25052026-corrección-de-sintaxis-en-tsconfigjson)
+
+---
+
+## [20:10] (25/05/2026) BE-001 - Resolución de Conflictos de Módulos (ESM Migration)
 
 ### Área
 Backend | Infraestructura
@@ -126,31 +146,6 @@ Se establecen los cimientos técnicos del proyecto siguiendo el stack aprobado. 
 ### Referencias
 - [backend/documentacion/ai_log.md](./backend/documentacion/ai_log.md#1855-25052026-inicialización-técnica-y-gestión-de-dependencias)
 - [frontend/documentacion/ai_log.md](./frontend/documentacion/ai_log.md#1855-25052026-inicialización-técnica-y-gestión-de-dependencias)
-
----
-
-## [18:45] (25/05/2026) DOC-002 - Implementación de Sistema de Navegación por Enlaces Anclados
-
-### Área
-Documentación | Global
-
-### Prompt
-"Una duda, puedes hacer que las lineas de referencias en conversation-log te lleve directamente a los .md correspondientes? ... Vale cerca pero te falto añadir la seccion exacta del .md al que vamos ejemplo: [Texto visible para el usuario](./ruta/del/archivo.md#nombre-de-la-sección)"
-
-### Resultado
-- Se implementaron enlaces relativos con anclajes (#) en `conversation-log.md`.
-- Se documentó la decisión en `documents/arquitectura/decisiones_globales.md`.
-- Se actualizaron las referencias de eventos previos para soportar navegación quirúrgica.
-
-### Decisión
-Se adopta el estándar de "Deep Linking" en la documentación para maximizar la eficiencia en la revisión de logs y trazabilidad de decisiones utilizando la hora real del sistema (18:45).
-
-### Referencias
-- [documents/arquitectura/decisiones_globales.md](./documents/arquitectura/decisiones_globales.md#1845-25052026-sistema-de-navegación-por-enlaces-anclados)
-- [backend/documentacion/decisiones.md](./backend/documentacion/decisiones.md#1845-25052026-adopción-de-navegación-por-enlaces-anclados)
-- [frontend/documentacion/decisiones.md](./frontend/documentacion/decisiones.md#1845-25052026-adopción-de-navegación-por-enlaces-anclados)
-- [backend/documentacion/ai_log.md](./backend/documentacion/ai_log.md#1845-25052026-implementación-de-deep-linking-en-documentación)
-- [frontend/documentacion/ai_log.md](./frontend/documentacion/ai_log.md#1845-25052026-implementación-de-deep-linking-en-documentación)
 
 ---
 

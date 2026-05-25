@@ -1,6 +1,18 @@
 # AI Log - Backend
 
-## [20:20] (25/05/2026) Resolución de Errores de Módulos (ESM vs CommonJS)
+## [20:12] (25/05/2026) Corrección de Sintaxis en tsconfig.json
+
+**Prompt:** "Vale mas errores: tsconfig.json(15,5): error TS5025: Unknown compiler option 'forceConsistentCasingInFileNames: true'..."
+
+**Resultado:** 
+- Corrección de error tipográfico en `backend/tsconfig.json` (comillas y dos puntos faltantes en `forceConsistentCasingInFileNames`).
+- Validación del formato JSON.
+
+**Decisión:** Corrección quirúrgica para resolver el fallo de lectura del compilador de TypeScript en Render.
+
+---
+
+## [20:10] (25/05/2026) Resolución de Errores de Módulos (ESM vs CommonJS)
 
 **Prompt:** "Vale han habido cuatro error en render te los enumero en orden..."
 
