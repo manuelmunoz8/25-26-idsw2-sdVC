@@ -1,5 +1,17 @@
 # AI Log - Frontend
 
+## [22:05] (26/05/2026) Desactivación de html_handling para SPA en Workers Assets
+
+**Prompt:** "Bien mas errores... Line 2: Infinite loop detected... [code: 100324]"
+
+**Resultado:** 
+- Configuración de `"html_handling": "none"` en `frontend/wrangler.jsonc`.
+- Simplificación de `frontend/public/_redirects` a una única regla `/* /index.html 200`.
+
+**Decisión:** Se desactiva el manejo automático de HTML de Cloudflare para evitar que su lógica de "limpieza de URLs" entre en conflicto con la regla general de SPA, resolviendo así el error de bucle infinito (100324) que bloqueaba el despliegue.
+
+---
+
 ## [21:55] (26/05/2026) Resolución de Bucle Infinito en Workers Assets
 
 **Prompt:** "Bien mas errores, analiza... Line 1: Infinite loop detected... [code: 100324]"
