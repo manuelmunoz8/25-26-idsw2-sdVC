@@ -1,5 +1,18 @@
 # AI Log - Frontend
 
+## [21:40] (26/05/2026) Automatización de Despliegue (wrangler.jsonc)
+
+**Prompt:** "Hagamos la segunda opcion, si el proyecto evoluciona de una forma que no podemos visualizar, arreglar los problemas del lado de cloudfare sera tedioso"
+
+**Resultado:** 
+- Creación de `frontend/wrangler.jsonc`.
+- Configuración del directorio de activos a `./build` (estándar de React).
+- Definición del nombre del proyecto como `funiber-connected`.
+
+**Decisión:** Se traslada la configuración del despliegue al repositorio para garantizar la portabilidad y evitar la dependencia de configuraciones manuales en la interfaz de Cloudflare.
+
+---
+
 ## [21:35] (26/05/2026) Actualización de TSConfig para TS 6.0/7.0
 
 **Prompt:** "Vale me salen 2 errores en el tsconfig dentro de frontend... target es5... moduleResolution node... is deprecated"
