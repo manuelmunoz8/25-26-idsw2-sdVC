@@ -1,5 +1,19 @@
 # AI Log - Backend
 
+## [18:15] (26/05/2026) Resolución de Error IPv6 (ENETUNREACH)
+
+**Prompt:** "Vale esta fue la linea de error que me dio render... postgresql://postgres.ndyjccyzshwpduimgekm:BnxmebESMN%2F09@aws-1-eu-central-1.pooler.supabase.com:6543/postgres"
+
+**Resultado:** 
+- Identificación del error `ENETUNREACH` como incompatibilidad entre IPv4 (Render) e IPv6 (Supabase Direct).
+- Migración de la conexión al **Connection Pooler** de Supabase (Puerto 6543).
+- Adición del parámetro `?pgbouncer=true` en la cadena de conexión.
+- Actualización de `backend/.env` con la nueva URI.
+
+**Decisión:** Se opta por el uso del Pooler en lugar de la conexión directa para garantizar compatibilidad con la red de Render sin incurrir en costes adicionales (IPv4 add-on).
+
+---
+
 ## [19:55] (26/05/2026) Actualización de Conexión a Supabase
 
 **Prompt:** "Vale, he tenido que re hacer la base de datos, aqui tienes los detalles... Verifica como configurar correctamente el URI y me lo pasas, cuando pongas el mensaje en los logs, no muestres el password"
