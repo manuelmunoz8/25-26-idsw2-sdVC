@@ -1,5 +1,18 @@
 # AI Log - Backend
 
+## [19:55] (26/05/2026) Actualización de Conexión a Supabase
+
+**Prompt:** "Vale, he tenido que re hacer la base de datos, aqui tienes los detalles... Verifica como configurar correctamente el URI y me lo pasas, cuando pongas el mensaje en los logs, no muestres el password"
+
+**Resultado:** 
+- Creación de archivo `.env` en `/backend` con la nueva `DATABASE_URL`.
+- Codificación de caracteres especiales en la URI de conexión (password encoding).
+- Verificación de la configuración de TypeORM en `app.module.ts` (SSL habilitado).
+
+**Decisión:** Se actualizan las credenciales de la base de datos tras el reset de la instancia de Supabase. Se aplica codificación URL a la contraseña para evitar errores de parseo en la cadena de conexión.
+
+---
+
 ## [20:20] (25/05/2026) Depuración de Conexión a DB (Invalid URL)
 
 **Prompt:** "Vale ha pasado 9 veces este error al tratar de hacer el deploy... Retrying (9)... TypeError: Invalid URL"

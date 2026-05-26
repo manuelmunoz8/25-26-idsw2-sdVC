@@ -1,5 +1,13 @@
 # Registro de Decisiones - Backend
 
+## [19:55] (26/05/2026) Cambio de Instancia de Base de Datos (Supabase)
+
+**Decisión:** Actualizar la URI de conexión para apuntar a la nueva instancia de Supabase.
+**Motivo:** Recreación de la base de datos por parte del usuario, lo que invalidó las credenciales anteriores.
+**Impacto:** Se requiere actualizar la variable `DATABASE_URL` tanto en el entorno local (`.env`) como en el panel de control de Render (Producción).
+
+---
+
 ## [20:00] (25/05/2026) Arquitectura Modular y Persistencia con TypeORM
 
 **Decisión:** Adoptar una estructura modular de NestJS y usar TypeORM como ORM principal.
