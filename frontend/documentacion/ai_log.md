@@ -1,5 +1,18 @@
 # AI Log - Frontend
 
+## [21:45] (26/05/2026) Corrección de _redirects (Infinite Loop Error 100324)
+
+**Prompt:** "Bien mas errores, analiza, busca en la documentacion y mira cual fue el problema... Invalid _redirects configuration: Line 1: Infinite loop detected"
+
+**Resultado:** 
+- Ajuste de espaciado y formato en `frontend/public/_redirects`.
+- Identificación de la regla `/* /index.html 200` como conflictiva en el nuevo motor de Workers Assets si no hay una separación clara.
+- Aseguramiento de que el archivo termine con una nueva línea.
+
+**Decisión:** Se simplifica el archivo de redirecciones para cumplir con el validador estricto de Cloudflare API (Error 100324), garantizando que las rutas SPA sigan funcionando sin activar la protección contra bucles.
+
+---
+
 ## [21:40] (26/05/2026) Automatización de Despliegue (wrangler.jsonc)
 
 **Prompt:** "Hagamos la segunda opcion, si el proyecto evoluciona de una forma que no podemos visualizar, arreglar los problemas del lado de cloudfare sera tedioso"
