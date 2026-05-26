@@ -1,5 +1,31 @@
 # AI Log - Frontend
 
+## [21:35] (26/05/2026) Actualización de TSConfig para TS 6.0/7.0
+
+**Prompt:** "Vale me salen 2 errores en el tsconfig dentro de frontend... target es5... moduleResolution node... is deprecated"
+
+**Resultado:** 
+- Actualización de `"target"` de `es5` a `es2016` para evitar deprecaciones futuras.
+- Cambio de `"moduleResolution"` de `node` a `bundler`, que es el estándar recomendado para proyectos con empaquetadores (como react-scripts/webpack).
+- Mantenimiento de la compatibilidad con JSX y React 19.
+
+**Decisión:** Se modernizan las opciones de compilación para cumplir con las advertencias de TypeScript 6.0+, asegurando que el proyecto sea compatible con versiones futuras del compilador.
+
+---
+
+## [21:28] (26/05/2026) Corrección de TS17004 (JSX Support)
+
+**Prompt:** "Vale mas errores... TS17004: Cannot use JSX unless the '--jsx' flag is provided."
+
+**Resultado:** 
+- Reconfiguración completa de `frontend/tsconfig.json` siguiendo el estándar de Create React App / React 19.
+- Activación de `"jsx": "react-jsx"`.
+- Configuración de `lib`, `moduleResolution` e `isolatedModules` para asegurar compatibilidad con el pipeline de construcción de Cloudflare.
+
+**Decisión:** Se migra a una configuración de TypeScript moderna que permite el uso de JSX sin necesidad de importar React en cada archivo, resolviendo el bloqueo del compilador.
+
+---
+
 ## [21:17] (26/05/2026) Resolución de Conflicto de Dependencias en Cloudflare
 
 **Prompt:** "Bien he tratado de correr la configuracion de cloudfare y esta bien hecha, ahora vienen los problemas del deploy, te paso los logs... npm error Missing: yaml@2.9.0 from lock file"
