@@ -1,5 +1,17 @@
 # AI Log - Frontend
 
+## [22:15] (26/05/2026) Cambio de destino de SPA a raíz (/)
+
+**Prompt:** "Mira los logs que salieron, son identicos... Line 1: Infinite loop detected"
+
+**Resultado:** 
+- Cambio de la regla de redirección de `/* /index.html 200` a `/* / 200`.
+- Ajuste basado en la lógica de normalización de URLs de Cloudflare (stripping .html).
+
+**Decisión:** Se redirigen las rutas SPA a la raíz (`/`) en lugar de al archivo específico (`/index.html`) para evitar que el motor de normalización de Cloudflare dispare el error de bucle infinito al intentar eliminar extensiones de archivos.
+
+---
+
 ## [22:05] (26/05/2026) Desactivación de html_handling para SPA en Workers Assets
 
 **Prompt:** "Bien mas errores... Line 2: Infinite loop detected... [code: 100324]"
