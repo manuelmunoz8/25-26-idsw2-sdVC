@@ -1,5 +1,18 @@
 # AI Log - Frontend
 
+## [20:19] (26/05/2026) Preparación para Despliegue en Cloudflare Pages
+
+**Prompt:** "Render ya esta funcionando, ahora, hagamos que cloudfare muestre algo minimo, que configuraciones tengo que aplicar?"
+
+**Resultado:** 
+- Identificación de los parámetros de configuración para Cloudflare Pages (Build command, Output directory).
+- Verificación del archivo `_redirects` en la carpeta `public` para soporte de navegación SPA.
+- Definición de la variable `REACT_APP_API_URL` para la conexión con el backend en Render.
+
+**Decisión:** Se mantiene la estructura simple para asegurar un despliegue exitoso inicial. Se documentan los pasos de configuración en la interfaz de Cloudflare.
+
+---
+
 ## [19:39] (26/05/2026) Migración a Cloudflare Pages e Inicialización de Estructura Base
 
 **Prompt:** "Vamos a hacer un cambio de tecnologias, especificamente en como se muestra la aplicacion, en vez de GitHub pages usaremos cloudfare pages, puedes investigar y decirme que necesito configurar? ... Si puedes proceder a crear los archivos necesarios, pero antes de eso, el REACT_APP_API_URL, es de render o supabase?"
