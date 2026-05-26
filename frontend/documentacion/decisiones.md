@@ -1,5 +1,13 @@
 # Registro de Decisiones - Frontend
 
+## [19:39] (26/05/2026) Cambio de Hosting: de GitHub Pages a Cloudflare Pages
+
+**Decisión:** Migrar el despliegue del frontend a Cloudflare Pages.
+**Motivo:** Cloudflare Pages ofrece una integración más fluida con Single Page Applications (SPA), permitiendo manejar redirecciones de forma nativa mediante el archivo `_redirects`, lo cual simplifica el enrutamiento comparado con GitHub Pages.
+**Impacto:** Se requiere configurar las variables de entorno (`REACT_APP_API_URL`) manualmente en el panel de Cloudflare. El archivo `.github/workflows/deploy.yml` queda obsoleto para el despliegue del frontend pero se mantiene de momento para referencia.
+
+---
+
 ## [20:00] (25/05/2026) Arquitectura de Carpetas y Gestión de API con Axios
 
 **Decisión:** Organizar el proyecto en carpetas funcionales (`pages`, `components`, `services`) y usar Axios para la comunicación con el Backend.
