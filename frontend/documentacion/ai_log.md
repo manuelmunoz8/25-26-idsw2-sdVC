@@ -1,5 +1,17 @@
 # AI Log - Frontend
 
+## [21:55] (26/05/2026) Resolución de Bucle Infinito en Workers Assets
+
+**Prompt:** "Bien mas errores, analiza... Line 1: Infinite loop detected... [code: 100324]"
+
+**Resultado:** 
+- Implementación de una "Regla de Parada" en `_redirects`.
+- Adición de la ruta `/index.html /index.html 200` previa al catch-all `/*`.
+
+**Decisión:** Se utiliza la técnica de precedencia de reglas para romper el bucle lógico que detecta el validador de Cloudflare Workers Assets, permitiendo que la SPA funcione sin disparar la protección contra bucles de la API.
+
+---
+
 ## [21:45] (26/05/2026) Corrección de _redirects (Infinite Loop Error 100324)
 
 **Prompt:** "Bien mas errores, analiza, busca en la documentacion y mira cual fue el problema... Invalid _redirects configuration: Line 1: Infinite loop detected"
