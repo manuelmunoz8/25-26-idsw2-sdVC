@@ -1,5 +1,18 @@
 # AI Log - Frontend
 
+## [21:17] (26/05/2026) Resolución de Conflicto de Dependencias en Cloudflare
+
+**Prompt:** "Bien he tratado de correr la configuracion de cloudfare y esta bien hecha, ahora vienen los problemas del deploy, te paso los logs... npm error Missing: yaml@2.9.0 from lock file"
+
+**Resultado:** 
+- Identificación de discrepancia entre `package.json` y `package-lock.json` en el frontend.
+- Instalación explícita de `yaml@2.9.0` para sincronizar el archivo de bloqueo.
+- Actualización de `frontend/package-lock.json`.
+
+**Decisión:** Se fuerza la actualización del lockfile para satisfacer la validación estricta de `npm ci` en el entorno de construcción de Cloudflare Pages.
+
+---
+
 ## [20:19] (26/05/2026) Preparación para Despliegue en Cloudflare Pages
 
 **Prompt:** "Render ya esta funcionando, ahora, hagamos que cloudfare muestre algo minimo, que configuraciones tengo que aplicar?"
