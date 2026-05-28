@@ -1,0 +1,48 @@
+@startuml abrirPanelPrincipal-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "Navegación Sistema" as NavegacionSistema
+
+package abrirPanelPrincipal as "abrirPanelPrincipal()" {
+    rectangle #629EF9 PanelPrincipalView
+    rectangle #b5bd68 PanelPrincipalController
+    rectangle #F2AC4E PermisosRepository
+    rectangle #F2AC4E OpcionesMenu
+    rectangle #F2AC4E Sesion
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirProyectos" as AbrirProyectos
+rectangle #CDEBA5 ":Collaboration AbrirInvestigadores" as AbrirInvestigadores
+rectangle #CDEBA5 ":Collaboration AbrirConvocatorias" as AbrirConvocatorias
+rectangle #CDEBA5 ":Collaboration AbrirRecompensas" as AbrirRecompensas
+rectangle #CDEBA5 ":Collaboration AbrirMisPublicaciones" as AbrirMisPublicaciones
+rectangle #CDEBA5 ":Collaboration AbrirPublicaciones" as AbrirPublicaciones
+rectangle #CDEBA5 ":Collaboration AbrirOpcionesPerfil" as AbrirOpcionesPerfil
+rectangle #CDEBA5 ":Collaboration AbrirOpcionesCargaTrabajo" as AbrirOpcionesCargaTrabajo
+rectangle #CDEBA5 ":Collaboration CerrarSesion" as CerrarSesion
+
+NavegacionSistema -r-> PanelPrincipalView : abrirPanelPrincipal()
+
+PanelPrincipalView -d-> PanelPrincipalController: inicializarPanel()
+
+PanelPrincipalController -d-> Sesion: getUsuarioActual() : Usuario
+PanelPrincipalController -d-> PermisosRepository: obtenerOpcionesDisponibles(usuario) : List<Opcion>
+PanelPrincipalController -r-> OpcionesMenu: <<create>> construirMenu(opciones) : OpcionesMenu
+
+PanelPrincipalView -d-> OpcionesMenu: obtenerOpcionesVisibles() : List<Opcion>
+
+PanelPrincipalView ..> AbrirProyectos: abrirProyectos()
+PanelPrincipalView ..> AbrirInvestigadores: abrirInvestigadores()
+PanelPrincipalView ..> AbrirConvocatorias: abrirConvocatorias()
+PanelPrincipalView ..> AbrirRecompensas: abrirRecompensas()
+PanelPrincipalView ..> AbrirMisPublicaciones: abrirMisPublicaciones()
+PanelPrincipalView ..> AbrirPublicaciones: abrirPublicaciones()
+PanelPrincipalView ..> AbrirOpcionesPerfil: abrirOpcionesPerfil()
+PanelPrincipalView ..> AbrirOpcionesCargaTrabajo: abrirOpcionesCargaTrabajo()
+PanelPrincipalView ..> CerrarSesion: cerrarSesion()
+
+@enduml

@@ -17,3 +17,19 @@
 **Decisión:** Utilizar los estados de los diagramas de contexto (`SESION_CERRADA`, `PANEL_PRINCIPAL_ABIERTO`, etc.) como puntos de entrada y salida en los diagramas de colaboración.
 
 **Justificación:** Asegurar que el análisis sea una refinación directa de los requisitos, manteniendo la trazabilidad y consistencia del flujo del sistema.
+
+## [00:08] Patrón de Orquestación (Dashboard)
+
+**Contexto:** Los paneles principales actúan como puntos de acceso a múltiples funcionalidades.
+
+**Decisión:** Utilizar un patrón de orquestación donde el controlador carga dinámicamente las opciones permitidas consultando el `PermisosRepository` con el usuario de la `Sesion`.
+
+**Justificación:** Permite un diseño flexible que se adapta al rol del usuario (Coordinador vs Investigador) sin duplicar la lógica de la vista principal.
+
+## [00:12] Especialización de Repositorios
+
+**Contexto:** Los datos de perfil y carga de trabajo pertenecen a entidades que pueden estar separadas (Usuario vs Investigador).
+
+**Decisión:** Utilizar el `UsuarioRepository` para la gestión de perfil general y el `InvestigadorRepository` para la carga de trabajo específica.
+
+**Justificación:** Sigue el principio de responsabilidad única (SRP) y refleja fielmente el modelo de dominio, donde un Usuario puede ser un Investigador pero la lógica de carga de trabajo es exclusiva de este último.

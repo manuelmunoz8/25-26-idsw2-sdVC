@@ -23,3 +23,22 @@
 **Resultado:** Creado `analisis/casosDeUsos/cerrarSesion/cerrarSesion-analisis.puml`.
 
 **Decisión:** Se representó la transición inversa a `iniciarSesion`, partiendo de `PANEL_PRINCIPAL_ABIERTO` y finalizando en `SESION_CERRADA`. Se incluyó la lógica de destrucción de sesión a través del repositorio.
+
+## [00:08] Diagrama de Colaboración: abrirPanelPrincipal (P0)
+
+**Prompt:** Creación del diagrama de colaboración para abrirPanelPrincipal siguiendo la prioridad P0.
+
+**Resultado:** Creado `analisis/casosDeUsos/abrirPanelPrincipal/abrirPanelPrincipal-analisis.puml`.
+
+**Decisión:** Se aplicó el patrón de "Fan-out" (Abanico) para representar la orquestación de múltiples casos de uso desde una vista central. Se incluyó la lógica de filtrado de opciones basada en los permisos del usuario de la sesión actual.
+
+## [00:12] Diagramas de Colaboración: Perfil y Carga de Trabajo (P0)
+
+**Prompt:** Generación de múltiples diagramas P0: abrirOpcionesPerfil, editarPerfil y abrirOpcionesCargaTrabajo.
+
+**Resultado:** 
+- Creado `analisis/casosDeUsos/abrirOpcionesPerfil/abrirOpcionesPerfil-analisis.puml`.
+- Creado `analisis/casosDeUsos/editarPerfil/editarPerfil-analisis.puml`.
+- Creado `analisis/casosDeUsos/abrirOpcionesCargaTrabajo/abrirOpcionesCargaTrabajo-analisis.puml`.
+
+**Decisión:** Se mantuvo la coherencia con los estados de los diagramas de contexto. En `editarPerfil`, se incluyó el flujo de validación y persistencia mediante el repositorio. En `abrirOpcionesCargaTrabajo`, se delegó la obtención de datos al `InvestigadorRepository` para reflejar la especialización de la entidad.

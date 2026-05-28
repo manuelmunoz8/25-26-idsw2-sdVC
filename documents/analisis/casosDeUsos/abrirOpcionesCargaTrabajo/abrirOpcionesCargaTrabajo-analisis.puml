@@ -1,0 +1,34 @@
+@startuml abrirOpcionesCargaTrabajo-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "PANEL_PRINCIPAL_ABIERTO" as PanelPrincipalAbierto
+rectangle #CDEBA5 "OPCIONES_CARGA_TRABAJO_ABIERTAS" as OpcionesCargaTrabajoAbiertas
+
+package abrirOpcionesCargaTrabajo as "abrirOpcionesCargaTrabajo()" {
+    rectangle #629EF9 OpcionesCargaTrabajoView
+    rectangle #b5bd68 CargaTrabajoController
+    rectangle #F2AC4E InvestigadorRepository
+    rectangle #F2AC4E Investigador
+    rectangle #F2AC4E Sesion
+}
+
+rectangle #CDEBA5 ":Collaboration EditarCargaTrabajo" as EditarCargaTrabajo
+rectangle #CDEBA5 ":Collaboration AbrirPanelPrincipal" as AbrirPanelPrincipal
+
+PanelPrincipalAbierto -r-> OpcionesCargaTrabajoView: abrirOpcionesCargaTrabajo()
+
+OpcionesCargaTrabajoView -d-> CargaTrabajoController: cargarCargaTrabajo()
+
+CargaTrabajoController -d-> Sesion: getUsuarioActual() : Usuario
+CargaTrabajoController -d-> InvestigadorRepository: obtenerCargaTrabajo(investigadorId) : Investigador
+
+OpcionesCargaTrabajoView ..> EditarCargaTrabajo: editarCargaTrabajo()
+OpcionesCargaTrabajoView ..> AbrirPanelPrincipal: abrirPanelPrincipal()
+
+OpcionesCargaTrabajoView ..> OpcionesCargaTrabajoAbiertas: <<finalizar>>
+
+@enduml
