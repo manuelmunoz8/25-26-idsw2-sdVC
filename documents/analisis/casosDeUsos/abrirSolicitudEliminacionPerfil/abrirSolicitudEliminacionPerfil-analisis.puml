@@ -1,0 +1,35 @@
+@startuml abrirSolicitudEliminacionPerfil-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "SOLICITUDES_ELIMINACION_PERFIL_ABIERTAS" as SolicitudesAbiertas
+rectangle #CDEBA5 "SOLICITUD_ELIMINACION_PERFIL_ABIERTA" as SolicitudAbierta
+
+package abrirSolicitudEliminacionPerfil as "abrirSolicitudEliminacionPerfil()" {
+    rectangle #629EF9 DetalleSolicitudView
+    rectangle #b5bd68 PerfilController
+    rectangle #F2AC4E SolicitudEliminacionRepository
+    rectangle #F2AC4E UsuarioRepository
+    rectangle #F2AC4E SolicitudEliminacion
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirSolicitudesEliminacionPerfil" as AbrirSolicitudes
+
+SolicitudesAbiertas -r-> DetalleSolicitudView: abrirSolicitudEliminacionPerfil(solicitudId)
+
+DetalleSolicitudView -d-> PerfilController: obtenerDetalleSolicitud(solicitudId) : SolicitudEliminacion
+PerfilController -d-> SolicitudEliminacionRepository: obtenerPorId(solicitudId) : SolicitudEliminacion
+SolicitudEliminacionRepository -- SolicitudEliminacion
+
+DetalleSolicitudView -d-> PerfilController: resolverSolicitud(aprobada)
+PerfilController -d-> SolicitudEliminacionRepository: actualizarEstado(solicitudId, estado)
+PerfilController -d-> UsuarioRepository: eliminar(usuarioId) : (si aprobada)
+
+DetalleSolicitudView ..> AbrirSolicitudes: abrirSolicitudesEliminacionPerfil()
+
+DetalleSolicitudView ..> SolicitudAbierta: <<finalizar>>
+
+@enduml

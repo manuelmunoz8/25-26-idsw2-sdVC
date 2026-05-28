@@ -1,0 +1,34 @@
+@startuml abrirRecompensas-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "Navegación Sistema" as NavegacionSistema
+rectangle #CDEBA5 "RECOMPENSAS_ABIERTAS" as RecompensasAbiertas
+
+package abrirRecompensas as "abrirRecompensas()" {
+    rectangle #629EF9 ListarRecompensasView
+    rectangle #b5bd68 RecompensaController
+    rectangle #F2AC4E RecompensaRepository
+    rectangle #F2AC4E Recompensa
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirRecompensa" as AbrirRecompensa
+rectangle #CDEBA5 ":Collaboration CrearRecompensa" as CrearRecompensa
+rectangle #CDEBA5 ":Collaboration AbrirPanelPrincipal" as AbrirPanelPrincipal
+
+NavegacionSistema -r-> ListarRecompensasView: abrirRecompensas()
+
+ListarRecompensasView -d-> RecompensaController: listarRecompensas() : List<Recompensa>
+RecompensaController -d-> RecompensaRepository: obtenerTodas() : List<Recompensa>
+RecompensaRepository -- Recompensa
+
+ListarRecompensasView ..> AbrirRecompensa: abrirRecompensa(recompensaId)
+ListarRecompensasView ..> CrearRecompensa: crearRecompensa()
+ListarRecompensasView ..> AbrirPanelPrincipal: abrirPanelPrincipal()
+
+ListarRecompensasView ..> RecompensasAbiertas: <<finalizar>>
+
+@enduml

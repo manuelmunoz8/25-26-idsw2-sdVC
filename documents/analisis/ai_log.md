@@ -87,3 +87,30 @@
 - `importarConvocatoria-analisis.puml`
 
 **Decisión:** En `abrirMisPublicaciones`, se utilizó la `Sesion` para filtrar el listado de publicaciones por el autor actual mediante el `PublicacionRepository`. Para `importarConvocatoria`, se introdujo un `ExternalSourceAdapter` para representar la lógica de extracción de datos desde fuentes externas (PDF, enlaces) antes de su persistencia.
+
+## [00:39] Diagramas de Colaboración: Recompensas e Investigadores (P2 - Batch 1)
+
+**Prompt:** Generación del primer bloque de P2 (Recompensas y Gestión administrativa de Investigadores - 8 diagramas).
+
+**Resultado:** 
+- `abrirRecompensas-analisis.puml`
+- `abrirRecompensa-analisis.puml`
+- `crearRecompensa-analisis.puml`
+- `editarRecompensa-analisis.puml`
+- `eliminarRecompensa-analisis.puml`
+- `abrirInvestigadores-analisis.puml`
+- `abrirInvestigador-analisis.puml`
+- `crearInvestigador-analisis.puml`
+
+**Decisión:** Se modeló la transición de `crearInvestigador` directamente hacia `abrirOpcionesPerfil` para completar el registro de datos detallados. En recompensas, se mantuvo el patrón CRUD estándar coordinado por el `RecompensaController`.
+
+## [00:52] Diagramas de Colaboración: Gestión de Perfil (P2 - Final)
+
+**Prompt:** Finalización del bloque P2 con la gestión de eliminación de perfil (3 diagramas).
+
+**Resultado:** 
+- `solicitarEliminacionPerfil-analisis.puml`
+- `abrirSolicitudesEliminacionPerfil-analisis.puml`
+- `abrirSolicitudEliminacionPerfil-analisis.puml`
+
+**Decisión:** Se modeló el flujo de aprobación/rechazo de solicitudes de eliminación en `abrirSolicitudEliminacionPerfil`, incluyendo la interacción con el `UsuarioRepository` para la eliminación física del perfil en caso de aprobación. Se aseguró la coherencia con los estados del diagrama de contexto del Coordinador.

@@ -57,3 +57,11 @@
 **Decisión:** Utilizar un componente `ExternalSourceAdapter` en el análisis de `importarConvocatoria`.
 
 **Justificación:** Aísla la lógica de negocio de la complejidad técnica de parsear archivos o enlaces externos, permitiendo que el controlador trabaje con datos ya estructurados.
+
+## [00:52] Proceso de Dos Pasos para Eliminación de Perfil
+
+**Contexto:** La eliminación de perfil no es inmediata y requiere supervisión administrativa.
+
+**Decisión:** El análisis divide el proceso en `solicitarEliminacionPerfil` (creación de solicitud) y `resolverSolicitud` (dentro de `abrirSolicitudEliminacionPerfil`).
+
+**Justificación:** Cumple con el requisito de seguridad y trazabilidad del sistema, permitiendo que un Coordinador valide las peticiones antes de ejecutar la eliminación física de los datos del usuario.

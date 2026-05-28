@@ -1,0 +1,28 @@
+@startuml editarRecompensa-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "RECOMPENSA_ABIERTA" as RecompensaAbierta
+
+package editarRecompensa as "editarRecompensa()" {
+    rectangle #629EF9 EditarRecompensaView
+    rectangle #b5bd68 RecompensaController
+    rectangle #F2AC4E RecompensaRepository
+    rectangle #F2AC4E Recompensa
+}
+
+RecompensaAbierta -r-> EditarRecompensaView: editarRecompensa()
+
+EditarRecompensaView -d-> RecompensaController: cargarDatosActuales()
+RecompensaController -d-> RecompensaRepository: obtenerPorId(recompensaId) : Recompensa
+
+EditarRecompensaView -d-> RecompensaController: guardarCambios(datosNuevos) : boolean
+RecompensaController -d-> RecompensaRepository: actualizar(recompensa) : boolean
+
+EditarRecompensaView ..> RecompensaAbierta: <<finalizar>> confirmar()
+EditarRecompensaView ..> RecompensaAbierta: <<cancelar>> cancelar()
+
+@enduml

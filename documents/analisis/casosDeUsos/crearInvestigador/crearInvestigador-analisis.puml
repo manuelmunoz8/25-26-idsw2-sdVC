@@ -1,0 +1,27 @@
+@startuml crearInvestigador-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "INVESTIGADORES_ABIERTOS" as InvestigadoresAbiertas
+rectangle #CDEBA5 "OPCIONES_PERFIL_ABIERTO" as OpcionesPerfilAbierto
+
+package crearInvestigador as "crearInvestigador()" {
+    rectangle #629EF9 CrearInvestigadorView
+    rectangle #b5bd68 InvestigadorController
+    rectangle #F2AC4E InvestigadorRepository
+    rectangle #F2AC4E Investigador
+}
+
+InvestigadoresAbiertas -r-> CrearInvestigadorView: crearInvestigador()
+
+CrearInvestigadorView -d-> InvestigadorController: crear(id, nombre, campo) : Investigador
+InvestigadorController -r-> Investigador: <<create>>
+InvestigadorController -d-> InvestigadorRepository: guardar(investigador)
+
+CrearInvestigadorView ..> OpcionesPerfilAbierto: <<finalizar>> abrirOpcionesPerfil(investigador)
+CrearInvestigadorView ..> InvestigadoresAbiertas: <<cancelar>> abrirInvestigadores()
+
+@enduml
