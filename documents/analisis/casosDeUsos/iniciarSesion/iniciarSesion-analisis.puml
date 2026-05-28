@@ -1,0 +1,31 @@
+@startuml iniciarSesion-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "SESION_CERRADA" as SesionCerrada
+rectangle #CDEBA5 ":Collaboration PANEL_PRINCIPAL_ABIERTO" as PanelPrincipalAbierto
+
+package iniciarSesion as "iniciarSesion()" {
+    rectangle #629EF9 LoginView
+    rectangle #b5bd68 IniciarSesionController
+    rectangle #F2AC4E UsuarioRepository
+    rectangle #F2AC4E Usuario
+    rectangle #F2AC4E Sesion
+}
+
+SesionCerrada -r-> LoginView: iniciarSesion()
+
+LoginView -d-> IniciarSesionController: autenticar(usuario, contraseña) : Sesion
+
+IniciarSesionController -d-> UsuarioRepository: validarCredenciales(usuario, contraseña) : Usuario
+UsuarioRepository -- Usuario
+
+IniciarSesionController -r-> Sesion: <<create>> crearSesion(usuario) : Sesion
+Sesion -- Usuario
+
+LoginView ..> PanelPrincipalAbierto: <<finalizar>> abrirPanelPrincipal()
+
+@enduml

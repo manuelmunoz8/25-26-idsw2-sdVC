@@ -1,0 +1,30 @@
+@startuml cerrarSesion-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "PANEL_PRINCIPAL_ABIERTO" as PanelPrincipalAbierto
+rectangle #CDEBA5 "SESION_CERRADA" as SesionCerrada
+
+package cerrarSesion as "cerrarSesion()" {
+    rectangle #629EF9 CerrarSesionView
+    rectangle #b5bd68 CerrarSesionController
+    rectangle #F2AC4E SesionRepository
+    rectangle #F2AC4E Sesion
+    rectangle #F2AC4E Usuario
+}
+
+PanelPrincipalAbierto -r-> CerrarSesionView: cerrarSesion()
+
+CerrarSesionView -d-> CerrarSesionController: solicitarCierre()
+
+CerrarSesionController -d-> SesionRepository: terminarSesion(usuarioActual)
+SesionRepository -d-> Sesion: destruirSesion()
+
+Sesion -- Usuario
+
+CerrarSesionView ..> SesionCerrada: <<finalizar>> cerrarSesion()
+
+@enduml
