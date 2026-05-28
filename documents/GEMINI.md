@@ -25,36 +25,26 @@ Esta carpeta contiene la documentación formal del proyecto.
 
 # Áreas
 
-## requisitos/
+## requisitado/
 Contiene:
 - requisitos funcionales
 - requisitos no funcionales
 - casos de uso
 
-## dominio/
-Contiene:
-- entidades
-- relaciones
-- reglas de negocio
-- glosario
-
-## arquitectura/
+## logs/
 Contiene:
 - decisiones globales
-- patrones
-- estructura del sistema
+- ai_log
+- decisiones
 
-## gestion/
-Contiene:
-- roadmap
-- backlog
-- riesgos
-
-## ai_logs/
+## logs/ai_logs
 Contiene:
 - registros relevantes de interacciones con AI
 - decisiones importantes tomadas durante desarrollo
 
+## logs/decisiones
+Contiene:
+- cuando se tome una decisión oficial.
 ---
 
 # Logs
