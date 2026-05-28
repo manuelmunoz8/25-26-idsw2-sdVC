@@ -41,3 +41,19 @@
 **Decisión:** En el diagrama de análisis de `eliminarProyecto`, el `ProyectoController` coordina con el `EntregableRepository` para asegurar la limpieza de entregables antes de eliminar el proyecto.
 
 **Justificación:** Mantiene la integridad referencial y funcional del sistema, alineándose con las advertencias especificadas en los requisitos detallados del caso de uso.
+
+## [00:32] Automatización de Autoría en Publicaciones
+
+**Contexto:** Al crear o responder una publicación, el autor debe ser el usuario autenticado.
+
+**Decisión:** El `PublicacionController` debe obtener el usuario de la `Sesion` antes de crear la entidad `Publicacion`.
+
+**Justificación:** Evita errores de entrada manual, asegura que la autoría sea verídica y simplifica la interfaz de usuario al no requerir que el usuario se identifique de nuevo.
+
+## [00:33] Desacoplamiento de Fuentes Externas (Importación)
+
+**Contexto:** La importación de convocatorias requiere procesar diversos formatos externos.
+
+**Decisión:** Utilizar un componente `ExternalSourceAdapter` en el análisis de `importarConvocatoria`.
+
+**Justificación:** Aísla la lógica de negocio de la complejidad técnica de parsear archivos o enlaces externos, permitiendo que el controlador trabaje con datos ya estructurados.

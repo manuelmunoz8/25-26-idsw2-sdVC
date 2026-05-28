@@ -1,0 +1,34 @@
+@startuml abrirEntregable-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "ENTREGABLES_ABIERTOS" as EntregablesAbiertos
+rectangle #CDEBA5 "ENTREGABLE_ABIERTO" as EntregableAbierto
+
+package abrirEntregable as "abrirEntregable()" {
+    rectangle #629EF9 DetalleEntregableView
+    rectangle #b5bd68 EntregableController
+    rectangle #F2AC4E EntregableRepository
+    rectangle #F2AC4E Entregable
+}
+
+rectangle #CDEBA5 ":Collaboration EditarEntregable" as EditarEntregable
+rectangle #CDEBA5 ":Collaboration EliminarEntregable" as EliminarEntregable
+rectangle #CDEBA5 ":Collaboration AbrirEntregables" as AbrirEntregables
+
+EntregablesAbiertos -r-> DetalleEntregableView: abrirEntregable(entregableId)
+
+DetalleEntregableView -d-> EntregableController: obtenerDetalleEntregable(entregableId) : Entregable
+EntregableController -d-> EntregableRepository: obtenerPorId(entregableId) : Entregable
+EntregableRepository -- Entregable
+
+DetalleEntregableView ..> EditarEntregable: editarEntregable()
+DetalleEntregableView ..> EliminarEntregable: eliminarEntregable()
+DetalleEntregableView ..> AbrirEntregables: abrirEntregables()
+
+DetalleEntregableView ..> EntregableAbierto: <<finalizar>>
+
+@enduml

@@ -57,3 +57,33 @@
 - `eliminarInvestigador-analisis.puml`
 
 **Decisión:** Se aplicó el patrón de navegación jerárquica (Listado -> Detalle -> Operación). En `eliminarProyecto`, se incluyó explícitamente el `EntregableRepository` para reflejar la regla de negocio de eliminación en cascada de entregables asociados.
+
+## [00:32] Diagramas de Colaboración: Entregables y Publicaciones (P1)
+
+**Prompt:** Generación del bloque P1 relacionado con entregables y publicaciones (6 diagramas).
+
+**Resultado:** 
+- `abrirEntregables-analisis.puml`
+- `abrirEntregable-analisis.puml`
+- `crearEntregable-analisis.puml`
+- `abrirPublicaciones-analisis.puml`
+- `abrirPublicacion-analisis.puml`
+- `responderPublicacion-analisis.puml`
+
+**Decisión:** Se modeló la relación de composición entre Proyecto y Entregable a través del `EntregableRepository` filtrando por `proyectoId`. En `responderPublicacion`, se incluyó la `Sesion` para identificar automáticamente al autor de la respuesta, manteniendo la integridad del hilo de conversación.
+
+## [00:33] Diagramas de Colaboración: Mis Publicaciones y Convocatorias (P1)
+
+**Prompt:** Finalización del bloque P1 con la gestión de publicaciones propias y convocatorias (8 diagramas).
+
+**Resultado:** 
+- `abrirMisPublicaciones-analisis.puml`
+- `abrirMiPublicacion-analisis.puml`
+- `crearPublicacion-analisis.puml`
+- `editarPublicacion-analisis.puml`
+- `eliminarPublicacion-analisis.puml`
+- `abrirConvocatorias-analisis.puml`
+- `abrirConvocatoria-analisis.puml`
+- `importarConvocatoria-analisis.puml`
+
+**Decisión:** En `abrirMisPublicaciones`, se utilizó la `Sesion` para filtrar el listado de publicaciones por el autor actual mediante el `PublicacionRepository`. Para `importarConvocatoria`, se introdujo un `ExternalSourceAdapter` para representar la lógica de extracción de datos desde fuentes externas (PDF, enlaces) antes de su persistencia.

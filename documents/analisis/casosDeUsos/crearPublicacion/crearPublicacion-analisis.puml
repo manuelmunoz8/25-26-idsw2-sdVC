@@ -1,0 +1,29 @@
+@startuml crearPublicacion-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "MIS_PUBLICACIONES_ABIERTAS" as MisPublicacionesAbiertas
+rectangle #CDEBA5 "MI_PUBLICACION_ABIERTA" as MiPublicacionAbierta
+
+package crearPublicacion as "crearPublicacion()" {
+    rectangle #629EF9 CrearPublicacionView
+    rectangle #b5bd68 PublicacionController
+    rectangle #F2AC4E PublicacionRepository
+    rectangle #F2AC4E Publicacion
+    rectangle #F2AC4E Sesion
+}
+
+MisPublicacionesAbiertas -r-> CrearPublicacionView: crearPublicacion()
+
+CrearPublicacionView -d-> PublicacionController: crear(titulo, estado, visibilidad, descripcion) : Publicacion
+PublicacionController -d-> Sesion: getUsuarioActual() : Usuario
+PublicacionController -r-> Publicacion: <<create>>
+PublicacionController -d-> PublicacionRepository: guardar(publicacion)
+
+CrearPublicacionView ..> MiPublicacionAbierta: <<finalizar>> abrirMiPublicacion(publicacion)
+CrearPublicacionView ..> MisPublicacionesAbiertas: <<cancelar>> abrirMisPublicaciones()
+
+@enduml

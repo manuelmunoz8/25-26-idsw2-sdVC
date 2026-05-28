@@ -1,0 +1,28 @@
+@startuml eliminarPublicacion-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "MI_PUBLICACION_ABIERTA" as MiPublicacionAbierta
+rectangle #CDEBA5 "MIS_PUBLICACIONES_ABIERTAS" as MisPublicacionesAbiertas
+
+package eliminarPublicacion as "eliminarPublicacion()" {
+    rectangle #629EF9 EliminarPublicacionView
+    rectangle #b5bd68 PublicacionController
+    rectangle #F2AC4E PublicacionRepository
+    rectangle #F2AC4E Publicacion
+}
+
+MiPublicacionAbierta -r-> EliminarPublicacionView: eliminarPublicacion()
+
+EliminarPublicacionView -d-> PublicacionController: solicitarConfirmacion()
+
+EliminarPublicacionView -d-> PublicacionController: confirmarEliminacion(publicacionId)
+PublicacionController -d-> PublicacionRepository: eliminar(publicacionId)
+
+EliminarPublicacionView ..> MisPublicacionesAbiertas: <<finalizar>>
+EliminarPublicacionView ..> MiPublicacionAbierta: <<cancelar>>
+
+@enduml

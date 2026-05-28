@@ -1,0 +1,34 @@
+@startuml abrirEntregables-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
+rectangle #CDEBA5 "ENTREGABLES_ABIERTOS" as EntregablesAbiertos
+
+package abrirEntregables as "abrirEntregables()" {
+    rectangle #629EF9 ListarEntregablesView
+    rectangle #b5bd68 EntregableController
+    rectangle #F2AC4E EntregableRepository
+    rectangle #F2AC4E Entregable
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirEntregable" as AbrirEntregable
+rectangle #CDEBA5 ":Collaboration CrearEntregable" as CrearEntregable
+rectangle #CDEBA5 ":Collaboration AbrirProyecto" as AbrirProyecto
+
+ProyectoAbierto -r-> ListarEntregablesView: abrirEntregables(proyectoId)
+
+ListarEntregablesView -d-> EntregableController: listarEntregables(proyectoId) : List<Entregable>
+EntregableController -d-> EntregableRepository: obtenerPorProyecto(proyectoId) : List<Entregable>
+EntregableRepository -- Entregable
+
+ListarEntregablesView ..> AbrirEntregable: abrirEntregable(entregableId)
+ListarEntregablesView ..> CrearEntregable: crearEntregable()
+ListarEntregablesView ..> AbrirProyecto: abrirProyecto()
+
+ListarEntregablesView ..> EntregablesAbiertos: <<finalizar>>
+
+@enduml

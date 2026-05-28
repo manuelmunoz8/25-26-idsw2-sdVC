@@ -1,0 +1,36 @@
+@startuml abrirMisPublicaciones-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "Navegación Sistema" as NavegacionSistema
+rectangle #CDEBA5 "MIS_PUBLICACIONES_ABIERTAS" as MisPublicacionesAbiertas
+
+package abrirMisPublicaciones as "abrirMisPublicaciones()" {
+    rectangle #629EF9 ListarMisPublicacionesView
+    rectangle #b5bd68 PublicacionController
+    rectangle #F2AC4E PublicacionRepository
+    rectangle #F2AC4E Publicacion
+    rectangle #F2AC4E Sesion
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirMiPublicacion" as AbrirMiPublicacion
+rectangle #CDEBA5 ":Collaboration CrearPublicacion" as CrearPublicacion
+rectangle #CDEBA5 ":Collaboration AbrirPanelPrincipal" as AbrirPanelPrincipal
+
+NavegacionSistema -r-> ListarMisPublicacionesView: abrirMisPublicaciones()
+
+ListarMisPublicacionesView -d-> PublicacionController: listarMisPublicaciones() : List<Publicacion>
+PublicacionController -d-> Sesion: getUsuarioActual() : Usuario
+PublicacionController -d-> PublicacionRepository: obtenerPorAutor(usuarioId) : List<Publicacion>
+PublicacionRepository -- Publicacion
+
+ListarMisPublicacionesView ..> AbrirMiPublicacion: abrirMiPublicacion(publicacionId)
+ListarMisPublicacionesView ..> CrearPublicacion: crearPublicacion()
+ListarMisPublicacionesView ..> AbrirPanelPrincipal: abrirPanelPrincipal()
+
+ListarMisPublicacionesView ..> MisPublicacionesAbiertas: <<finalizar>>
+
+@enduml

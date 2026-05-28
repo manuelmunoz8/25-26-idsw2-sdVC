@@ -1,0 +1,32 @@
+@startuml abrirConvocatorias-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "Navegación Sistema" as NavegacionSistema
+rectangle #CDEBA5 "CONVOCATORIAS_ABIERTAS" as ConvocatoriasAbiertas
+
+package abrirConvocatorias as "abrirConvocatorias()" {
+    rectangle #629EF9 ListarConvocatoriasView
+    rectangle #b5bd68 ConvocatoriaController
+    rectangle #F2AC4E ConvocatoriaRepository
+    rectangle #F2AC4E Convocatoria
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirConvocatoria" as AbrirConvocatoria
+rectangle #CDEBA5 ":Collaboration AbrirPanelPrincipal" as AbrirPanelPrincipal
+
+NavegacionSistema -r-> ListarConvocatoriasView: abrirConvocatorias()
+
+ListarConvocatoriasView -d-> ConvocatoriaController: listarConvocatorias() : List<Convocatoria>
+ConvocatoriaController -d-> ConvocatoriaRepository: obtenerTodas() : List<Convocatoria>
+ConvocatoriaRepository -- Convocatoria
+
+ListarConvocatoriasView ..> AbrirConvocatoria: abrirConvocatoria(convocatoriaId)
+ListarConvocatoriasView ..> AbrirPanelPrincipal: abrirPanelPrincipal()
+
+ListarConvocatoriasView ..> ConvocatoriasAbiertas: <<finalizar>>
+
+@enduml
