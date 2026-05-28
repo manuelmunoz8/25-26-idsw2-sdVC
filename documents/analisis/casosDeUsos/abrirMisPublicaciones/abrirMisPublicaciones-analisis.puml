@@ -9,11 +9,11 @@ rectangle #CDEBA5 "Navegación Sistema" as NavegacionSistema
 rectangle #CDEBA5 "MIS_PUBLICACIONES_ABIERTAS" as MisPublicacionesAbiertas
 
 package abrirMisPublicaciones as "abrirMisPublicaciones()" {
-    rectangle #629EF9 ListarMisPublicacionesView
-    rectangle #b5bd68 PublicacionController
-    rectangle #F2AC4E PublicacionRepository
-    rectangle #F2AC4E Publicacion
-    rectangle #F2AC4E Sesion
+    rectangle #629EF9 <<Boundary>> ListarMisPublicacionesView
+    rectangle #b5bd68 <<Control>> PublicacionController
+    rectangle #F2AC4E <<Entity>> PublicacionRepository
+    rectangle #F2AC4E <<Entity>> Publicacion
+    rectangle #F2AC4E <<Entity>> Sesion
 }
 
 rectangle #CDEBA5 ":Collaboration AbrirMiPublicacion" as AbrirMiPublicacion

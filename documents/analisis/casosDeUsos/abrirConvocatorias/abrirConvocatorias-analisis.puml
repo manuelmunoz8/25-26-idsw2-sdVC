@@ -9,10 +9,10 @@ rectangle #CDEBA5 "Navegación Sistema" as NavegacionSistema
 rectangle #CDEBA5 "CONVOCATORIAS_ABIERTAS" as ConvocatoriasAbiertas
 
 package abrirConvocatorias as "abrirConvocatorias()" {
-    rectangle #629EF9 ListarConvocatoriasView
-    rectangle #b5bd68 ConvocatoriaController
-    rectangle #F2AC4E ConvocatoriaRepository
-    rectangle #F2AC4E Convocatoria
+    rectangle #629EF9 <<Boundary>> ListarConvocatoriasView
+    rectangle #b5bd68 <<Control>> ConvocatoriaController
+    rectangle #F2AC4E <<Entity>> ConvocatoriaRepository
+    rectangle #F2AC4E <<Entity>> Convocatoria
 }
 
 rectangle #CDEBA5 ":Collaboration AbrirConvocatoria" as AbrirConvocatoria

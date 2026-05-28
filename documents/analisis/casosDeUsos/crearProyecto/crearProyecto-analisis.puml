@@ -9,10 +9,10 @@ rectangle #CDEBA5 "PROYECTOS_ABIERTOS" as ProyectosAbiertos
 rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
 
 package crearProyecto as "crearProyecto()" {
-    rectangle #629EF9 CrearProyectoView
-    rectangle #b5bd68 ProyectoController
-    rectangle #F2AC4E ProyectoRepository
-    rectangle #F2AC4E Proyecto
+    rectangle #629EF9 <<Boundary>> CrearProyectoView
+    rectangle #b5bd68 <<Control>> ProyectoController
+    rectangle #F2AC4E <<Entity>> ProyectoRepository
+    rectangle #F2AC4E <<Entity>> Proyecto
 }
 
 ProyectosAbiertos -r-> CrearProyectoView: crearProyecto()

@@ -9,11 +9,11 @@ rectangle #CDEBA5 "OPCIONES_PERFIL_ABIERTO" as OpcionesPerfilAbierto
 rectangle #CDEBA5 "SESION_CERRADA" as SesionCerrada
 
 package solicitarEliminacionPerfil as "solicitarEliminacionPerfil()" {
-    rectangle #629EF9 SolicitarEliminacionView
-    rectangle #b5bd68 PerfilController
-    rectangle #F2AC4E SolicitudEliminacionRepository
-    rectangle #F2AC4E SolicitudEliminacion
-    rectangle #F2AC4E Sesion
+    rectangle #629EF9 <<Boundary>> SolicitarEliminacionView
+    rectangle #b5bd68 <<Control>> PerfilController
+    rectangle #F2AC4E <<Entity>> SolicitudEliminacionRepository
+    rectangle #F2AC4E <<Entity>> SolicitudEliminacion
+    rectangle #F2AC4E <<Entity>> Sesion
 }
 
 OpcionesPerfilAbierto -r-> SolicitarEliminacionView: solicitarEliminacionPerfil()

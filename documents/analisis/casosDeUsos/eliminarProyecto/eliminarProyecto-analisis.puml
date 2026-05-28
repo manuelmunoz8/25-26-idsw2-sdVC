@@ -9,11 +9,11 @@ rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
 rectangle #CDEBA5 "PROYECTOS_ABIERTOS" as ProyectosAbiertos
 
 package eliminarProyecto as "eliminarProyecto()" {
-    rectangle #629EF9 EliminarProyectoView
-    rectangle #b5bd68 ProyectoController
-    rectangle #F2AC4E ProyectoRepository
-    rectangle #F2AC4E EntregableRepository
-    rectangle #F2AC4E Proyecto
+    rectangle #629EF9 <<Boundary>> EliminarProyectoView
+    rectangle #b5bd68 <<Control>> ProyectoController
+    rectangle #F2AC4E <<Entity>> ProyectoRepository
+    rectangle #F2AC4E <<Entity>> EntregableRepository
+    rectangle #F2AC4E <<Entity>> Proyecto
 }
 
 ProyectoAbierto -r-> EliminarProyectoView: eliminarProyecto()

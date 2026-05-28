@@ -9,11 +9,11 @@ rectangle #CDEBA5 "PROYECTOS_ABIERTOS" as ProyectosAbiertos
 rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
 
 package abrirProyecto as "abrirProyecto()" {
-    rectangle #629EF9 DetalleProyectoView
-    rectangle #b5bd68 ProyectoController
-    rectangle #F2AC4E ProyectoRepository
-    rectangle #F2AC4E Proyecto
-    rectangle #F2AC4E Investigador
+    rectangle #629EF9 <<Boundary>> DetalleProyectoView
+    rectangle #b5bd68 <<Control>> ProyectoController
+    rectangle #F2AC4E <<Entity>> ProyectoRepository
+    rectangle #F2AC4E <<Entity>> Proyecto
+    rectangle #F2AC4E <<Entity>> Investigador
 }
 
 rectangle #CDEBA5 ":Collaboration EditarProyecto" as EditarProyecto

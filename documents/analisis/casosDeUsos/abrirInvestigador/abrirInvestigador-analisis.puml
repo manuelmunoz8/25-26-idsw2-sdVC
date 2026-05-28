@@ -9,10 +9,10 @@ rectangle #CDEBA5 "INVESTIGADORES_ABIERTOS" as InvestigadoresAbiertas
 rectangle #CDEBA5 "INVESTIGADOR_ABIERTO" as InvestigadorAbierto
 
 package abrirInvestigador as "abrirInvestigador()" {
-    rectangle #629EF9 PerfilInvestigadorView
-    rectangle #b5bd68 InvestigadorController
-    rectangle #F2AC4E InvestigadorRepository
-    rectangle #F2AC4E Investigador
+    rectangle #629EF9 <<Boundary>> PerfilInvestigadorView
+    rectangle #b5bd68 <<Control>> InvestigadorController
+    rectangle #F2AC4E <<Entity>> InvestigadorRepository
+    rectangle #F2AC4E <<Entity>> Investigador
 }
 
 rectangle #CDEBA5 ":Collaboration AbrirOpcionesPerfil" as AbrirOpcionesPerfil

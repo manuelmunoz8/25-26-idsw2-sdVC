@@ -9,10 +9,10 @@ rectangle #CDEBA5 "MIS_PUBLICACIONES_ABIERTAS" as MisPublicacionesAbiertas
 rectangle #CDEBA5 "MI_PUBLICACION_ABIERTA" as MiPublicacionAbierta
 
 package abrirMiPublicacion as "abrirMiPublicacion()" {
-    rectangle #629EF9 DetalleMiPublicacionView
-    rectangle #b5bd68 PublicacionController
-    rectangle #F2AC4E PublicacionRepository
-    rectangle #F2AC4E Publicacion
+    rectangle #629EF9 <<Boundary>> DetalleMiPublicacionView
+    rectangle #b5bd68 <<Control>> PublicacionController
+    rectangle #F2AC4E <<Entity>> PublicacionRepository
+    rectangle #F2AC4E <<Entity>> Publicacion
 }
 
 rectangle #CDEBA5 ":Collaboration EditarPublicacion" as EditarPublicacion

@@ -114,3 +114,14 @@
 - `abrirSolicitudEliminacionPerfil-analisis.puml`
 
 **Decisión:** Se modeló el flujo de aprobación/rechazo de solicitudes de eliminación en `abrirSolicitudEliminacionPerfil`, incluyendo la interacción con el `UsuarioRepository` para la eliminación física del perfil en caso de aprobación. Se aseguró la coherencia con los estados del diagrama de contexto del Coordinador.
+
+## [01:03] Auditoría y Refinamiento del Modelo de Análisis
+
+**Prompt:** Revisión final de la estructura de los diagramas y mejoras.
+
+**Resultado:** 
+- Actualización masiva de los 43 diagramas (representados en los archivos .puml generados).
+- Inclusión de estereotipos explícitos (`<<Boundary>>`, `<<Control>>`, `<<Entity>>`) en todas las definiciones de componentes.
+- Unificación de leyendas de colores en los encabezados.
+
+**Decisión:** Se optó por añadir estereotipos textuales (`<<Stereotype>>`) además de los colores para mejorar la accesibilidad y el cumplimiento semántico de RUP, facilitando la identificación de roles en herramientas que no procesen colores.

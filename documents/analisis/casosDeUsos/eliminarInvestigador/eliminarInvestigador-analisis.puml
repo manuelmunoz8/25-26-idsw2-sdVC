@@ -8,11 +8,11 @@ skinparam linetype polyline
 rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
 
 package eliminarInvestigador as "eliminarInvestigador()" {
-    rectangle #629EF9 EliminarInvestigadorView
-    rectangle #b5bd68 ProyectoController
-    rectangle #F2AC4E ProyectoRepository
-    rectangle #F2AC4E Proyecto
-    rectangle #F2AC4E Investigador
+    rectangle #629EF9 <<Boundary>> EliminarInvestigadorView
+    rectangle #b5bd68 <<Control>> ProyectoController
+    rectangle #F2AC4E <<Entity>> ProyectoRepository
+    rectangle #F2AC4E <<Entity>> Proyecto
+    rectangle #F2AC4E <<Entity>> Investigador
 }
 
 ProyectoAbierto -r-> EliminarInvestigadorView: eliminarInvestigador(investigadorId)

@@ -8,10 +8,10 @@ skinparam linetype polyline
 rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
 
 package editarProyecto as "editarProyecto()" {
-    rectangle #629EF9 EditarProyectoView
-    rectangle #b5bd68 ProyectoController
-    rectangle #F2AC4E ProyectoRepository
-    rectangle #F2AC4E Proyecto
+    rectangle #629EF9 <<Boundary>> EditarProyectoView
+    rectangle #b5bd68 <<Control>> ProyectoController
+    rectangle #F2AC4E <<Entity>> ProyectoRepository
+    rectangle #F2AC4E <<Entity>> Proyecto
 }
 
 ProyectoAbierto -r-> EditarProyectoView: editarProyecto()

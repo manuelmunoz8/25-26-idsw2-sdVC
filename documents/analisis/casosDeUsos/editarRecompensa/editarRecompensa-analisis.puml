@@ -8,10 +8,10 @@ skinparam linetype polyline
 rectangle #CDEBA5 "RECOMPENSA_ABIERTA" as RecompensaAbierta
 
 package editarRecompensa as "editarRecompensa()" {
-    rectangle #629EF9 EditarRecompensaView
-    rectangle #b5bd68 RecompensaController
-    rectangle #F2AC4E RecompensaRepository
-    rectangle #F2AC4E Recompensa
+    rectangle #629EF9 <<Boundary>> EditarRecompensaView
+    rectangle #b5bd68 <<Control>> RecompensaController
+    rectangle #F2AC4E <<Entity>> RecompensaRepository
+    rectangle #F2AC4E <<Entity>> Recompensa
 }
 
 RecompensaAbierta -r-> EditarRecompensaView: editarRecompensa()

@@ -8,11 +8,11 @@ skinparam linetype polyline
 rectangle #CDEBA5 "OPCIONES_PERFIL_ABIERTO" as OpcionesPerfilAbierto
 
 package editarPerfil as "editarPerfil()" {
-    rectangle #629EF9 EditarPerfilView
-    rectangle #b5bd68 EditarPerfilController
-    rectangle #F2AC4E UsuarioRepository
-    rectangle #F2AC4E Usuario
-    rectangle #F2AC4E Sesion
+    rectangle #629EF9 <<Boundary>> EditarPerfilView
+    rectangle #b5bd68 <<Control>> EditarPerfilController
+    rectangle #F2AC4E <<Entity>> UsuarioRepository
+    rectangle #F2AC4E <<Entity>> Usuario
+    rectangle #F2AC4E <<Entity>> Sesion
 }
 
 OpcionesPerfilAbierto -r-> EditarPerfilView: editarPerfil()

@@ -9,10 +9,10 @@ rectangle #CDEBA5 "ENTREGABLES_ABIERTOS" as EntregablesAbiertos
 rectangle #CDEBA5 "ENTREGABLE_ABIERTO" as EntregableAbierto
 
 package crearEntregable as "crearEntregable()" {
-    rectangle #629EF9 CrearEntregableView
-    rectangle #b5bd68 EntregableController
-    rectangle #F2AC4E EntregableRepository
-    rectangle #F2AC4E Entregable
+    rectangle #629EF9 <<Boundary>> CrearEntregableView
+    rectangle #b5bd68 <<Control>> EntregableController
+    rectangle #F2AC4E <<Entity>> EntregableRepository
+    rectangle #F2AC4E <<Entity>> Entregable
 }
 
 EntregablesAbiertos -r-> CrearEntregableView: crearEntregable()

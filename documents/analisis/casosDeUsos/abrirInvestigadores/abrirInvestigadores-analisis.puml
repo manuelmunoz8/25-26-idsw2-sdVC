@@ -9,10 +9,10 @@ rectangle #CDEBA5 "Navegación Sistema" as NavegacionSistema
 rectangle #CDEBA5 "INVESTIGADORES_ABIERTOS" as InvestigadoresAbiertas
 
 package abrirInvestigadores as "abrirInvestigadores()" {
-    rectangle #629EF9 ListarInvestigadoresView
-    rectangle #b5bd68 InvestigadorController
-    rectangle #F2AC4E InvestigadorRepository
-    rectangle #F2AC4E Investigador
+    rectangle #629EF9 <<Boundary>> ListarInvestigadoresView
+    rectangle #b5bd68 <<Control>> InvestigadorController
+    rectangle #F2AC4E <<Entity>> InvestigadorRepository
+    rectangle #F2AC4E <<Entity>> Investigador
 }
 
 rectangle #CDEBA5 ":Collaboration AbrirInvestigador" as AbrirInvestigador

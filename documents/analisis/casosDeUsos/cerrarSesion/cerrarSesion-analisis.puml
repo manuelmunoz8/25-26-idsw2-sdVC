@@ -9,11 +9,11 @@ rectangle #CDEBA5 "PANEL_PRINCIPAL_ABIERTO" as PanelPrincipalAbierto
 rectangle #CDEBA5 "SESION_CERRADA" as SesionCerrada
 
 package cerrarSesion as "cerrarSesion()" {
-    rectangle #629EF9 CerrarSesionView
-    rectangle #b5bd68 CerrarSesionController
-    rectangle #F2AC4E SesionRepository
-    rectangle #F2AC4E Sesion
-    rectangle #F2AC4E Usuario
+    rectangle #629EF9 <<Boundary>> CerrarSesionView
+    rectangle #b5bd68 <<Control>> CerrarSesionController
+    rectangle #F2AC4E <<Entity>> SesionRepository
+    rectangle #F2AC4E <<Entity>> Sesion
+    rectangle #F2AC4E <<Entity>> Usuario
 }
 
 PanelPrincipalAbierto -r-> CerrarSesionView: cerrarSesion()

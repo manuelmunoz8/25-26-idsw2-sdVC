@@ -8,12 +8,12 @@ skinparam linetype polyline
 rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
 
 package agregarInvestigador as "agregarInvestigador()" {
-    rectangle #629EF9 AgregarInvestigadorView
-    rectangle #b5bd68 ProyectoController
-    rectangle #F2AC4E ProyectoRepository
-    rectangle #F2AC4E InvestigadorRepository
-    rectangle #F2AC4E Proyecto
-    rectangle #F2AC4E Investigador
+    rectangle #629EF9 <<Boundary>> AgregarInvestigadorView
+    rectangle #b5bd68 <<Control>> ProyectoController
+    rectangle #F2AC4E <<Entity>> ProyectoRepository
+    rectangle #F2AC4E <<Entity>> InvestigadorRepository
+    rectangle #F2AC4E <<Entity>> Proyecto
+    rectangle #F2AC4E <<Entity>> Investigador
 }
 
 ProyectoAbierto -r-> AgregarInvestigadorView: agregarInvestigador()

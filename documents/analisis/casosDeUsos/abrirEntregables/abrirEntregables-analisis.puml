@@ -9,10 +9,10 @@ rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
 rectangle #CDEBA5 "ENTREGABLES_ABIERTOS" as EntregablesAbiertos
 
 package abrirEntregables as "abrirEntregables()" {
-    rectangle #629EF9 ListarEntregablesView
-    rectangle #b5bd68 EntregableController
-    rectangle #F2AC4E EntregableRepository
-    rectangle #F2AC4E Entregable
+    rectangle #629EF9 <<Boundary>> ListarEntregablesView
+    rectangle #b5bd68 <<Control>> EntregableController
+    rectangle #F2AC4E <<Entity>> EntregableRepository
+    rectangle #F2AC4E <<Entity>> Entregable
 }
 
 rectangle #CDEBA5 ":Collaboration AbrirEntregable" as AbrirEntregable

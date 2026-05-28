@@ -9,11 +9,11 @@ rectangle #CDEBA5 "MIS_PUBLICACIONES_ABIERTAS" as MisPublicacionesAbiertas
 rectangle #CDEBA5 "MI_PUBLICACION_ABIERTA" as MiPublicacionAbierta
 
 package crearPublicacion as "crearPublicacion()" {
-    rectangle #629EF9 CrearPublicacionView
-    rectangle #b5bd68 PublicacionController
-    rectangle #F2AC4E PublicacionRepository
-    rectangle #F2AC4E Publicacion
-    rectangle #F2AC4E Sesion
+    rectangle #629EF9 <<Boundary>> CrearPublicacionView
+    rectangle #b5bd68 <<Control>> PublicacionController
+    rectangle #F2AC4E <<Entity>> PublicacionRepository
+    rectangle #F2AC4E <<Entity>> Publicacion
+    rectangle #F2AC4E <<Entity>> Sesion
 }
 
 MisPublicacionesAbiertas -r-> CrearPublicacionView: crearPublicacion()

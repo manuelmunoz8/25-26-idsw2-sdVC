@@ -9,10 +9,10 @@ rectangle #CDEBA5 "RECOMPENSAS_ABIERTAS" as RecompensasAbiertas
 rectangle #CDEBA5 "RECOMPENSA_ABIERTA" as RecompensaAbierta
 
 package crearRecompensa as "crearRecompensa()" {
-    rectangle #629EF9 CrearRecompensaView
-    rectangle #b5bd68 RecompensaController
-    rectangle #F2AC4E RecompensaRepository
-    rectangle #F2AC4E Recompensa
+    rectangle #629EF9 <<Boundary>> CrearRecompensaView
+    rectangle #b5bd68 <<Control>> RecompensaController
+    rectangle #F2AC4E <<Entity>> RecompensaRepository
+    rectangle #F2AC4E <<Entity>> Recompensa
 }
 
 RecompensasAbiertas -r-> CrearRecompensaView: crearRecompensa()

@@ -9,11 +9,11 @@ rectangle #CDEBA5 "PANEL_PRINCIPAL_ABIERTO" as PanelPrincipalAbierto
 rectangle #CDEBA5 "OPCIONES_CARGA_TRABAJO_ABIERTAS" as OpcionesCargaTrabajoAbiertas
 
 package abrirOpcionesCargaTrabajo as "abrirOpcionesCargaTrabajo()" {
-    rectangle #629EF9 OpcionesCargaTrabajoView
-    rectangle #b5bd68 CargaTrabajoController
-    rectangle #F2AC4E InvestigadorRepository
-    rectangle #F2AC4E Investigador
-    rectangle #F2AC4E Sesion
+    rectangle #629EF9 <<Boundary>> OpcionesCargaTrabajoView
+    rectangle #b5bd68 <<Control>> CargaTrabajoController
+    rectangle #F2AC4E <<Entity>> InvestigadorRepository
+    rectangle #F2AC4E <<Entity>> Investigador
+    rectangle #F2AC4E <<Entity>> Sesion
 }
 
 rectangle #CDEBA5 ":Collaboration EditarCargaTrabajo" as EditarCargaTrabajo
