@@ -33,3 +33,11 @@
 **Decisión:** Utilizar el `UsuarioRepository` para la gestión de perfil general y el `InvestigadorRepository` para la carga de trabajo específica.
 
 **Justificación:** Sigue el principio de responsabilidad única (SRP) y refleja fielmente el modelo de dominio, donde un Usuario puede ser un Investigador pero la lógica de carga de trabajo es exclusiva de este último.
+
+## [00:29] Eliminación en Cascada de Entregables
+
+**Contexto:** La eliminación de un proyecto debe gestionar sus dependencias funcionales.
+
+**Decisión:** En el diagrama de análisis de `eliminarProyecto`, el `ProyectoController` coordina con el `EntregableRepository` para asegurar la limpieza de entregables antes de eliminar el proyecto.
+
+**Justificación:** Mantiene la integridad referencial y funcional del sistema, alineándose con las advertencias especificadas en los requisitos detallados del caso de uso.

@@ -1,0 +1,28 @@
+@startuml editarProyecto-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
+
+package editarProyecto as "editarProyecto()" {
+    rectangle #629EF9 EditarProyectoView
+    rectangle #b5bd68 ProyectoController
+    rectangle #F2AC4E ProyectoRepository
+    rectangle #F2AC4E Proyecto
+}
+
+ProyectoAbierto -r-> EditarProyectoView: editarProyecto()
+
+EditarProyectoView -d-> ProyectoController: cargarDatosActuales()
+ProyectoController -d-> ProyectoRepository: obtenerPorId(proyectoId) : Proyecto
+
+EditarProyectoView -d-> ProyectoController: guardarCambios(datosNuevos) : boolean
+ProyectoController -d-> ProyectoRepository: actualizar(proyecto) : boolean
+
+EditarProyectoView ..> ProyectoAbierto: <<finalizar>> confirmar()
+EditarProyectoView ..> ProyectoAbierto: <<cancelar>> cancelar()
+
+@enduml

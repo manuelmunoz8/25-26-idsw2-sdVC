@@ -1,0 +1,32 @@
+@startuml agregarInvestigador-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
+
+package agregarInvestigador as "agregarInvestigador()" {
+    rectangle #629EF9 AgregarInvestigadorView
+    rectangle #b5bd68 ProyectoController
+    rectangle #F2AC4E ProyectoRepository
+    rectangle #F2AC4E InvestigadorRepository
+    rectangle #F2AC4E Proyecto
+    rectangle #F2AC4E Investigador
+}
+
+ProyectoAbierto -r-> AgregarInvestigadorView: agregarInvestigador()
+
+AgregarInvestigadorView -d-> ProyectoController: buscarInvestigador(criterio) : List<Investigador>
+ProyectoController -d-> InvestigadorRepository: buscar(criterio) : List<Investigador>
+
+AgregarInvestigadorView -d-> ProyectoController: asignarInvestigador(proyectoId, investigadorId)
+ProyectoController -d-> ProyectoRepository: agregarAsociacion(proyectoId, investigadorId)
+
+Proyecto -- Investigador
+
+AgregarInvestigadorView ..> ProyectoAbierto: <<finalizar>>
+AgregarInvestigadorView ..> ProyectoAbierto: <<cancelar>>
+
+@enduml

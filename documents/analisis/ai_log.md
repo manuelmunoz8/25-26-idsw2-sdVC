@@ -42,3 +42,18 @@
 - Creado `analisis/casosDeUsos/abrirOpcionesCargaTrabajo/abrirOpcionesCargaTrabajo-analisis.puml`.
 
 **Decisión:** Se mantuvo la coherencia con los estados de los diagramas de contexto. En `editarPerfil`, se incluyó el flujo de validación y persistencia mediante el repositorio. En `abrirOpcionesCargaTrabajo`, se delegó la obtención de datos al `InvestigadorRepository` para reflejar la especialización de la entidad.
+
+## [00:29] Diagramas de Colaboración: Gestión de Proyectos (P1)
+
+**Prompt:** Generación del bloque P1 relacionado con la gestión de proyectos (7 diagramas).
+
+**Resultado:** 
+- `abrirProyectos-analisis.puml`
+- `abrirProyecto-analisis.puml`
+- `crearProyecto-analisis.puml`
+- `editarProyecto-analisis.puml`
+- `eliminarProyecto-analisis.puml`
+- `agregarInvestigador-analisis.puml`
+- `eliminarInvestigador-analisis.puml`
+
+**Decisión:** Se aplicó el patrón de navegación jerárquica (Listado -> Detalle -> Operación). En `eliminarProyecto`, se incluyó explícitamente el `EntregableRepository` para reflejar la regla de negocio de eliminación en cascada de entregables asociados.
