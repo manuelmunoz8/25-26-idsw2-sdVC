@@ -1,6 +1,6 @@
-# Registro de Decisiones - Módulo de Requisitado
+# Registro de Decisiones - Módulo de Gestión
 
-## [23:59] Estructura Modular
+## [00:15] Estructura Modular
 
 **Contexto:** Alineación con las directrices del proyecto.
 
