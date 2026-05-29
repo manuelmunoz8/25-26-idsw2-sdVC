@@ -1,5 +1,15 @@
 # AI Log - Módulo de Arquitectura
 
+## [18:29] Actualización de README Principal y Documentación Global
+
+**Prompt:** "Bien en el README.md de esta carpeta vas a ver que lo cambie, puedes escribir algo que suene coherente con lo que dice el titulo del archivo"
+
+**Resultado:** 
+- Redacción y actualización del contenido del `README.md` raíz.
+- Inclusión de propósito del proyecto, estructura del repositorio y stack tecnológico.
+
+**Decisión:** Se alineó la descripción pública del proyecto con la visión técnica de `QUE_HACE.md` y la estructura modular definida en la arquitectura, mejorando la presentación del repositorio.
+
 ## [23:59] Inicialización de log modular
 
 **Prompt:** N/A (Ajuste estructural según GEMINI.md)

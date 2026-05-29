@@ -15,6 +15,26 @@ Cada entrada debe incluir referencias a los logs locales cuando aplique.
 
 # Timeline
 
+## [18:29] (29/05/2026) INIT-005 - Actualización del README Principal
+
+### Área
+Global | Documentación
+
+### Prompt
+"Bien en el README.md de esta carpeta vas a ver que lo cambie, puedes escribir algo que suene coherente con lo que dice el titulo del archivo"
+
+### Resultado
+- Redacción y actualización del contenido del `README.md` raíz.
+- Inclusión de propósito del proyecto, estructura del repositorio y stack tecnológico.
+
+### Decisión
+Se alinea la descripción del proyecto con la visión definida en `QUE_HACE.md`, proporcionando una visión clara y profesional de la Plataforma Interna de Investigación.
+
+### Referencias
+- [README.md](./README.md)
+
+---
+
 ## [20:20] (25/05/2026) BE-003 - Depuración de Conexión a Base de Datos (Invalid URL)
 
 ### Área
