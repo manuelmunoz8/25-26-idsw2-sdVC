@@ -1,0 +1,30 @@
+@startuml eliminarProyecto-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
+rectangle #CDEBA5 "PROYECTOS_ABIERTOS" as ProyectosAbiertos
+
+package "eliminarProyecto()" as eliminarProyecto {
+    rectangle "EliminarProyectoView" as EliminarProyectoView #629EF9
+    rectangle "ProyectoController" as ProyectoController #b5bd68
+    rectangle "ProyectoRepository" as ProyectoRepository #F2AC4E
+    rectangle "EntregableRepository" as EntregableRepository #F2AC4E
+}
+
+ProyectoAbierto -r-> EliminarProyectoView: eliminarProyecto()
+
+EliminarProyectoView -d-> ProyectoController: solicitarConfirmacion()
+ProyectoController -d-> ProyectoRepository: obtenerPorId(proyectoId) : Proyecto
+
+EliminarProyectoView -d-> ProyectoController: confirmarEliminacion(proyectoId)
+ProyectoController -d-> EntregableRepository: eliminarPorProyecto(proyectoId)
+ProyectoController -d-> ProyectoRepository: eliminar(proyectoId)
+
+EliminarProyectoView ..> ProyectosAbiertos: <<finalizar>>
+EliminarProyectoView ..> ProyectoAbierto: <<cancelar>>
+
+@enduml

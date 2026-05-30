@@ -1,0 +1,32 @@
+@startuml abrirInvestigador-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "INVESTIGADORES_ABIERTOS" as InvestigadoresAbiertas
+rectangle #CDEBA5 "INVESTIGADOR_ABIERTO" as InvestigadorAbierto
+
+package "abrirInvestigador()" as abrirInvestigador {
+    rectangle "PerfilInvestigadorView" as PerfilInvestigadorView #629EF9
+    rectangle "InvestigadorController" as InvestigadorController #b5bd68
+    rectangle "InvestigadorRepository" as InvestigadorRepository #F2AC4E
+    rectangle "Investigador" as Investigador #F2AC4E
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirOpcionesPerfil" as AbrirOpcionesPerfil
+rectangle #CDEBA5 ":Collaboration AbrirInvestigadores" as AbrirInvestigadores
+
+InvestigadoresAbiertas -r-> PerfilInvestigadorView: abrirInvestigador(investigadorId)
+
+PerfilInvestigadorView -d-> InvestigadorController: obtenerPerfil(investigadorId) : Investigador
+InvestigadorController -d-> InvestigadorRepository: obtenerPorId(investigadorId) : Investigador
+InvestigadorRepository -- Investigador
+
+PerfilInvestigadorView ..> AbrirOpcionesPerfil: abrirOpcionesPerfil(investigadorId)
+PerfilInvestigadorView ..> AbrirInvestigadores: abrirInvestigadores()
+
+PerfilInvestigadorView ..> InvestigadorAbierto: <<finalizar>>
+
+@enduml

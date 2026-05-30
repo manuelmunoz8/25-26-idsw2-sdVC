@@ -1,0 +1,32 @@
+@startuml abrirConvocatoria-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "CONVOCATORIAS_ABIERTAS" as ConvocatoriasAbiertas
+rectangle #CDEBA5 "CONVOCATORIA_ABIERTA" as ConvocatoriaAbierta
+
+package "abrirConvocatoria()" as abrirConvocatoria {
+  rectangle "DetalleConvocatoriaView" as DetalleConvocatoriaView #629EF9
+  rectangle "ConvocatoriaController" as ConvocatoriaController #b5bd68
+  rectangle "ConvocatoriaRepository" as ConvocatoriaRepository #F2AC4E
+  rectangle "Convocatoria" as Convocatoria #F2AC4E
+}
+
+rectangle #CDEBA5 ":Collaboration ImportarConvocatoria" as ImportarConvocatoria
+rectangle #CDEBA5 ":Collaboration AbrirConvocatorias" as AbrirConvocatorias
+
+ConvocatoriasAbiertas -r-> DetalleConvocatoriaView: abrirConvocatoria(convocatoriaId)
+
+DetalleConvocatoriaView -d-> ConvocatoriaController: obtenerDetalleConvocatoria(convocatoriaId) : Convocatoria
+ConvocatoriaController -d-> ConvocatoriaRepository: obtenerPorId(convocatoriaId) : Convocatoria
+ConvocatoriaRepository -- Convocatoria
+
+DetalleConvocatoriaView ..> ImportarConvocatoria: importarConvocatoria()
+DetalleConvocatoriaView ..> AbrirConvocatorias: abrirConvocatorias()
+
+DetalleConvocatoriaView ..> ConvocatoriaAbierta: <<finalizar>>
+
+@enduml

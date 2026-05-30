@@ -1,0 +1,34 @@
+@startuml abrirInvestigadores-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "Navegación Sistema" as NavegacionSistema
+rectangle #CDEBA5 "INVESTIGADORES_ABIERTOS" as InvestigadoresAbiertas
+
+package "abrirInvestigadores()" as abrirInvestigadores {
+    rectangle "ListarInvestigadoresView" as ListarInvestigadoresView #629EF9
+    rectangle "InvestigadorController" as InvestigadorController #b5bd68
+    rectangle "InvestigadorRepository" as InvestigadorRepository #F2AC4E
+    rectangle "Investigador" as Investigador #F2AC4E
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirInvestigador" as AbrirInvestigador
+rectangle #CDEBA5 ":Collaboration CrearInvestigador" as CrearInvestigador
+rectangle #CDEBA5 ":Collaboration AbrirPanelPrincipal" as AbrirPanelPrincipal
+
+NavegacionSistema -r-> ListarInvestigadoresView: abrirInvestigadores()
+
+ListarInvestigadoresView -d-> InvestigadorController: listarInvestigadores() : List<Investigador>
+InvestigadorController -d-> InvestigadorRepository: obtenerTodos() : List<Investigador>
+InvestigadorRepository -- Investigador
+
+ListarInvestigadoresView ..> AbrirInvestigador: abrirInvestigador(investigadorId)
+ListarInvestigadoresView ..> CrearInvestigador: crearInvestigador()
+ListarInvestigadoresView ..> AbrirPanelPrincipal: abrirPanelPrincipal()
+
+ListarInvestigadoresView ..> InvestigadoresAbiertas: <<finalizar>>
+
+@enduml

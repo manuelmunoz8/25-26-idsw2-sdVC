@@ -1,0 +1,36 @@
+@startuml abrirPublicacion-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "PUBLICACIONES_ABIERTAS" as PublicacionesAbiertas
+rectangle #CDEBA5 "PUBLICACION_ABIERTA" as PublicacionAbierta
+
+package "abrirPublicacion()" as abrirPublicacion {
+    rectangle "DetallePublicacionView" as DetallePublicacionView #629EF9
+    rectangle "PublicacionController" as PublicacionController #b5bd68
+    rectangle "PublicacionRepository" as PublicacionRepository #F2AC4E
+    rectangle "Publicacion" as Publicacion #F2AC4E
+}
+
+rectangle #CDEBA5 ":Collaboration ResponderPublicacion" as ResponderPublicacion
+rectangle #CDEBA5 ":Collaboration EditarPublicacion" as EditarPublicacion
+rectangle #CDEBA5 ":Collaboration EliminarPublicacion" as EliminarPublicacion
+rectangle #CDEBA5 ":Collaboration AbrirPublicaciones" as AbrirPublicaciones
+
+PublicacionesAbiertas -r-> DetallePublicacionView: abrirPublicacion(publicacionId)
+
+DetallePublicacionView -d-> PublicacionController: obtenerDetallePublicacion(publicacionId) : Publicacion
+PublicacionController -d-> PublicacionRepository: obtenerPorId(publicacionId) : Publicacion
+PublicacionRepository -- Publicacion
+
+DetallePublicacionView ..> ResponderPublicacion: responderPublicacion()
+DetallePublicacionView ..> EditarPublicacion: editarPublicacion()
+DetallePublicacionView ..> EliminarPublicacion: eliminarPublicacion()
+DetallePublicacionView ..> AbrirPublicaciones: abrirPublicaciones()
+
+DetallePublicacionView ..> PublicacionAbierta: <<finalizar>>
+
+@enduml

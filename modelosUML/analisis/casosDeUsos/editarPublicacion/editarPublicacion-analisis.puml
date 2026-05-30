@@ -1,0 +1,27 @@
+@startuml editarPublicacion-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "MI_PUBLICACION_ABIERTA" as MiPublicacionAbierta
+
+package "editarPublicacion()" as editarPublicacion {
+    rectangle "EditarPublicacionView" as EditarPublicacionView #629EF9
+    rectangle "PublicacionController" as PublicacionController #b5bd68
+    rectangle "PublicacionRepository" as PublicacionRepository #F2AC4E
+}
+
+MiPublicacionAbierta -r-> EditarPublicacionView: editarPublicacion()
+
+EditarPublicacionView -d-> PublicacionController: cargarDatosActuales()
+PublicacionController -d-> PublicacionRepository: obtenerPorId(publicacionId) : Publicacion
+
+EditarPublicacionView -d-> PublicacionController: guardarCambios(datosNuevos) : boolean
+PublicacionController -d-> PublicacionRepository: actualizar(publicacion) : boolean
+
+EditarPublicacionView ..> MiPublicacionAbierta: <<finalizar>> confirmar()
+EditarPublicacionView ..> MiPublicacionAbierta: <<cancelar>> cancelar()
+
+@enduml

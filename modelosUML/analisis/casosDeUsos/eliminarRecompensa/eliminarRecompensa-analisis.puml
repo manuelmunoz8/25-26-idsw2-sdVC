@@ -1,0 +1,27 @@
+@startuml eliminarRecompensa-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "RECOMPENSA_ABIERTA" as RecompensaAbierta
+rectangle #CDEBA5 "RECOMPENSAS_ABIERTAS" as RecompensasAbiertas
+
+package "eliminarRecompensa()" as eliminarRecompensa {
+    rectangle "EliminarRecompensaView" as EliminarRecompensaView #629EF9
+    rectangle "RecompensaController" as RecompensaController #b5bd68
+    rectangle "RecompensaRepository" as RecompensaRepository #F2AC4E
+}
+
+RecompensaAbierta -r-> EliminarRecompensaView: eliminarRecompensa()
+
+EliminarRecompensaView -d-> RecompensaController: solicitarConfirmacion()
+
+EliminarRecompensaView -d-> RecompensaController: confirmarEliminacion(recompensaId)
+RecompensaController -d-> RecompensaRepository: eliminar(recompensaId)
+
+EliminarRecompensaView ..> RecompensasAbiertas: <<finalizar>>
+EliminarRecompensaView ..> RecompensaAbierta: <<cancelar>>
+
+@enduml

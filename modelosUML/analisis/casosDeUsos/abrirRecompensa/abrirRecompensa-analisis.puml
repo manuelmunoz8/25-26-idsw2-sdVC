@@ -1,0 +1,34 @@
+@startuml abrirRecompensa-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "RECOMPENSAS_ABIERTAS" as RecompensasAbiertas
+rectangle #CDEBA5 "RECOMPENSA_ABIERTA" as RecompensaAbierta
+
+package "abrirRecompensa()" as abrirRecompensa {
+    rectangle "DetalleRecompensaView" as DetalleRecompensaView #629EF9
+    rectangle "RecompensaController" as RecompensaController #b5bd68
+    rectangle "RecompensaRepository" as RecompensaRepository #F2AC4E
+    rectangle "Recompensa" as Recompensa #F2AC4E
+}
+
+rectangle #CDEBA5 ":Collaboration EditarRecompensa" as EditarRecompensa
+rectangle #CDEBA5 ":Collaboration EliminarRecompensa" as EliminarRecompensa
+rectangle #CDEBA5 ":Collaboration AbrirRecompensas" as AbrirRecompensas
+
+RecompensasAbiertas -r-> DetalleRecompensaView: abrirRecompensa(recompensaId)
+
+DetalleRecompensaView -d-> RecompensaController: obtenerDetalleRecompensa(recompensaId) : Recompensa
+RecompensaController -d-> RecompensaRepository: obtenerPorId(recompensaId) : Recompensa
+RecompensaRepository -- Recompensa
+
+DetalleRecompensaView ..> EditarRecompensa: editarRecompensa()
+DetalleRecompensaView ..> EliminarRecompensa: eliminarRecompensa()
+DetalleRecompensaView ..> AbrirRecompensas: abrirRecompensas()
+
+DetalleRecompensaView ..> RecompensaAbierta: <<finalizar>>
+
+@enduml

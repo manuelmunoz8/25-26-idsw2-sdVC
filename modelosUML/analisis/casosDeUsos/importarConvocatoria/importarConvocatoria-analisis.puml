@@ -1,0 +1,26 @@
+@startuml importarConvocatoria-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "CONVOCATORIA_ABIERTA" as ConvocatoriaAbierta
+
+package "importarConvocatoria()" as importarConvocatoria {
+    rectangle "ImportarConvocatoriaView" as ImportarConvocatoriaView #629EF9
+    rectangle "ConvocatoriaController" as ConvocatoriaController #b5bd68
+    rectangle "ConvocatoriaRepository" as ConvocatoriaRepository #F2AC4E
+    rectangle "ExternalSourceAdapter" as ExternalSourceAdapter #F2AC4E
+}
+
+ConvocatoriaAbierta -r-> ImportarConvocatoriaView: importarConvocatoria()
+
+ImportarConvocatoriaView -d-> ConvocatoriaController: solicitarImportacion(fuente) : Convocatoria
+ConvocatoriaController -d-> ExternalSourceAdapter: extraerDatos(fuente) : ConvocatoriaData
+ConvocatoriaController -d-> ConvocatoriaRepository: actualizarConDatosExternos(convocatoriaId, datos) : boolean
+
+ImportarConvocatoriaView ..> ConvocatoriaAbierta: <<finalizar>>
+ImportarConvocatoriaView ..> ConvocatoriaAbierta: <<cancelar>>
+
+@enduml

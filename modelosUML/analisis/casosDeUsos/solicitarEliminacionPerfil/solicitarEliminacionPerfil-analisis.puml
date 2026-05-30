@@ -1,0 +1,29 @@
+@startuml solicitarEliminacionPerfil-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "OPCIONES_PERFIL_ABIERTO" as OpcionesPerfilAbierto
+rectangle #CDEBA5 "SESION_CERRADA" as SesionCerrada
+
+package "solicitarEliminacionPerfil()" as solicitarEliminacionPerfil {
+    rectangle "SolicitarEliminacionView" as SolicitarEliminacionView #629EF9
+    rectangle "PerfilController" as PerfilController #b5bd68
+    rectangle "SolicitudEliminacionRepository" as SolicitudEliminacionRepository #F2AC4E
+    rectangle "SolicitudEliminacion" as SolicitudEliminacion #F2AC4E
+    rectangle "Sesion" as Sesion #F2AC4E
+}
+
+OpcionesPerfilAbierto -r-> SolicitarEliminacionView: solicitarEliminacionPerfil()
+
+SolicitarEliminacionView -d-> PerfilController: crearSolicitudEliminacion()
+PerfilController -d-> Sesion: getUsuarioActual() : Usuario
+PerfilController -r-> SolicitudEliminacion: <<create>>
+PerfilController -d-> SolicitudEliminacionRepository: guardar(solicitud)
+
+SolicitarEliminacionView ..> SesionCerrada: <<finalizar>> confirmar()
+SolicitarEliminacionView ..> OpcionesPerfilAbierto: <<cancelar>> cancelar()
+
+@enduml

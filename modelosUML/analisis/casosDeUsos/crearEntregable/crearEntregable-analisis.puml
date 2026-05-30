@@ -1,0 +1,27 @@
+@startuml crearEntregable-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "ENTREGABLES_ABIERTOS" as EntregablesAbiertos
+rectangle #CDEBA5 "ENTREGABLE_ABIERTO" as EntregableAbierto
+
+package "crearEntregable()" as crearEntregable {
+    rectangle "CrearEntregableView" as CrearEntregableView #629EF9
+    rectangle "EntregableController" as EntregableController #b5bd68
+    rectangle "EntregableRepository" as EntregableRepository #F2AC4E
+    rectangle "Entregable" as Entregable #F2AC4E
+}
+
+EntregablesAbiertos -r-> CrearEntregableView: crearEntregable()
+
+CrearEntregableView -d-> EntregableController: crear(proyectoId, nombre, fecha, descripcion) : Entregable
+EntregableController -r-> Entregable: <<create>>
+EntregableController -d-> EntregableRepository: guardar(entregable)
+
+CrearEntregableView ..> EntregableAbierto: <<finalizar>> abrirEntregable(entregable)
+CrearEntregableView ..> EntregablesAbiertos: <<cancelar>> abrirEntregables()
+
+@enduml

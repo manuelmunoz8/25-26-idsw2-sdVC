@@ -30,7 +30,7 @@ Contiene la definición de necesidades del sistema.
 - Casos de uso detallados.
 - Diagramas de contexto.
 
-## analisis/ (Análisis)
+## ../RUP/01-analisis/ (Análisis)
 Contiene la realización de los casos de uso desde una perspectiva interna.
 - Diagramas de colaboración de análisis (BCE).
 - Clases de análisis.

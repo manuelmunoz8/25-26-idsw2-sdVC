@@ -1,0 +1,37 @@
+@startuml abrirProyectos-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "Navegación Sistema" as NavegacionSistema
+rectangle #CDEBA5 "PROYECTOS_ABIERTOS" as ProyectosAbiertos
+
+package "abrirProyectos()" as abrirProyectos {
+    rectangle "ListarProyectosView" as ListarProyectosView #629EF9
+    rectangle "ProyectosController" as ProyectosController #b5bd68
+    rectangle "ProyectoRepository" as ProyectoRepository #F2AC4E
+    rectangle "Proyecto" as Proyecto #F2AC4E
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirProyecto" as AbrirProyecto
+rectangle #CDEBA5 ":Collaboration CrearProyecto" as CrearProyecto
+rectangle #CDEBA5 ":Collaboration AbrirPanelPrincipal" as AbrirPanelPrincipal
+
+NavegacionSistema -r-> ListarProyectosView: abrirProyectos()
+
+ListarProyectosView -d-> ProyectosController: listarProyectos() : List<Proyecto>
+ProyectosController -d-> ProyectoRepository: obtenerTodos() : List<Proyecto>
+ProyectoRepository -- Proyecto
+
+ListarProyectosView -d-> ProyectosController: filtrarProyectos(criterio) : List<Proyecto>
+ProyectosController -d-> ProyectoRepository: buscarPorCriterio(criterio) : List<Proyecto>
+
+ListarProyectosView ..> AbrirProyecto: abrirProyecto(proyectoId)
+ListarProyectosView ..> CrearProyecto: crearProyecto()
+ListarProyectosView ..> AbrirPanelPrincipal: abrirPanelPrincipal()
+
+ListarProyectosView ..> ProyectosAbiertos: <<finalizar>>
+
+@enduml

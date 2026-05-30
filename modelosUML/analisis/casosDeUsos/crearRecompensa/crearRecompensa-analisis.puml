@@ -1,0 +1,27 @@
+@startuml crearRecompensa-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "RECOMPENSAS_ABIERTAS" as RecompensasAbiertas
+rectangle #CDEBA5 "RECOMPENSA_ABIERTA" as RecompensaAbierta
+
+package "crearRecompensa()" as crearRecompensa {
+    rectangle "CrearRecompensaView" as CrearRecompensaView #629EF9
+    rectangle "RecompensaController" as RecompensaController #b5bd68
+    rectangle "RecompensaRepository" as RecompensaRepository #F2AC4E
+    rectangle "Recompensa" as Recompensa #F2AC4E
+}
+
+RecompensasAbiertas -r-> CrearRecompensaView: crearRecompensa()
+
+CrearRecompensaView -d-> RecompensaController: crear(tipo, cantidad) : Recompensa
+RecompensaController -r-> Recompensa: <<create>>
+RecompensaController -d-> RecompensaRepository: guardar(recompensa)
+
+CrearRecompensaView ..> RecompensaAbierta: <<finalizar>> abrirRecompensa(recompensa)
+CrearRecompensaView ..> RecompensasAbiertas: <<cancelar>> abrirRecompensas()
+
+@enduml

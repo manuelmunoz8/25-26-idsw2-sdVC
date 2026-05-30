@@ -1,0 +1,32 @@
+@startuml abrirPublicaciones-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "PANEL_PRINCIPAL_ABIERTO" as PanelPrincipalAbierto
+rectangle #CDEBA5 "PUBLICACIONES_ABIERTAS" as PublicacionesAbiertas
+
+package "abrirPublicaciones()" as abrirPublicaciones {
+    rectangle "ListarPublicacionesView" as ListarPublicacionesView #629EF9
+    rectangle "PublicacionController" as PublicacionController #b5bd68
+    rectangle "PublicacionRepository" as PublicacionRepository #F2AC4E
+    rectangle "Publicacion" as Publicacion #F2AC4E
+}
+
+rectangle #CDEBA5 ":Collaboration AbrirPublicacion" as AbrirPublicacion
+rectangle #CDEBA5 ":Collaboration AbrirPanelPrincipal" as AbrirPanelPrincipal
+
+PanelPrincipalAbierto -r-> ListarPublicacionesView: abrirPublicaciones()
+
+ListarPublicacionesView -d-> PublicacionController: listarPublicaciones() : List<Publicacion>
+PublicacionController -d-> PublicacionRepository: obtenerTodas() : List<Publicacion>
+PublicacionRepository -- Publicacion
+
+ListarPublicacionesView ..> AbrirPublicacion: abrirPublicacion(publicacionId)
+ListarPublicacionesView ..> AbrirPanelPrincipal: abrirPanelPrincipal()
+
+ListarPublicacionesView ..> PublicacionesAbiertas: <<finalizar>>
+
+@enduml

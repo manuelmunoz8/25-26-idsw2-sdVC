@@ -1,0 +1,42 @@
+@startuml abrirProyecto-analisis
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+rectangle #CDEBA5 "PROYECTOS_ABIERTOS" as ProyectosAbiertos
+rectangle #CDEBA5 "PROYECTO_ABIERTO" as ProyectoAbierto
+
+package "abrirProyecto()" as abrirProyecto {
+    rectangle "DetalleProyectoView" as DetalleProyectoView #629EF9
+    rectangle "ProyectoController" as ProyectoController #b5bd68
+    rectangle "ProyectoRepository" as ProyectoRepository #F2AC4E
+    rectangle "Proyecto" as Proyecto #F2AC4E
+    rectangle "Investigador" as Investigador #F2AC4E
+}
+
+rectangle #CDEBA5 ":Collaboration EditarProyecto" as EditarProyecto
+rectangle #CDEBA5 ":Collaboration EliminarProyecto" as EliminarProyecto
+rectangle #CDEBA5 ":Collaboration AbrirEntregables" as AbrirEntregables
+rectangle #CDEBA5 ":Collaboration AgregarInvestigador" as AgregarInvestigador
+rectangle #CDEBA5 ":Collaboration AbrirInvestigadores" as AbrirInvestigadores
+rectangle #CDEBA5 ":Collaboration AbrirProyectos" as AbrirProyectos
+
+ProyectosAbiertos -r-> DetalleProyectoView: abrirProyecto(proyectoId)
+
+DetalleProyectoView -d-> ProyectoController: obtenerDetalleProyecto(proyectoId) : Proyecto
+ProyectoController -d-> ProyectoRepository: obtenerPorId(proyectoId) : Proyecto
+ProyectoRepository -- Proyecto
+Proyecto -- Investigador
+
+DetalleProyectoView ..> EditarProyecto: editarProyecto()
+DetalleProyectoView ..> EliminarProyecto: eliminarProyecto()
+DetalleProyectoView ..> AbrirEntregables: abrirEntregables()
+DetalleProyectoView ..> AgregarInvestigador: agregarInvestigador()
+DetalleProyectoView ..> AbrirInvestigadores: abrirInvestigadores()
+DetalleProyectoView ..> AbrirProyectos: abrirProyectos()
+
+DetalleProyectoView ..> ProyectoAbierto: <<finalizar>>
+
+@enduml
