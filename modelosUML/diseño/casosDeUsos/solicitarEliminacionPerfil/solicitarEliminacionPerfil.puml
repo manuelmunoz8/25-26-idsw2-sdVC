@@ -1,0 +1,22 @@
+@startuml solicitarEliminacionPerfil
+skinparam style strictuml
+hide empty members
+
+actor Usuario
+participant "SolicitarEliminacionView" as View
+participant "PerfilController" as Controller
+participant "Sesion" as Sesion
+participant "SolicitudEliminacion" as Solicitud
+participant "SolicitudEliminacionRepository" as Repository
+
+Usuario -> View: solicitarEliminacionPerfil()
+View -> Controller: crearSolicitudEliminacion()
+Controller -> Sesion: getUsuarioActual()
+Sesion --> Controller: usuario
+Controller -> Solicitud: <<create>>
+Solicitud --> Controller: solicitud
+Controller -> Repository: guardar(solicitud)
+Repository --> Controller: ok
+Controller --> View: ok
+View --> Usuario: confirmar()
+@enduml

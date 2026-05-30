@@ -1,0 +1,27 @@
+@startuml abrirMiPublicacion-diseño
+skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+actor Usuario
+participant "DetalleMiPublicacionView" as View
+participant "PublicacionController" as Controller
+participant "PublicacionRepository" as Repository
+
+Usuario -> View: abrirMiPublicacion(publicacionId)
+activate View
+View -> Controller: obtenerDetallePublicacion(publicacionId)
+activate Controller
+Controller -> Repository: obtenerPorId(publicacionId)
+activate Repository
+Repository --> Controller: Publicacion
+deactivate Repository
+Controller --> View: Publicacion
+deactivate Controller
+View --> Usuario: mostrarDetalle()
+deactivate View
+
+@enduml

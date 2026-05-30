@@ -1,0 +1,26 @@
+@startuml abrirMisPublicaciones-diseño
+skinparam style strictuml
+
+actor "Usuario" as user
+participant "ListarMisPublicacionesView" as view
+participant "PublicacionController" as controller
+participant "Sesion" as sesion
+participant "PublicacionRepository" as repo
+
+user -> view : abrirMisPublicaciones()
+activate view
+view -> controller : listarMisPublicaciones()
+activate controller
+controller -> sesion : getUsuarioActual()
+activate sesion
+sesion --> controller : usuario
+deactivate sesion
+controller -> repo : obtenerPorAutor(usuarioId)
+activate repo
+repo --> controller : List<Publicacion>
+deactivate repo
+controller --> view : List<Publicacion>
+deactivate controller
+view --> user : mostrarPublicaciones()
+deactivate view
+@enduml

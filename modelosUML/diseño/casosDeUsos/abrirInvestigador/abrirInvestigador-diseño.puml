@@ -1,0 +1,27 @@
+@startuml abrirInvestigador-diseño
+skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+actor Usuario
+participant "PerfilInvestigadorView" as View
+participant "InvestigadorController" as Controller
+participant "InvestigadorRepository" as Repository
+
+Usuario -> View: abrirInvestigador(investigadorId)
+activate View
+View -> Controller: obtenerPerfil(investigadorId)
+activate Controller
+Controller -> Repository: obtenerPorId(investigadorId)
+activate Repository
+Repository --> Controller: Investigador
+deactivate Repository
+Controller --> View: Investigador
+deactivate Controller
+View --> Usuario: mostrarPerfil()
+deactivate View
+
+@enduml

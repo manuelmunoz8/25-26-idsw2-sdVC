@@ -1,0 +1,27 @@
+@startuml abrirEntregables-diseño
+skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+actor Usuario
+participant "ListarEntregablesView" as View
+participant "EntregableController" as Controller
+participant "EntregableRepository" as Repository
+
+Usuario -> View: abrirEntregables(proyectoId)
+activate View
+View -> Controller: listarEntregables(proyectoId)
+activate Controller
+Controller -> Repository: obtenerPorProyecto(proyectoId)
+activate Repository
+Repository --> Controller: List<Entregable>
+deactivate Repository
+Controller --> View: List<Entregable>
+deactivate Controller
+View --> Usuario: mostrarLista()
+deactivate View
+
+@enduml

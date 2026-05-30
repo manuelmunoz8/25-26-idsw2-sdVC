@@ -1,0 +1,31 @@
+@startuml crearPublicacion
+skinparam style strictuml
+
+actor InvestigadorUsuario as User
+participant "CrearPublicacionView" as View
+participant "PublicacionController" as Controller
+participant "Sesion" as Sesion
+participant "Publicacion" as Entidad
+participant "PublicacionRepository" as Repository
+
+User -> View: solicita crear publicacion
+activate View
+View -> Controller: crear(titulo, estado, visibilidad, descripcion)
+activate Controller
+Controller -> Sesion: getUsuarioActual()
+activate Sesion
+Sesion --> Controller: usuarioActual
+deactivate Sesion
+Controller -> Entidad: <<create>>
+activate Entidad
+Entidad --> Controller: nuevaPublicacion
+deactivate Entidad
+Controller -> Repository: guardar(publicacion)
+activate Repository
+Repository --> Controller: ok
+deactivate Repository
+Controller --> View: ok
+deactivate Controller
+View --> User: confirma creacion
+deactivate View
+@enduml

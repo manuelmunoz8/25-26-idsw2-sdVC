@@ -1,0 +1,26 @@
+@startuml crearInvestigador
+skinparam style strictuml
+
+actor InvestigadorUsuario as User
+participant "CrearInvestigadorView" as View
+participant "InvestigadorController" as Controller
+participant "Investigador" as Entidad
+participant "InvestigadorRepository" as Repository
+
+User -> View: solicita crear investigador
+activate View
+View -> Controller: crear(id, nombre, campo)
+activate Controller
+Controller -> Entidad: <<create>>
+activate Entidad
+Entidad --> Controller: nuevoInvestigador
+deactivate Entidad
+Controller -> Repository: guardar(investigador)
+activate Repository
+Repository --> Controller: ok
+deactivate Repository
+Controller --> View: ok
+deactivate Controller
+View --> User: confirma creacion
+deactivate View
+@enduml

@@ -1,0 +1,21 @@
+@startuml eliminarInvestigador
+skinparam style strictuml
+actor Usuario
+participant "EliminarInvestigadorView" as View
+participant "ProyectoController" as Controller
+participant "ProyectoRepository" as Repo
+database "Database" as DB
+
+Usuario -> View: eliminarInvestigador(investigadorId)
+View -> Controller: solicitarConfirmacionEliminacion()
+Controller --> View: mostrarConfirmacion
+
+Usuario -> View: confirmarDesvinculacion(proyectoId, investigadorId)
+View -> Controller: confirmarDesvinculacion(proyectoId, investigadorId)
+Controller -> Repo: eliminarAsociacion(proyectoId, investigadorId)
+Repo -> DB: DELETE FROM ProyectoInvestigador
+DB --> Repo: success
+Repo --> Controller: true
+Controller --> View: true
+View -> Usuario: mostrarConfirmacionFinal
+@enduml

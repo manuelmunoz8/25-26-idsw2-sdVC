@@ -1,0 +1,25 @@
+@startuml
+skinparam style strictuml
+actor Investigador
+boundary DetalleRecompensaView <<boundary>>
+control RecompensaController <<control>>
+entity RecompensaRepository <<entity>>
+database Database <<database>>
+
+Investigador -> DetalleRecompensaView : abrirRecompensa(recompensaId)
+activate DetalleRecompensaView
+DetalleRecompensaView -> RecompensaController : obtenerDetalleRecompensa(recompensaId)
+activate RecompensaController
+RecompensaController -> RecompensaRepository : obtenerPorId(recompensaId)
+activate RecompensaRepository
+RecompensaRepository -> Database : select * from recompensas where id = recompensaId
+activate Database
+Database --> RecompensaRepository : datosRecompensa
+deactivate Database
+RecompensaRepository --> RecompensaController : recompensa
+deactivate RecompensaRepository
+RecompensaController --> DetalleRecompensaView : recompensa
+deactivate RecompensaController
+DetalleRecompensaView --> Investigador : mostrarDetalle(recompensa)
+deactivate DetalleRecompensaView
+@enduml

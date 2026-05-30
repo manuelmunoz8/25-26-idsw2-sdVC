@@ -1,0 +1,26 @@
+@startuml crearProyecto
+skinparam style strictuml
+
+actor InvestigadorUsuario as User
+participant "CrearProyectoView" as View
+participant "ProyectoController" as Controller
+participant "Proyecto" as Entidad
+participant "ProyectoRepository" as Repository
+
+User -> View: solicita crear proyecto
+activate View
+View -> Controller: crear(titulo, estado, f_inicio, f_fin, descripcion)
+activate Controller
+Controller -> Entidad: <<create>>
+activate Entidad
+Entidad --> Controller: nuevoProyecto
+deactivate Entidad
+Controller -> Repository: guardar(proyecto)
+activate Repository
+Repository --> Controller: ok
+deactivate Repository
+Controller --> View: ok
+deactivate Controller
+View --> User: confirma creacion
+deactivate View
+@enduml

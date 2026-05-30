@@ -1,0 +1,25 @@
+@startuml crearEntregable-diseño
+skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
+
+participant "CrearEntregableView" as View
+participant "EntregableController" as Controller
+participant "EntregableRepository" as Repo
+participant "Entregable" as Entregable
+
+activate View
+View -> Controller: crear(proyectoId, nombre, fecha, descripcion)
+activate Controller
+Controller -> Entregable: <<create>>
+activate Entregable
+Entregable --> Controller: entregable
+deactivate Entregable
+Controller -> Repo: guardar(entregable)
+activate Repo
+Repo --> Controller: ok
+deactivate Repo
+Controller --> View: entregable
+deactivate Controller
+deactivate View
+@enduml

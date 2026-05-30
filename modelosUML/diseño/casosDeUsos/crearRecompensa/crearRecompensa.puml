@@ -1,0 +1,26 @@
+@startuml crearRecompensa
+skinparam style strictuml
+
+actor InvestigadorUsuario as User
+participant "CrearRecompensaView" as View
+participant "RecompensaController" as Controller
+participant "Recompensa" as Entidad
+participant "RecompensaRepository" as Repository
+
+User -> View: solicita crear recompensa
+activate View
+View -> Controller: crear(tipo, cantidad)
+activate Controller
+Controller -> Entidad: <<create>>
+activate Entidad
+Entidad --> Controller: nuevaRecompensa
+deactivate Entidad
+Controller -> Repository: guardar(recompensa)
+activate Repository
+Repository --> Controller: ok
+deactivate Repository
+Controller --> View: ok
+deactivate Controller
+View --> User: confirma creacion
+deactivate View
+@enduml

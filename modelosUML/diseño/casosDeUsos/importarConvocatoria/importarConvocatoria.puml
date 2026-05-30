@@ -1,0 +1,19 @@
+@startuml importarConvocatoria
+skinparam style strictuml
+hide empty members
+
+actor Usuario
+participant "ImportarConvocatoriaView" as View
+participant "ConvocatoriaController" as Controller
+participant "ExternalSourceAdapter" as Adapter
+participant "ConvocatoriaRepository" as Repository
+
+Usuario -> View: importarConvocatoria()
+View -> Controller: solicitarImportacion(fuente)
+Controller -> Adapter: extraerDatos(fuente)
+Adapter --> Controller: datosConvocatoria
+Controller -> Repository: actualizarConDatosExternos(convocatoriaId, datos)
+Repository --> Controller: ok
+Controller --> View: ok
+View --> Usuario: mostrarResultado()
+@enduml

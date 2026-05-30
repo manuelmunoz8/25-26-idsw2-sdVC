@@ -1,0 +1,27 @@
+@startuml abrirInvestigadores-diseño
+skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+actor Usuario
+participant "ListarInvestigadoresView" as View
+participant "InvestigadorController" as Controller
+participant "InvestigadorRepository" as Repository
+
+Usuario -> View: abrirInvestigadores()
+activate View
+View -> Controller: listarInvestigadores()
+activate Controller
+Controller -> Repository: obtenerTodos()
+activate Repository
+Repository --> Controller: List<Investigador>
+deactivate Repository
+Controller --> View: List<Investigador>
+deactivate Controller
+View --> Usuario: mostrarLista()
+deactivate View
+
+@enduml

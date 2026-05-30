@@ -1,0 +1,22 @@
+@startuml responderPublicacion
+skinparam style strictuml
+hide empty members
+
+actor Usuario
+participant "ResponderPublicacionView" as View
+participant "PublicacionController" as Controller
+participant "Sesion" as Sesion
+participant "Publicacion" as Publicacion
+participant "PublicacionRepository" as Repository
+
+Usuario -> View: responderPublicacion(publicacionPadreId)
+View -> Controller: enviarRespuesta(contenido)
+Controller -> Sesion: getUsuarioActual()
+Sesion --> Controller: usuario
+Controller -> Publicacion: <<create>> (contenido, autor, padreId)
+Publicacion --> Controller: respuesta
+Controller -> Repository: guardar(respuesta)
+Repository --> Controller: ok
+Controller --> View: ok
+View --> Usuario: mostrarResultado()
+@enduml

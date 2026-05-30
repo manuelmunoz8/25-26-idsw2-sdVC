@@ -1,0 +1,19 @@
+@startuml eliminarPublicacion
+skinparam style strictuml
+hide empty members
+
+actor Usuario
+participant "EliminarPublicacionView" as View
+participant "PublicacionController" as Controller
+participant "PublicacionRepository" as Repository
+
+Usuario -> View: eliminarPublicacion()
+View -> Controller: solicitarConfirmacion()
+Controller --> View: mostrarDialogoConfirmacion()
+Usuario -> View: confirmarEliminacion(publicacionId)
+View -> Controller: eliminar(publicacionId)
+Controller -> Repository: eliminar(publicacionId)
+Repository --> Controller: ok
+Controller --> View: ok
+View --> Usuario: mostrarResultado()
+@enduml

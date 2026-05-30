@@ -1,0 +1,26 @@
+@startuml editarPublicacion
+skinparam style strictuml
+actor Usuario
+participant "EditarPublicacionView" as View
+participant "PublicacionController" as Controller
+participant "PublicacionRepository" as Repo
+database "Database" as DB
+
+Usuario -> View: editarPublicacion()
+View -> Controller: cargarDatosActuales()
+Controller -> Repo: obtenerPorId(publicacionId)
+Repo -> DB: SELECT * FROM Publicacion
+DB --> Repo: Publicacion
+Repo --> Controller: Publicacion
+Controller --> View: DatosPublicacion
+
+Usuario -> View: guardarCambios(datosNuevos)
+View -> Controller: guardarCambios(datosNuevos)
+Controller -> Repo: actualizar(publicacion)
+Repo -> DB: UPDATE Publicacion
+DB --> Repo: success
+Repo --> Controller: true
+Controller --> View: true
+
+View -> Usuario: confirmar()
+@enduml

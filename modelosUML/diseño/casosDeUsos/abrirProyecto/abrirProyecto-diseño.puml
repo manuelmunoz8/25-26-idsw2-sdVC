@@ -1,0 +1,21 @@
+@startuml abrirProyecto-diseño
+skinparam style strictuml
+
+actor "Usuario" as user
+participant "DetalleProyectoView" as view
+participant "ProyectoController" as controller
+participant "ProyectoRepository" as repo
+
+user -> view : abrirProyecto(proyectoId)
+activate view
+view -> controller : obtenerDetalleProyecto(proyectoId)
+activate controller
+controller -> repo : obtenerPorId(proyectoId)
+activate repo
+repo --> controller : Proyecto
+deactivate repo
+controller --> view : Proyecto
+deactivate controller
+view --> user : mostrarDetalleProyecto()
+deactivate view
+@enduml

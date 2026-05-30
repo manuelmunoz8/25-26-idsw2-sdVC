@@ -1,0 +1,25 @@
+@startuml
+skinparam style strictuml
+actor Investigador
+boundary ListarProyectosView <<boundary>>
+control ProyectosController <<control>>
+entity ProyectoRepository <<entity>>
+database Database <<database>>
+
+Investigador -> ListarProyectosView : abrirProyectos()
+activate ListarProyectosView
+ListarProyectosView -> ProyectosController : listarProyectos()
+activate ProyectosController
+ProyectosController -> ProyectoRepository : obtenerTodos()
+activate ProyectoRepository
+ProyectoRepository -> Database : select * from proyectos
+activate Database
+Database --> ProyectoRepository : proyectos
+deactivate Database
+ProyectoRepository --> ProyectosController : proyectos
+deactivate ProyectoRepository
+ProyectosController --> ListarProyectosView : proyectos
+deactivate ProyectosController
+ListarProyectosView --> Investigador : mostrarProyectos(proyectos)
+deactivate ListarProyectosView
+@enduml

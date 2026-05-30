@@ -1,0 +1,25 @@
+@startuml cerrarSesion-diseño
+skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
+
+participant "CerrarSesionView" as View
+participant "CerrarSesionController" as Controller
+participant "SesionRepository" as Repo
+participant "Sesion" as Sesion
+
+activate View
+View -> Controller: solicitarCierre()
+activate Controller
+Controller -> Repo: terminarSesion(usuarioActual)
+activate Repo
+Repo -> Sesion: destruirSesion()
+activate Sesion
+Sesion --> Repo: ok
+deactivate Sesion
+Repo --> Controller: ok
+deactivate Repo
+Controller --> View: ok
+deactivate Controller
+deactivate View
+@enduml

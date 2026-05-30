@@ -1,0 +1,35 @@
+@startuml abrirPanelPrincipal-diseño
+skinparam style strictuml
+
+actor "Usuario" as user
+participant "PanelPrincipalView" as view
+participant "PanelPrincipalController" as controller
+participant "Sesion" as sesion
+participant "PermisosRepository" as repo
+participant "OpcionesMenu" as menu
+
+user -> view : abrirPanelPrincipal()
+activate view
+view -> controller : inicializarPanel()
+activate controller
+controller -> sesion : getUsuarioActual()
+activate sesion
+sesion --> controller : usuario
+deactivate sesion
+controller -> repo : obtenerOpcionesDisponibles(usuario)
+activate repo
+repo --> controller : List<Opcion>
+deactivate repo
+controller -> menu : <<create>> construirMenu(opciones)
+activate menu
+menu --> controller : instanciaOpcionesMenu
+deactivate menu
+controller --> view : OpcionesMenu
+deactivate controller
+view -> menu : obtenerOpcionesVisibles()
+activate menu
+menu --> view : List<OpcionVisible>
+deactivate menu
+view --> user : mostrarPanelPrincipal()
+deactivate view
+@enduml

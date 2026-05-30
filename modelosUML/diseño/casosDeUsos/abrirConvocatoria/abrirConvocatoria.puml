@@ -1,0 +1,25 @@
+@startuml
+skinparam style strictuml
+actor Investigador
+boundary DetalleConvocatoriaView <<boundary>>
+control ConvocatoriaController <<control>>
+entity ConvocatoriaRepository <<entity>>
+database Database <<database>>
+
+Investigador -> DetalleConvocatoriaView : abrirConvocatoria(convocatoriaId)
+activate DetalleConvocatoriaView
+DetalleConvocatoriaView -> ConvocatoriaController : obtenerDetalleConvocatoria(convocatoriaId)
+activate ConvocatoriaController
+ConvocatoriaController -> ConvocatoriaRepository : obtenerPorId(convocatoriaId)
+activate ConvocatoriaRepository
+ConvocatoriaRepository -> Database : select * from convocatorias where id = convocatoriaId
+activate Database
+Database --> ConvocatoriaRepository : datosConvocatoria
+deactivate Database
+ConvocatoriaRepository --> ConvocatoriaController : convocatoria
+deactivate ConvocatoriaRepository
+ConvocatoriaController --> DetalleConvocatoriaView : convocatoria
+deactivate ConvocatoriaController
+DetalleConvocatoriaView --> Investigador : mostrarDetalle(convocatoria)
+deactivate DetalleConvocatoriaView
+@enduml

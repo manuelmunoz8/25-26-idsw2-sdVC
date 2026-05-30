@@ -1,0 +1,26 @@
+@startuml editarProyecto
+skinparam style strictuml
+actor Usuario
+participant "EditarProyectoView" as View
+participant "ProyectoController" as Controller
+participant "ProyectoRepository" as Repo
+database "Database" as DB
+
+Usuario -> View: editarProyecto()
+View -> Controller: cargarDatosActuales()
+Controller -> Repo: obtenerPorId(proyectoId)
+Repo -> DB: SELECT * FROM Proyecto
+DB --> Repo: Proyecto
+Repo --> Controller: Proyecto
+Controller --> View: DatosProyecto
+
+Usuario -> View: guardarCambios(datosNuevos)
+View -> Controller: guardarCambios(datosNuevos)
+Controller -> Repo: actualizar(proyecto)
+Repo -> DB: UPDATE Proyecto
+DB --> Repo: success
+Repo --> Controller: true
+Controller --> View: true
+
+View -> Usuario: confirmar()
+@enduml

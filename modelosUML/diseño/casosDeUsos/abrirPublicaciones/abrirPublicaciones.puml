@@ -1,0 +1,25 @@
+@startuml
+skinparam style strictuml
+actor Investigador
+boundary ListarPublicacionesView <<boundary>>
+control PublicacionController <<control>>
+entity PublicacionRepository <<entity>>
+database Database <<database>>
+
+Investigador -> ListarPublicacionesView : abrirPublicaciones()
+activate ListarPublicacionesView
+ListarPublicacionesView -> PublicacionController : listarPublicaciones()
+activate PublicacionController
+PublicacionController -> PublicacionRepository : obtenerTodas()
+activate PublicacionRepository
+PublicacionRepository -> Database : select * from publicaciones
+activate Database
+Database --> PublicacionRepository : publicaciones
+deactivate Database
+PublicacionRepository --> PublicacionController : publicaciones
+deactivate PublicacionRepository
+PublicacionController --> ListarPublicacionesView : publicaciones
+deactivate PublicacionController
+ListarPublicacionesView --> Investigador : mostrarPublicaciones(publicaciones)
+deactivate ListarPublicacionesView
+@enduml

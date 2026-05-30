@@ -1,0 +1,26 @@
+@startuml eliminarProyecto
+skinparam style strictuml
+actor Usuario
+participant "EliminarProyectoView" as View
+participant "ProyectoController" as Controller
+participant "ProyectoRepository" as Repo
+participant "EntregableRepository" as EntregableRepo
+database "Database" as DB
+
+Usuario -> View: eliminarProyecto()
+View -> Controller: solicitarConfirmacion()
+Controller -> Repo: obtenerPorId(proyectoId)
+Repo --> Controller: Proyecto
+
+Usuario -> View: confirmarEliminacion(proyectoId)
+View -> Controller: confirmarEliminacion(proyectoId)
+Controller -> EntregableRepo: eliminarPorProyecto(proyectoId)
+EntregableRepo -> DB: DELETE FROM Entregable
+DB --> EntregableRepo: success
+Controller -> Repo: eliminar(proyectoId)
+Repo -> DB: DELETE FROM Proyecto
+DB --> Repo: success
+Repo --> Controller: true
+Controller --> View: true
+View -> Usuario: confirmacionFinal
+@enduml

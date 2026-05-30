@@ -1,0 +1,27 @@
+@startuml abrirEntregable-diseño
+skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam DefaultFontColor black
+skinparam DefaultFontSize 12
+skinparam linetype polyline
+
+actor Usuario
+participant "DetalleEntregableView" as View
+participant "EntregableController" as Controller
+participant "EntregableRepository" as Repository
+
+Usuario -> View: abrirEntregable(entregableId)
+activate View
+View -> Controller: obtenerDetalleEntregable(entregableId)
+activate Controller
+Controller -> Repository: obtenerPorId(entregableId)
+activate Repository
+Repository --> Controller: Entregable
+deactivate Repository
+Controller --> View: Entregable
+deactivate Controller
+View --> Usuario: mostrarDetalle()
+deactivate View
+
+@enduml

@@ -1,0 +1,30 @@
+@startuml agregarInvestigador-diseño
+skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
+
+participant "AgregarInvestigadorView" as View
+participant "ProyectoController" as Controller
+participant "ProyectoRepository" as RepoProy
+participant "InvestigadorRepository" as RepoInv
+
+activate View
+View -> Controller: buscarInvestigador(criterio)
+activate Controller
+Controller -> RepoInv: buscar(criterio)
+activate RepoInv
+RepoInv --> Controller: List<Investigador>
+deactivate RepoInv
+Controller --> View: List<Investigador>
+deactivate Controller
+
+View -> Controller: asignarInvestigador(proyectoId, investigadorId)
+activate Controller
+Controller -> RepoProy: agregarAsociacion(proyectoId, investigadorId)
+activate RepoProy
+RepoProy --> Controller: ok
+deactivate RepoProy
+Controller --> View: ok
+deactivate Controller
+deactivate View
+@enduml

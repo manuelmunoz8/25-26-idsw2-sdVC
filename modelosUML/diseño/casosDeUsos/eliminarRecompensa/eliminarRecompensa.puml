@@ -1,0 +1,19 @@
+@startuml eliminarRecompensa
+skinparam style strictuml
+hide empty members
+
+actor Usuario
+participant "EliminarRecompensaView" as View
+participant "RecompensaController" as Controller
+participant "RecompensaRepository" as Repository
+
+Usuario -> View: eliminarRecompensa()
+View -> Controller: solicitarConfirmacion()
+Controller --> View: mostrarDialogoConfirmacion()
+Usuario -> View: confirmarEliminacion(recompensaId)
+View -> Controller: eliminar(recompensaId)
+Controller -> Repository: eliminar(recompensaId)
+Repository --> Controller: ok
+Controller --> View: ok
+View --> Usuario: mostrarResultado()
+@enduml

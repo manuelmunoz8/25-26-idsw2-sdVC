@@ -1,0 +1,22 @@
+@startuml abrirSolicitudesEliminacionPerfil-diseño
+skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
+
+participant "ListarSolicitudesView" as View
+participant "PerfilController" as Controller
+participant "SolicitudEliminacionRepository" as Repo
+participant "SolicitudEliminacion" as Model
+
+activate View
+View -> Controller: listarSolicitudesPendientes()
+activate Controller
+Controller -> Repo: obtenerTodasPendientes()
+activate Repo
+Repo -> Model: <<create>>
+Repo --> Controller: List<SolicitudEliminacion>
+deactivate Repo
+Controller --> View: List<SolicitudEliminacion>
+deactivate Controller
+deactivate View
+@enduml
