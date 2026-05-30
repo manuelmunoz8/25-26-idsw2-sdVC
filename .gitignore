@@ -6,21 +6,8 @@ Thumbs.db
 *.swp
 *.swo
 
-# --- Backend ---
-backend/node_modules/
-backend/dist/
-backend/.env
-backend/*.tsbuildinfo
-backend/npm-debug.log*
-
-# --- Frontend ---
-frontend/node_modules/
-frontend/build/
-frontend/.env
-frontend/.env.local
-frontend/npm-debug.log*
-
 # --- Root/Global ---
 node_modules/
 .env
 npm-debug.log*
+build
