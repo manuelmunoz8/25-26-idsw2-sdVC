@@ -181,3 +181,11 @@
 ## [18:45] (25/05/2026) Implementación de Deep Linking en documentación
 
 ...
+
+## [01:25] Reestructuración del proyecto
+
+**Prompt:** Mover la carpeta frontend dentro de src.
+
+**Resultado:** Carpeta frontend movida a src/frontend.
+
+**Decisión:** Se reorganiza la estructura para centralizar el código en src siguiendo la nueva directriz del proyecto.
