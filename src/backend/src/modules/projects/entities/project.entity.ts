@@ -3,33 +3,33 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateCol
 @Entity('projects')
 export class Project {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string;
 
   @Column({ type: 'varchar', length: 255 })
-  title: string;
+  title!: string;
 
   @Column({ type: 'text', nullable: true })
-  description: string;
+  description!: string;
 
   @Column({ type: 'text', nullable: true })
-  objectives: string;
+  objectives!: string;
 
   @Column({
     type: 'enum',
     enum: ['draft', 'active', 'completed', 'cancelled'],
     default: 'draft',
   })
-  status: string;
+  status!: string;
 
   @Column({ type: 'timestamp', nullable: true })
-  startDate: Date;
+  startDate!: Date;
 
   @Column({ type: 'timestamp', nullable: true })
-  endDate: Date;
+  endDate!: Date;
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdAt!: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedAt!: Date;
 }

@@ -122,6 +122,19 @@
 
 ...
 
+## [12:50] (31/05/2026) Resolución de errores de compilación en Render (Backend)
+
+**Prompt:** "Bien errores en render, te paso los logs..."
+
+**Resultado:** 
+- Instalación de la dependencia faltante `axios` en el backend.
+- Corrección de errores de inicialización de propiedades en las entidades `Project` y `User` mediante el uso de operadores de aserción de asignación definitiva (`!`).
+- Verificación de compilación exitosa mediante `npm run build`.
+
+**Decisión:** Se corrigen los errores técnicos reportados por el compilador de TypeScript en el entorno de Render (Strict Mode activado).
+
+---
+
 ## [11:15] (31/05/2026) Implementación de Autenticación e Integración con Grants.gov
 
 **Prompt:** "1. Hacer el login y que pueda dicernir entre Investigador y Coordinador... 2. Render: Crear los endpoins... API que elegimos... 3. Supabase: Que esta maneje los registrados usuarios y proyectos"
