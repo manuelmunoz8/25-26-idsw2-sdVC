@@ -1,11 +1,21 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import DashboardPage from './pages/DashboardPage';
+import ProjectsPage from './pages/ProjectsPage';
 
 const App: React.FC = () => {
   return (
-    <div className="App">
-      <h1>Sistema de Desarrollo de Software (SDVC) cosorro</h1>
-      <p>El frontend está configurado y listo para Cloudflare Pages.</p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<DashboardPage />} />
+          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="publications" element={<div>Página en construcción</div>} />
+          <Route path="profile" element={<div>Página en construcción</div>} />
+        </Route>
+      </Routes>
+    </Router>
   );
 };
 

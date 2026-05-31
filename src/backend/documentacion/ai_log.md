@@ -122,6 +122,20 @@
 
 ...
 
+## [10:30] (31/05/2026) Implementación del módulo de Proyectos (Vertical Slice)
+
+**Prompt:** "recomendarías que empezáramos a hacer?... recuerda que tu eres el que maneja todo el proyecto, pero por donde empezaras?"
+
+**Resultado:** 
+- Creación de la entidad `Project` en `src/backend/src/modules/projects/entities/project.entity.ts`.
+- Implementación de `ProjectsService` con operaciones CRUD básicas.
+- Implementación de `ProjectsController` para exponer los endpoints de proyectos.
+- Creación de `ProjectsModule` y registro en `AppModule`.
+
+**Decisión:** Se inicia con el módulo de Proyectos por ser el núcleo del sistema (P1) y permitir validar la integración completa entre el frontend, backend y Supabase.
+
+---
+
 ## [01:25] Reestructuración del proyecto
 
 **Prompt:** Mover la carpeta backend dentro de src.

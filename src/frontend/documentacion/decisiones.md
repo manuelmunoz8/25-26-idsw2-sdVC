@@ -1,5 +1,13 @@
 # Registro de Decisiones - Frontend
 
+## [10:30] (31/05/2026) Adopción de Navegación Profesional y Vertical Slice
+
+**Decisión:** Implementar un layout con sidebar lateral y una rebanada vertical para Proyectos.
+**Motivo:** Proporcionar una base de navegación escalable y validar la integración con el backend. El uso de un sidebar es el estándar para aplicaciones de gestión (dashboards).
+**Impacto:** Define la estructura visual base para todo el proyecto.
+
+---
+
 ## [19:39] (26/05/2026) Cambio de Hosting: de GitHub Pages a Cloudflare Pages
 
 **Decisión:** Migrar el despliegue del frontend a Cloudflare Pages.

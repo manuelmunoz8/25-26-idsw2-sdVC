@@ -1,5 +1,18 @@
 # AI Log - Módulo de Arquitectura
 
+## [10:30] (31/05/2026) Inicio de Implementación Core - Vertical Slice de Proyectos
+
+**Prompt:** "recomendarías que empezáramos a hacer?... recuerda que tu eres el que maneja todo el proyecto, pero por donde empezaras?"
+
+**Resultado:** 
+- Definición de la estrategia de implementación por "Vertical Slices".
+- Inicio del módulo de Proyectos en Backend y Frontend.
+- Validación de la arquitectura de integración Render-Supabase-Pages.
+
+**Decisión:** Priorizar una funcionalidad completa (Proyectos) sobre la implementación horizontal de capas para detectar problemas de integración tempranamente.
+
+---
+
 ## [18:29] Actualización de README Principal y Documentación Global
 
 **Prompt:** "Bien en el README.md de esta carpeta vas a ver que lo cambie, puedes escribir algo que suene coherente con lo que dice el titulo del archivo"

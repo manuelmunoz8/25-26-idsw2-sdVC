@@ -1,5 +1,21 @@
 # AI Log - Frontend
 
+## [10:30] (31/05/2026) Implementación de UI para Proyectos y Navegación Base
+
+**Prompt:** "recomendarías que empezáramos a hacer?... recuerda que tu eres el que maneja todo el proyecto, pero por donde empezaras?"
+
+**Resultado:** 
+- Instalación de `react-router-dom` para gestión de rutas.
+- Implementación de `Layout` con sidebar de navegación y estilos Vanilla CSS.
+- Creación de `DashboardPage` con estadísticas base.
+- Creación de `ProjectsPage` que consume la API del backend.
+- Configuración de `src/services/api.ts` con Axios.
+- Actualización de `App.tsx` con el enrutador principal.
+
+**Decisión:** Se establece una estructura de navegación profesional (sidebar + content) para dar sensación de aplicación real y validar la comunicación con el backend de Render.
+
+---
+
 ## [22:15] (26/05/2026) Cambio de destino de SPA a raíz (/)
 
 **Prompt:** "Mira los logs que salieron, son identicos... Line 1: Infinite loop detected"

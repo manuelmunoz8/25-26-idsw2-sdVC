@@ -1,5 +1,13 @@
 # Registro de Decisiones - Backend
 
+## [10:30] (31/05/2026) Implementación de la primera rebanada vertical (Proyectos)
+
+**Decisión:** Implementar el módulo de Proyectos como la primera funcionalidad completa del sistema.
+**Motivo:** Validar el "cableado" completo de la infraestructura (Render + Supabase + Cloudflare Pages) mediante una funcionalidad core que afecte a todas las capas. Proyectos es la entidad central del dominio según el modelo del dominio.
+**Impacto:** Establece el patrón a seguir para el resto de módulos (Deliverables, Publications, etc.).
+
+---
+
 ## [19:55] (26/05/2026) Cambio de Instancia de Base de Datos (Supabase)
 
 **Decisión:** Actualizar la URI de conexión para apuntar a la nueva instancia de Supabase.

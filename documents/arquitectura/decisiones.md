@@ -1,5 +1,15 @@
 # Registro de Decisiones - Módulo de Arquitectura
 
+## [10:30] (31/05/2026) Estrategia de Desarrollo: Vertical Slices
+
+**Contexto:** Necesidad de validar la infraestructura completa con una funcionalidad real antes de escalar el desarrollo.
+
+**Decisión:** Adoptar el enfoque de "Vertical Slices" para la implementación de las funcionalidades core.
+
+**Justificación:** Asegurar que cada incremento de software sea funcional de extremo a extremo (Base de Datos -> API -> UI). Esto reduce el riesgo de fallos de integración al final del ciclo y permite mostrar progreso real al usuario. Cada tarea se centrará en un módulo funcional completo en lugar de una capa técnica aislada.
+
+---
+
 ## [23:59] Estructura Modular
 
 **Contexto:** Alineación con las directrices del proyecto.
