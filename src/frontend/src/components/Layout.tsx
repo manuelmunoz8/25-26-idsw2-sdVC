@@ -1,19 +1,38 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import './Layout.css';
 
 const Layout: React.FC = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
   return (
     <div className="layout">
       <nav className="sidebar">
         <div className="sidebar-header">
           <h2>GIPF</h2>
+          <div className="user-info">
+            <p className="user-name">{user?.name}</p>
+            <p className="user-role">{user?.role}</p>
+          </div>
         </div>
         <ul className="nav-links">
           <li><Link to="/">Dashboard</Link></li>
           <li><Link to="/projects">Proyectos</Link></li>
+          {user?.role === 'coordinador' && (
+            <li><Link to="/grants">Buscar Convocatorias</Link></li>
+          )}
           <li><Link to="/publications">Publicaciones</Link></li>
           <li><Link to="/profile">Mi Perfil</Link></li>
+          <li className="logout-item">
+            <button onClick={handleLogout} className="btn-logout">Cerrar Sesión</button>
+          </li>
         </ul>
       </nav>
       <main className="content">

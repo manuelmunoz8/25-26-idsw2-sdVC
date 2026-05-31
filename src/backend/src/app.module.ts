@@ -2,6 +2,9 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProjectsModule } from './modules/projects/projects.module';
+import { UsersModule } from './modules/users/users.module';
+import { AuthModule } from './modules/auth/auth.module';
+import { GrantsModule } from './modules/grants/grants.module';
 
 @Module({
   imports: [
@@ -39,6 +42,9 @@ import { ProjectsModule } from './modules/projects/projects.module';
     
     // Módulos de la aplicación
     ProjectsModule,
+    UsersModule,
+    AuthModule,
+    GrantsModule,
   ],
   controllers: [],
   providers: [],

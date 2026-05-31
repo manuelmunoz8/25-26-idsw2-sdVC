@@ -52,12 +52,39 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-.top-bar h1 {
-  margin: 0;
-  font-size: 1.5rem;
-  color: #333;
+.user-info {
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
 
-.main-section {
-  padding: 2rem;
+.user-name {
+  font-weight: bold;
+  margin: 0;
+  color: #fff;
+}
+
+.user-role {
+  margin: 0;
+  color: #a0c4ff;
+  font-size: 0.8rem;
+  text-transform: capitalize;
+}
+
+.logout-item {
+  margin-top: auto;
+  padding: 1rem 2rem;
+}
+
+.btn-logout {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  width: 100%;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.btn-logout:hover {
+  background: rgba(255,255,255,0.1);
 }

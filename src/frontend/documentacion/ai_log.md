@@ -1,5 +1,20 @@
 # AI Log - Frontend
 
+## [11:15] (31/05/2026) Implementación de Login, Roles y Buscador de Convocatorias
+
+**Prompt:** "1. Hacer el login y que pueda dicernir entre Investigador y Coordinador... 2. Render: Crear los endpoins... 3. Supabase: Que esta maneje los registrados usuarios y proyectos"
+
+**Resultado:** 
+- Creación de `AuthContext` para gestión de estado global de usuario y roles.
+- Implementación de `LoginPage` con redirección basada en credenciales.
+- Creación de `GrantsPage` para búsqueda de convocatorias desde el frontend.
+- Actualización de `Layout` para mostrar info de usuario y proteger rutas de coordinador.
+- Protección de rutas privadas mediante `PrivateRoute`.
+
+**Decisión:** Se centraliza el estado en un Context Provider para facilitar el acceso a la información del usuario en toda la aplicación. Se añade lógica condicional en el sidebar para mostrar opciones exclusivas del Coordinador.
+
+---
+
 ## [10:30] (31/05/2026) Implementación de UI para Proyectos y Navegación Base
 
 **Prompt:** "recomendarías que empezáramos a hacer?... recuerda que tu eres el que maneja todo el proyecto, pero por donde empezaras?"
