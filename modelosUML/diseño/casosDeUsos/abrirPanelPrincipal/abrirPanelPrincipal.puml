@@ -9,7 +9,7 @@ participant "PermisosRepository" as repo
 participant "OpcionesMenu" as menu
 
 user -> view : abrirPanelPrincipal()
-activate view
+activate view 
 view -> controller : inicializarPanel()
 activate controller
 controller -> sesion : getUsuarioActual()
@@ -20,16 +20,12 @@ controller -> repo : obtenerOpcionesDisponibles(usuario)
 activate repo
 repo --> controller : List<Opcion>
 deactivate repo
-controller -> menu : <<create>> construirMenu(opciones)
+controller -> menu : crearMenu(List<Opcion>)
 activate menu
 menu --> controller : instanciaOpcionesMenu
 deactivate menu
 controller --> view : OpcionesMenu
 deactivate controller
-view -> menu : obtenerOpcionesVisibles()
-activate menu
-menu --> view : List<OpcionVisible>
-deactivate menu
 view --> user : mostrarPanelPrincipal()
 deactivate view
 @enduml

@@ -13,11 +13,11 @@ view -> controller : cargarDatosPerfil()
 activate controller
 controller -> sesion : getUsuarioActual()
 activate sesion
-sesion --> controller : usuario
+sesion --> controller : usuarioId
 deactivate sesion
-controller -> repo : obtenerPorId(usuarioId)
+controller -> repo : obtenerPerfilId(usuarioId)
 activate repo
-repo --> controller : Usuario
+repo --> controller : DatosPerfil
 deactivate repo
 controller --> view : DatosPerfil
 deactivate controller

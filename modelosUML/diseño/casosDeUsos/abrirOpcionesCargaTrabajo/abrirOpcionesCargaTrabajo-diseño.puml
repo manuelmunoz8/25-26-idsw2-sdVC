@@ -13,11 +13,11 @@ view -> controller : cargarCargaTrabajo()
 activate controller
 controller -> sesion : getUsuarioActual()
 activate sesion
-sesion --> controller : usuario
+sesion --> controller : usuarioId
 deactivate sesion
-controller -> repo : obtenerCargaTrabajo(investigadorId)
+controller -> repo : obtenerCargaTrabajo(usuarioId)
 activate repo
-repo --> controller : Investigador
+repo --> controller : CargaTrabajo
 deactivate repo
 controller --> view : CargaTrabajo
 deactivate controller

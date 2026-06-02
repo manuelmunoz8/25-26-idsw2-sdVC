@@ -8,7 +8,7 @@ participant "ProyectoRepository" as repo
 
 user -> view : abrirProyecto(proyectoId)
 activate view
-view -> controller : obtenerDetalleProyecto(proyectoId)
+view -> controller : obtenerProyecto(proyectoId)
 activate controller
 controller -> repo : obtenerPorId(proyectoId)
 activate repo
