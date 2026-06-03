@@ -5,9 +5,22 @@ const common_1 = require("@nestjs/common");
 const app_module_js_1 = require("./app.module.js");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_js_1.AppModule);
-    // Habilitar CORS para permitir peticiones desde el frontend
+    // Habilitar CORS para permitir peticiones desde dominios de Cloudflare Pages
     app.enableCors({
-        origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Configurar en producción
+        origin: (origin, callback) => {
+            // Permitir herramientas o desarrollo sin origen
+            if (!origin || origin.startsWith('http://localhost:')) {
+                callback(null, true);
+                return;
+            }
+            // Permitir cualquier subdominio de pages.dev
+            if (origin.endsWith('.pages.dev')) {
+                callback(null, true);
+                return;
+            }
+            // Bloquear otros orígenes
+            callback(new Error('Not allowed by CORS'));
+        },
         credentials: true,
     });
     // Configuración de validación global
