@@ -1,4 +1,5 @@
 import React, { useState, createContext, useContext, useEffect } from 'react';
+import { authService } from '../services/api';
 
 interface AuthContextType {
   user: any;
@@ -18,15 +19,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = async (email: string, pass: string) => {
-    // Aquí llamarías a tu API de Render
-    // Por ahora simulamos la respuesta exitosa para el prototipo
-    const mockUser = {
-      email,
-      role: email.includes('admin') ? 'coordinador' : 'investigador',
-      name: email.split('@')[0],
-    };
-    setUser(mockUser);
-    localStorage.setItem('user', JSON.stringify(mockUser));
+    try {
+      const data = await authService.login(email, pass);
+      // El backend debe retornar un objeto con { user, token }
+      setUser(data.user);
+      localStorage.setItem('user', JSON.stringify(data.user));
+      localStorage.setItem('token', data.token);
+    } catch (error) {
+      console.error('Login error:', error);
+      throw error;
+    }
   };
 
   const logout = () => {

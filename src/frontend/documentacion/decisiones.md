@@ -1,5 +1,13 @@
 # Registro de Decisiones - Frontend
 
+## [18:50] (03/06/2026) Estandarización de Autenticación y Gestión de Tokens
+
+**Decisión:** Definir el endpoint `/api/auth/login` y utilizar interceptores de Axios para la gestión de tokens JWT.
+**Motivo:** Proporcionar una interfaz clara para el desarrollo del backend y asegurar que todas las peticiones salientes estén correctamente autenticadas sin repetir lógica en cada servicio.
+**Impacto:** El backend debe implementar `/api/auth/login` aceptando `email` y `password`, y devolviendo un objeto `{ user: { ... }, token: "..." }`.
+
+---
+
 ## [10:30] (31/05/2026) Adopción de Navegación Profesional y Vertical Slice
 
 **Decisión:** Implementar un layout con sidebar lateral y una rebanada vertical para Proyectos.

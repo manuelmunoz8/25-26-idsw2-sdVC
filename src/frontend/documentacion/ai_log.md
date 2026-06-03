@@ -1,5 +1,18 @@
 # AI Log - Frontend
 
+## [18:50] (03/06/2026) Implementación de Lógica de Login Funcional y Conexión con API
+
+**Prompt:** "Ok vamos a hacer el login funcional pero la logica del backend (API, base de datos, etc) todavia no esta hecha, asi que simplemente las partes del codigo que accedan a estas dejalas planteadas a la ruta que veas conveniente y despues el backend va a leer los logs que dejes con las rutas a acceder para despues consumir."
+
+**Resultado:** 
+- Actualización de `src/services/api.ts` para incluir `authService` con el método `login` apuntando a `/api/auth/login`.
+- Configuración de un interceptor de Axios para incluir automáticamente el token Bearer en las cabeceras de todas las peticiones si existe en `localStorage`.
+- Actualización de `AuthContext.tsx` para consumir el servicio real, manejando la persistencia de `user` y `token`.
+
+**Decisión:** Se define la ruta `/api/auth/login` como el endpoint estándar para autenticación. Se opta por el uso de interceptores para simplificar la gestión de seguridad en futuras peticiones a rutas protegidas.
+
+---
+
 ## [11:15] (31/05/2026) Implementación de Login, Roles y Buscador de Convocatorias
 
 **Prompt:** "1. Hacer el login y que pueda dicernir entre Investigador y Coordinador... 2. Render: Crear los endpoins... 3. Supabase: Que esta maneje los registrados usuarios y proyectos"
