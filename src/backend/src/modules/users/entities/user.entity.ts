@@ -5,13 +5,13 @@ export class User {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ unique: true })
+  @Column({ type: 'text', unique: true })
   email!: string;
 
-  @Column({ select: false }) // Por seguridad, no devolvemos la contraseña por defecto
+  @Column({ type: 'text', select: false }) // Por seguridad, no devolvemos la contraseña por defecto
   password!: string;
 
-  @Column()
+  @Column({ type: 'text' })
   name!: string;
 
   @Column({

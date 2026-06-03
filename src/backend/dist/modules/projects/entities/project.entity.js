@@ -28,7 +28,7 @@ __decorate([
     __metadata("design:type", String)
 ], Project.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ type: 'varchar', length: 255 }),
+    (0, typeorm_1.Column)({ type: 'text' }),
     __metadata("design:type", String)
 ], Project.prototype, "title", void 0);
 __decorate([

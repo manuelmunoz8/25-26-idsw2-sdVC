@@ -1,5 +1,18 @@
 # AI Log - Backend
 
+## [21:06] (03/06/2026) Migración de VARCHAR a TEXT en Entidades
+
+**Prompt:** "Duda, Supabase me esta diciendo que cambie todos las columnas que tengan tipo de dato varcahr a text, que piensas al respecto?"
+
+**Resultado:** 
+- Identificación de todas las columnas `VARCHAR` en las entidades `Project` y `User`.
+- Modificación de los decoradores `@Column` para utilizar explícitamente `type: 'text'`.
+- Registro de la decisión arquitectónica en `decisiones.md`.
+
+**Decisión:** Se adopta el uso de `TEXT` para mejorar la flexibilidad de la base de datos, delegando la validación de formato/longitud a la capa de aplicación (NestJS).
+
+---
+
 ## [20:32] (03/06/2026) Implementación de Hashing y Verificación de Login
 
 **Prompt:** "vamos a implementar la logica de verificacion del inicio de sesion... Te pido que hagas hash de las contraseñas... tambien retorna un codigo de error cuando ya sea el usuario o contraseña sean erroneos... como usuario por defecto usaremos este... admin@funiber.org / funiber-connected/2026"

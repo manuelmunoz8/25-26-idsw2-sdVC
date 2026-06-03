@@ -1,5 +1,13 @@
 # Registro de Decisiones - Backend
 
+## [21:06] (03/06/2026) Migración de tipos de columna VARCHAR a TEXT
+
+**Decisión:** Cambiar todos los tipos de datos `VARCHAR` por `TEXT` en las entidades de TypeORM.
+**Motivo:** En PostgreSQL, `TEXT` y `VARCHAR` tienen el mismo rendimiento y almacenamiento. `TEXT` es más flexible ante futuros cambios de longitud sin necesidad de migraciones de esquema. Las validaciones de longitud se delegarán a la capa de aplicación (DTOs/Validadores de NestJS).
+**Impacto:** Mejora la mantenibilidad de la base de datos a largo plazo. Al tener `synchronize: true` activo, la base de datos se actualizará automáticamente en el próximo despliegue.
+
+---
+
 ## [20:32] (03/06/2026) Implementación de Seguridad en Autenticación (Hashing)
 
 **Decisión:** Adoptar `bcrypt` para el hashing de contraseñas y estandarizar códigos de error en el proceso de login.
