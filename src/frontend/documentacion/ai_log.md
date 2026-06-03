@@ -1,5 +1,22 @@
 # AI Log - Frontend
 
+## [19:35] (03/06/2026) Mejora de Seguridad y UX en Inicio de Sesión
+
+**Prompt:** "Ok cambiemos esto el inicio de sesion: 1. En vez de mostrar una alerta cuando falle el inicio de sesion vamos a cambiarlos por esto: 1.1) Puedes hacer que los campos se pongan en rojo y que avisen que los campos no pueden estar vacios y si la contraseña o el correo estan mal que ponga "Correo o contraña no son correctas", no digas cual de los campos esta incorrecto... 1.2) Haz limpieza de los campos de correo y contraseña, que minimicen el riesgo de ataques de inyecciones SQL y XSS"
+
+**Resultado:** 
+- Creación de `src/utils/security.ts` con la función `sanitizeInput` para limpiar caracteres peligrosos (<, >, ', ", --).
+- Actualización de `LoginPage.tsx`:
+    - Implementación de estados para errores de campo (`fieldErrors`) y errores de autenticación (`error`).
+    - Eliminación de `alert()` en favor de un banner de error y mensajes bajo los campos.
+    - Aplicación de clases CSS dinámicas para resaltar campos vacíos en rojo.
+    - Uso de un mensaje de error genérico para mitigar ataques de enumeración de cuentas.
+    - Integración de sanitización antes de llamar al servicio de autenticación.
+
+**Decisión:** Se adoptan prácticas de seguridad defensiva (sanitización y mensajes de error opacos) y se mejora la respuesta visual del formulario para una mejor experiencia de usuario sin comprometer la seguridad.
+
+---
+
 ## [19:22] (03/06/2026) Refactorización con Interfaces y Validación de Diseño UML
 
 **Prompt:** "Bien se acaban de crear interfaces y clases abstractas, revisalas y mira de nuevo el diagrama de secuencia de iniciar sesion para actualizar el codigo"

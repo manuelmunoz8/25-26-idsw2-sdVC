@@ -1,5 +1,13 @@
 # Registro de Decisiones - Frontend
 
+## [19:35] (03/06/2026) Refuerzo de Seguridad y Feedback Visual en Login
+
+**Decisión:** Implementar sanitización de entradas en el cliente y mensajes de error genéricos durante la autenticación.
+**Motivo:** Minimizar la superficie de ataque para inyecciones (XSS/SQLi) y prevenir ataques de enumeración de usuarios al no especificar qué campo de las credenciales es incorrecto. Se mejora la UX mediante feedback visual inmediato (bordes rojos) en lugar de alertas intrusivas.
+**Impacto:** El login es ahora más seguro y profesional. Se requiere que el backend también realice validaciones y sanitización equivalentes.
+
+---
+
 ## [19:22] (03/06/2026) Validación de Consistencia Arquitectónica: Interfaces y UML
 
 **Decisión:** Validar la compatibilidad de los servicios de autenticación con las nuevas abstracciones (`IBaseService`) y mantener la nomenclatura del diagrama de secuencia.
