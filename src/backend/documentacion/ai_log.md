@@ -1,5 +1,17 @@
 # AI Log - Backend
 
+## [22:47] (03/06/2026) Corrección de error de compilación TS en Render (cookie-parser)
+
+**Prompt:** "Error de render: src/main.ts(3,26): error TS7016: Could not find a declaration file for module 'cookie-parser'..."
+
+**Resultado:** 
+- Creación de un archivo de declaración de tipos shim (`src/@types/cookie-parser.d.ts`).
+- Actualización de `tsconfig.json` para incluir la carpeta `@types` en la compilación.
+
+**Decisión:** Se fuerza la resolución de tipos para `cookie-parser` mediante un archivo de declaración manual para superar la restricción del entorno de construcción de Render, permitiendo que la compilación proceda exitosamente.
+
+---
+
 ## [21:30] (03/06/2026) Implementación de Autenticación con Cookies HttpOnly
 
 **Prompt:** "El problema es claro: el backend no está configurado para manejar cookies... Necesitas realizar cambios en el Backend... Setear la cookie en la respuesta... Configurar CORS para permitir credenciales"
