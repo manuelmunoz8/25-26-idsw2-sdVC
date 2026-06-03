@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://funiber-backend-investigacion.onrender.com';
+const API_URL = process.env.REACT_APP_API_URL;
 
 const api = axios.create({
   baseURL: API_URL,
@@ -29,6 +29,6 @@ export const projectsService = {
     return response.data;
   },
 };
-console.log('All REACT_APP vars:', Object.keys(process.env).filter(k => k.startsWith('REACT_APP_')));
+console.log('API URL:', process.env.REACT_APP_API_URL);
 
 export default api;

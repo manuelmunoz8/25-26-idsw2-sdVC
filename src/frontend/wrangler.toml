@@ -1,5 +1,5 @@
-[env.preview.vars]
-REACT_APP_API_URL = "https://funiber-backend-investigacion.onrender.com"
+name = "frontend"
+compatibility_date = "2026-06-03"
 
-[env.production.vars]
+[vars]
 REACT_APP_API_URL = "https://funiber-backend-investigacion.onrender.com"
