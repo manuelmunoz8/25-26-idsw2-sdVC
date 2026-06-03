@@ -1,5 +1,5 @@
-import { Controller, Post, Body, Get, Headers, UnauthorizedException, Res } from '@nestjs/common';
-import { Response } from 'express';
+import { Controller, Post, Body, Get, UnauthorizedException, Res, Req } from '@nestjs/common';
+import { Response, Request } from 'express';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
@@ -13,8 +13,8 @@ export class AuthController {
     // Setear la cookie HttpOnly
     res.cookie('token', data.access_token, {
       httpOnly: true,
-      secure: true, // Necesario en producción (HTTPS)
-      sameSite: 'strict', // O 'none' si el frontend está en otro dominio
+      secure: true, // Asegurar que sea true en producción con HTTPS
+      sameSite: 'strict',
       maxAge: 3600000, // 1 hora
     });
 
@@ -22,11 +22,11 @@ export class AuthController {
   }
 
   @Get('validate')
-  async validate(@Headers('authorization') authHeader: string) {
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+  async validate(@Req() req: Request) {
+    const token = req.cookies['token'];
+    if (!token) {
       throw new UnauthorizedException('Token no proporcionado');
     }
-    const token = authHeader.split(' ')[1];
     return this.authService.validateToken(token);
   }
 }
