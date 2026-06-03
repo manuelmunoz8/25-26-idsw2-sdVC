@@ -1,0 +1,5 @@
+[env.preview.vars]
+REACT_APP_API_URL = "https://funiber-backend-investigacion.onrender.com"
+
+[env.production.vars]
+REACT_APP_API_URL = "https://funiber-backend-investigacion.onrender.com"
