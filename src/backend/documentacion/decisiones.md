@@ -1,5 +1,13 @@
 # Registro de Decisiones - Backend
 
+## [20:32] (03/06/2026) Implementación de Seguridad en Autenticación (Hashing)
+
+**Decisión:** Adoptar `bcrypt` para el hashing de contraseñas y estandarizar códigos de error en el proceso de login.
+**Motivo:** Seguridad básica de la información. Almacenar contraseñas en texto plano es inaceptable. Se implementa un código de error genérico (`AUTH_INVALID_CREDENTIALS`) para evitar la enumeración de usuarios y cumplir con los requisitos del usuario.
+**Impacto:** Todas las contraseñas nuevas y el usuario por defecto estarán hasheados. El frontend recibirá una estructura de error consistente para manejar fallos de autenticación.
+
+---
+
 ## [19:08] (03/06/2026) Abstracción de Código Basada en UML (View-Controller-Repository)
 
 **Decisión:** Definir interfaces y clases abstractas base (`IBaseController`, `IBaseService`, `BaseService`) para los módulos del sistema.

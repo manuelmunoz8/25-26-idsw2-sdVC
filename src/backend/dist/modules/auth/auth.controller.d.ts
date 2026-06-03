@@ -11,4 +11,10 @@ export declare class AuthController {
             name: string;
         };
     }>;
+    validate(authHeader: string): Promise<{
+        id: any;
+        email: any;
+        role: any;
+        name: any;
+    }>;
 }

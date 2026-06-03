@@ -1,5 +1,13 @@
 # Registro de Decisiones - Frontend
 
+## [20:55] (03/06/2026) Adopción de Autenticación con Cookies HttpOnly
+
+**Decisión:** Abandonar el almacenamiento de JWT en `localStorage` y delegar la persistencia de sesión al navegador mediante cookies `HttpOnly` gestionadas por el backend.
+**Motivo:** `localStorage` es vulnerable a ataques XSS. Las cookies `HttpOnly` no son accesibles por JavaScript, aumentando drásticamente la seguridad del token de sesión.
+**Impacto:** El frontend ahora debe configurar `withCredentials: true` en todas las peticiones para enviar/recibir cookies. El backend debe asegurar configuraciones de CORS correctas para permitir cookies entre dominios (si aplica) y emitir las cookies con las flags `HttpOnly`, `Secure` y `SameSite`.
+
+---
+
 ## [19:35] (03/06/2026) Refuerzo de Seguridad y Feedback Visual en Login
 
 **Decisión:** Implementar sanitización de entradas en el cliente y mensajes de error genéricos durante la autenticación.

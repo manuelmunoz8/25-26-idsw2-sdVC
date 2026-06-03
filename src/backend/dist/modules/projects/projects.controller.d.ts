@@ -1,6 +1,7 @@
 import { ProjectsService } from './projects.service';
 import { Project } from './entities/project.entity';
-export declare class ProjectsController {
+import { IBaseController } from '../../common/interfaces/base.controller.interface';
+export declare class ProjectsController implements IBaseController<Project> {
     private readonly projectsService;
     constructor(projectsService: ProjectsService);
     findAll(): Promise<Project[]>;

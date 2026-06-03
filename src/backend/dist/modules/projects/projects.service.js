@@ -17,35 +17,18 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const project_entity_1 = require("./entities/project.entity");
-let ProjectsService = class ProjectsService {
+const base_service_1 = require("../../common/classes/base.service");
+let ProjectsService = class ProjectsService extends base_service_1.BaseService {
     projectsRepository;
     constructor(projectsRepository) {
+        super(projectsRepository);
         this.projectsRepository = projectsRepository;
     }
+    // Sobrescribimos findAll para mantener el orden específico solicitado previamente
     async findAll() {
         return await this.projectsRepository.find({
             order: { createdAt: 'DESC' },
         });
-    }
-    async findOne(id) {
-        const project = await this.projectsRepository.findOne({ where: { id } });
-        if (!project) {
-            throw new common_1.NotFoundException(`Project with ID ${id} not found`);
-        }
-        return project;
-    }
-    async create(projectData) {
-        const project = this.projectsRepository.create(projectData);
-        return await this.projectsRepository.save(project);
-    }
-    async update(id, projectData) {
-        await this.findOne(id);
-        await this.projectsRepository.update(id, projectData);
-        return await this.findOne(id);
-    }
-    async remove(id) {
-        const project = await this.findOne(id);
-        await this.projectsRepository.remove(project);
     }
 };
 exports.ProjectsService = ProjectsService;

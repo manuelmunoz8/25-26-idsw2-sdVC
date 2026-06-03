@@ -1,5 +1,20 @@
 # AI Log - Backend
 
+## [20:32] (03/06/2026) Implementación de Hashing y Verificación de Login
+
+**Prompt:** "vamos a implementar la logica de verificacion del inicio de sesion... Te pido que hagas hash de las contraseñas... tambien retorna un codigo de error cuando ya sea el usuario o contraseña sean erroneos... como usuario por defecto usaremos este... admin@funiber.org / funiber-connected/2026"
+
+**Resultado:** 
+- Instalación de `bcrypt` y sus tipos.
+- Actualización de `UsersService` para incluir hashing en la creación de usuarios.
+- Implementación de `onModuleInit` en `UsersService` para sembrar el usuario administrador por defecto con contraseña hasheada.
+- Actualización de `AuthService` para verificar contraseñas usando `bcrypt.compare`.
+- Implementación de un error de autenticación estandarizado con el código `AUTH_INVALID_CREDENTIALS`.
+
+**Decisión:** Se opta por `bcrypt` por su robustez y facilidad de uso. Se implementa el sembrado automático para garantizar la existencia del usuario administrador en cualquier entorno sin intervención manual adicional.
+
+---
+
 ## [19:08] (03/06/2026) Abstracción de Código Basada en UML (View-Controller-Repository)
 
 **Prompt:** "Bien necesito que me documentes ya sea en la carpeta de frontend o backend el "codigo repetido", lo que me refiero es, en la carpeta de diseño en modelosUML veras diagramas de secuencia para cada caso de uso, y vas a ver que la mayoria tiene un view, controler y repositorio que estas mencionadas serian clases, pero la vas a documentar para ya ser clases abstractas o interfaces, asi reutilizamos codigo y evitamos ambiguedades. Plantea en los docs y de ser necesario haz las entidades mencionadas anteriormente."

@@ -1,5 +1,18 @@
 # AI Log - Frontend
 
+## [20:55] (03/06/2026) Migración a Autenticación basada en Cookies HttpOnly
+
+**Prompt:** "Muy bien el backend ha implementado un JWT para la persistencia de session, mira la documentacion de como consumirlo, guarda el JWT en una cookie HttpOnly para mayor seguridad e implementa el codigo"
+
+**Resultado:** 
+- Configuración de `api.ts` con `withCredentials: true` para habilitar el manejo automático de cookies en peticiones Axios.
+- Eliminación de la gestión manual del token en `localStorage` dentro de `AuthContext.tsx`.
+- Cambio de paradigma: el backend es ahora responsable de emitir y gestionar el ciclo de vida de la cookie `HttpOnly`.
+
+**Decisión:** Se migra a un modelo de autenticación basado en cookies `HttpOnly` para mejorar significativamente la seguridad, eliminando el riesgo de exposición del token ante ataques XSS en el frontend.
+
+---
+
 ## [19:35] (03/06/2026) Mejora de Seguridad y UX en Inicio de Sesión
 
 **Prompt:** "Ok cambiemos esto el inicio de sesion: 1. En vez de mostrar una alerta cuando falle el inicio de sesion vamos a cambiarlos por esto: 1.1) Puedes hacer que los campos se pongan en rojo y que avisen que los campos no pueden estar vacios y si la contraseña o el correo estan mal que ponga "Correo o contraña no son correctas", no digas cual de los campos esta incorrecto... 1.2) Haz limpieza de los campos de correo y contraseña, que minimicen el riesgo de ataques de inyecciones SQL y XSS"

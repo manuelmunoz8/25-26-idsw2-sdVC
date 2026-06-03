@@ -23,6 +23,13 @@ let AuthController = class AuthController {
     async login(body) {
         return this.authService.login(body.email, body.password);
     }
+    async validate(authHeader) {
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            throw new common_1.UnauthorizedException('Token no proporcionado');
+        }
+        const token = authHeader.split(' ')[1];
+        return this.authService.validateToken(token);
+    }
 };
 exports.AuthController = AuthController;
 __decorate([
@@ -32,6 +39,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
+__decorate([
+    (0, common_1.Get)('validate'),
+    __param(0, (0, common_1.Headers)('authorization')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], AuthController.prototype, "validate", null);
 exports.AuthController = AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

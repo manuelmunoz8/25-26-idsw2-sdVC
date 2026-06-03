@@ -21,7 +21,7 @@ export abstract class BaseService<T extends { id: string }> implements IBaseServ
 
   async create(data: Partial<T>): Promise<T> {
     const record = this.repository.create(data as any);
-    return await this.repository.save(record);
+    return await this.repository.save(record as any) as T;
   }
 
   async update(id: string, data: Partial<T>): Promise<T> {
