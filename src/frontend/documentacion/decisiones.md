@@ -1,5 +1,29 @@
 # Registro de Decisiones - Frontend
 
+## [19:22] (03/06/2026) Validación de Consistencia Arquitectónica: Interfaces y UML
+
+**Decisión:** Validar la compatibilidad de los servicios de autenticación con las nuevas abstracciones (`IBaseService`) y mantener la nomenclatura del diagrama de secuencia.
+**Motivo:** Garantizar que la reciente introducción de interfaces genéricas no rompa la consistencia con los diagramas de secuencia específicos de cada caso de uso.
+**Impacto:** El código mantiene su legibilidad y alineación con el diseño, mientras se prepara para una migración gradual hacia servicios tipados con `IBaseService`.
+
+---
+
+## [19:08] (03/06/2026) Abstracción de Código Basada en UML (View-Controller-Service)
+
+**Decisión:** Definir interfaces y clases abstractas base (`IBaseService`, `BaseApiService`) y Hooks genéricos (`useCrud`) para los módulos del sistema.
+**Motivo:** Se identificó un patrón repetitivo en los diagramas de secuencia UML (View, Controller, Repository). En el frontend, esto se traduce en componentes (View) consumiendo servicios (Controller/Repository). El uso de abstracciones reduce el código duplicado en la carga de datos y asegura consistencia con el diseño UML.
+**Impacto:** Los nuevos componentes de vista utilizarán hooks y servicios base para interactuar con la API, simplificando la lógica de componentes y mejorando la mantenibilidad.
+
+---
+
+## [19:00] (03/06/2026) Refactorización para Alineación con Diseño UML (Caso de Uso: Iniciar Sesión)
+
+**Decisión:** Renombrar métodos clave y separar la lógica de sesión para reflejar el diagrama de secuencia de diseño.
+**Motivo:** Asegurar que la implementación sea un reflejo fiel de la arquitectura diseñada, facilitando la trazabilidad y el entendimiento del flujo por parte de otros desarrolladores o auditores.
+**Impacto:** Los métodos `autenticar`, `validarCredenciales` y `crearSesion` ahora mapean directamente a los participantes y mensajes definidos en el UML.
+
+---
+
 ## [18:50] (03/06/2026) Estandarización de Autenticación y Gestión de Tokens
 
 **Decisión:** Definir el endpoint `/api/auth/login` y utilizar interceptores de Axios para la gestión de tokens JWT.

@@ -1,9 +1,10 @@
 import { Controller, Get, Post, Body, Param, Put, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { Project } from './entities/project.entity';
+import { IBaseController } from '../../common/interfaces/base.controller.interface';
 
 @Controller('projects')
-export class ProjectsController {
+export class ProjectsController implements IBaseController<Project> {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Get()

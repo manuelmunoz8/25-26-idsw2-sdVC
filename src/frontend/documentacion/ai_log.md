@@ -1,5 +1,47 @@
 # AI Log - Frontend
 
+## [19:22] (03/06/2026) Refactorización con Interfaces y Validación de Diseño UML
+
+**Prompt:** "Bien se acaban de crear interfaces y clases abstractas, revisalas y mira de nuevo el diagrama de secuencia de iniciar sesion para actualizar el codigo"
+
+**Resultado:** 
+- Revisión de la nueva interfaz `IBaseService` en `src/types/base.service.ts` y el documento `arquitectura_base.md`.
+- Verificación del diagrama de secuencia en `iniciarSesion.puml`.
+- Confirmación de que los métodos `autenticar`, `validarCredenciales` y `crearSesion` en `AuthContext` y `api.ts` cumplen estrictamente con el flujo del diseño.
+- Preparación del entorno para futuras implementaciones de servicios basadas en `IBaseService`.
+
+**Decisión:** Se mantiene la estructura actual de nombres (`autenticar`, `validarCredenciales`, `crearSesion`) ya que están en total sincronía con el diagrama de secuencia de diseño. Se valida la integración de interfaces para mejorar la robustez del tipado.
+
+---
+
+## [19:08] (03/06/2026) Abstracción de Código Basada en UML (View-Controller-Service)
+
+**Prompt:** "Bien necesito que me documentes ya sea en la carpeta de frontend o backend el "codigo repetido", lo que me refiero es, en la carpeta de diseño en modelosUML veras diagramas de secuencia para cada caso de uso, y vas a ver que la mayoria tiene un view, controler y repositorio que estas mencionadas serian clases, pero la vas a documentar para ya ser clases abstractas o interfaces, asi reutilizamos codigo y evitamos ambiguedades. Plantea en los docs y de ser necesario haz las entidades mencionadas anteriormente."
+
+**Resultado:** 
+- Identificación del patrón View-Controller-Repository en los diagramas de secuencia UML.
+- Creación de `frontend/documentacion/arquitectura_base.md` con la definición de `IBaseService`, `BaseApiService` y el hook `useCrud`.
+- Registro de la decisión arquitectónica en `frontend/documentacion/decisiones.md`.
+
+**Decisión:** Se adoptan abstracciones genéricas en el frontend para centralizar la lógica de consumo de API y estados de vista, alineando la implementación con los roles definidos en los diagramas de secuencia UML.
+
+---
+
+## [19:00] (03/06/2026) Alineación de Implementación con Modelo UML de Diseño
+
+**Prompt:** "A revisa los modelos UML dentro de diseñado para cada caso de uso, hazlo para el de iniciar sesion y corrige el codigo de ser necesario"
+
+**Resultado:** 
+- Revisión del diagrama de secuencia en `modelosUML/diseño/casosDeUsos/iniciarSesion/iniciarSesion.puml`.
+- Renombramiento de `authService.login` a `authService.validarCredenciales` para coincidir con el rol de **Repository**.
+- Renombramiento de la función `login` en `AuthContext` a `autenticar` para coincidir con el rol de **Controller**.
+- Implementación del método `crearSesion` en `AuthContext` para separar la lógica de creación de sesión según el diseño UML.
+- Actualización de `LoginPage.tsx` para invocar `autenticar`.
+
+**Decisión:** Se prioriza la fidelidad al diseño UML del proyecto para mantener consistencia entre la documentación arquitectónica y la implementación técnica.
+
+---
+
 ## [18:50] (03/06/2026) Implementación de Lógica de Login Funcional y Conexión con API
 
 **Prompt:** "Ok vamos a hacer el login funcional pero la logica del backend (API, base de datos, etc) todavia no esta hecha, asi que simplemente las partes del codigo que accedan a estas dejalas planteadas a la ruta que veas conveniente y despues el backend va a leer los logs que dejes con las rutas a acceder para despues consumir."

@@ -1,5 +1,13 @@
 # Registro de Decisiones - Backend
 
+## [19:08] (03/06/2026) Abstracción de Código Basada en UML (View-Controller-Repository)
+
+**Decisión:** Definir interfaces y clases abstractas base (`IBaseController`, `IBaseService`, `BaseService`) para los módulos del sistema.
+**Motivo:** Se identificó un patrón repetitivo en los diagramas de secuencia UML (View, Controller, Repository). El uso de abstracciones reduce el código duplicado, evita ambigüedades y asegura que la implementación sea fiel al diseño arquitectónico.
+**Impacto:** Los futuros módulos deberán extender de estas clases base, simplificando la implementación de operaciones CRUD estándar y mejorando la mantenibilidad.
+
+---
+
 ## [10:30] (31/05/2026) Implementación de la primera rebanada vertical (Proyectos)
 
 **Decisión:** Implementar el módulo de Proyectos como la primera funcionalidad completa del sistema.

@@ -16,7 +16,7 @@ api.interceptors.request.use((config) => {
 });
 
 export const authService = {
-  login: async (email: string, pass: string) => {
+  validarCredenciales: async (email: string, pass: string) => {
     // Esta ruta deberá ser implementada por el Backend
     const response = await api.post('/api/auth/login', { email, password: pass });
     return response.data;

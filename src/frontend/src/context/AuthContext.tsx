@@ -3,7 +3,7 @@ import { authService } from '../services/api';
 
 interface AuthContextType {
   user: any;
-  login: (email: string, pass: string) => Promise<void>;
+  autenticar: (email: string, pass: string) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -18,13 +18,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (savedUser) setUser(JSON.parse(savedUser));
   }, []);
 
-  const login = async (email: string, pass: string) => {
+  const crearSesion = (data: any) => {
+    setUser(data.user);
+    localStorage.setItem('user', JSON.stringify(data.user));
+    localStorage.setItem('token', data.token);
+  };
+
+  const autenticar = async (email: string, pass: string) => {
     try {
-      const data = await authService.login(email, pass);
+      const data = await authService.validarCredenciales(email, pass);
       // El backend debe retornar un objeto con { user, token }
-      setUser(data.user);
-      localStorage.setItem('user', JSON.stringify(data.user));
-      localStorage.setItem('token', data.token);
+      crearSesion(data);
     } catch (error) {
       console.error('Login error:', error);
       throw error;
@@ -38,7 +42,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, isAuthenticated: !!user }}>
+    <AuthContext.Provider value={{ user, autenticar, logout, isAuthenticated: !!user }}>
       {children}
     </AuthContext.Provider>
   );

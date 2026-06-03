@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { projectsService } from '../services/api';
+import { useCrud } from '../hooks/useCrud';
 
 interface Project {
   id: string;
@@ -9,15 +10,7 @@ interface Project {
 }
 
 const ProjectsPage: React.FC = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    projectsService.getAll()
-      .then(data => setProjects(data))
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false));
-  }, []);
+  const { data: projects, loading, error } = useCrud<Project>(projectsService as any);
 
   return (
     <div className="projects-page">
@@ -28,6 +21,8 @@ const ProjectsPage: React.FC = () => {
 
       {loading ? (
         <p>Cargando proyectos...</p>
+      ) : error ? (
+        <p className="error-message">{error}</p>
       ) : (
         <div className="projects-grid">
           {projects.length === 0 ? (
@@ -47,6 +42,7 @@ const ProjectsPage: React.FC = () => {
       )}
       
       <style>{`
+        .error-message { color: #dc3545; }
         .page-header {
           display: flex;
           justify-content: space-between;

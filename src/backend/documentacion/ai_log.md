@@ -1,5 +1,18 @@
 # AI Log - Backend
 
+## [19:08] (03/06/2026) Abstracción de Código Basada en UML (View-Controller-Repository)
+
+**Prompt:** "Bien necesito que me documentes ya sea en la carpeta de frontend o backend el "codigo repetido", lo que me refiero es, en la carpeta de diseño en modelosUML veras diagramas de secuencia para cada caso de uso, y vas a ver que la mayoria tiene un view, controler y repositorio que estas mencionadas serian clases, pero la vas a documentar para ya ser clases abstractas o interfaces, asi reutilizamos codigo y evitamos ambiguedades. Plantea en los docs y de ser necesario haz las entidades mencionadas anteriormente."
+
+**Resultado:** 
+- Identificación del patrón View-Controller-Repository en los diagramas de secuencia UML.
+- Creación de `backend/documentacion/arquitectura_base.md` con la definición de `IBaseController`, `IBaseService` y `BaseService`.
+- Registro de la decisión arquitectónica en `backend/documentacion/decisiones.md`.
+
+**Decisión:** Se adoptan abstracciones genéricas para estandarizar el desarrollo de módulos, alineando la implementación con el diseño UML y reduciendo la duplicación de lógica CRUD.
+
+---
+
 ## [18:15] (26/05/2026) Resolución de Error IPv6 (ENETUNREACH)
 
 **Prompt:** "Vale esta fue la linea de error que me dio render... postgresql://postgres.ndyjccyzshwpduimgekm:BnxmebESMN%2F09@aws-1-eu-central-1.pooler.supabase.com:6543/postgres"
