@@ -1,5 +1,0 @@
-name = "frontend"
-compatibility_date = "2026-06-03"
-
-[vars]
-REACT_APP_API_URL = "https://funiber-backend-investigacion.onrender.com"
