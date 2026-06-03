@@ -5,8 +5,11 @@ const common_1 = require("@nestjs/common");
 const app_module_js_1 = require("./app.module.js");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_js_1.AppModule);
-    // Habilitar CORS para permitir peticiones desde el frontend (GitHub Pages)
-    app.enableCors();
+    // Habilitar CORS para permitir peticiones desde el frontend
+    app.enableCors({
+        origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Configurar en producción
+        credentials: true,
+    });
     // Configuración de validación global
     app.useGlobalPipes(new common_1.ValidationPipe({
         whitelist: true,

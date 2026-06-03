@@ -1,5 +1,19 @@
 # AI Log - Backend
 
+## [21:30] (03/06/2026) Implementación de Autenticación con Cookies HttpOnly
+
+**Prompt:** "El problema es claro: el backend no está configurado para manejar cookies... Necesitas realizar cambios en el Backend... Setear la cookie en la respuesta... Configurar CORS para permitir credenciales"
+
+**Resultado:** 
+- Configuración de `app.enableCors` con `credentials: true` y `origin` dinámico.
+- Modificación de `AuthController.login` para utilizar `res.cookie` y establecer una cookie `HttpOnly`, `Secure` y `SameSite=Strict`.
+- Eliminación del `access_token` del cuerpo de la respuesta para evitar exposición en el frontend.
+- Registro de la decisión en `decisiones.md`.
+
+**Decisión:** Se acepta la recomendación para mejorar la seguridad frente a ataques XSS y facilitar la gestión de sesiones en el frontend.
+
+---
+
 ## [21:06] (03/06/2026) Migración de VARCHAR a TEXT en Entidades
 
 **Prompt:** "Duda, Supabase me esta diciendo que cambie todos las columnas que tengan tipo de dato varcahr a text, que piensas al respecto?"

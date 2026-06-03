@@ -1,5 +1,13 @@
 # Registro de Decisiones - Backend
 
+## [21:30] (03/06/2026) Cambio a Autenticación basada en Cookies HttpOnly
+
+**Decisión:** Migrar el almacenamiento del JWT del cuerpo de la respuesta (`access_token`) a una cookie `HttpOnly`.
+**Motivo:** Seguridad mejorada. Al evitar que el token sea accesible por JavaScript (document.cookie), se mitigan los riesgos de ataques XSS. Esto se alinea con la recomendación del equipo de frontend para manejar la persistencia de sesión de forma más robusta.
+**Impacto:** El frontend ya no debe extraer el token de la respuesta JSON, sino confiar en que el navegador manejará la cookie automáticamente en cada petición. Se requiere configurar `FRONTEND_URL` en las variables de entorno de Render para habilitar CORS correctamente.
+
+---
+
 ## [21:06] (03/06/2026) Migración de tipos de columna VARCHAR a TEXT
 
 **Decisión:** Cambiar todos los tipos de datos `VARCHAR` por `TEXT` en las entidades de TypeORM.
