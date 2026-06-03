@@ -25,17 +25,17 @@ let AuthController = class AuthController {
         // Setear la cookie HttpOnly
         res.cookie('token', data.access_token, {
             httpOnly: true,
-            secure: true, // Necesario en producción (HTTPS)
-            sameSite: 'strict', // O 'none' si el frontend está en otro dominio
+            secure: true, // Asegurar que sea true en producción con HTTPS
+            sameSite: 'strict',
             maxAge: 3600000, // 1 hora
         });
         return { user: data.user }; // Ya no devolvemos el token en el body
     }
-    async validate(authHeader) {
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    async validate(req) {
+        const token = req.cookies['token'];
+        if (!token) {
             throw new common_1.UnauthorizedException('Token no proporcionado');
         }
-        const token = authHeader.split(' ')[1];
         return this.authService.validateToken(token);
     }
 };
@@ -50,9 +50,9 @@ __decorate([
 ], AuthController.prototype, "login", null);
 __decorate([
     (0, common_1.Get)('validate'),
-    __param(0, (0, common_1.Headers)('authorization')),
+    __param(0, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "validate", null);
 exports.AuthController = AuthController = __decorate([

@@ -1,4 +1,4 @@
-import { Response } from 'express';
+import { Response, Request } from 'express';
 import { AuthService } from './auth.service';
 export declare class AuthController {
     private readonly authService;
@@ -11,7 +11,7 @@ export declare class AuthController {
             name: string;
         };
     }>;
-    validate(authHeader: string): Promise<{
+    validate(req: Request): Promise<{
         id: any;
         email: any;
         role: any;
