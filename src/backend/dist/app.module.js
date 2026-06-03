@@ -38,7 +38,7 @@ exports.AppModule = AppModule = __decorate([
                         type: 'postgres',
                         url: dbUrl,
                         autoLoadEntities: true,
-                        synchronize: true,
+                        synchronize: false,
                         ssl: {
                             rejectUnauthorized: false, // Obligatorio para Supabase
                         },
