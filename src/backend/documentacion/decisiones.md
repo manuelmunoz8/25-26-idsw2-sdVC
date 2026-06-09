@@ -1,6 +1,13 @@
 # Registro de Decisiones - Backend
+---
 
-## [21:30] (03/06/2026) Cambio a Autenticación basada en Cookies HttpOnly
+## [11:15] (09/06/2026) Actualización de Contraseña de Administrador y Auto-Sincronización
+
+**Decisión:** Actualizar la contraseña del usuario administrador a `funiber%2Dconnected/2026` e implementar una lógica de conciliación automática en `UsersService`.
+**Motivo:** El frontend ha cambiado la codificación de caracteres especiales (URL encoding), enviando `%2D` en lugar de `-`. Para mantener la compatibilidad sin requerir intervenciones manuales en la base de datos, el backend ahora verifica y actualiza el hash de la contraseña del administrador durante el inicio de la aplicación si detecta una discrepancia.
+**Impacto:** Garantiza que el acceso administrativo sea restaurado inmediatamente tras el próximo despliegue, alineando el backend con el nuevo comportamiento del cliente.
+
+---
 
 **Decisión:** Migrar el almacenamiento del JWT del cuerpo de la respuesta (`access_token`) a una cookie `HttpOnly`.
 **Motivo:** Seguridad mejorada. Al evitar que el token sea accesible por JavaScript (document.cookie), se mitigan los riesgos de ataques XSS. Esto se alinea con la recomendación del equipo de frontend para manejar la persistencia de sesión de forma más robusta.

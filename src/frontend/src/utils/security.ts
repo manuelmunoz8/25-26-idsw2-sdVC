@@ -6,8 +6,15 @@
 export const sanitizeInput = (input: string): string => {
   if (!input) return '';
   
+  const encodingMap: Record<string, string> = {
+    '<': '%3C',
+    '>': '%3E',
+    "'": '%27',
+    '"': '%22',
+    '-': '%2D'
+  };
+
   return input
     .trim()
-    .replace(/[<>]/g, '') // Elimina < y > para mitigar XSS simple
-    .replace(/['"--]/g, ''); // Elimina comillas y guiones dobles para mitigar SQLi básico en el cliente
+    .replace(/[<>'"-]/g, (match) => encodingMap[match]);
 };

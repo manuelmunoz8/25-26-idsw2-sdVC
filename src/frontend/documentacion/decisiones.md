@@ -1,5 +1,13 @@
 # Registro de Decisiones - Frontend
 
+## [18:28] (09/06/2026) Migración de Sanitización Destructiva a Codificación Percentual
+
+**Decisión:** Sustituir la eliminación de caracteres especiales en `sanitizeInput` por su codificación en formato percentual (`%XX`).
+**Motivo:** La eliminación de caracteres puede alterar datos legítimos. La codificación neutraliza el riesgo de XSS y SQLi sin perder la información original, permitiendo que el backend reciba la cadena completa de forma segura.
+**Impacto:** Mejora la integridad de los datos. El backend debe considerar que ciertos caracteres llegarán codificados si no se decodifican en el transporte.
+
+---
+
 ## [20:55] (03/06/2026) Adopción de Autenticación con Cookies HttpOnly
 
 **Decisión:** Abandonar el almacenamiento de JWT en `localStorage` y delegar la persistencia de sesión al navegador mediante cookies `HttpOnly` gestionadas por el backend.

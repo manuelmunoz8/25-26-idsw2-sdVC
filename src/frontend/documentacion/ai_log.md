@@ -1,5 +1,17 @@
 # AI Log - Frontend
 
+## [18:28] (09/06/2026) Refactorización de Sanitización de Inputs a Codificación Percentual
+
+**Prompt:** "Bien en security.ts necesito que refactorizes el codigo de limpieza de inputs, en vez de eliminar los caracteres especiales los vas a codificar a su equivalencias en codigo de %"
+
+**Resultado:** 
+- Actualización de `src/utils/security.ts`: la función `sanitizeInput` ahora utiliza un mapa de codificación para transformar caracteres especiales (`<`, `>`, `'`, `"`, `-`) en sus equivalentes de escape percentual (`%XX`) en lugar de simplemente eliminarlos.
+- Mejora de la integridad de los datos de entrada al permitir que caracteres especiales sean transportados de forma segura sin ser descartados.
+
+**Decisión:** Se opta por una estrategia de sanitización basada en codificación en lugar de eliminación para preservar la fidelidad de los datos del usuario mientras se mitigan riesgos de inyección (XSS/SQLi).
+
+---
+
 ## [20:55] (03/06/2026) Migración a Autenticación basada en Cookies HttpOnly
 
 **Prompt:** "Muy bien el backend ha implementado un JWT para la persistencia de session, mira la documentacion de como consumirlo, guarda el JWT en una cookie HttpOnly para mayor seguridad e implementa el codigo"

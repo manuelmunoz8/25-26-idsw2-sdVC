@@ -17,11 +17,12 @@ export class UsersService implements OnModuleInit {
 
   private async seedAdminUser() {
     const adminEmail = 'admin@funiber.org';
+    const rawPassword = 'funiber%2Dconnected/2026';
     const existing = await this.findByEmail(adminEmail);
-    
+
     if (!existing) {
       console.log('Sembrando usuario administrador por defecto...');
-      const hashedPassword = await bcrypt.hash('funiber-connected/2026', 10);
+      const hashedPassword = await bcrypt.hash(rawPassword, 10);
       const admin = this.usersRepository.create({
         email: adminEmail,
         password: hashedPassword,
@@ -30,6 +31,15 @@ export class UsersService implements OnModuleInit {
       });
       await this.usersRepository.save(admin);
       console.log('Usuario administrador creado con éxito.');
+    } else {
+      // Verificar si la contraseña actual coincide con la nueva (codificada)
+      const isMatch = await bcrypt.compare(rawPassword, existing.password);
+      if (!isMatch) {
+        console.log('Actualizando contraseña de administrador por cambio en codificación frontend...');
+        const newHashedPassword = await bcrypt.hash(rawPassword, 10);
+        await this.usersRepository.update(existing.id, { password: newHashedPassword });
+        console.log('Contraseña de administrador actualizada con éxito.');
+      }
     }
   }
 
