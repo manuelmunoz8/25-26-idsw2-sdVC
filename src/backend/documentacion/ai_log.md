@@ -1,6 +1,18 @@
 # AI Log - Backend
 
-## [22:47] (03/06/2026) Corrección de error de compilación TS en Render (cookie-parser)
+## [11:15] (09/06/2026) Actualización de Contraseña de Administrador y Auto-Sincronización
+
+**Prompt:** "Bien, necesito que cambies la contraseña guardada del usuario admin en base de datos, ya que ahora el frontend codifica los caracteres especiales en su equivalencias en %XX... en vez de usar funiber-connected/2026... vas a guardar funiber%2Dconnected/2026"
+
+**Resultado:** 
+- Actualización de `UsersService.seedAdminUser` para utilizar la nueva contraseña codificada.
+- Implementación de lógica de auto-sincronización: el sistema ahora verifica si la contraseña actual del administrador coincide con la nueva usando `bcrypt.compare`.
+- Si no hay coincidencia (por ejemplo, si persiste la contraseña antigua), el sistema hashea y actualiza automáticamente la base de datos al iniciar el módulo.
+- Registro de la decisión en `decisiones.md`.
+
+**Decisión:** Se implementa una solución proactiva que no solo cambia la constante, sino que asegura la actualización física en la base de datos sin intervención manual, garantizando la continuidad del acceso administrativo tras el cambio en el frontend.
+
+---
 
 **Prompt:** "Error de render: src/main.ts(3,26): error TS7016: Could not find a declaration file for module 'cookie-parser'..."
 
