@@ -12,3 +12,5 @@ node_modules/
 npm-debug.log*
 build
 dist
+*.map
+*.js
