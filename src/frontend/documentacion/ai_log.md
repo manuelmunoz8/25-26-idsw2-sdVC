@@ -1,5 +1,60 @@
 # AI Log - Frontend
 
+## [22:11] (10/06/2026) Migración Completa a DTOs Centralizados
+
+**Prompt:** "Actualiza frontend/src/services/api.ts para usar los DTOs centralizados en lugar de any."
+
+**Resultado:**
+- Actualización de `src/services/serviceInstances.ts` para importar y utilizar clases DTO desde `@dtos/*`.
+- Sustitución de tipos `any` en `projectsService`, `publicationsService`, `rewardsService` y `authService` por sus respectivos DTOs (`CreateProjectDto`, `UpdateProjectDto`, `CreatePublicationDto`, `CreateRewardDto`, `LoginDto`).
+- Actualización del `AuthContext` y `LoginPage` para utilizar `LoginDto` en el flujo de autenticación.
+
+**Decisión:** Se ha completado la migración para usar una única fuente de verdad (DTOs) compartida con el backend, garantizando la consistencia de tipos y eliminando la dependencia de tipos locales o `any`.
+
+---
+
+## [22:02] (10/06/2026) Configuración de Path Mapping para DTOs Compartidos
+
+**Prompt:** "Actualiza tsconfig.json del frontend para incluir el mapeo de rutas hacia la carpeta centralizada de DTOs."
+
+**Resultado:**
+- Actualización de `src/frontend/tsconfig.json` para añadir `baseUrl` y `paths` (`@dtos/*` mapeado a `../../dtos/*`).
+
+**Decisión:** Se habilita la importación centralizada de DTOs compartidos para garantizar la consistencia de tipos entre frontend y backend, evitando duplicidad de definiciones.
+
+---
+
+## [21:17] (10/06/2026) Refactorización Global de Capa de Servicios API
+
+**Prompt:** "Refactoriza frontend/src/services/api.ts para eliminar el uso de any y mejorar la gestión global de errores..."
+
+**Resultado:**
+- Eliminación de `any` en servicios mediante el uso de interfaces tipadas.
+- Implementación de interceptores de Axios en `src/services/api.ts` para gestión centralizada de errores (401 redirige a /login, 500 muestra alerta).
+- Estandarización de métodos en `IBaseService` (`findAll`, `findOne`, `create`, `update`, `remove`) en `src/types/base.service.ts`.
+- Creación de `src/services/serviceInstances.ts` para centralizar la instanciación de servicios tipados.
+- Actualización de todos los componentes y contextos para importar desde el nuevo archivo de servicios.
+- Actualización de `useCrud.ts` para soportar la nueva nomenclatura de métodos.
+
+**Decisión:** Se ha robustecido la capa de servicios mediante tipado estricto y centralización de la gestión de errores, lo cual mejora significativamente la mantenibilidad y la fiabilidad de las peticiones HTTP.
+
+---
+
+## [20:48] (10/06/2026) Implementación de Casos de Uso del Coordinador
+
+**Prompt:** "vayas a la carpeta de documents/requisitado/casosDeUso/diagramas y te mires el archivo de diagramaContextoCoordinador, vamos a hacer todos los casos de usos que aparecen aqui"
+
+**Resultado:**
+- Creación de múltiples páginas nuevas: `InvestigatorsPage`, `PublicationsPage`, `MyPublicationsPage`, `RewardsPage`, `WorkloadPage`, `ProfilePage`, `ProfileDeletionRequestsPage`, `ProjectDetailPage` y `DeliverablesPage`.
+- Actualización de `src/services/api.ts` para incluir servicios para Investigadores, Publicaciones, Recompensas y Perfil.
+- Configuración de rutas avanzadas en `App.tsx` incluyendo rutas con parámetros para detalles de proyectos y entregables.
+- Actualización de `Layout.tsx` con un menú de navegación completo y condicional para el rol de Coordinador.
+- Vinculación de `ProjectsPage` con `ProjectDetailPage` mediante navegación dinámica.
+
+**Decisión:** Se expande la arquitectura del frontend para cubrir la totalidad de la superficie funcional del Coordinador definida en el diagrama de contexto, estableciendo la base para la gestión completa de entidades del sistema.
+
+---
+
 ## [18:28] (09/06/2026) Refactorización de Sanitización de Inputs a Codificación Percentual
 
 **Prompt:** "Bien en security.ts necesito que refactorizes el codigo de limpieza de inputs, en vez de eliminar los caracteres especiales los vas a codificar a su equivalencias en codigo de %"

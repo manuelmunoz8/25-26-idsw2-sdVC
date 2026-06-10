@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable, OneToMany } from 'typeorm';
+import { User } from '../../users/entities/user.entity';
+import { Deliverable } from '../../deliverables/entities/deliverable.entity';
 
 @Entity('projects')
 export class Project {
@@ -26,6 +28,13 @@ export class Project {
 
   @Column({ type: 'timestamp', nullable: true })
   endDate!: Date;
+
+  @ManyToMany(() => User, (user) => user.projects)
+  @JoinTable()
+  researchers!: User[];
+
+  @OneToMany(() => Deliverable, (deliverable) => deliverable.project)
+  deliverables!: Deliverable[];
 
   @CreateDateColumn()
   createdAt!: Date;

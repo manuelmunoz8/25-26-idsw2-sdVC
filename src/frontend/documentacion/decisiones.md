@@ -1,5 +1,37 @@
 # Registro de Decisiones - Frontend
 
+## [22:11] (10/06/2026) Adopción de DTOs Compartidos como Única Fuente de Verdad
+
+**Decisión:** Migrar todos los métodos de los servicios API para utilizar las clases DTO compartidas con el backend en lugar de interfaces locales o `any`.
+**Motivo:** Asegurar una consistencia total en los contratos de datos entre el frontend y el backend, reduciendo bugs por discrepancias en las estructuras de datos.
+**Impacto:** El frontend es ahora un consumidor estricto de los DTOs definidos en el backend, mejorando la robustez y facilitando el mantenimiento conjunto.
+
+---
+
+## [22:02] (10/06/2026) Centralización de Tipos mediante Path Mapping
+
+**Decisión:** Configurar TypeScript para utilizar alias de ruta (`@dtos/*`) para importar tipos compartidos desde una carpeta centralizada (`../../dtos/`).
+**Motivo:** Garantizar una única fuente de verdad para los tipos (DTOs) usados tanto en frontend como en backend, eliminando el riesgo de discrepancias o duplicación de código.
+**Impacto:** El frontend ahora puede importar tipos de forma más limpia y segura (`import { User } from '@dtos/user.dto'`).
+
+---
+
+## [21:17] (10/06/2026) Estandarización y Tipado de la Capa de Servicios
+
+**Decisión:** Eliminar `any` de los servicios, implementar interceptores globales de Axios y estandarizar los métodos de API.
+**Motivo:** Mejorar la seguridad de tipos, centralizar la gestión de errores (específicamente 401 y 500) y alinear la nomenclatura con el estándar del backend (`findAll`, `findOne`, etc.).
+**Impacto:** El frontend es ahora más robusto ante fallos de red o autenticación, y el código de los componentes es más limpio y tipado. Se requiere que todo nuevo servicio siga este patrón.
+
+---
+
+## [20:48] (10/06/2026) Cobertura Completa de Casos de Uso del Coordinador (Contexto UML)
+
+**Decisión:** Implementar todas las páginas y transiciones de estado definidas en el "Diagrama de Contexto del Coordinador" del proyecto.
+**Motivo:** Asegurar que el frontend no sea solo una maqueta parcial, sino que refleje fielmente la capacidad funcional requerida por el rol principal del sistema (Coordinador). Esto incluye la gestión de proyectos, investigadores, carga de trabajo, publicaciones y perfil.
+**Impacto:** Se han añadido 9 páginas nuevas y se han ampliado los servicios de API. El sistema ahora soporta navegación profunda (Detalle de Proyecto -> Entregables) y segmentación de datos (Publicaciones Generales vs Mis Publicaciones).
+
+---
+
 ## [18:28] (09/06/2026) Migración de Sanitización Destructiva a Codificación Percentual
 
 **Decisión:** Sustituir la eliminación de caracteres especiales en `sanitizeInput` por su codificación en formato percentual (`%XX`).

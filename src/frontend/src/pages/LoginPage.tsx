@@ -32,7 +32,7 @@ const LoginPage: React.FC = () => {
     const sanitizedPassword = sanitizeInput(password);
 
     try {
-      await autenticar(sanitizedEmail, sanitizedPassword);
+      await autenticar({ email: sanitizedEmail, password: sanitizedPassword });
       navigate('/');
     } catch (err) {
       // Mensaje genérico para evitar enumeración de cuentas

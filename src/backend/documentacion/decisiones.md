@@ -1,6 +1,23 @@
 # Registro de Decisiones - Backend
 ---
 
+## [15:30] (10/06/2026) Estandarización de Nomenclatura CRUD y Exports
+
+**Decisión:** Estandarizar todos los métodos de servicio bajo la convención CRUD (findAll, findOne, create, update, remove) y crear archivos `index.ts` en cada módulo para exportar DTOs y Entidades.
+**Motivo:** Mejorar la consistencia del código, facilitar la mantenibilidad y simplificar la integración con el frontend. Al exportar tipos desde archivos `index.ts` centralizados, el frontend tendrá un punto de entrada claro para importar los tipos necesarios.
+**Impacto:** El código es más predecible y el frontend puede importar tipos de forma centralizada sin navegar por múltiples subcarpetas de cada módulo.
+
+---
+
+## [14:30] (10/06/2026) Implementación Integral del Dominio del Coordinador
+...
+
+**Decisión:** Expandir el esquema de base de datos y la API para cubrir todos los casos de uso del Coordinador (Entregables, Publicaciones, Recompensas y Gestión de Equipo).
+**Motivo:** Completar el prototipo funcional según los requisitos del diagrama de contexto UML. Se incluyeron funcionalidades específicas como el seguimiento de carga de trabajo en horas y el flujo de aprobación para eliminación de perfiles.
+**Impacto:** El backend ahora soporta la lógica de negocio completa para la gestión de proyectos de investigación, permitiendo una interacción rica entre coordinadores, investigadores y recursos externos (Grants.gov).
+
+---
+
 ## [11:15] (09/06/2026) Actualización de Contraseña de Administrador y Auto-Sincronización
 
 **Decisión:** Actualizar la contraseña del usuario administrador a `funiber%2Dconnected/2026` e implementar una lógica de conciliación automática en `UsersService`.

@@ -1,14 +1,15 @@
 import { Controller, Post, Body, Get, UnauthorizedException, Res, Req } from '@nestjs/common';
 import { Response, Request } from 'express';
-import { AuthService } from './auth.service';
+import { AuthService } from './auth.service'; 
+import { LoginDto } from '@dtos/login.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('login')
-  async login(@Body() body: any, @Res({ passthrough: true }) res: Response) {
-    const data = await this.authService.login(body.email, body.password);
+  async login(@Body() loginDto: LoginDto, @Res({ passthrough: true }) res: Response) {
+    const data = await this.authService.login(loginDto.email, loginDto.password);
 
     // Setear la cookie HttpOnly
     res.cookie('token', data.access_token, {
@@ -19,6 +20,12 @@ export class AuthController {
     });
 
     return { user: data.user }; // Ya no devolvemos el token en el body
+  }
+
+  @Post('logout')
+  logout(@Res({ passthrough: true }) res: Response) {
+    res.clearCookie('token');
+    return { message: 'Sesión cerrada con éxito' };
   }
 
   @Get('validate')

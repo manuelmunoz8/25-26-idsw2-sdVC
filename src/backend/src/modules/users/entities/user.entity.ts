@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToMany } from 'typeorm';
+import { Project } from '../../projects/entities/project.entity';
 
 @Entity('users')
 export class User {
@@ -20,6 +21,18 @@ export class User {
     default: 'investigador',
   })
   role!: string;
+
+  @Column({ type: 'boolean', default: false })
+  deletionRequested!: boolean;
+
+  @Column({ type: 'float', default: 0 })
+  weeklyWorkload!: number;
+
+  @Column({ type: 'float', default: 0 })
+  totalWorkload!: number;
+
+  @ManyToMany(() => Project, (project) => project.researchers)
+  projects!: Project[];
 
   @CreateDateColumn()
   createdAt!: Date;

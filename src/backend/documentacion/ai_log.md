@@ -1,5 +1,21 @@
 # AI Log - Backend
 
+## [14:30] (10/06/2026) Implementación Completa de Casos de Uso del Coordinador
+
+**Prompt:** "Vale, necesito que te mires el archivo de diagramaContextoCoordinador que te voy a pasar, vamos a hacer todos los casos de usos que aparecen aqui"
+
+**Resultado:**
+- **Modelos:** Actualización de `User` y `Project` con relaciones Many-to-Many; creación de entidades `Deliverable`, `Publication` y `Reward`.
+- **Auth:** Implementación de endpoint `logout` para limpieza de cookies.
+- **Users:** Implementación de `UsersController` con endpoints para perfil, carga de trabajo (horas semanales/totales) y solicitudes de eliminación.
+- **Projects:** Gestión de equipo (agregar/quitar investigadores) y vinculación con entregables.
+- **Módulos Nuevos:** `DeliverablesModule`, `PublicationsModule` (con soporte para hilos de respuesta) y `RewardsModule`.
+- **Grants:** Extensión de `GrantsModule` con búsqueda, detalle e importación automática de proyectos.
+
+**Decisión:** Se implementa la totalidad del diagrama de contexto del Coordinador, asegurando trazabilidad entre el diseño UML y la API. Se opta por una arquitectura basada en los servicios base existentes para mantener la consistencia.
+
+---
+
 ## [11:15] (09/06/2026) Actualización de Contraseña de Administrador y Auto-Sincronización
 
 **Prompt:** "Bien, necesito que cambies la contraseña guardada del usuario admin en base de datos, ya que ahora el frontend codifica los caracteres especiales en su equivalencias en %XX... en vez de usar funiber-connected/2026... vas a guardar funiber%2Dconnected/2026"

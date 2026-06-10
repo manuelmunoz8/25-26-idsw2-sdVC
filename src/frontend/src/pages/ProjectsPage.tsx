@@ -1,5 +1,6 @@
 import React from 'react';
-import { projectsService } from '../services/api';
+import { useNavigate } from 'react-router-dom';
+import { projectsService } from '../services/serviceInstances';
 import { useCrud } from '../hooks/useCrud';
 
 interface Project {
@@ -11,6 +12,7 @@ interface Project {
 
 const ProjectsPage: React.FC = () => {
   const { data: projects, loading, error } = useCrud<Project>(projectsService as any);
+  const navigate = useNavigate();
 
   return (
     <div className="projects-page">
@@ -32,15 +34,23 @@ const ProjectsPage: React.FC = () => {
               <div key={project.id} className="project-card">
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
-                <span className={`status-badge ${project.status}`}>
-                  {project.status}
-                </span>
+                <div className="project-footer">
+                  <span className={`status-badge ${project.status}`}>
+                    {project.status}
+                  </span>
+                  <button 
+                    className="btn-small" 
+                    onClick={() => navigate(`/projects/${project.id}`)}
+                  >
+                    Ver Detalles
+                  </button>
+                </div>
               </div>
             ))
           )}
         </div>
       )}
-      
+
       <style>{`
         .error-message { color: #dc3545; }
         .page-header {
@@ -68,6 +78,12 @@ const ProjectsPage: React.FC = () => {
           border-radius: 8px;
           box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
+        .project-footer {
+          margin-top: 1rem;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
         .status-badge {
           display: inline-block;
           padding: 0.3rem 0.8rem;
@@ -78,6 +94,13 @@ const ProjectsPage: React.FC = () => {
         .status-badge.draft { background: #e0e0e0; }
         .status-badge.active { background: #d4edda; color: #155724; }
         .status-badge.completed { background: #cce5ff; color: #004085; }
+        .btn-small {
+          background: #eee;
+          border: 1px solid #ccc;
+          padding: 0.4rem 0.8rem;
+          border-radius: 4px;
+          cursor: pointer;
+        }
       `}</style>
     </div>
   );

@@ -1,33 +1,35 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 const api = axios.create({
   baseURL: API_URL,
-  withCredentials: true, // Habilita el envío/recepción de cookies automáticamente
+  withCredentials: true,
 });
 
-export const authService = {
-  validarCredenciales: async (email: string, pass: string) => {
-    // El backend seteará la cookie HttpOnly en la respuesta
-    const response = await api.post('/api/auth/login', { email, password: pass });
-    return response.data;
-  },
-};
-
-export const projectsService = {
-  getAll: async () => {
-    const response = await api.get('/projects');
-    return response.data;
-  },
-  getOne: async (id: string) => {
-    const response = await api.get(`/projects/${id}`);
-    return response.data;
-  },
-  create: async (data: any) => {
-    const response = await api.post('/projects', data);
-    return response.data;
-  },
-};
+// Interceptor de respuesta para manejo global de errores
+api.interceptors.response.use(
+  (response) => response,
+  (error: AxiosError) => {
+    if (error.response) {
+      switch (error.response.status) {
+        case 401:
+          // Redirigir a login si no está autorizado
+          window.location.href = '/login';
+          break;
+        case 403:
+          console.error('Acceso prohibido');
+          break;
+        case 500:
+          console.error('Error interno del servidor');
+          alert('Ha ocurrido un error en el servidor, intente más tarde.');
+          break;
+        default:
+          console.error('Error:', error.response.data);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 export default api;

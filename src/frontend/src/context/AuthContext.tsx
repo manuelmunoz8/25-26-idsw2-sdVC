@@ -1,9 +1,10 @@
 import React, { useState, createContext, useContext, useEffect } from 'react';
-import { authService } from '../services/api';
+import { authService } from '../services/serviceInstances';
+import { LoginDto } from '@dtos/login.dto';
 
 interface AuthContextType {
   user: any;
-  autenticar: (email: string, pass: string) => Promise<void>;
+  autenticar: (dto: LoginDto) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
 }
@@ -24,9 +25,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     localStorage.setItem('user', JSON.stringify(data.user)); // Mantenemos usuario si es necesario para UI, pero no el token
   };
 
-  const autenticar = async (email: string, pass: string) => {
+  const autenticar = async (dto: LoginDto) => {
     try {
-      const data = await authService.validarCredenciales(email, pass);
+      const data = await authService.validarCredenciales(dto);
       crearSesion(data);
     } catch (error) {
       console.error('Login error:', error);

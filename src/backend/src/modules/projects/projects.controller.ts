@@ -2,9 +2,10 @@ import { Controller, Get, Post, Body, Param, Put, Delete, ParseUUIDPipe } from '
 import { ProjectsService } from './projects.service';
 import { Project } from './entities/project.entity';
 import { IBaseController } from '../../common/interfaces/base.controller.interface';
+import { CreateProjectDto, UpdateProjectDto } from '../../../../dtos/project.dto';
 
 @Controller('projects')
-export class ProjectsController implements IBaseController<Project> {
+export class ProjectsController {
   constructor(private readonly projectsService: ProjectsService) {}
 
   @Get()
@@ -18,20 +19,36 @@ export class ProjectsController implements IBaseController<Project> {
   }
 
   @Post()
-  create(@Body() projectData: Partial<Project>): Promise<Project> {
-    return this.projectsService.create(projectData);
+  create(@Body() projectData: CreateProjectDto): Promise<Project> {
+    return this.projectsService.create(projectData as any);
   }
 
   @Put(':id')
   update(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() projectData: Partial<Project>,
+    @Body() projectData: UpdateProjectDto,
   ): Promise<Project> {
-    return this.projectsService.update(id, projectData);
+    return this.projectsService.update(id, projectData as any);
   }
 
   @Delete(':id')
   remove(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
     return this.projectsService.remove(id);
+  }
+
+  @Post(':id/researchers')
+  addResearcher(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Body('userId', ParseUUIDPipe) userId: string,
+  ): Promise<Project> {
+    return this.projectsService.addResearcher(id, userId);
+  }
+
+  @Delete(':id/researchers/:userId')
+  removeResearcher(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Param('userId', ParseUUIDPipe) userId: string,
+  ): Promise<Project> {
+    return this.projectsService.removeResearcher(id, userId);
   }
 }

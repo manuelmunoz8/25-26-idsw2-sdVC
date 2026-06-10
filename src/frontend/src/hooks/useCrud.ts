@@ -9,7 +9,7 @@ export function useCrud<T>(service: IBaseService<T>) {
   const fetchAll = useCallback(async () => {
     setLoading(true);
     try {
-      const result = await service.getAll();
+      const result = await service.findAll();
       setData(result);
       setError(null);
     } catch (err) {
@@ -44,7 +44,7 @@ export function useCrud<T>(service: IBaseService<T>) {
 
   const remove = async (id: string) => {
     try {
-      await service.delete(id);
+      await service.remove(id);
       setData(prev => prev.filter(i => (i as any).id !== id));
     } catch (err) {
       setError('Error al eliminar el elemento');

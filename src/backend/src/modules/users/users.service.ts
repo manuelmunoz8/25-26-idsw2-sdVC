@@ -1,4 +1,4 @@
-import { Injectable, ConflictException, OnModuleInit } from '@nestjs/common';
+import { Injectable, ConflictException, NotFoundException, OnModuleInit } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
@@ -60,5 +60,32 @@ export class UsersService implements OnModuleInit {
     
     const user = this.usersRepository.create(userData);
     return await this.usersRepository.save(user);
+  }
+
+  async findAll(role?: string): Promise<User[]> {
+    const where = role ? { role } : {};
+    return await this.usersRepository.find({ where });
+  }
+
+  async findOne(id: string): Promise<User> {
+    const user = await this.usersRepository.findOne({ where: { id } });
+    if (!user) throw new NotFoundException('User not found');
+    return user;
+  }
+
+  async update(id: string, userData: Partial<User>): Promise<User> {
+    if (userData.password) {
+      userData.password = await bcrypt.hash(userData.password, 10);
+    }
+    await this.usersRepository.update(id, userData);
+    return this.findOne(id);
+  }
+
+  async requestDeletion(id: string): Promise<void> {
+    await this.usersRepository.update(id, { deletionRequested: true });
+  }
+
+  async findDeletionRequests(): Promise<User[]> {
+    return await this.usersRepository.find({ where: { deletionRequested: true } });
   }
 }

@@ -1,10 +1,15 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@dtos/*": ["../dtos/*"]
+    },
+    "ignoreDeprecations": "6.0",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
     "target": "ES2022",
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "..",
     "sourceMap": true,
     "declaration": true,
     "strict": true,
@@ -14,6 +19,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*", "src/@types/**/*"],
+  "include": ["src/**/*", "../dtos/**/*"],
   "exclude": ["node_modules", "dist"]
 }
