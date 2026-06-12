@@ -2,4 +2,4 @@ export * from './users.controller';
 export * from './users.module';
 export * from './users.service';
 export * from './entities/user.entity';
-export * from 'shared-dtos/update-user.dto';
+export * from 'shared-dtos';

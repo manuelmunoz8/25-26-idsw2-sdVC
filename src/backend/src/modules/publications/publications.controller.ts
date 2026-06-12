@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param, Put, Delete, Query, ParseUUIDPipe } from '@nestjs/common';
 import { PublicationsService } from './publications.service';
 import { Publication } from './entities/publication.entity';
-import { CreatePublicationDto, CreateReplyDto, UpdatePublicationDto } from 'shared-dtos/publication.dto';
+import { CreatePublicationDto, CreateReplyDto, UpdatePublicationDto } from 'shared-dtos';
 
 @Controller('publications')
 export class PublicationsController {
