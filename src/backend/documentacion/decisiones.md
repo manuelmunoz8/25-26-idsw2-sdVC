@@ -1,6 +1,14 @@
 # Registro de Decisiones - Backend
 ---
 
+## [14:00] (12/06/2026) Alineación de DTOs con Modelos UML de Diseño
+
+**Decisión:** Actualizar los DTOs para incluir campos faltantes (`status`, `visibility` en `CreatePublicationDto`) definidos en los modelos UML de diseño.
+**Motivo:** Garantizar que la API cumpla estrictamente con la especificación técnica definida en los modelos de análisis/diseño para asegurar la integridad del sistema.
+**Impacto:** Los contratos de la API ahora son consistentes con la documentación técnica, mejorando la robustez y trazabilidad del sistema.
+
+---
+
 ## [15:30] (10/06/2026) Estandarización de Nomenclatura CRUD y Exports
 
 **Decisión:** Estandarizar todos los métodos de servicio bajo la convención CRUD (findAll, findOne, create, update, remove) y crear archivos `index.ts` en cada módulo para exportar DTOs y Entidades.

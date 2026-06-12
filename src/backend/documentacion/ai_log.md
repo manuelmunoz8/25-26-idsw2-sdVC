@@ -1,5 +1,17 @@
 # AI Log - Backend
 
+## [14:00] (12/06/2026) Reconciliación de DTOs con modelos UML
+
+**Prompt:** "Reconciliar la implementación actual en `src/` con la especificación técnica definida en los modelos de diseño (`modelosUML/`)"
+
+**Resultado:** 
+- Actualización de `CreatePublicationDto` (`src/dtos/publication.dto.ts`) para incluir los campos obligatorios `status` y `visibility` definidos en el modelo de análisis `crearPublicacion-analisis.puml`.
+- Validación de que `CreateProjectDto` cumple con los requisitos del modelo `crearProyecto-analisis.puml`.
+
+**Decisión:** Se decide alinear la estructura de los DTOs con los modelos UML para garantizar la integridad del contrato de API. Se mantiene la nomenclatura profesional en inglés (ej. `status` para `estado`) para asegurar la consistencia con el código existente.
+
+---
+
 ## [14:30] (10/06/2026) Implementación Completa de Casos de Uso del Coordinador
 
 **Prompt:** "Vale, necesito que te mires el archivo de diagramaContextoCoordinador que te voy a pasar, vamos a hacer todos los casos de usos que aparecen aqui"

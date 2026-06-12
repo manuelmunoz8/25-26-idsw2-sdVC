@@ -9,6 +9,16 @@ export class CreatePublicationDto {
   @IsNotEmpty({ message: 'El contenido es obligatorio' })
   content!: string;
 
+  @IsString()
+  @IsEnum(['draft', 'published', 'archived'])
+  @IsOptional()
+  status?: string;
+
+  @IsString()
+  @IsEnum(['public', 'private'])
+  @IsOptional()
+  visibility?: string;
+
   @IsUUID('4', { message: 'ID de autor inválido' })
   @IsNotEmpty({ message: 'El ID del autor es obligatorio' })
   authorId!: string;

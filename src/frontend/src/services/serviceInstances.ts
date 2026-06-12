@@ -15,33 +15,33 @@ export const authService = {
 };
 
 export const projectsService: IBaseService<any> = {
-  findAll: async () => (await api.get('/projects')).data,
-  findOne: async (id: string) => (await api.get(`/projects/${id}`)).data,
-  create: async (dto: CreateProjectDto) => (await api.post('/projects', dto)).data,
-  update: async (id: string, dto: UpdateProjectDto) => (await api.put(`/projects/${id}`, dto)).data,
-  remove: async (id: string) => { await api.delete(`/projects/${id}`); },
+  findAll: async () => (await api.get('/api/projects')).data,
+  findOne: async (id: string) => (await api.get(`/api/projects/${id}`)).data,
+  create: async (dto: CreateProjectDto) => (await api.post('/api/projects', dto)).data,
+  update: async (id: string, dto: UpdateProjectDto) => (await api.put(`/api/projects/${id}`, dto)).data,
+  remove: async (id: string) => { await api.delete(`/api/projects/${id}`); },
 };
 
 export const investigatorsService: any = {
-  findAll: async () => (await api.get('/investigators')).data,
-  findOne: async (id: string) => (await api.get(`/investigators/${id}`)).data,
-  create: async (dto: any) => (await api.post('/investigators', dto)).data,
+  findAll: async () => (await api.get('/api/investigators')).data,
+  findOne: async (id: string) => (await api.get(`/api/investigators/${id}`)).data,
+  create: async (dto: any) => (await api.post('/api/investigators', dto)).data,
 };
 
 export const publicationsService = {
-  findAll: async () => (await api.get('/publications')).data,
-  getMy: async () => (await api.get('/publications/my')).data,
-  create: async (dto: CreatePublicationDto) => (await api.post('/publications', dto)).data,
+  findAll: async () => (await api.get('/api/publications')).data,
+  getMy: async () => (await api.get('/api/publications/my')).data,
+  create: async (dto: CreatePublicationDto) => (await api.post('/api/publications', dto)).data,
 };
 
 export const rewardsService = {
-  findAll: async () => (await api.get('/rewards')).data,
-  create: async (dto: CreateRewardDto) => (await api.post('/rewards', dto)).data,
+  findAll: async () => (await api.get('/api/rewards')).data,
+  create: async (dto: CreateRewardDto) => (await api.post('/api/rewards', dto)).data,
 };
 
 export const profileService = {
-  get: async () => (await api.get('/profile')).data,
-  update: async (dto: any) => (await api.put('/profile', dto)).data,
-  requestDeletion: async () => (await api.post('/profile/request-deletion')).data,
-  getDeletionRequests: async () => (await api.get('/profile/deletion-requests')).data,
+  get: async () => (await api.get('/api/profile')).data,
+  update: async (dto: any) => (await api.put('/api/profile', dto)).data,
+  requestDeletion: async () => (await api.post('/api/profile/request-deletion')).data,
+  getDeletionRequests: async () => (await api.get('/api/profile/deletion-requests')).data,
 };
