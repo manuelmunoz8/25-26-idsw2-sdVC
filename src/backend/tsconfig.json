@@ -10,7 +10,7 @@
     "moduleResolution": "NodeNext",
     "target": "ES2022",
     "outDir": "./dist",
-    "rootDir": "..",
+    "rootDir": "./src",
     "sourceMap": true,
     "declaration": true,
     "strict": true,
@@ -20,6 +20,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["src/**/*", "../dtos/**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "dist"]
 }
