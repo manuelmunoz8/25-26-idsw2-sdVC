@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Put, Delete, ParseUUIDPipe } from '
 import { ProjectsService } from './projects.service';
 import { Project } from './entities/project.entity';
 import { IBaseController } from '../../common/interfaces/base.controller.interface';
-import { CreateProjectDto, UpdateProjectDto } from 'shared-dtos';
+import { CreateProjectDto, UpdateProjectDto } from '../dtos';
 
 @Controller('projects')
 export class ProjectsController {
