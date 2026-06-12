@@ -2,7 +2,8 @@
   "name": "shared-dtos",
   "version": "1.0.0",
   "main": "index.ts",
-  "peerDependencies": {
-    "class-validator": "^0.15.1"
+  "dependencies": {
+    "class-validator": "^0.15.1",
+    "class-transformer": "^0.5.1"
   }
 }
