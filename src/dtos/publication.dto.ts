@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty, IsOptional, IsUUID } from 'class-validator';
+import { IsString, IsNotEmpty, IsOptional, IsUUID, IsEnum } from 'class-validator';
 
 export class CreatePublicationDto {
   @IsString()
@@ -36,4 +36,14 @@ export class CreateReplyDto {
   @IsUUID('4')
   @IsNotEmpty()
   authorId!: string;
+}
+
+export class UpdatePublicationDto {
+  @IsString()
+  @IsOptional()
+  title?: string;
+
+  @IsString()
+  @IsOptional()
+  content?: string;
 }
