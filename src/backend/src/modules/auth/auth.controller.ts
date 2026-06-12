@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Get, UnauthorizedException, Res, Req } from '@nestjs/common';
 import { Response, Request } from 'express';
 import { AuthService } from './auth.service'; 
-import { LoginDto } from '@dtos/login.dto';
+import { LoginDto } from 'shared-dtos/login.dto';
 
 @Controller('auth')
 export class AuthController {

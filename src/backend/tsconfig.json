@@ -2,7 +2,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@dtos/*": ["../dtos/*"]
+      "shared-dtos": ["../dtos"],
+      "shared-dtos/*": ["../dtos/*"]
     },
     "ignoreDeprecations": "6.0",
     "module": "NodeNext",
