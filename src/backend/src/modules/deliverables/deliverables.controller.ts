@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param, Put, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { DeliverablesService } from './deliverables.service';
 import { Deliverable } from './entities/deliverable.entity';
-import { CreateDeliverableDto, UpdateDeliverableDto } from '../dtos';
+import { CreateDeliverableDto, UpdateDeliverableDto } from '../../dtos';
 
 @Controller('deliverables')
 export class DeliverablesController {

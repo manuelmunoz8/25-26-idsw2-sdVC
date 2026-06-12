@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Param, Put, Delete, ParseUUIDPipe } from '
 import { RewardsService } from './rewards.service';
 import { Reward } from './entities/reward.entity';
 import { IBaseController } from '../../common/interfaces/base.controller.interface';
-import { CreateRewardDto } from '../dtos';
+import { CreateRewardDto } from '../../dtos';
 
 @Controller('rewards')
 export class RewardsController implements IBaseController<Reward> {

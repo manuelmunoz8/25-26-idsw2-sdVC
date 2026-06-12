@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Param, Query } from '@nestjs/common';
 import { GrantsService } from './grants.service';
-import { ImportGrantDto } from '../dtos';
+import { ImportGrantDto } from '../../dtos';
 
 @Controller('grants')
 export class GrantsController {
