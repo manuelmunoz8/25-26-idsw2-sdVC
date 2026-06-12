@@ -37,13 +37,3 @@ export class CreateReplyDto {
   @IsNotEmpty()
   authorId!: string;
 }
-
-export class UpdatePublicationDto {
-  @IsString()
-  @IsOptional()
-  title?: string;
-
-  @IsString()
-  @IsOptional()
-  content?: string;
-}
