@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put, Query, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Query, ParseUUIDPipe, Req, ForbiddenException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { UpdateUserDto, CreateUserDto } from '../../dtos';
@@ -18,7 +18,10 @@ export class UsersController {
   }
 
   @Get('deletion-requests')
-  findDeletionRequests(): Promise<User[]> {
+  findDeletionRequests(@Req() req: any): Promise<User[]> {
+    if (req.user?.role !== 'coordinador') {
+      throw new ForbiddenException('Solo los coordinadores pueden ver las solicitudes de eliminación.');
+    }
     return this.usersService.findDeletionRequests();
   }
 

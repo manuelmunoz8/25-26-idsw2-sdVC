@@ -23,13 +23,15 @@ const ProfilePage: React.FC = () => {
     fetchProfile();
   }, []);
 
+  const [deletionStatus, setDeletionStatus] = useState<{message: string, isError: boolean} | null>(null);
+
   const handleRequestDeletion = async () => {
     if (window.confirm('¿Estás seguro de que deseas solicitar la eliminación de tu perfil?')) {
       try {
         await profileService.requestDeletion();
-        alert('Solicitud enviada correctamente.');
+        setDeletionStatus({message: 'Solicitud enviada correctamente.', isError: false});
       } catch (error) {
-        alert('Error al enviar la solicitud.');
+        setDeletionStatus({message: 'Error al enviar la solicitud.', isError: true});
       }
     }
   };
@@ -41,6 +43,12 @@ const ProfilePage: React.FC = () => {
       <div className="page-header">
         <h2>Mi Perfil</h2>
       </div>
+
+      {deletionStatus && (
+        <div className={`status-message ${deletionStatus.isError ? 'error' : 'success'}`}>
+          {deletionStatus.message}
+        </div>
+      )}
 
       <div className="profile-content card">
         <div className="profile-info">
@@ -74,6 +82,21 @@ const ProfilePage: React.FC = () => {
       </div>
 
       <style>{`
+        .status-message {
+          padding: 1rem;
+          border-radius: 4px;
+          margin-bottom: 1rem;
+        }
+        .status-message.success {
+          background: #e8f5e9;
+          color: #2e7d32;
+          border: 1px solid #c8e6c9;
+        }
+        .status-message.error {
+          background: #ffebee;
+          color: #c62828;
+          border: 1px solid #ef9a9a;
+        }
         .card {
           background: white;
           padding: 2rem;

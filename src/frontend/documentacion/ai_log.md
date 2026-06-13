@@ -1,5 +1,18 @@
 # AI Log - Frontend
 
+## [13:30] (13/06/2026) Implementación de funcionalidad para solicitar eliminación de perfil
+
+**Prompt:** "Bien puedes implementar la accion de solicitar eliminacion de perfil"
+
+**Resultado:**
+- Actualización de `ProfilePage.tsx`:
+    - Adición de la función `handleRequestDeletion` que consume `profileService.requestDeletion()`.
+    - Eliminación de `alert()` y uso de un nuevo estado `deletionStatus` para mostrar mensajes de éxito o error de forma visual en la interfaz (`.status-message`).
+
+**Decisión:** Se implementa la acción de solicitud de eliminación de perfil cumpliendo con el flujo de negocio y mejorando la UX al proporcionar retroalimentación visual no intrusiva en lugar de alertas de navegador.
+
+---
+
 ## [13:00] (13/06/2026) Mejora de UX: Gestión de errores en formulario de creación de usuarios
 
 **Prompt:** "Ok al tratar de crear un usuario me sale una alerta... necesito que esto lo cambies de nuevo por un caja de texto que se muestre el error de creacion"
