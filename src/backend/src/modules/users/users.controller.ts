@@ -1,11 +1,23 @@
-import { Controller, Get, Post, Body, Param, Put, Query, ParseUUIDPipe, Req, ForbiddenException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Query, ParseUUIDPipe, Req, ForbiddenException, UnauthorizedException } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import { UpdateUserDto, CreateUserDto } from '../../dtos';
+import { AuthService } from '../auth/auth.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly authService: AuthService,
+  ) {}
+
+  private async validateRequest(req: any) {
+    const token = req.cookies['token'];
+    if (!token) throw new UnauthorizedException('No token');
+    const user = await this.authService.validateToken(token);
+    req.user = user;
+    return user;
+  }
 
   @Post()
   create(@Body() userData: CreateUserDto): Promise<User> {
@@ -18,10 +30,11 @@ export class UsersController {
   }
 
   @Get('deletion-requests')
-  findDeletionRequests(@Req() req: any): Promise<User[]> {
+  async findDeletionRequests(@Req() req: any): Promise<User[]> {
+    const user = await this.validateRequest(req);
     console.log('Recibida petición GET /users/deletion-requests');
-    console.log('Usuario en request:', req.user);
-    if (req.user?.role !== 'coordinador') {
+    console.log('Usuario validado:', user);
+    if (user.role !== 'coordinador') {
       console.log('Acceso denegado: rol no es coordinador');
       throw new ForbiddenException('Solo los coordinadores pueden ver las solicitudes de eliminación.');
     }
