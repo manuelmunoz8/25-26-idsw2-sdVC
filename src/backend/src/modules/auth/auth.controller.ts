@@ -14,8 +14,8 @@ export class AuthController {
     // Setear la cookie HttpOnly
     res.cookie('token', data.access_token, {
       httpOnly: true,
-      secure: true, // Asegurar que sea true en producción con HTTPS
-      sameSite: 'strict',
+      secure: false, // Asegurar que sea true en producción con HTTPS
+      sameSite: 'lax',
       maxAge: 3600000, // 1 hora
     });
 
