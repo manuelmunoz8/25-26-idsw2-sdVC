@@ -46,7 +46,7 @@ export class UsersService implements OnModuleInit {
   async findByEmail(email: string): Promise<User | null> {
     return await this.usersRepository.findOne({ 
       where: { email }, 
-      select: ['id', 'email', 'password', 'role', 'name'] 
+      select: ['id', 'email', 'password', 'role', 'name', 'department'] 
     });
   }
 
