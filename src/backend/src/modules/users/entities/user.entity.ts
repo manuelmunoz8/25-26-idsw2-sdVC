@@ -15,6 +15,9 @@ export class User {
   @Column({ type: 'text' })
   name!: string;
 
+  @Column({ type: 'text', nullable: true })
+  department?: string;
+
   @Column({
     type: 'enum',
     enum: ['investigador', 'coordinador'],

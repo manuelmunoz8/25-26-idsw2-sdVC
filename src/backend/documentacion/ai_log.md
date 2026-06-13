@@ -1,5 +1,18 @@
 # AI Log - Backend
 
+## [15:00] (13/06/2026) Implementación de campo 'department' en usuarios
+
+**Prompt:** "Haz que en la base de datos se pueda guardar el departamente asociado al usuario a crear como un string"
+
+**Resultado:** 
+- Actualización de la entidad `User` para incluir el campo `department` (`type: 'text'`).
+- Actualización de `CreateUserDto` y `UpdateUserDto` para incluir el campo `department` como opcional.
+- Sincronización de los DTOs en el repositorio compartido (se requiere commit y push para reflejar en el build de Render).
+
+**Decisión:** Se añade el campo `department` como opcional (`nullable: true` en BD, `@IsOptional()` en DTOs) para mantener compatibilidad con usuarios existentes.
+
+---
+
 ## [14:30] (12/06/2026) Implementación de endpoint para creación de usuarios
 
 **Prompt:** "Vale haz la funcionalidad para crear nuevos usuarios, y al finalizarla me pasas el endpoint que el frontend debe consumir"

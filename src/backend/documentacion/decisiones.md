@@ -1,6 +1,14 @@
 # Registro de Decisiones - Backend
 ---
 
+## [15:05] (13/06/2026) Inclusión de campo 'department' en esquema de Usuario
+
+**Decisión:** Añadir el campo opcional `department` (tipo `string`) en la entidad `User` y actualizar los DTOs correspondientes.
+**Motivo:** Requisito funcional solicitado por el frontend para categorizar investigadores por departamento durante el registro.
+**Impacto:** Permite capturar esta información extra sin romper la compatibilidad con usuarios existentes (al ser opcional).
+
+---
+
 ## [14:45] (12/06/2026) Implementación de Endpoint para Creación de Usuarios
 
 **Decisión:** Exponer el método `POST /users` en el `UsersController`, utilizando `CreateUserDto` para la validación de entrada.
