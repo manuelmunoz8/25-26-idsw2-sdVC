@@ -1,11 +1,16 @@
 import { Controller, Get, Post, Body, Param, Put, Query, ParseUUIDPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
-import { UpdateUserDto } from '../../dtos';
+import { UpdateUserDto, CreateUserDto } from '../../dtos';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Post()
+  create(@Body() userData: CreateUserDto): Promise<User> {
+    return this.usersService.create(userData as any);
+  }
 
   @Get()
   findAll(@Query('role') role?: string): Promise<User[]> {

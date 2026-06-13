@@ -1,5 +1,19 @@
 # AI Log - Backend
 
+## [14:30] (12/06/2026) Implementación de endpoint para creación de usuarios
+
+**Prompt:** "Vale haz la funcionalidad para crear nuevos usuarios, y al finalizarla me pasas el endpoint que el frontend debe consumir"
+
+**Resultado:** 
+- Creación del DTO `CreateUserDto` en `src/dtos/create-user.dto.ts` con validaciones (`class-validator`).
+- Registro del nuevo DTO en `src/dtos/index.ts`.
+- Exposición del método `POST /users` en `UsersController`.
+- Reutilización de `UsersService.create` para la lógica de negocio (incluyendo hash de contraseña).
+
+**Decisión:** Se implementa el endpoint de creación siguiendo las convenciones existentes, delegando la validación de entrada al DTO y la persistencia al servicio, manteniendo la coherencia arquitectónica.
+
+---
+
 ## [14:00] (12/06/2026) Reconciliación de DTOs con modelos UML
 
 **Prompt:** "Reconciliar la implementación actual en `src/` con la especificación técnica definida en los modelos de diseño (`modelosUML/`)"

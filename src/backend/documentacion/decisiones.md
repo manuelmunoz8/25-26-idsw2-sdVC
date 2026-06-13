@@ -1,6 +1,14 @@
 # Registro de Decisiones - Backend
 ---
 
+## [14:45] (12/06/2026) Implementación de Endpoint para Creación de Usuarios
+
+**Decisión:** Exponer el método `POST /users` en el `UsersController`, utilizando `CreateUserDto` para la validación de entrada.
+**Motivo:** El sistema requería una vía programática para registrar nuevos investigadores/coordinadores, funcionalidad que no existía anteriormente. Se reutiliza la lógica existente en `UsersService.create`.
+**Impacto:** El frontend ahora puede consumir este endpoint para registrar usuarios. Se mantiene la consistencia arquitectónica delegando la validación y persistencia.
+
+---
+
 ## [14:00] (12/06/2026) Alineación de DTOs con Modelos UML de Diseño
 
 **Decisión:** Actualizar los DTOs para incluir campos faltantes (`status`, `visibility` en `CreatePublicationDto`) definidos en los modelos UML de diseño.

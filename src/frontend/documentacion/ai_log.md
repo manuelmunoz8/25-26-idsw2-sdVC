@@ -1,5 +1,20 @@
 # AI Log - Frontend
 
+## [12:30] (13/06/2026) Mejora del formulario de creación de usuarios (Roles, Endpoint, UX)
+
+**Prompt:** "1. Se deberia poder eleigir el tipo de usuario... 2. Me salen errores 404 a la hora de tratar de crear los usuarios... 3. Los campos de password pon la funcionalidad que se pueda ver..."
+
+**Resultado:**
+- Modificación del formulario en `InvestigatorsPage.tsx`:
+    - Inclusión de un `select` para elegir el rol (`investigador` o `coordinador`).
+    - Implementación de estado local para alternar la visibilidad de la contraseña (`showPassword`).
+    - Verificación y garantía de que la petición utiliza el endpoint correcto (`/api/users`).
+- Actualización de la interfaz `Investigator` para incluir el campo `role`.
+
+**Decisión:** Se mejora la funcionalidad de creación de usuarios para permitir mayor flexibilidad en la gestión de roles, se optimiza la seguridad UX al mostrar/ocultar contraseñas y se asegura la integridad de la comunicación con el endpoint del backend.
+
+---
+
 ## [12:00] (13/06/2026) Corrección de error de compilación en InvestigatorsPage
 
 **Prompt:** "Error en el build de CloudFlare, revisalo"

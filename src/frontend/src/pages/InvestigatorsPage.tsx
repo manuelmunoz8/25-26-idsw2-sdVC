@@ -7,60 +7,82 @@ interface Investigator {
   name: string;
   email: string;
   department: string;
+  role: string;
 }
 
 const InvestigatorsPage: React.FC = () => {
   const { data: investigators, loading, error, create } = useCrud<Investigator>(investigatorsService as any);
   const [showForm, setShowForm] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', department: '', password: '' });
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', department: '', password: '', role: 'investigador' });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await create({ ...formData, role: 'investigador' });
+      // Nota: El servicio debe apuntar a /api/users, verificado en serviceInstances.ts
+      await create(formData);
       setShowForm(false);
-      setFormData({ name: '', email: '', department: '', password: '' });
+      setFormData({ name: '', email: '', department: '', password: '', role: 'investigador' });
     } catch (err) {
-      alert('Error al crear el investigador');
+      alert('Error al crear el usuario. Asegúrese de que el email no esté duplicado.');
     }
   };
 
   return (
     <div className="investigators-page">
       <div className="page-header">
-        <h2>Investigadores</h2>
+        <h2>Gestión de Usuarios</h2>
         <button className="btn-primary" onClick={() => setShowForm(!showForm)}>
-          {showForm ? 'Cancelar' : 'Añadir Investigador'}
+          {showForm ? 'Cancelar' : 'Añadir Usuario'}
         </button>
       </div>
 
       {showForm && (
         <form className="create-form" onSubmit={handleSubmit}>
-          <h3>Nuevo Investigador</h3>
+          <h3>Nuevo Usuario</h3>
           <input type="text" placeholder="Nombre" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} required />
           <input type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} required />
           <input type="text" placeholder="Departamento" value={formData.department} onChange={e => setFormData({...formData, department: e.target.value})} required />
-          <input type="password" placeholder="Contraseña" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} required />
-          <button type="submit" className="btn-primary">Crear</button>
+          
+          <div className="password-input-group">
+            <input 
+              type={showPassword ? "text" : "password"} 
+              placeholder="Contraseña" 
+              value={formData.password} 
+              onChange={e => setFormData({...formData, password: e.target.value})} 
+              required 
+            />
+            <button type="button" onClick={() => setShowPassword(!showPassword)}>
+              {showPassword ? 'Ocultar' : 'Ver'}
+            </button>
+          </div>
+
+          <select value={formData.role} onChange={e => setFormData({...formData, role: e.target.value})} required>
+            <option value="investigador">Investigador</option>
+            <option value="coordinador">Coordinador</option>
+          </select>
+
+          <button type="submit" className="btn-primary">Crear Usuario</button>
         </form>
       )}
 
       {loading ? (
-        <p>Cargando investigadores...</p>
+        <p>Cargando usuarios...</p>
       ) : error ? (
         <div className="error-container">
-          <p className="error-message">Error al cargar investigadores: {error}</p>
+          <p className="error-message">Error al cargar usuarios: {error}</p>
         </div>
       ) : (
         <div className="investigators-grid">
           {investigators.length === 0 ? (
-            <p>No hay investigadores registrados actualmente.</p>
+            <p>No hay usuarios registrados actualmente.</p>
           ) : (
             investigators.map(inv => (
               <div key={inv.id} className="inv-card">
                 <h3>{inv.name}</h3>
                 <p><strong>Email:</strong> {inv.email}</p>
                 <p><strong>Departamento:</strong> {inv.department}</p>
+                <p><strong>Rol:</strong> {inv.role}</p>
                 <div className="inv-actions">
                   <button className="btn-small">Ver Perfil</button>
                 </div>
@@ -80,10 +102,17 @@ const InvestigatorsPage: React.FC = () => {
           flex-direction: column;
           gap: 0.5rem;
         }
-        .create-form input {
+        .create-form input, .create-form select {
           padding: 0.5rem;
           border-radius: 4px;
           border: 1px solid #ccc;
+        }
+        .password-input-group {
+          display: flex;
+          gap: 0.5rem;
+        }
+        .password-input-group input {
+          flex: 1;
         }
         .error-container {
           padding: 1rem;
