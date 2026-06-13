@@ -23,9 +23,9 @@ export const projectsService: IBaseService<any> = {
 };
 
 export const investigatorsService: any = {
-  findAll: async () => (await api.get('/api/investigators')).data,
-  findOne: async (id: string) => (await api.get(`/api/investigators/${id}`)).data,
-  create: async (dto: any) => (await api.post('/api/investigators', dto)).data,
+  findAll: async () => (await api.get('/api/users', { params: { role: 'investigator' } })).data,
+  findOne: async (id: string) => (await api.get(`/api/users/${id}`)).data,
+  create: async (dto: any) => (await api.post('/api/users', dto)).data,
 };
 
 export const publicationsService = {
