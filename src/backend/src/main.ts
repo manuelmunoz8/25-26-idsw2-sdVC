@@ -13,21 +13,25 @@ async function bootstrap() {
   // Habilitar CORS para permitir peticiones desde dominios de Cloudflare Pages
   app.enableCors({
     origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
-      // Permitir herramientas o desarrollo sin origen
+      // 1. Permitir desarrollo local
       if (!origin || origin.startsWith('http://localhost:')) {
         callback(null, true);
         return;
       }
-      
-      // Permitir cualquier subdominio de pages.dev
-      if (origin.endsWith('.pages.dev')) {
+    
+      // 2. Permitir CUALQUIER despliegue de tu proyecto en Cloudflare Pages
+      // Esto acepta tanto https://develop.funiber-connected.pages.dev
+      // como https://8ac04279.funiber-connected.pages.dev
+      const regex = /^https:\/\/[a-zA-Z0-9-]+\.funiber-connected\.pages\.dev$/;
+
+      if (regex.test(origin)) {
         callback(null, true);
         return;
       }
-      
-      // Bloquear otros orígenes
-      callback(new Error('Not allowed by CORS'));
-    },
+   
+   // 3. Bloquear otros orígenes
+    callback(new Error('Not allowed by CORS'));
+  },
     credentials: true,
   });
   
