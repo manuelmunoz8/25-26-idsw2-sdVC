@@ -1,5 +1,18 @@
 # AI Log - Frontend
 
+## [14:45] (13/06/2026) Corrección de visualización de solicitudes de eliminación
+
+**Prompt:** "Ok cuando entro con el perfil de coordinador y accedo a ver las solicitudes... no veo ninguna"
+
+**Resultado:**
+- Identificación de una discrepancia entre los nombres de los campos esperados en el frontend (`userName`, `userEmail`, `requestDate`) y los campos devueltos por el backend en la entidad `User` (`name`, `email`, `createdAt`).
+- Actualización de `ProfileDeletionRequestsPage.tsx` para mapear correctamente los campos de la entidad `User` a la UI.
+- Adición de logs de depuración para verificar la recepción de datos de la API.
+
+**Decisión:** Se corrige el mapeo de datos en el frontend para asegurar que las solicitudes de eliminación se visualicen correctamente en la interfaz del coordinador.
+
+---
+
 ## [14:00] (13/06/2026) Corrección de rutas de API para Perfil y Eliminación
 
 **Prompt:** "Necesito que arregles la peticiones de la rutas que se ponen aqui... El frontend debe usar los endpoints correctos"

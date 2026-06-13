@@ -17,6 +17,7 @@ const ProfileDeletionRequestsPage: React.FC = () => {
     const fetchRequests = async () => {
       try {
         const data = await profileService.getDeletionRequests();
+        console.log('Datos recibidos de la API:', data); // Log para depuración
         setRequests(data);
       } catch (error) {
         console.error('Error fetching deletion requests', error);
@@ -40,12 +41,12 @@ const ProfileDeletionRequestsPage: React.FC = () => {
           {requests.length === 0 ? (
             <p>No hay solicitudes pendientes.</p>
           ) : (
-            requests.map(req => (
+            requests.map((req: any) => (
               <div key={req.id} className="request-card">
                 <div className="request-info">
-                  <h3>{req.userName}</h3>
-                  <p><strong>Email:</strong> {req.userEmail}</p>
-                  <p><strong>Fecha:</strong> {req.requestDate}</p>
+                  <h3>{req.name}</h3>
+                  <p><strong>Email:</strong> {req.email}</p>
+                  <p><strong>Fecha:</strong> {new Date(req.createdAt).toLocaleDateString()}</p>
                 </div>
                 <div className="request-actions">
                   <button className="btn-primary">Procesar</button>
