@@ -9,15 +9,52 @@ interface Investigator {
   department: string;
 }
 
+import React, { useState } from 'react';
+import { investigatorsService } from '../services/serviceInstances';
+import { useCrud } from '../hooks/useCrud';
+
+interface Investigator {
+  id: string;
+  name: string;
+  email: string;
+  department: string;
+}
+
 const InvestigatorsPage: React.FC = () => {
-  const { data: investigators, loading, error } = useCrud<Investigator>(investigatorsService as any);
+  const { data: investigators, loading, error, create } = useCrud<Investigator>(investigatorsService as any);
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', department: '', password: '' });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await create({ ...formData, role: 'investigador' });
+      setShowForm(false);
+      setFormData({ name: '', email: '', department: '', password: '' });
+    } catch (err) {
+      alert('Error al crear el investigador');
+    }
+  };
 
   return (
     <div className="investigators-page">
       <div className="page-header">
         <h2>Investigadores</h2>
-        <button className="btn-primary">Añadir Investigador</button>
+        <button className="btn-primary" onClick={() => setShowForm(!showForm)}>
+          {showForm ? 'Cancelar' : 'Añadir Investigador'}
+        </button>
       </div>
+
+      {showForm && (
+        <form className="create-form" onSubmit={handleSubmit}>
+          <h3>Nuevo Investigador</h3>
+          <input type="text" placeholder="Nombre" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} required />
+          <input type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} required />
+          <input type="text" placeholder="Departamento" value={formData.department} onChange={e => setFormData({...formData, department: e.target.value})} required />
+          <input type="password" placeholder="Contraseña" value={formData.password} onChange={e => setFormData({...formData, password: e.target.value})} required />
+          <button type="submit" className="btn-primary">Crear</button>
+        </form>
+      )}
 
       {loading ? (
         <p>Cargando investigadores...</p>
@@ -45,6 +82,20 @@ const InvestigatorsPage: React.FC = () => {
       )}
 
       <style>{`
+        .create-form {
+          background: #f9f9f9;
+          padding: 1rem;
+          border-radius: 8px;
+          margin-bottom: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        .create-form input {
+          padding: 0.5rem;
+          border-radius: 4px;
+          border: 1px solid #ccc;
+        }
         .error-container {
           padding: 1rem;
           background: #ffebee;

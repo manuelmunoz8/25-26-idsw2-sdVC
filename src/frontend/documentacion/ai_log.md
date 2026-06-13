@@ -1,5 +1,19 @@
 # AI Log - Frontend
 
+## [11:45] (12/06/2026) Implementación de funcionalidad para crear investigadores
+
+**Prompt:** "Ok, ahora haz que el coordinador pueda crear un investigador"
+
+**Resultado:**
+- Actualización de `InvestigatorsPage.tsx` para incluir un formulario de creación de investigadores.
+- Uso del hook `useCrud` para manejar la lógica de creación (`create`).
+- Gestión de estado local para mostrar/ocultar el formulario.
+- Integración de validación básica y envío de datos con el rol fijo como `investigador`.
+
+**Decisión:** Se implementa un formulario embebido en `InvestigatorsPage` siguiendo el diagrama de contexto, permitiendo al coordinador dar de alta nuevos investigadores directamente desde la vista correspondiente.
+
+---
+
 ## [11:15] (12/06/2026) Mejora de UX en manejo de errores y estados vacíos en InvestigatorsPage
 
 **Prompt:** "Cambia el alert que me da la pestaña investigators a un mensaje de texto en la pagina, ya sea que no se encontro un investigador o que el investigador no existe si es que se busca"
