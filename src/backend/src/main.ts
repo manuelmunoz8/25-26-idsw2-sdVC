@@ -8,6 +8,14 @@ async function bootstrap() {
   
   app.setGlobalPrefix('api');
   
+  app.use((req, res, next) => {
+    console.log('--- Nueva Petición ---');
+    console.log('Path:', req.path);
+    console.log('Origin:', req.headers.origin);
+    console.log('Cookies:', req.cookies);
+    next();
+  });
+
   app.use(cookieParser());
   
   // Habilitar CORS para permitir peticiones desde dominios de Cloudflare Pages
