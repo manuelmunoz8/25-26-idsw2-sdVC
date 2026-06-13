@@ -15,16 +15,17 @@ const InvestigatorsPage: React.FC = () => {
   const [showForm, setShowForm] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', department: '', password: '', role: 'investigador' });
+  const [createError, setCreateError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setCreateError(null);
     try {
-      // Nota: El servicio debe apuntar a /api/users, verificado en serviceInstances.ts
       await create(formData);
       setShowForm(false);
       setFormData({ name: '', email: '', department: '', password: '', role: 'investigador' });
     } catch (err) {
-      alert('Error al crear el usuario. Asegúrese de que el email no esté duplicado.');
+      setCreateError('Error al crear el usuario. Asegúrese de que el email no esté duplicado.');
     }
   };
 
@@ -40,6 +41,7 @@ const InvestigatorsPage: React.FC = () => {
       {showForm && (
         <form className="create-form" onSubmit={handleSubmit}>
           <h3>Nuevo Usuario</h3>
+          {createError && <p className="error-container">{createError}</p>}
           <input type="text" placeholder="Nombre" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} required />
           <input type="email" placeholder="Email" value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})} required />
           <input type="text" placeholder="Departamento" value={formData.department} onChange={e => setFormData({...formData, department: e.target.value})} required />

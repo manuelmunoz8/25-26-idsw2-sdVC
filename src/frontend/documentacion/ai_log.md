@@ -1,5 +1,17 @@
 # AI Log - Frontend
 
+## [13:00] (13/06/2026) Mejora de UX: Gestión de errores en formulario de creación de usuarios
+
+**Prompt:** "Ok al tratar de crear un usuario me sale una alerta... necesito que esto lo cambies de nuevo por un caja de texto que se muestre el error de creacion"
+
+**Resultado:**
+- Eliminación de `alert()` en el manejo de errores del formulario de creación.
+- Implementación de estado local `createError` para capturar y mostrar errores de forma nativa en la UI mediante el contenedor `.error-container` dentro del formulario.
+
+**Decisión:** Se mejora la experiencia de usuario eliminando interrupciones intrusivas (alertas de navegador) y mostrando los errores de validación o conflicto en el contexto del formulario donde ocurren.
+
+---
+
 ## [12:30] (13/06/2026) Mejora del formulario de creación de usuarios (Roles, Endpoint, UX)
 
 **Prompt:** "1. Se deberia poder eleigir el tipo de usuario... 2. Me salen errores 404 a la hora de tratar de crear los usuarios... 3. Los campos de password pon la funcionalidad que se pueda ver..."
