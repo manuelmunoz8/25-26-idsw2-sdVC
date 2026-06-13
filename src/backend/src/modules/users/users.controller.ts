@@ -19,7 +19,10 @@ export class UsersController {
 
   @Get('deletion-requests')
   findDeletionRequests(@Req() req: any): Promise<User[]> {
+    console.log('Recibida petición GET /users/deletion-requests');
+    console.log('Usuario en request:', req.user);
     if (req.user?.role !== 'coordinador') {
+      console.log('Acceso denegado: rol no es coordinador');
       throw new ForbiddenException('Solo los coordinadores pueden ver las solicitudes de eliminación.');
     }
     return this.usersService.findDeletionRequests();
