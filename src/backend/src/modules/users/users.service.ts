@@ -82,10 +82,15 @@ export class UsersService implements OnModuleInit {
   }
 
   async requestDeletion(id: string): Promise<void> {
-    await this.usersRepository.update(id, { deletionRequested: true });
+    console.log(`Solicitando eliminación para el usuario: ${id}`);
+    const result = await this.usersRepository.update(id, { deletionRequested: true });
+    console.log(`Resultado de la actualización:`, result);
   }
 
   async findDeletionRequests(): Promise<User[]> {
-    return await this.usersRepository.find({ where: { deletionRequested: true } });
+    console.log('Buscando solicitudes de eliminación...');
+    const requests = await this.usersRepository.find({ where: { deletionRequested: true } });
+    console.log(`Solicitudes encontradas: ${requests.length}`);
+    return requests;
   }
 }
