@@ -7,6 +7,14 @@ const api = axios.create({
   withCredentials: true,
 });
 
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
+
 // Interceptor de respuesta para manejo global de errores
 api.interceptors.response.use(
   (response) => response,
@@ -14,8 +22,8 @@ api.interceptors.response.use(
     if (error.response) {
       switch (error.response.status) {
         case 401:
-          // Redirigir a login si no está autorizado
-          window.location.href = '/login';
+          // Emitir evento personalizado para manejo en componente React
+          window.dispatchEvent(new CustomEvent('auth:unauthorized'));
           break;
         case 403:
           console.error('Acceso prohibido');

@@ -12,8 +12,13 @@ export class UsersController {
   ) {}
 
   private async validateRequest(req: any) {
-    const token = req.cookies['token'];
-    if (!token) throw new UnauthorizedException('No token');
+    // LEER EL ENCABEZADO AUTHORIZATION
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      throw new UnauthorizedException('No token provided');
+    }
+    const token = authHeader.split(' ')[1];
+    
     const user = await this.authService.validateToken(token);
     req.user = user;
     return user;

@@ -1,5 +1,17 @@
 # AI Log - Frontend
 
+## [15:15] (13/06/2026) Optimización de redirección de autenticación (SPA-friendly)
+
+**Prompt:** "si se puede mejorar el codigo de api.ts hazlo..."
+
+**Resultado:**
+- Refactorización del interceptor de Axios en `src/services/api.ts` para emitir un evento personalizado (`auth:unauthorized`) en lugar de recargar la página (`window.location.href`).
+- Creación de un componente `RedirectHandler` en `src/App.tsx` que escucha este evento y utiliza `useNavigate` de React Router para redirigir al usuario al `/login`.
+
+**Decisión:** Se elimina la recarga completa del navegador en caso de error 401, proporcionando una experiencia de navegación fluida propia de una SPA.
+
+---
+
 ## [14:45] (13/06/2026) Corrección de visualización de solicitudes de eliminación
 
 **Prompt:** "Ok cuando entro con el perfil de coordinador y accedo a ver las solicitudes... no veo ninguna"

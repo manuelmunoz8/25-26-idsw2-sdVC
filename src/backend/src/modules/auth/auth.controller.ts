@@ -10,16 +10,9 @@ export class AuthController {
   @Post('login')
   async login(@Body() loginDto: LoginDto, @Res({ passthrough: true }) res: Response) {
     const data = await this.authService.login(loginDto.email, loginDto.password);
-
-    // Setear la cookie HttpOnly
-    res.cookie('token', data.access_token, {
-      httpOnly: true,
-      secure: false, // Asegurar que sea true en producción con HTTPS
-      sameSite: 'lax',
-      maxAge: 3600000, // 1 hora
-    });
-
-    return { user: data.user }; // Ya no devolvemos el token en el body
+    // YA NO SETEAMOS LA COOKIE
+    // res.cookie('token', ...);
+    return { user: data.user, token: data.access_token }; // Enviamos el token al frontend
   }
 
   @Post('logout')
