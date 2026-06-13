@@ -15,3 +15,4 @@ dist
 *.map
 *.js
 src/backend/src/dtos/
+*.d.ts
