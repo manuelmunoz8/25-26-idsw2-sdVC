@@ -14,7 +14,7 @@ async function bootstrap() {
     console.log('Path:', req.path);
     console.log('Origin:', req.headers.origin);
     // @ts-ignore - cookie-parser añade la propiedad cookies
-    console.log('Cookies:', req.cookies);
+    console.log('Authorization Header:', req.headers.authorization);
     next();
   });
 
