@@ -22,11 +22,13 @@ const InvestigatorsPage: React.FC = () => {
       {loading ? (
         <p>Cargando investigadores...</p>
       ) : error ? (
-        <p className="error-message">{error}</p>
+        <div className="error-container">
+          <p className="error-message">Error al cargar investigadores: {error}</p>
+        </div>
       ) : (
         <div className="investigators-grid">
           {investigators.length === 0 ? (
-            <p>No hay investigadores registrados.</p>
+            <p>No hay investigadores registrados actualmente.</p>
           ) : (
             investigators.map(inv => (
               <div key={inv.id} className="inv-card">
@@ -43,6 +45,14 @@ const InvestigatorsPage: React.FC = () => {
       )}
 
       <style>{`
+        .error-container {
+          padding: 1rem;
+          background: #ffebee;
+          color: #c62828;
+          border: 1px solid #ef9a9a;
+          border-radius: 4px;
+          margin-bottom: 1rem;
+        }
         .investigators-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));

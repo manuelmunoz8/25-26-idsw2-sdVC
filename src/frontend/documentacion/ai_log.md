@@ -1,5 +1,30 @@
 # AI Log - Frontend
 
+## [11:15] (12/06/2026) Mejora de UX en manejo de errores y estados vacíos en InvestigatorsPage
+
+**Prompt:** "Cambia el alert que me da la pestaña investigators a un mensaje de texto en la pagina, ya sea que no se encontro un investigador o que el investigador no existe si es que se busca"
+
+**Resultado:**
+- Eliminación de la dependencia de comportamientos de alerta genéricos.
+- Implementación de un contenedor de errores visualmente claro (`.error-container`) para mostrar errores de la API en la página.
+- Mejora del mensaje de estado cuando no hay investigadores (`"No hay investigadores registrados actualmente."`).
+
+**Decisión:** Se mejora la experiencia de usuario (UX) integrando el manejo de errores directamente en la interfaz, lo que permite al usuario entender mejor el estado del sistema sin interrupciones mediante alertas.
+
+---
+
+## [10:45] (12/06/2026) Corrección de rol en servicio de investigadores
+
+**Prompt:** "Ok cuando entro a la seccion de investigadores, este me da un error 500, puedes revisar porque, tambien te digo que todavia no hay ningun usuario de tipo investigador en la base de datos"
+
+**Resultado:**
+- Identificación de discrepancia en el parámetro `role` enviado al backend: se enviaba `investigator` pero el backend esperaba `investigador` según el enum definido en la entidad `User`.
+- Corrección en `src/services/serviceInstances.ts` para enviar `role: 'investigador'`.
+
+**Decisión:** Se corrige el valor del parámetro de consulta para cumplir con el esquema definido en el backend, permitiendo que la petición se realice correctamente incluso cuando la base de datos está vacía.
+
+---
+
 ## [22:11] (10/06/2026) Migración Completa a DTOs Centralizados
 
 **Prompt:** "Actualiza frontend/src/services/api.ts para usar los DTOs centralizados en lugar de any."
