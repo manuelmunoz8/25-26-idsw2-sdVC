@@ -2,16 +2,18 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import cookieParser from 'cookie-parser';
 import { AppModule } from './app.module.js';
+import { Request, Response, NextFunction } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
   app.setGlobalPrefix('api');
   
-  app.use((req, res, next) => {
+  app.use((req: Request, res: Response, next: NextFunction) => {
     console.log('--- Nueva Petición ---');
     console.log('Path:', req.path);
     console.log('Origin:', req.headers.origin);
+    // @ts-ignore - cookie-parser añade la propiedad cookies
     console.log('Cookies:', req.cookies);
     next();
   });
