@@ -11,8 +11,9 @@ const ProfilePage: React.FC = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
+      if (!user?.id) return;
       try {
-        const data = await profileService.get();
+        const data = await profileService.get(user.id);
         setProfileData(data);
       } catch (error) {
         console.error('Error fetching profile', error);
@@ -21,14 +22,15 @@ const ProfilePage: React.FC = () => {
       }
     };
     fetchProfile();
-  }, []);
+  }, [user]);
 
   const [deletionStatus, setDeletionStatus] = useState<{message: string, isError: boolean} | null>(null);
 
   const handleRequestDeletion = async () => {
+    if (!user?.id) return;
     if (window.confirm('¿Estás seguro de que deseas solicitar la eliminación de tu perfil?')) {
       try {
-        await profileService.requestDeletion();
+        await profileService.requestDeletion(user.id);
         setDeletionStatus({message: 'Solicitud enviada correctamente.', isError: false});
       } catch (error) {
         setDeletionStatus({message: 'Error al enviar la solicitud.', isError: true});

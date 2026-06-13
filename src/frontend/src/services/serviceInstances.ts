@@ -40,8 +40,8 @@ export const rewardsService = {
 };
 
 export const profileService = {
-  get: async () => (await api.get('/api/profile')).data,
-  update: async (dto: any) => (await api.put('/api/profile', dto)).data,
-  requestDeletion: async () => (await api.post('/api/profile/request-deletion')).data,
-  getDeletionRequests: async () => (await api.get('/api/profile/deletion-requests')).data,
+  get: async (userId: string) => (await api.get(`/api/users/${userId}`)).data,
+  update: async (userId: string, dto: any) => (await api.put(`/api/users/${userId}`, dto)).data,
+  requestDeletion: async (userId: string) => (await api.post(`/api/users/${userId}/request-deletion`)).data,
+  getDeletionRequests: async () => (await api.get('/api/users/deletion-requests')).data,
 };

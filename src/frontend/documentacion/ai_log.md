@@ -1,5 +1,18 @@
 # AI Log - Frontend
 
+## [14:00] (13/06/2026) Corrección de rutas de API para Perfil y Eliminación
+
+**Prompt:** "Necesito que arregles la peticiones de la rutas que se ponen aqui... El frontend debe usar los endpoints correctos"
+
+**Resultado:**
+- Actualización de `profileService` en `src/services/serviceInstances.ts` para utilizar los endpoints específicos del usuario en el backend (`/api/users/{ID}`).
+- Actualización de `ProfilePage.tsx` para inyectar `user.id` en las llamadas a `profileService.get` y `profileService.requestDeletion`.
+- Mantenimiento de `ProfileDeletionRequestsPage.tsx` (la ruta `getDeletionRequests` no requería ID de usuario).
+
+**Decisión:** Se alinean las peticiones del frontend con la nueva estructura de endpoints del backend, utilizando el ID del usuario autenticado para asegurar la correcta comunicación y seguridad en las acciones de perfil y eliminación.
+
+---
+
 ## [13:30] (13/06/2026) Implementación de funcionalidad para solicitar eliminación de perfil
 
 **Prompt:** "Bien puedes implementar la accion de solicitar eliminacion de perfil"
