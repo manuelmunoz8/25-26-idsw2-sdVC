@@ -5,7 +5,7 @@
   "type": "commonjs",
   "main": "dist/main.js",
   "scripts": {
-    "prebuild": "cp -r ../dtos src/dtos",
+    "prebuild": "rm -rf src/dtos && cp -r ../dtos src/dtos",
     "build": "tsc",
     "start": "node dist/main",
     "start:dev": "tsc-watch --onSuccess \"node dist/main\"",
