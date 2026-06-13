@@ -1,5 +1,17 @@
 # AI Log - Frontend
 
+## [12:00] (13/06/2026) Corrección de error de compilación en InvestigatorsPage
+
+**Prompt:** "Error en el build de CloudFlare, revisalo"
+
+**Resultado:**
+- Identificación de declaraciones duplicadas de `import React`, `investigatorsService`, `useCrud` e `interface Investigator` en `src/pages/InvestigatorsPage.tsx` producto de una mala aplicación de cambios anterior.
+- Consolidación y limpieza de las importaciones.
+
+**Decisión:** Se corrige la sintaxis para permitir que el proceso de compilación (`react-scripts build`) finalice exitosamente.
+
+---
+
 ## [11:45] (12/06/2026) Implementación de funcionalidad para crear investigadores
 
 **Prompt:** "Ok, ahora haz que el coordinador pueda crear un investigador"

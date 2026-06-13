@@ -1,14 +1,3 @@
-import React from 'react';
-import { investigatorsService } from '../services/serviceInstances';
-import { useCrud } from '../hooks/useCrud';
-
-interface Investigator {
-  id: string;
-  name: string;
-  email: string;
-  department: string;
-}
-
 import React, { useState } from 'react';
 import { investigatorsService } from '../services/serviceInstances';
 import { useCrud } from '../hooks/useCrud';
