@@ -19,13 +19,20 @@ const MyPublicationsPage: React.FC = () => {
   const [editingPub, setEditingPub] = useState<Publication | null>(null);
 
   const fetchMy = async () => {
-    if (!user?.id) return;
+    if (!user?.id) {
+        console.log("DEBUG: No user ID available");
+        setLoading(false);
+        return;
+    }
     setLoading(true);
     try {
+      console.log("DEBUG: Fetching publications for user ID:", user.id);
       const data = await publicationsService.getMy(user.id);
+      console.log("DEBUG: MyPublications data:", data);
       setPublications(Array.isArray(data) ? data : []);
     } catch (err) {
-      setError('Error al cargar publicaciones');
+      console.error("DEBUG: Detailed error fetching publications:", err);
+      setError('Error al cargar publicaciones: ' + (err instanceof Error ? err.message : String(err)));
     } finally {
       setLoading(false);
     }
@@ -87,7 +94,6 @@ const MyPublicationsPage: React.FC = () => {
           </form>
         </div>
       )}
-
       <style>{`
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: flex; justify-content: center; align-items: center; }
         .card { background: white; padding: 2rem; border-radius: 8px; width: 400px; }
