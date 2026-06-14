@@ -1,4 +1,14 @@
-## [20:30] (14/06/2026) Corrección: React Error #31 en PublicationDetailPage
+## [20:45] (14/06/2026) Corrección: TypeError en MyPublicationsPage
+
+**Prompt:** "Ok el usario no puede ver sus propias publicaciones... TypeError: za.getMy is not a function"
+
+**Resultado:**
+- Identificación de que `publicationsService.getMy` no existía porque había sido movido a `publicationsCustomService`.
+- Actualización de `MyPublicationsPage.tsx` para importar y usar correctamente `publicationsCustomService.getMy`.
+
+**Decisión:** Corregir la llamada al servicio tras la refactorización anterior, garantizando que los componentes consuman los métodos desde el servicio adecuado.
+
+---
 
 **Prompt:** "cuando le doy leer mas a una puublicacion esta me manda a una pantalla blanca... React Error #31"
 

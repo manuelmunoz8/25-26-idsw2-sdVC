@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { publicationsService } from '../services/serviceInstances';
+import { publicationsService, publicationsCustomService } from '../services/serviceInstances';
 import { useAuth } from '../context/AuthContext';
 
 interface Publication {
@@ -27,7 +27,7 @@ const MyPublicationsPage: React.FC = () => {
     setLoading(true);
     try {
       console.log("DEBUG: Fetching publications for user ID:", user.id);
-      const data = await publicationsService.getMy(user.id);
+      const data = await publicationsCustomService.getMy(user.id);
       console.log("DEBUG: MyPublications data:", data);
       setPublications(Array.isArray(data) ? data : []);
     } catch (err) {
