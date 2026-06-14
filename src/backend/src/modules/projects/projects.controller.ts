@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, ParseUUIDPipe, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, ParseUUIDPipe, UseGuards, Request } from '@nestjs/common';
 import { ProjectsService } from './projects.service';
 import { Project } from './entities/project.entity';
 import { IBaseController } from '../../common/interfaces/base.controller.interface';
@@ -24,8 +24,8 @@ export class ProjectsController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('coordinador')
-  create(@Body() projectData: CreateProjectDto): Promise<Project> {
-    return this.projectsService.create(projectData as any);
+  create(@Request() req: any, @Body() projectData: CreateProjectDto): Promise<Project> {
+    return this.projectsService.createProject(req.user.id, projectData);
   }
 
   @Put(':id')

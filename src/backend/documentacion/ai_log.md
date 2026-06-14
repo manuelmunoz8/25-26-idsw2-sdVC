@@ -1,14 +1,18 @@
 # AI Log - Backend
+## [02:30] (14/06/2026) Implementación de creación de proyectos
 
-## [01:55] (14/06/2026) Fix Dependency Injection in ProjectsModule
+**Prompt:** Implementar el endpoint de creación de proyectos en el backend.
 
-**Prompt:** Fix the `UnknownDependenciesException` where `JwtAuthGuard` could not resolve `AuthService` in `ProjectsModule`.
+**Resultado:**
+- Actualizado `ProjectsController` con `create` protegido por `JwtAuthGuard` y `RolesGuard` ('coordinador').
+- Añadido `coordinatorId` a la entidad `Project`.
+- Implementado `createProject` en `ProjectsService` con validación de título único y asignación de `coordinatorId` desde el usuario autenticado y estado por defecto 'draft'.
+- Añadidos tests unitarios para `ProjectsService.createProject`.
 
-**Resultado:** Imported `AuthModule` into `ProjectsModule` to provide `AuthService` dependency.
-
-**Decisión:** Se decidió importar `AuthModule` directamente en `ProjectsModule` para asegurar que `AuthService` esté disponible para `JwtAuthGuard`.
+**Decisión:** Se añade el campo `coordinatorId` obligatorio a la entidad para mantener la trazabilidad de quién creó el proyecto. Se delega la validación de permisos al guard de roles y la asignación del usuario al servicio obteniéndolo de la request.
 
 ---
+
 
 ## [16:30] (14/06/2026) Implementación de Soft Delete y Aprobaciones
 

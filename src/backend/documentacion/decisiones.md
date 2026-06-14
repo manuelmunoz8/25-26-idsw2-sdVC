@@ -1,6 +1,14 @@
 # Registro de Decisiones - Backend
 ---
 
+## [02:30] (14/06/2026) Creación de Proyectos y Trazabilidad
+
+**Decisión:** Incluir `coordinatorId` obligatorio en la entidad `Project` y automatizar su asignación en el backend a partir de la sesión.
+**Motivo:** Asegurar la trazabilidad completa desde la creación del proyecto, vinculando cada proyecto a su coordinador responsable. Automatizar esta asignación evita errores de entrada del usuario y garantiza la integridad de los datos.
+**Impacto:** Los proyectos ahora quedan correctamente vinculados a su coordinador desde el momento de la creación, cumpliendo con los requisitos de negocio de auditoría.
+
+---
+
 ## [01:55] (14/06/2026) Fix Dependency Injection in ProjectsModule
 
 **Decisión:** Importar `AuthModule` dentro de `ProjectsModule` para resolver problemas de inyección de dependencias con `JwtAuthGuard`.

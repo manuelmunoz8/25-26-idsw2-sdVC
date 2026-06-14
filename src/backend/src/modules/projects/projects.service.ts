@@ -1,9 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Project } from './entities/project.entity';
 import { BaseService } from '../../common/classes/base.service';
 import { UsersService } from '../users/users.service';
+import { CreateProjectDto } from '../../dtos';
 
 @Injectable()
 export class ProjectsService extends BaseService<Project> {
@@ -30,6 +31,21 @@ export class ProjectsService extends BaseService<Project> {
     });
     if (!project) throw new NotFoundException('Project not found');
     return project;
+  }
+
+  async createProject(coordinatorId: string, projectData: CreateProjectDto): Promise<Project> {
+    const existingProject = await this.projectsRepository.findOne({ where: { title: projectData.title } });
+    if (existingProject) {
+      throw new ConflictException('Ya existe un proyecto con este título');
+    }
+
+    const project = this.projectsRepository.create({
+      ...projectData,
+      status: projectData.status || 'draft',
+      coordinatorId,
+    });
+
+    return await this.projectsRepository.save(project);
   }
 
   async addResearcher(projectId: string, userId: string): Promise<Project> {

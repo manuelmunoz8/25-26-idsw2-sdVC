@@ -36,6 +36,9 @@ export class Project {
   @OneToMany(() => Deliverable, (deliverable) => deliverable.project)
   deliverables!: Deliverable[];
 
+  @Column({ type: 'uuid' })
+  coordinatorId!: string;
+
   @CreateDateColumn()
   createdAt!: Date;
 
