@@ -6,8 +6,8 @@ import { useAuth } from '../context/AuthContext';
 
 interface Reward {
   id: string;
-  name: string;
-  points: number;
+  title: string;
+  value: number;
   description: string;
 }
 
@@ -16,7 +16,7 @@ const RewardsPage: React.FC = () => {
   const { user } = useAuth();
   const [editingReward, setEditingReward] = useState<Reward | null>(null);
   const [isCreating, setIsCreating] = useState(false);
-  const [formData, setFormData] = useState({ name: '', points: 0, description: '' });
+  const [formData, setFormData] = useState({ title: '', value: 0, description: '' });
 
   const handleDelete = async (id: string) => {
     if (window.confirm('¿Seguro de eliminar esta recompensa?')) {
@@ -27,14 +27,19 @@ const RewardsPage: React.FC = () => {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+    const payload = {
+        title: formData.title,
+        value: Number(formData.value),
+        description: formData.description
+    };
     if (editingReward) {
-        await update(editingReward.id, { ...formData, points: Number(formData.points) });
+        await update(editingReward.id, payload);
         setEditingReward(null);
     } else {
-        await create({ ...formData, points: Number(formData.points) });
+        await create(payload);
         setIsCreating(false);
     }
-    setFormData({ name: '', points: 0, description: '' });
+    setFormData({ title: '', value: 0, description: '' });
     await fetchAll();
   };
 
@@ -58,12 +63,12 @@ const RewardsPage: React.FC = () => {
           ) : (
             rewards.map(reward => (
               <div key={reward.id} className="reward-card">
-                <h3>{reward.name}</h3>
-                <p className="points">{reward.points} Puntos</p>
+                <h3>{reward.title}</h3>
+                <p className="points">{reward.value} Puntos</p>
                 <p>{reward.description}</p>
                 {user?.role === 'coordinador' && (
                   <div className="reward-actions">
-                    <button className="btn-small" onClick={() => { setEditingReward(reward); setFormData(reward); }}>Editar</button>
+                    <button className="btn-small" onClick={() => { setEditingReward(reward); setFormData({title: reward.title, value: reward.value, description: reward.description}); }}>Editar</button>
                     <button className="btn-small btn-danger" onClick={() => handleDelete(reward.id)}>Eliminar</button>
                   </div>
                 )}
@@ -77,8 +82,8 @@ const RewardsPage: React.FC = () => {
         <div className="modal">
           <form onSubmit={handleSave} className="card">
             <h3>{editingReward ? 'Editar' : 'Nueva'} Recompensa</h3>
-            <input type="text" placeholder="Nombre" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} required />
-            <input type="number" placeholder="Puntos" value={formData.points} onChange={e => setFormData({...formData, points: parseInt(e.target.value)})} required />
+            <input type="text" placeholder="Título" value={formData.title} onChange={e => setFormData({...formData, title: e.target.value})} required />
+            <input type="number" placeholder="Valor (Puntos)" value={formData.value} onChange={e => setFormData({...formData, value: parseInt(e.target.value)})} required />
             <textarea placeholder="Descripción" value={formData.description} onChange={e => setFormData({...formData, description: e.target.value})} />
             <button type="submit" className="btn-primary">Guardar</button>
             <button type="button" onClick={() => { setIsCreating(false); setEditingReward(null); }}>Cancelar</button>
