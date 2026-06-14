@@ -1,4 +1,16 @@
-# AI Log - Frontend
+## [10:00] (14/06/2026) Implementación de funcionalidad 'Crear Nuevo Proyecto'
+
+**Prompt:** "Actúa como experto en React y TypeScript. Tu tarea es implementar la funcionalidad de 'Crear Nuevo Proyecto' en el frontend..."
+
+**Resultado:**
+- Creación de `src/types/CreateProjectDto.ts` con la estructura del DTO.
+- Creación de `src/pages/CreateProjectPage.tsx` con formulario, validación, integración de API y navegación.
+- Actualización de `App.tsx` para incluir la ruta `/projects/new`.
+- Actualización de `ProjectsPage.tsx` para redirigir al formulario de creación.
+
+**Decisión:** Se implementa el caso de uso siguiendo el enfoque Vertical Slice, asegurando la consistencia estética con la UI actual y cumpliendo con las validaciones requeridas.
+
+---
 
 ## [16:00] (13/06/2026) Eliminación de la funcionalidad 'Grants'
 

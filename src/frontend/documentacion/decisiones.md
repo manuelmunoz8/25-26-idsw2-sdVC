@@ -1,4 +1,10 @@
-# Registro de Decisiones - Frontend
+## [10:00] (14/06/2026) Implementación de formulario de creación de proyectos
+
+**Decisión:** Crear un nuevo DTO local (`CreateProjectDto.ts`) para el frontend y una nueva página `CreateProjectPage.tsx` dedicada a la creación de proyectos, evitando dependencias externas fuera de la carpeta `frontend`.
+**Motivo:** Garantizar la autonomía del módulo frontend y cumplir con los requisitos funcionales sin necesidad de modificar o acceder a carpetas restringidas fuera del workspace permitido.
+**Impacto:** Se habilita la funcionalidad solicitada de forma modular, manteniendo la consistencia de tipos y la estructura del proyecto.
+
+---
 
 ## [22:11] (10/06/2026) Adopción de DTOs Compartidos como Única Fuente de Verdad
 

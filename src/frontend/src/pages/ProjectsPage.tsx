@@ -21,7 +21,7 @@ const ProjectsPage: React.FC = () => {
       <div className="page-header">
         <h2>Gestión de Proyectos</h2>
         {user?.role === 'coordinador' && (
-          <button className="btn-primary" onClick={() => alert('Funcionalidad en desarrollo')}>Nuevo Proyecto</button>
+          <button className="btn-primary" onClick={() => navigate('/projects/new')}>Nuevo Proyecto</button>
         )}
       </div>
 

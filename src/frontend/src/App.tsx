@@ -13,6 +13,7 @@ import RewardsPage from './pages/RewardsPage';
 import WorkloadPage from './pages/WorkloadPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileDeletionRequestsPage from './pages/ProfileDeletionRequestsPage';
+import CreateProjectPage from './pages/CreateProjectPage';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
 const PrivateRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -42,6 +43,7 @@ const App: React.FC = () => {
           <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
             <Route index element={<DashboardPage />} />
             <Route path="projects" element={<ProjectsPage />} />
+            <Route path="projects/new" element={<CreateProjectPage />} />
             <Route path="projects/:id" element={<ProjectDetailPage />} />
             <Route path="projects/:id/deliverables" element={<DeliverablesPage />} />
             <Route path="investigators" element={<InvestigatorsPage />} />
