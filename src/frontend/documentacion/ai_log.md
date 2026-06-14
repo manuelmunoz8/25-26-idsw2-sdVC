@@ -1,5 +1,18 @@
 # AI Log - Frontend
 
+## [16:00] (13/06/2026) Eliminación de la funcionalidad 'Grants'
+
+**Prompt:** "Actúa como Senior Frontend Engineer. Tu objetivo es eliminar por completo la funcionalidad de 'Grants' del frontend."
+
+**Resultado:**
+- Eliminación de `src/pages/GrantsPage.tsx`.
+- Eliminación de la ruta `/grants` en `src/App.tsx`.
+- Eliminación del enlace en el menú de navegación (`Layout.tsx`).
+
+**Decisión:** Se ha procedido a la eliminación completa de los artefactos y dependencias asociados a la funcionalidad 'Grants' según lo solicitado.
+
+---
+
 ## [15:45] (13/06/2026) Migración a Autenticación basada en Token JWT
 
 **Prompt:** "necesito que en todos los setter de las cookies los cambies por un setter de token..."

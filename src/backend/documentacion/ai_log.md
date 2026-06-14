@@ -269,17 +269,16 @@
 
 ---
 
-## [11:15] (31/05/2026) Implementación de Autenticación e Integración con Grants.gov
+## [11:15] (31/05/2026) Implementación de Autenticación
 
 **Prompt:** "1. Hacer el login y que pueda dicernir entre Investigador y Coordinador... 2. Render: Crear los endpoins... API que elegimos... 3. Supabase: Que esta maneje los registrados usuarios y proyectos"
 
 **Resultado:** 
 - Creación del módulo `Users` y entidad `User` para persistencia en Supabase.
 - Implementación de `AuthModule` con JWT para manejo de sesiones y roles.
-- Creación de `GrantsModule` con endpoint `/grants/search` para buscar convocatorias externas.
 - Registro de nuevos módulos en `AppModule`.
 
-**Decisión:** Se utiliza JWT por ser el estándar para APIs desacopladas. Se implementa un mock para Grants.gov para permitir la búsqueda inmediata sin dependencias externas bloqueantes en el prototipo.
+**Decisión:** Se utiliza JWT por ser el estándar para APIs desacopladas.
 
 ---
 

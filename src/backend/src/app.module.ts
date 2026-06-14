@@ -4,7 +4,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProjectsModule } from './modules/projects/projects.module';
 import { UsersModule } from './modules/users/users.module';
 import { AuthModule } from './modules/auth/auth.module';
-import { GrantsModule } from './modules/grants/grants.module';
 import { DeliverablesModule } from './modules/deliverables/deliverables.module';
 import { PublicationsModule } from './modules/publications/publications.module';
 import { RewardsModule } from './modules/rewards/rewards.module';
@@ -47,7 +46,6 @@ import { RewardsModule } from './modules/rewards/rewards.module';
     ProjectsModule,
     UsersModule,
     AuthModule,
-    GrantsModule,
     DeliverablesModule,
     PublicationsModule,
     RewardsModule,

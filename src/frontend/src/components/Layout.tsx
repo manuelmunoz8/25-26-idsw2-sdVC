@@ -28,7 +28,6 @@ const Layout: React.FC = () => {
           <li><Link to="/investigators">Investigadores</Link></li>
           {user?.role === 'coordinador' && (
             <>
-              <li><Link to="/grants">Buscar Convocatorias</Link></li>
               <li><Link to="/rewards">Recompensas</Link></li>
               <li><Link to="/workload">Carga de Trabajo</Link></li>
             </>

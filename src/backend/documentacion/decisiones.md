@@ -33,16 +33,8 @@
 
 ---
 
-## [14:30] (10/06/2026) Implementación Integral del Dominio del Coordinador
-...
+## [10:30] (31/05/2026) Implementación de la primera rebanada vertical (Proyectos)
 
-**Decisión:** Expandir el esquema de base de datos y la API para cubrir todos los casos de uso del Coordinador (Entregables, Publicaciones, Recompensas y Gestión de Equipo).
-**Motivo:** Completar el prototipo funcional según los requisitos del diagrama de contexto UML. Se incluyeron funcionalidades específicas como el seguimiento de carga de trabajo en horas y el flujo de aprobación para eliminación de perfiles.
-**Impacto:** El backend ahora soporta la lógica de negocio completa para la gestión de proyectos de investigación, permitiendo una interacción rica entre coordinadores, investigadores y recursos externos (Grants.gov).
-
----
-
-## [11:15] (09/06/2026) Actualización de Contraseña de Administrador y Auto-Sincronización
 
 **Decisión:** Actualizar la contraseña del usuario administrador a `funiber%2Dconnected/2026` e implementar una lógica de conciliación automática en `UsersService`.
 **Motivo:** El frontend ha cambiado la codificación de caracteres especiales (URL encoding), enviando `%2D` en lugar de `-`. Para mantener la compatibilidad sin requerir intervenciones manuales en la base de datos, el backend ahora verifica y actualiza el hash de la contraseña del administrador durante el inicio de la aplicación si detecta una discrepancia.
