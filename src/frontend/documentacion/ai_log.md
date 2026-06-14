@@ -1,5 +1,19 @@
 # AI Log - Frontend
 
+## [15:45] (13/06/2026) Migración a Autenticación basada en Token JWT
+
+**Prompt:** "necesito que en todos los setter de las cookies los cambies por un setter de token..."
+
+**Resultado:**
+- Actualización de `src/services/api.ts`: Implementación de un interceptor de `request` que añade automáticamente el encabezado `Authorization: Bearer <token>` a todas las peticiones utilizando el token almacenado en `localStorage`.
+- Actualización de `src/context/AuthContext.tsx`:
+    - `crearSesion`: Ahora guarda el `token` devuelto por el backend en `localStorage`.
+    - `logout`: Ahora elimina el `token` de `localStorage`.
+
+**Decisión:** Se migra el esquema de autenticación para utilizar JWT enviados explícitamente en el encabezado `Authorization`, cumpliendo con el contrato definido por el backend y garantizando la compatibilidad con los endpoints protegidos.
+
+---
+
 ## [15:15] (13/06/2026) Optimización de redirección de autenticación (SPA-friendly)
 
 **Prompt:** "si se puede mejorar el codigo de api.ts hazlo..."

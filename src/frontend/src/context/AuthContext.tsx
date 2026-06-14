@@ -20,9 +20,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const crearSesion = (data: any) => {
-    // Ya no guardamos el token manualmente, la cookie HttpOnly se maneja por el navegador
     setUser(data.user);
-    localStorage.setItem('user', JSON.stringify(data.user)); // Mantenemos usuario si es necesario para UI, pero no el token
+    localStorage.setItem('user', JSON.stringify(data.user));
+    localStorage.setItem('token', data.token); // Guardar el token
   };
 
   const autenticar = async (dto: LoginDto) => {
@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     setUser(null);
     localStorage.removeItem('user');
-    // La sesión se destruirá cuando el backend elimine la cookie
+    localStorage.removeItem('token'); // Eliminar el token
   };
 
   return (

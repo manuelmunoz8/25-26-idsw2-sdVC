@@ -1,26 +1,22 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
-import cookieParser from 'cookie-parser';
 import { AppModule } from './app.module.js';
 import { Request, Response, NextFunction } from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
+
   app.setGlobalPrefix('api');
-  
+
   app.use((req: Request, res: Response, next: NextFunction) => {
     console.log('--- Nueva Petición ---');
     console.log('Path:', req.path);
-    console.log('Origin:', req.headers.origin);
-    // @ts-ignore - cookie-parser añade la propiedad cookies
     console.log('Authorization Header:', req.headers.authorization);
     next();
   });
 
-  app.use(cookieParser());
-  
   // Habilitar CORS para permitir peticiones desde dominios de Cloudflare Pages
+
   app.enableCors({
     origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
       // 1. Permitir desarrollo local
