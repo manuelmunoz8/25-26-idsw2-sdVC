@@ -1,16 +1,11 @@
 # AI Log - Backend
-## [18:30] (14/06/2026) Implementación del Módulo de Entregables
+## [19:00] (14/06/2026) Fix Dependency Injection en DeliverablesModule
 
-**Prompt:** Implementar el módulo de gestión de Entregables.
+**Prompt:** Fix `UnknownDependenciesException` donde `JwtAuthGuard` no podía resolver `AuthService` en `DeliverablesModule`.
 
-**Resultado:**
-- Actualizada entidad `Deliverable` para incluir relación `ManyToOne` con `Project` con `onDelete: 'CASCADE'`.
-- Actualizada entidad `Project` para incluir relación `OneToMany` con `Deliverable` con `onDelete: 'CASCADE'`.
-- Implementados endpoints en `DeliverablesController` (`GET`, `POST`, `PATCH`, `DELETE`).
-- Implementada lógica de negocio en `DeliverablesService` para validar que `dueDate` no sea anterior a `Project.startDate`.
-- Protegido el módulo con `JwtAuthGuard` y `RolesGuard` ('coordinador').
+**Resultado:** Importado `AuthModule` en `DeliverablesModule`.
 
-**Decisión:** Se utiliza la cascada de eliminación para asegurar la integridad referencial al eliminar un proyecto. Se valida la fecha de entrega contra la fecha de inicio del proyecto a nivel de servicio para mantener la consistencia lógica.
+**Decisión:** Se importa `AuthModule` en `DeliverablesModule` para garantizar que `AuthService` esté disponible para `JwtAuthGuard`, resolviendo el fallo de inyección de dependencias.
 
 ---
 

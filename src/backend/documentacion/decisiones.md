@@ -1,4 +1,12 @@
 # Registro de Decisiones - Backend
+## [19:00] (14/06/2026) Fix Dependency Injection en DeliverablesModule
+
+**Decisión:** Importar `AuthModule` dentro de `DeliverablesModule` para resolver problemas de inyección de dependencias con `JwtAuthGuard`.
+**Motivo:** `DeliverablesModule` utilizaba `JwtAuthGuard`, la cual depende de `AuthService`. Al no estar `AuthService` (proporcionado por `AuthModule`) en el alcance de `DeliverablesModule`, NestJS fallaba al instanciar el guard.
+**Impacto:** Permite la correcta instanciación de los guardias de autenticación en las rutas protegidas del módulo de entregables.
+
+---
+
 ## [18:30] (14/06/2026) Gestión de Entregables y Integridad Referencial
 
 **Decisión:** Configurar eliminación en cascada (`onDelete: 'CASCADE'`) entre `Project` y `Deliverable` y aplicar validación de fechas a nivel de servicio.
