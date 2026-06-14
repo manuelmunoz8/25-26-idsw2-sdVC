@@ -1,4 +1,12 @@
 # Registro de Decisiones - Backend
+## [18:30] (14/06/2026) Gestión de Entregables y Integridad Referencial
+
+**Decisión:** Configurar eliminación en cascada (`onDelete: 'CASCADE'`) entre `Project` y `Deliverable` y aplicar validación de fechas a nivel de servicio.
+**Motivo:** Asegurar que los entregables se eliminen automáticamente al borrar un proyecto. Validar fechas en el servicio garantiza que no se puedan crear o actualizar entregables fuera del periodo de vida del proyecto.
+**Impacto:** Mantiene la integridad de los datos y asegura la coherencia lógica de las fechas de entrega.
+
+---
+
 ## [17:45] (14/06/2026) Desvinculación de Investigadores de Proyectos
 
 **Decisión:** Implementar la desvinculación mediante el endpoint `DELETE /projects/:id/investigators/:investigatorId` con validación previa de la existencia de la relación.

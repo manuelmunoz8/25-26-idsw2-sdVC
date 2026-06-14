@@ -22,7 +22,7 @@ export class Deliverable {
   })
   status!: string;
 
-  @ManyToOne(() => Project, (project) => project.deliverables)
+  @ManyToOne(() => Project, (project) => project.deliverables, { onDelete: 'CASCADE' })
   project!: Project;
 
   @CreateDateColumn()

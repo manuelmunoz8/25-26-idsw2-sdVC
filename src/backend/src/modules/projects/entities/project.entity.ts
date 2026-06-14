@@ -33,7 +33,7 @@ export class Project {
   @JoinTable()
   researchers!: User[];
 
-  @OneToMany(() => Deliverable, (deliverable) => deliverable.project)
+  @OneToMany(() => Deliverable, (deliverable) => deliverable.project, { onDelete: 'CASCADE' })
   deliverables!: Deliverable[];
 
   @Column({ type: 'uuid' })

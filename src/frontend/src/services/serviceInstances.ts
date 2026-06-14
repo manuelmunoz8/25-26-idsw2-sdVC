@@ -1,11 +1,16 @@
 import api from './api';
 import { IBaseService } from '../types/base.service';
-import { CreateProjectDto, UpdateProjectDto } from '@dtos/project.dto';
-import { CreatePublicationDto } from '@dtos/publication.dto';
-import { CreateRewardDto } from '@dtos/create-reward.dto';
-import { LoginDto } from '@dtos/login.dto';
+import { CreateDeliverableDto, UpdateDeliverableDto } from '@dtos/deliverable.dto';
 
-// --- Servicios ---
+// ... (existing services) ...
+
+export const deliverablesService = {
+  findAllByProject: async (projectId: string) => (await api.get(`/api/projects/${projectId}/deliverables`)).data,
+  findOne: async (id: string) => (await api.get(`/api/deliverables/${id}`)).data,
+  create: async (dto: CreateDeliverableDto) => (await api.post('/api/deliverables', dto)).data,
+  update: async (id: string, dto: UpdateDeliverableDto) => (await api.patch(`/api/deliverables/${id}`, dto)).data,
+  remove: async (id: string) => await api.delete(`/api/deliverables/${id}`),
+};
 
 export const authService = {
   validarCredenciales: async (dto: LoginDto) => {

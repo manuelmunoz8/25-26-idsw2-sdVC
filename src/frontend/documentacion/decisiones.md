@@ -1,4 +1,10 @@
-## [13:00] (14/06/2026) Cambio a método PATCH para actualizaciones de proyecto
+## [14:00] (14/06/2026) Implementación de funcionalidad de gestión de entregables
+
+**Decisión:** Crear una página de listado de entregables (`DeliverablesPage`) con acciones de gestión rápida de estado y eliminación.
+**Motivo:** Proporcionar al Coordinador una herramienta eficiente para monitorizar y avanzar el estado de los hitos del proyecto.
+**Impacto:** El sistema ahora permite una gestión completa del estado de los entregables del proyecto, con una vista clara y acciones rápidas.
+
+---
 
 **Decisión:** Utilizar el método HTTP `PATCH` en lugar de `PUT` para las actualizaciones de recursos de proyecto.
 **Motivo:** Cumplir con la especificación del backend para permitir actualizaciones parciales de los atributos del proyecto (`/api/projects/:id`).

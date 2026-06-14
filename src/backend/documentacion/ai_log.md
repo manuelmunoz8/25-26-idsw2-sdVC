@@ -1,14 +1,16 @@
 # AI Log - Backend
-## [17:45] (14/06/2026) Implementación de desvinculación de investigadores
+## [18:30] (14/06/2026) Implementación del Módulo de Entregables
 
-**Prompt:** Implementar el endpoint para desvincular investigadores de un proyecto (DELETE /projects/:id/investigators/:investigatorId).
+**Prompt:** Implementar el módulo de gestión de Entregables.
 
 **Resultado:**
-- Actualizada la ruta y controlador `DELETE /projects/:id/investigators/:investigatorId`.
-- Actualizado `ProjectsService.removeResearcher` para validar que el investigador esté vinculado al proyecto antes de intentar removerlo; lanza `NotFoundException` si no existe la relación.
-- Protegido el endpoint con `JwtAuthGuard` y `RolesGuard` ('coordinador').
+- Actualizada entidad `Deliverable` para incluir relación `ManyToOne` con `Project` con `onDelete: 'CASCADE'`.
+- Actualizada entidad `Project` para incluir relación `OneToMany` con `Deliverable` con `onDelete: 'CASCADE'`.
+- Implementados endpoints en `DeliverablesController` (`GET`, `POST`, `PATCH`, `DELETE`).
+- Implementada lógica de negocio en `DeliverablesService` para validar que `dueDate` no sea anterior a `Project.startDate`.
+- Protegido el módulo con `JwtAuthGuard` y `RolesGuard` ('coordinador').
 
-**Decisión:** Se añade una validación previa en el servicio para asegurar que la desvinculación solo ocurra si la relación existe, mejorando la robustez de la API y proporcionando feedback claro en caso de error.
+**Decisión:** Se utiliza la cascada de eliminación para asegurar la integridad referencial al eliminar un proyecto. Se valida la fecha de entrega contra la fecha de inicio del proyecto a nivel de servicio para mantener la consistencia lógica.
 
 ---
 

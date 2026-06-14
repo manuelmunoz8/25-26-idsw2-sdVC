@@ -1,4 +1,18 @@
-## [13:15] (14/06/2026) Mejora de UX: Feedback visual en actualización de proyecto
+## [14:00] (14/06/2026) Implementación de la vista de Entregables
+
+**Prompt:** "Actúa como experto en React. Implementa la interfaz de Entregables para el Coordinador..."
+
+**Resultado:**
+- Creación de `deliverablesService` en `serviceInstances.ts` para manejar los endpoints de entregables.
+- Actualización de `DeliverablesPage.tsx`:
+    - Implementación de listado de entregables en formato tabla.
+    - Implementación de acción para cambio de estado rápido.
+    - Implementación de acción de eliminación con confirmación.
+    - Navegación de vuelta al proyecto.
+
+**Decisión:** Se ha creado la base funcional para la gestión de entregables. Se ha optado por un cambio de estado cíclico (`pending` -> `in_progress` -> ... -> `rejected`) para una acción rápida desde el listado, cumpliendo con el requisito de rapidez.
+
+---
 
 **Prompt:** "puedes cambiar el alert que sale al completarse la edicion, cambialo por algo un poco mas user friendly"
 
