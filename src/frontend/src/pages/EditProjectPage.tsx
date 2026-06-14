@@ -38,6 +38,8 @@ const EditProjectPage: React.FC = () => {
     fetchProject();
   }, [id]);
 
+  const [statusMessage, setStatusMessage] = useState<string | null>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.title) {
@@ -45,11 +47,12 @@ const EditProjectPage: React.FC = () => {
       return;
     }
     setError(null);
+    setStatusMessage(null);
     setSubmitting(true);
     try {
       await projectsService.update(id!, formData);
-      alert('Proyecto actualizado correctamente.');
-      navigate(`/projects/${id}`);
+      setStatusMessage('Proyecto actualizado correctamente.');
+      setTimeout(() => navigate(`/projects/${id}`), 2000);
     } catch (err) {
       setError('Error al actualizar el proyecto.');
       console.error(err);
@@ -64,6 +67,7 @@ const EditProjectPage: React.FC = () => {
     <div className="edit-project-page">
       <h2>Editar Proyecto</h2>
       {error && <p className="error-message">{error}</p>}
+      {statusMessage && <p className="success-message">{statusMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Título*</label>
@@ -132,6 +136,7 @@ const EditProjectPage: React.FC = () => {
         .btn-primary { background-color: #0a3b64; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; }
         .btn-secondary { background: #eee; border: 1px solid #ccc; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; }
         .error-message { color: #dc3545; margin-bottom: 1rem; }
+        .success-message { color: #28a745; margin-bottom: 1rem; background: #d4edda; padding: 0.5rem; border-radius: 4px; }
       `}</style>
     </div>
   );

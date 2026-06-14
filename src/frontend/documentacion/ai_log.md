@@ -1,4 +1,16 @@
-## [13:00] (14/06/2026) Cambio de método de actualización de proyectos a PATCH
+## [13:15] (14/06/2026) Mejora de UX: Feedback visual en actualización de proyecto
+
+**Prompt:** "puedes cambiar el alert que sale al completarse la edicion, cambialo por algo un poco mas user friendly"
+
+**Resultado:**
+- Actualización de `EditProjectPage.tsx`:
+    - Eliminación de `window.alert()`.
+    - Implementación de estado local `statusMessage` para mostrar una notificación de éxito estilizada dentro de la página.
+    - Redirección automática tras un breve retardo (2 segundos) para permitir al usuario leer el mensaje.
+
+**Decisión:** Se sustituye la intrusiva alerta del navegador por una notificación integrada en la interfaz, mejorando la experiencia de usuario (UX) y siguiendo la línea de diseño de aplicaciones modernas SPA.
+
+---
 
 **Prompt:** "Ok necesito que cambies el metodo de actualizar los datos de un proyecto... Cambia PUT por PATCH."
 
