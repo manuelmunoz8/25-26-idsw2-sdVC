@@ -43,7 +43,7 @@ const ProjectDetailPage: React.FC = () => {
         <h2>{project.title}</h2>
         <div className="header-actions">
           <button className="btn-secondary" onClick={() => navigate('/projects')}>Volver</button>
-          <button className="btn-primary">Editar</button>
+          <button className="btn-primary" onClick={() => navigate(`/projects/${id}/edit`)}>Editar</button>
           <button className="btn-danger" onClick={handleDelete}>Eliminar</button>
         </div>
       </div>

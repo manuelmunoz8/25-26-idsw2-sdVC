@@ -1,4 +1,19 @@
-## [11:15] (14/06/2026) Refactorización de seguridad en ProjectDetailPage: Ocultar ID
+## [11:45] (14/06/2026) Implementación de funcionalidad 'Editar Proyecto'
+
+**Prompt:** "Actúa como experto en React. Implementa la funcionalidad de Editar Proyecto..."
+
+**Resultado:**
+- Creación de `src/pages/EditProjectPage.tsx`:
+    - Formulario reutilizado y adaptado.
+    - Carga de datos inicial mediante `projectsService.findOne`.
+    - Envío de actualizaciones mediante `projectsService.update` (PATCH).
+    - Feedback de éxito y redirección automática.
+- Actualización de `App.tsx` con ruta `/projects/:id/edit`.
+- Actualización de `ProjectDetailPage.tsx` para vincular el botón 'Editar' a la ruta de edición.
+
+**Decisión:** Se ha implementado el caso de uso siguiendo el flujo del modelo vertical, permitiendo al usuario coordinador modificar cualquier proyecto existente con validación y retroalimentación en la UI.
+
+---
 
 **Prompt:** "elimina cualquiera campo que se muestre el id en el frontend"
 

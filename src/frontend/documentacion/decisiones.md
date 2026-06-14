@@ -1,4 +1,10 @@
-## [11:15] (14/06/2026) Seguridad de la información: Confirmación de eliminación de IDs internos en UI
+## [11:45] (14/06/2026) Implementación de funcionalidad de edición de proyectos
+
+**Decisión:** Crear una página dedicada `EditProjectPage` que carga el estado inicial a partir de los datos existentes del proyecto.
+**Motivo:** Proporcionar una experiencia de usuario consistente al reutilizar la estructura de formularios existente mientras se garantiza que el usuario pueda editar campos específicos de forma atómica.
+**Impacto:** El sistema permite ahora una gestión completa del ciclo de vida de los proyectos (Crear, Leer, Editar, Eliminar).
+
+---
 
 **Decisión:** Confirmar la ausencia total de identificadores de base de datos (IDs) en todas las vistas de usuario.
 **Motivo:** Asegurar una postura de seguridad proactiva ante la posible exposición de datos internos.

@@ -1,15 +1,14 @@
 # AI Log - Backend
-## [15:20] (14/06/2026) Implementación de Soft Delete en Proyectos
+## [16:00] (14/06/2026) Implementación de endpoint de edición de proyecto
 
-**Prompt:** Refactorizar la tabla de proyectos para aplicar la técnica de un soft delete en la base de datos.
+**Prompt:** Implementar el endpoint para Editar Proyecto (PATCH /projects/:id).
 
 **Resultado:**
-- Añadida columna `isDeleted` (`boolean`, default: `false`) a la entidad `Project`.
-- Actualizados métodos `findAll` y `findOne` en `ProjectsService` para filtrar por `isDeleted: false`.
-- Implementado método `softDelete` en `ProjectsService` que marca el proyecto como eliminado.
-- Actualizado endpoint `DELETE /projects/:id` en `ProjectsController` para invocar `softDelete`.
+- Implementado endpoint `PATCH /projects/:id` en `ProjectsController`, protegido con `JwtAuthGuard` y `RolesGuard` ('coordinador').
+- Añadido método `updateProject` en `ProjectsService` para realizar la edición validando permisos (coordinador del proyecto) y existencia del mismo.
+- Utilizado `UpdateProjectDto` para la validación de los datos recibidos.
 
-**Decisión:** Se adopta el borrado lógico en lugar de físico para mantener la integridad de los datos y permitir auditorías o recuperación de proyectos eliminados accidentalmente. Se protege el endpoint para asegurar que solo los coordinadores puedan realizar esta acción.
+**Decisión:** Se utiliza `PATCH` para permitir actualizaciones parciales. Se valida que el usuario sea el coordinador del proyecto antes de permitir la edición, cumpliendo con los requisitos de seguridad.
 
 ---
 

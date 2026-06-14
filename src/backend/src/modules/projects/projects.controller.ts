@@ -30,12 +30,15 @@ export class ProjectsController {
     return this.projectsService.createProject(req.user.id, projectData);
   }
 
-  @Put(':id')
-  update(
+  @Patch(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('coordinador')
+  async update(
+    @Request() req: any,
     @Param('id', ParseUUIDPipe) id: string,
     @Body() projectData: UpdateProjectDto,
   ): Promise<Project> {
-    return this.projectsService.update(id, projectData as any);
+    return this.projectsService.updateProject(req.user.id, id, projectData);
   }
 
   @Delete(':id')

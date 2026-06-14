@@ -13,6 +13,7 @@ import RewardsPage from './pages/RewardsPage';
 import WorkloadPage from './pages/WorkloadPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileDeletionRequestsPage from './pages/ProfileDeletionRequestsPage';
+import EditProjectPage from './pages/EditProjectPage';
 import CreateProjectPage from './pages/CreateProjectPage';
 import { AuthProvider, useAuth } from './context/AuthContext';
 
@@ -45,6 +46,7 @@ const App: React.FC = () => {
             <Route path="projects" element={<ProjectsPage />} />
             <Route path="projects/new" element={<CreateProjectPage />} />
             <Route path="projects/:id" element={<ProjectDetailPage />} />
+            <Route path="projects/:id/edit" element={<EditProjectPage />} />
             <Route path="projects/:id/deliverables" element={<DeliverablesPage />} />
             <Route path="investigators" element={<InvestigatorsPage />} />
             <Route path="publications" element={<PublicationsPage />} />

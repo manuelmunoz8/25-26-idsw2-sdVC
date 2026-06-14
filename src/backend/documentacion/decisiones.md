@@ -1,5 +1,14 @@
 # Registro de Decisiones - Backend
+## [16:00] (14/06/2026) Edición de Proyectos y Autorización
+
+**Decisión:** Utilizar el método `PATCH` para la actualización de proyectos y validar la propiedad del proyecto (coordinador) en la capa de servicio.
+**Motivo:** `PATCH` es más adecuado para actualizaciones parciales que `PUT`. La validación de permisos en el servicio garantiza que incluso si alguien tiene el rol de 'coordinador', solo pueda editar los proyectos de los que es responsable.
+**Impacto:** Permite modificaciones parciales seguras en la información del proyecto, manteniendo la integridad de la propiedad del mismo.
+
+---
+
 ## [15:20] (14/06/2026) Implementación de Soft Delete en Proyectos
+...
 
 **Decisión:** Implementar borrado lógico mediante el campo `isDeleted` en la entidad `Project` y actualizar el servicio y controlador para reflejar este cambio.
 **Motivo:** Garantizar la integridad de los datos, permitir auditorías históricas y facilitar la recuperación de proyectos eliminados por error.
