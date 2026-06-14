@@ -1,4 +1,13 @@
-## [11:00] (14/06/2026) Refactorización de seguridad en ProjectsPage: Ocultar ID
+## [11:15] (14/06/2026) Refactorización de seguridad en ProjectDetailPage: Ocultar ID
+
+**Prompt:** "elimina cualquiera campo que se muestre el id en el frontend"
+
+**Resultado:**
+- Verificación del componente `ProjectDetailPage.tsx`: Se ha confirmado que no se visualiza el ID en la interfaz.
+
+**Decisión:** Se confirma que la implementación actual de `ProjectDetailPage` cumple con el requisito de no exponer el ID en la UI.
+
+---
 
 **Prompt:** "refactoriza la tabla de proyectos para que no se muestre el id del proyecto"
 

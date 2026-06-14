@@ -1,4 +1,10 @@
-## [11:00] (14/06/2026) Seguridad de la información: Ocultar identificadores internos (ID) en la UI
+## [11:15] (14/06/2026) Seguridad de la información: Confirmación de eliminación de IDs internos en UI
+
+**Decisión:** Confirmar la ausencia total de identificadores de base de datos (IDs) en todas las vistas de usuario.
+**Motivo:** Asegurar una postura de seguridad proactiva ante la posible exposición de datos internos.
+**Impacto:** Se ha verificado que los IDs se utilizan únicamente para lógica de navegación y consultas de API internas, sin ser renderizados en el DOM para el usuario.
+
+---
 
 **Decisión:** Mantener la política de no exponer identificadores de base de datos (IDs) en la interfaz de usuario de listado de proyectos.
 **Motivo:** Evitar la exposición innecesaria de datos internos que podrían ser utilizados para ataques o enumeración de registros si un usuario intenta manipular manualmente la URL o realizar acciones no autorizadas.

@@ -51,7 +51,6 @@ const ProjectDetailPage: React.FC = () => {
       <div className="project-content">
         <div className="card">
           <h3>Información del Proyecto</h3>
-          <p><strong>ID:</strong> {project.id}</p>
           <p><strong>Estado:</strong> {project.status}</p>
           <p><strong>Coordinador:</strong> {project.coordinator?.name || 'N/A'}</p>
           <p><strong>Fecha Inicio:</strong> {project.startDate || 'N/A'}</p>
