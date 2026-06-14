@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { publicationsService } from '../services/serviceInstances';
 import { useCrud } from '../hooks/useCrud';
@@ -12,8 +12,13 @@ interface Publication {
 }
 
 const PublicationsPage: React.FC = () => {
+  console.log("DEBUG: publicationsService", publicationsService);
   const { data: publications, loading, error } = useCrud<Publication>(publicationsService);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log("DEBUG: publications data", publications);
+  }, [publications]);
 
   return (
     <div className="publications-page">

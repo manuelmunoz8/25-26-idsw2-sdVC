@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { publicationsService } from '../services/serviceInstances';
 import { useCrud } from '../hooks/useCrud';
@@ -23,7 +23,8 @@ const MyPublicationsPage: React.FC = () => {
     setLoading(true);
     try {
       const data = await publicationsService.getMy();
-      setPublications(data);
+      console.log("DEBUG: MyPublications data", data);
+      setPublications(Array.isArray(data) ? data : []);
     } catch (err) {
       setError('Error al cargar publicaciones');
     } finally {

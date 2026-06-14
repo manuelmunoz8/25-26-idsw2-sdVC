@@ -1,4 +1,13 @@
-## [18:00] (14/06/2026) Corrección de errores en publicaciones
+## [18:15] (14/06/2026) Corrección: Error de referencia faltante en MyPublicationsPage
+
+**Prompt:** "Han salido eso depues de subir los cambios... ReferenceError: useEffect is not defined"
+
+**Resultado:**
+- Se corrigió `MyPublicationsPage.tsx` importando correctamente `useEffect` desde 'react'.
+
+**Decisión:** Se ha corregido la importación faltante que causaba el error de tiempo de ejecución.
+
+---
 
 **Prompt:** "Ok estoy en la pagina de entregables de un proyecto y no me aparece ninguno... [mensajes de error]"
 
