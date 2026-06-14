@@ -1,4 +1,10 @@
-## [18:00] (14/06/2026) Estandarización de servicios y manejo de estado de publicaciones
+## [20:00] (14/06/2026) Alineación de modelos de datos frontend-backend
+
+**Decisión:** Ajustar estrictamente las interfaces de los modelos en el frontend a la estructura real de las entidades devueltas por el backend, reemplazando tipos planos por objetos anidados cuando sea necesario.
+**Motivo:** Evitar errores de renderizado de React (como el Error #31) derivados de intentos de acceder a propiedades mal definidas o inexistentes.
+**Impacto:** Se aumenta la fiabilidad de la capa de vista, eliminando errores de tiempo de ejecución y asegurando que la UI refleje fielmente los datos proporcionados por la API.
+
+---
 
 **Decisión:** Obligar a todos los servicios definidos en `serviceInstances.ts` a seguir estrictamente la interfaz `IBaseService`, y utilizar gestión de estado local manual cuando un servicio no mapee directamente a un CRUD estándar (como `getMy`).
 **Motivo:** Resolver `TypeError` en tiempo de ejecución al usar `useCrud` con servicios mal estructurados y garantizar la previsibilidad del estado en los componentes.

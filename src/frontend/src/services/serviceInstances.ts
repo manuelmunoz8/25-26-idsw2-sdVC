@@ -40,8 +40,10 @@ export const publicationsService: IBaseService<any> = {
   create: async (dto: any) => (await api.post('/api/publications', dto)).data,
   update: async (id: string, dto: any) => (await api.put(`/api/publications/${id}`, dto)).data,
   remove: async (id: string) => await api.delete(`/api/publications/${id}`),
-  // Custom methods
-  getMy: async () => (await api.get('/api/publications/my')).data,
+};
+
+export const publicationsCustomService = {
+  getMy: async (userId: string) => (await api.get(`/api/publications/user/${userId}`)).data,
   addReply: async (id: string, reply: { content: string }) => (await api.post(`/api/publications/${id}/replies`, reply)).data,
 };
 

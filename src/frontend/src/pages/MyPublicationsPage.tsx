@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { publicationsService } from '../services/serviceInstances';
-import { useCrud } from '../hooks/useCrud';
+import { useAuth } from '../context/AuthContext';
 
 interface Publication {
   id: string;
@@ -17,12 +17,14 @@ const MyPublicationsPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [editingPub, setEditingPub] = useState<Publication | null>(null);
 
   const fetchMy = async () => {
+    if (!user?.id) return;
     setLoading(true);
     try {
-      const data = await publicationsService.getMy();
+      const data = await publicationsService.getMy(user.id);
       console.log("DEBUG: MyPublications data", data);
       setPublications(Array.isArray(data) ? data : []);
     } catch (err) {
@@ -33,8 +35,10 @@ const MyPublicationsPage: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchMy();
-  }, []);
+    if (user?.id) {
+      fetchMy();
+    }
+  }, [user]);
 
   const handleDelete = async (id: string) => {
     if (window.confirm('¿Seguro de eliminar esta publicación?')) {

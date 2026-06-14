@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { publicationsService } from '../services/serviceInstances';
+import { publicationsService, publicationsCustomService } from '../services/serviceInstances';
 
 const PublicationDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -30,7 +30,7 @@ const PublicationDetailPage: React.FC = () => {
     if (!reply.trim()) return;
     setSubmitting(true);
     try {
-      await publicationsService.addReply(id!, { content: reply });
+      await publicationsCustomService.addReply(id!, { content: reply });
       setReply('');
       await fetchPublication();
     } catch (error) {

@@ -1,4 +1,27 @@
-## [18:15] (14/06/2026) Corrección: Error de referencia faltante en MyPublicationsPage
+## [20:00] (14/06/2026) Corrección: React Error #31 y desajuste de modelo de datos
+
+**Prompt:** "Ok pero aun asi esta el error #31... React Error #31..."
+
+**Resultado:**
+- Identificación de que `PublicationsPage` esperaba un modelo de datos plano (`author: string`) que no coincidía con la estructura anidada real del backend (`author: { name: string }`).
+- Actualización de la interfaz `Publication` en `PublicationsPage.tsx` para reflejar la estructura correcta de la entidad del backend (`author: { name: string }`, `createdAt`).
+- Refactorización de la renderización del componente para acceder correctamente a los campos anidados.
+
+**Decisión:** Se ha alineado el modelo de datos del frontend con el backend para solucionar los errores de renderizado (React Error #31) causados por intentos de acceder a propiedades inexistentes o tipos incorrectos.
+
+---
+
+**Prompt:** "Ok pero aun asi esta el error #31... TypeError: e.findAll is not a function"
+
+**Resultado:**
+- Identificación de estructura incorrecta en `publicationsService` que no cumplía con `IBaseService`.
+- Refactorización de `serviceInstances.ts`: Se movieron los métodos no estándar (`getMy`, `addReply`) a `publicationsCustomService` para mantener `publicationsService` limpio y compatible con `IBaseService`.
+- Actualización de `PublicationsPage.tsx` y `MyPublicationsPage.tsx` para usar las llamadas correctas y gestionar el estado local adecuadamente.
+- Actualización de `PublicationDetailPage.tsx` para usar `publicationsCustomService.addReply`.
+
+**Decisión:** Se ha estandarizado la arquitectura de servicios y corregido el manejo de estado en los componentes de publicaciones, eliminando los errores de tiempo de ejecución.
+
+---
 
 **Prompt:** "Han salido eso depues de subir los cambios... ReferenceError: useEffect is not defined"
 
