@@ -55,6 +55,10 @@ export class DeliverablesService extends BaseService<Deliverable> {
       throw new ConflictException('La fecha de entrega no puede ser anterior a la fecha de inicio del proyecto');
     }
 
+    if (data.status === 'approved') {
+      deliverable.approvedAt = new Date();
+    }
+
     Object.assign(deliverable, data);
     return await this.deliverablesRepository.save(deliverable);
   }

@@ -1,4 +1,19 @@
-## [14:30] (14/06/2026) Implementación de funcionalidad 'Crear Entregable'
+## [15:00] (14/06/2026) Implementación de funcionalidad 'Editar Entregable'
+
+**Prompt:** "Actúa como experto en React. Implementa la vista de Edición de Entregable para el Coordinador..."
+
+**Resultado:**
+- Creación de `src/pages/EditDeliverablePage.tsx`:
+    - Carga de datos inicial mediante GET a `/api/deliverables/:id`.
+    - Formulario reutilizado con capacidad de modificación (Título, Descripción, Fecha de Entrega, Estado).
+    - Envío mediante PATCH a `/api/deliverables/:id`.
+    - Redirección al listado de entregables del proyecto tras éxito.
+- Actualización de `App.tsx` con ruta `/deliverables/:id/edit`.
+- Actualización de `DeliverablesPage.tsx` para incluir el botón 'Editar' que redirige a la vista de edición.
+
+**Decisión:** Se ha completado la funcionalidad de edición, garantizando la consistencia del flujo de trabajo y la integridad de los datos mediante el uso del método PATCH.
+
+---
 
 **Prompt:** "Actúa como experto en React. Implementa la interfaz para Crear Entregable..."
 

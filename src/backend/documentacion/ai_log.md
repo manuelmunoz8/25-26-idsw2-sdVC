@@ -1,12 +1,14 @@
 # AI Log - Backend
-## [18:45] (14/06/2026) Implementación de creación de entregables
+## [19:15] (14/06/2026) Implementación de edición de entregables
 
-**Prompt:** Implementar el endpoint de Creación de Entregables (POST /deliverables).
+**Prompt:** Implementar la funcionalidad de Edición de Entregables (PATCH /deliverables/:id).
 
 **Resultado:**
-- Actualizado `DeliverablesService.createDeliverable` para validar: existencia del proyecto, estado por defecto 'pending' y `dueDate` >= fecha actual.
+- Actualizada entidad `Deliverable` para incluir `approvedAt` (`timestamp`, `nullable`).
+- Actualizado `DeliverablesService.updateDeliverable` para permitir actualizaciones parciales, validar que no se modifique el proyecto asociado y registrar automáticamente `approvedAt` cuando el estado cambia a 'approved'.
+- Endpoint protegido y funcional con `UpdateDeliverableDto`.
 
-**Decisión:** Se aplica la validación de fecha contra la fecha actual como requisito de negocio para asegurar entregas futuras o inmediatas.
+**Decisión:** Se añade el campo `approvedAt` para auditoría interna del ciclo de vida del entregable. Se mantiene la lógica de actualización parcial mediante `Object.assign`.
 
 ---
 

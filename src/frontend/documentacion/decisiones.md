@@ -1,4 +1,10 @@
-## [14:30] (14/06/2026) Implementación de funcionalidad de creación de entregables
+## [15:00] (14/06/2026) Implementación de funcionalidad de edición de entregables
+
+**Decisión:** Crear una página dedicada `EditDeliverablePage` que carga el estado inicial a partir de los datos existentes del entregable.
+**Motivo:** Proporcionar una experiencia de usuario consistente, reutilizando la estructura del formulario de creación y permitiendo la actualización atómica de campos mediante PATCH.
+**Impacto:** El sistema permite ahora una gestión completa y flexible del ciclo de vida de los entregables (Crear, Editar, Cambiar estado, Eliminar).
+
+---
 
 **Decisión:** Crear una página dedicada `CreateDeliverablePage` que extrae el `projectId` de los parámetros de la URL.
 **Motivo:** Asegurar que el nuevo entregable se asocie correctamente al proyecto desde el cual se inicia la creación, facilitando la navegación del usuario.

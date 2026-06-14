@@ -7,6 +7,14 @@
 
 ---
 
+## [19:15] (14/06/2026) Auditoría en Edición de Entregables
+
+**Decisión:** Registrar automáticamente la fecha de aprobación (`approvedAt`) al actualizar el estado de un entregable a 'approved'.
+**Motivo:** Mejorar la capacidad de auditoría del ciclo de vida del entregable, permitiendo rastrear cuándo fue aprobado exactamente.
+**Impacto:** Registro transparente del estado del entregable.
+
+---
+
 ## [18:30] (14/06/2026) Gestión de Entregables y Integridad Referencial
 
 **Decisión:** Configurar eliminación en cascada (`onDelete: 'CASCADE'`) entre `Project` y `Deliverable` y aplicar validación de fechas a nivel de servicio.

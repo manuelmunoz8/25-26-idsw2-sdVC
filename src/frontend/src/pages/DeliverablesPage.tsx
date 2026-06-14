@@ -77,6 +77,7 @@ const DeliverablesPage: React.FC = () => {
                 <span className={`status-badge ${del.status}`}>{del.status}</span>
               </td>
               <td>
+                <button className="btn-small" onClick={() => navigate(`/deliverables/${del.id}/edit`)}>Editar</button>
                 <button className="btn-small" onClick={() => handleStatusChange(del.id, del.status)}>Cambiar Estado</button>
                 <button className="btn-small btn-danger" onClick={() => handleDelete(del.id, del.title)}>Eliminar</button>
               </td>

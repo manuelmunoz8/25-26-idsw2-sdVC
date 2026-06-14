@@ -22,6 +22,9 @@ export class Deliverable {
   })
   status!: string;
 
+  @Column({ type: 'timestamp', nullable: true })
+  approvedAt?: Date;
+
   @ManyToOne(() => Project, (project) => project.deliverables, { onDelete: 'CASCADE' })
   project!: Project;
 

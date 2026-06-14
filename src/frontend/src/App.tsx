@@ -13,6 +13,7 @@ import RewardsPage from './pages/RewardsPage';
 import WorkloadPage from './pages/WorkloadPage';
 import ProfilePage from './pages/ProfilePage';
 import ProfileDeletionRequestsPage from './pages/ProfileDeletionRequestsPage';
+import EditDeliverablePage from './pages/EditDeliverablePage';
 import CreateDeliverablePage from './pages/CreateDeliverablePage';
 import EditProjectPage from './pages/EditProjectPage';
 import CreateProjectPage from './pages/CreateProjectPage';
@@ -50,6 +51,7 @@ const App: React.FC = () => {
             <Route path="projects/:id/edit" element={<EditProjectPage />} />
             <Route path="projects/:id/deliverables" element={<DeliverablesPage />} />
             <Route path="projects/:id/deliverables/new" element={<CreateDeliverablePage />} />
+            <Route path="deliverables/:id/edit" element={<EditDeliverablePage />} />
             <Route path="investigators" element={<InvestigatorsPage />} />
             <Route path="publications" element={<PublicationsPage />} />
             <Route path="my-publications" element={<MyPublicationsPage />} />
