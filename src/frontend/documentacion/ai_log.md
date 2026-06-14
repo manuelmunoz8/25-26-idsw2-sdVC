@@ -1,4 +1,14 @@
-## [20:00] (14/06/2026) Corrección: React Error #31 y desajuste de modelo de datos
+## [20:30] (14/06/2026) Corrección: React Error #31 en PublicationDetailPage
+
+**Prompt:** "cuando le doy leer mas a una puublicacion esta me manda a una pantalla blanca... React Error #31"
+
+**Resultado:**
+- Se identificó que `PublicationDetailPage.tsx` intentaba renderizar objetos completos (`author` y `replies`) en lugar de sus propiedades de texto, causando el error de renderizado de objetos de React (#31).
+- Se actualizó el componente para acceder correctamente a `author.name` y `createdAt` para la publicación, y a `author.name` para las respuestas.
+
+**Decisión:** Corregir la lógica de renderizado para alinearla con la estructura anidada de los objetos devueltos por el backend, evitando intentar renderizar objetos como nodos hijos válidos.
+
+---
 
 **Prompt:** "Ok pero aun asi esta el error #31... React Error #31..."
 

@@ -48,7 +48,7 @@ const PublicationDetailPage: React.FC = () => {
       <button className="btn-secondary" onClick={() => navigate('/publications')}>Volver al Listado</button>
       <div className="card">
         <h2>{pub.title}</h2>
-        <p className="pub-meta">Por {pub.author} en {pub.date}</p>
+        <p className="pub-meta">Por {pub.author?.name || 'Anónimo'} en {new Date(pub.createdAt).toLocaleDateString()}</p>
         <p className="pub-content">{pub.content}</p>
       </div>
 
@@ -56,7 +56,7 @@ const PublicationDetailPage: React.FC = () => {
         <h3>Respuestas</h3>
         {pub.replies?.map((r: any) => (
           <div key={r.id} className="reply-card">
-            <p><strong>{r.author}:</strong> {r.content}</p>
+            <p><strong>{r.author?.name || 'Anónimo'}:</strong> {r.content}</p>
           </div>
         ))}
         
