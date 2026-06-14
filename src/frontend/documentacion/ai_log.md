@@ -1,4 +1,19 @@
-## [14:00] (14/06/2026) Implementación de la vista de Entregables
+## [14:30] (14/06/2026) Implementación de funcionalidad 'Crear Entregable'
+
+**Prompt:** "Actúa como experto en React. Implementa la interfaz para Crear Entregable..."
+
+**Resultado:**
+- Creación de `src/pages/CreateDeliverablePage.tsx`:
+    - Formulario con campos: Título (obligatorio), Descripción, Fecha de Entrega y Estado.
+    - Validación visual para el título.
+    - Envío mediante POST a `/api/deliverables` incluyendo el `projectId` de la URL.
+    - Redirección al listado tras éxito.
+- Actualización de `App.tsx` con ruta `/projects/:id/deliverables/new`.
+- Actualización de `DeliverablesPage.tsx` para vincular el botón 'Nuevo Entregable'.
+
+**Decisión:** Se ha implementado el caso de uso siguiendo las especificaciones del wireframe, asegurando una experiencia de creación de entregables intuitiva para el Coordinador.
+
+---
 
 **Prompt:** "Actúa como experto en React. Implementa la interfaz de Entregables para el Coordinador..."
 

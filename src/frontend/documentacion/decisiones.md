@@ -1,4 +1,10 @@
-## [14:00] (14/06/2026) Implementación de funcionalidad de gestión de entregables
+## [14:30] (14/06/2026) Implementación de funcionalidad de creación de entregables
+
+**Decisión:** Crear una página dedicada `CreateDeliverablePage` que extrae el `projectId` de los parámetros de la URL.
+**Motivo:** Asegurar que el nuevo entregable se asocie correctamente al proyecto desde el cual se inicia la creación, facilitando la navegación del usuario.
+**Impacto:** El sistema permite ahora añadir nuevos entregables de forma contextual, manteniendo la integridad de las relaciones entre proyectos y entregables.
+
+---
 
 **Decisión:** Crear una página de listado de entregables (`DeliverablesPage`) con acciones de gestión rápida de estado y eliminación.
 **Motivo:** Proporcionar al Coordinador una herramienta eficiente para monitorizar y avanzar el estado de los hitos del proyecto.

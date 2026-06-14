@@ -1,4 +1,30 @@
 # AI Log - Backend
+## [18:45] (14/06/2026) Implementación de creación de entregables
+
+**Prompt:** Implementar el endpoint de Creación de Entregables (POST /deliverables).
+
+**Resultado:**
+- Actualizado `DeliverablesService.createDeliverable` para validar: existencia del proyecto, estado por defecto 'pending' y `dueDate` >= fecha actual.
+
+**Decisión:** Se aplica la validación de fecha contra la fecha actual como requisito de negocio para asegurar entregas futuras o inmediatas.
+
+---
+
+## [18:30] (14/06/2026) Implementación del Módulo de Entregables
+
+**Prompt:** Implementar el módulo de gestión de Entregables.
+
+**Resultado:**
+- Actualizada entidad `Deliverable` para incluir relación `ManyToOne` con `Project` con `onDelete: 'CASCADE'`.
+- Actualizada entidad `Project` para incluir relación `OneToMany` con `Deliverable` con `onDelete: 'CASCADE'`.
+- Implementados endpoints en `DeliverablesController` (`GET`, `POST`, `PATCH`, `DELETE`).
+- Implementada lógica de negocio en `DeliverablesService` para validar que `dueDate` no sea anterior a `Project.startDate`.
+- Protegido el módulo con `JwtAuthGuard` y `RolesGuard` ('coordinador').
+
+**Decisión:** Se utiliza la cascada de eliminación para asegurar la integridad referencial al eliminar un proyecto. Se valida la fecha de entrega contra la fecha de inicio del proyecto a nivel de servicio para mantener la consistencia lógica.
+
+---
+
 ## [19:00] (14/06/2026) Fix Dependency Injection en DeliverablesModule
 
 **Prompt:** Fix `UnknownDependenciesException` donde `JwtAuthGuard` no podía resolver `AuthService` en `DeliverablesModule`.
@@ -153,7 +179,7 @@
 **Resultado:** 
 - Identificación del patrón View-Controller-Repository en los diagramas de secuencia UML.
 - Creación de `backend/documentacion/arquitectura_base.md` con la definición de `IBaseController`, `IBaseService` y `BaseService`.
-- Registro de la decisión arquitectónica en `backend/documentacion/decisiones.md`.
+- Registro de la decisión arquitectónica en `backend/decisiones.md`.
 
 **Decisión:** Se adoptan abstracciones genéricas para estandarizar el desarrollo de módulos, alineando la implementación con el diseño UML y reduciendo la duplicación de lógica CRUD.
 

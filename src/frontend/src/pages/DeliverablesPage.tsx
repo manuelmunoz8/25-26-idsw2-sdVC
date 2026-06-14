@@ -55,7 +55,7 @@ const DeliverablesPage: React.FC = () => {
         <h2>Entregables del Proyecto</h2>
         <div className="header-actions">
           <button className="btn-secondary" onClick={() => navigate(`/projects/${id}`)}>Volver al Proyecto</button>
-          <button className="btn-primary">Nuevo Entregable</button>
+          <button className="btn-primary" onClick={() => navigate(`/projects/${id}/deliverables/new`)}>Nuevo Entregable</button>
         </div>
       </div>
 

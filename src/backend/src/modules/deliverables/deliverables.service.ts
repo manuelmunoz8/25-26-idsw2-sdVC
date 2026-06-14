@@ -28,13 +28,21 @@ export class DeliverablesService extends BaseService<Deliverable> {
     const project = await this.projectRepository.findOne({ where: { id: data.projectId as any } });
     if (!project) throw new NotFoundException('Proyecto no encontrado');
 
-    if (data.dueDate && new Date(data.dueDate) < project.startDate) {
-      throw new ConflictException('La fecha de entrega no puede ser anterior a la fecha de inicio del proyecto');
+    // Validación de fecha: que sea fecha actual o futura
+    if (data.dueDate) {
+      const dueDate = new Date(data.dueDate);
+      const now = new Date();
+      // Ajuste para comparar solo fechas si es necesario, pero el prompt pide "fecha actual"
+      // Comparación simple de timestamps para "futura o igual a la actual"
+      if (dueDate < new Date(now.setHours(0, 0, 0, 0))) {
+        throw new ConflictException('La fecha de entrega no puede ser anterior a la fecha actual');
+      }
     }
 
     const deliverable = this.deliverablesRepository.create({
       ...data,
       project,
+      status: data.status || 'pending',
     });
     return await this.deliverablesRepository.save(deliverable);
   }
