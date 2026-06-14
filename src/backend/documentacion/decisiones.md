@@ -7,6 +7,14 @@
 
 ---
 
+## [20:30] (14/06/2026) Fix Dependency Injection en PublicationsModule
+
+**Decisión:** Importar `AuthModule` dentro de `PublicationsModule` para resolver problemas de inyección de dependencias con `JwtAuthGuard`.
+**Motivo:** `PublicationsModule` utilizaba `JwtAuthGuard`, la cual depende de `AuthService`. Al no estar `AuthService` (proporcionado por `AuthModule`) en el alcance de `PublicationsModule`, NestJS fallaba al instanciar el guard.
+**Impacto:** Permite la correcta instanciación de los guardias de autenticación en las rutas protegidas del módulo de publicaciones.
+
+---
+
 ## [19:45] (14/06/2026) Seguridad y Autoría en Publicaciones
 
 **Decisión:** Validar la propiedad del autor en el servicio para operaciones de edición y eliminación, y asignar el autor automáticamente desde la sesión.

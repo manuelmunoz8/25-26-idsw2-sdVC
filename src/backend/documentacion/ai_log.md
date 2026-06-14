@@ -1,14 +1,11 @@
 # AI Log - Backend
-## [19:45] (14/06/2026) Aseguramiento del Módulo de Publicaciones
+## [20:30] (14/06/2026) Fix Dependency Injection en PublicationsModule
 
-**Prompt:** Asegurar y completar el módulo de publications (autoría automática, seguridad de edición/borrado, relaciones).
+**Prompt:** Fix `UnknownDependenciesException` donde `JwtAuthGuard` no podía resolver `AuthService` en `PublicationsModule`.
 
-**Resultado:**
-- Actualizado `PublicationsController` para integrar `JwtAuthGuard` y obtener `authorId` de `Request`.
-- Implementada lógica de validación de autoría en `PublicationsService` (métodos `updatePublication` y `removePublication`) lanzando `UnauthorizedException` en caso de discrepancia.
-- Asegurada la carga de relaciones `author` y `replies.author` en las consultas de publicaciones.
+**Resultado:** Importado `AuthModule` en `PublicationsModule`.
 
-**Decisión:** Se garantiza que solo el autor original pueda editar o borrar sus publicaciones y se asegura que toda publicación tenga un autor vinculado automáticamente desde la sesión.
+**Decisión:** Se importa `AuthModule` en `PublicationsModule` para garantizar que `AuthService` esté disponible para `JwtAuthGuard`, resolviendo el fallo de inyección de dependencias.
 
 ---
 
