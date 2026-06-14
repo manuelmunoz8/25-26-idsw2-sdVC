@@ -1,4 +1,15 @@
-## [17:30] (14/06/2026) Corrección: Inclusión de authorId en creación de publicaciones
+## [18:00] (14/06/2026) Corrección de errores en publicaciones
+
+**Prompt:** "Ok estoy en la pagina de entregables de un proyecto y no me aparece ninguno... [mensajes de error]"
+
+**Resultado:**
+- Corrección de `publicationsService` en `serviceInstances.ts`: Implementación de `findAll` para cumplir con `IBaseService`, resolviendo el `TypeError: e.findAll is not a function`.
+- Actualización de `PublicationsPage.tsx`: Se eliminó el casteo `as any` en el hook `useCrud`.
+- Actualización de `MyPublicationsPage.tsx`: Se reemplazó el uso incorrecto de `useCrud` (que esperaba un servicio completo) por una gestión de estado local manual para manejar `publicationsService.getMy()`.
+
+**Decisión:** Se ha estandarizado la interfaz de los servicios y corregido la implementación de los componentes para asegurar la estabilidad del sistema y evitar errores de ejecución en el manejo de estado de publicaciones.
+
+---
 
 **Prompt:** "Hay algun error a la hora de crear la publicacion debido a que el id del author no se pasa..."
 

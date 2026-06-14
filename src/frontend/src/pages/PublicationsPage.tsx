@@ -12,7 +12,7 @@ interface Publication {
 }
 
 const PublicationsPage: React.FC = () => {
-  const { data: publications, loading, error } = useCrud<Publication>(publicationsService as any);
+  const { data: publications, loading, error } = useCrud<Publication>(publicationsService);
   const navigate = useNavigate();
 
   return (

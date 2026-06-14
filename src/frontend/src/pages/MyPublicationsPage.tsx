@@ -13,14 +13,32 @@ interface Publication {
 }
 
 const MyPublicationsPage: React.FC = () => {
-  const { data: publications, loading, error, remove, fetchAll } = useCrud<Publication>(publicationsService.getMy as any);
+  const [publications, setPublications] = useState<Publication[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
   const [editingPub, setEditingPub] = useState<Publication | null>(null);
 
+  const fetchMy = async () => {
+    setLoading(true);
+    try {
+      const data = await publicationsService.getMy();
+      setPublications(data);
+    } catch (err) {
+      setError('Error al cargar publicaciones');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMy();
+  }, []);
+
   const handleDelete = async (id: string) => {
     if (window.confirm('¿Seguro de eliminar esta publicación?')) {
-      await remove(id);
-      await fetchAll();
+      await publicationsService.remove(id);
+      await fetchMy();
     }
   };
 
@@ -28,7 +46,7 @@ const MyPublicationsPage: React.FC = () => {
     e.preventDefault();
     await publicationsService.update(editingPub!.id, editingPub);
     setEditingPub(null);
-    await fetchAll();
+    await fetchMy();
   };
 
   return (

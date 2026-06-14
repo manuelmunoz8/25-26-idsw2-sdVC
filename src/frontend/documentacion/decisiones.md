@@ -1,4 +1,10 @@
-## [17:30] (14/06/2026) Inclusión obligatoria de authorId en creación de recursos
+## [18:00] (14/06/2026) Estandarización de servicios y manejo de estado de publicaciones
+
+**Decisión:** Obligar a todos los servicios definidos en `serviceInstances.ts` a seguir estrictamente la interfaz `IBaseService`, y utilizar gestión de estado local manual cuando un servicio no mapee directamente a un CRUD estándar (como `getMy`).
+**Motivo:** Resolver `TypeError` en tiempo de ejecución al usar `useCrud` con servicios mal estructurados y garantizar la previsibilidad del estado en los componentes.
+**Impacto:** Se aumenta la robustez del frontend al asegurar que los hooks de estado interactúen correctamente con los servicios API.
+
+---
 
 **Decisión:** Vincular explícitamente el `user.id` del autor a cualquier nuevo recurso creado (como publicaciones) desde el frontend.
 **Motivo:** Corregir errores de validación (400 Bad Request) detectados al omitir el `authorId` en las peticiones POST, cumpliendo con el contrato del backend.
