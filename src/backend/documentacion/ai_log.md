@@ -1,15 +1,11 @@
 # AI Log - Backend
-## [02:30] (14/06/2026) Implementación de creación de proyectos
+## [11:55] (14/06/2026) Resolución de error de build en Render (test files)
 
-**Prompt:** Implementar el endpoint de creación de proyectos en el backend.
+**Prompt:** El deploy de Render fallaba porque `tsc` intentaba compilar archivos `.spec.ts` que tenían dependencias no disponibles en producción.
 
-**Resultado:**
-- Actualizado `ProjectsController` con `create` protegido por `JwtAuthGuard` y `RolesGuard` ('coordinador').
-- Añadido `coordinatorId` a la entidad `Project`.
-- Implementado `createProject` en `ProjectsService` con validación de título único y asignación de `coordinatorId` desde el usuario autenticado y estado por defecto 'draft'.
-- Añadidos tests unitarios para `ProjectsService.createProject`.
+**Resultado:** Se modificó `tsconfig.json` para excluir explícitamente los archivos de pruebas (`**/*.spec.ts`, `**/*.test.ts`) de la compilación.
 
-**Decisión:** Se añade el campo `coordinatorId` obligatorio a la entidad para mantener la trazabilidad de quién creó el proyecto. Se delega la validación de permisos al guard de roles y la asignación del usuario al servicio obteniéndolo de la request.
+**Decisión:** Excluir los archivos de test de la compilación de producción para asegurar que el proceso de build sea exitoso sin requerir las dependencias de desarrollo en el entorno de despliegue.
 
 ---
 

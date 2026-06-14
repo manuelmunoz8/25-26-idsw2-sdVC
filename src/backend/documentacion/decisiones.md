@@ -1,9 +1,18 @@
 # Registro de Decisiones - Backend
 ---
+## [11:55] (14/06/2026) Exclusión de archivos de test del proceso de build
+
+**Decisión:** Excluir explícitamente los archivos de pruebas (`*.spec.ts`, `*.test.ts`) en la configuración del compilador de TypeScript (`tsconfig.json`).
+**Motivo:** Evitar que el proceso de compilación (`tsc` en `npm run build`) intente procesar archivos de test en el entorno de producción. Estos archivos dependen de librerías de test (`@nestjs/testing`, `jest`) que no forman parte de las dependencias de producción, causando fallos en el despliegue de Render.
+**Impacto:** El proceso de build es ahora más limpio y robusto, evitando errores relacionados con dependencias de desarrollo ausentes en producción.
+
+---
 
 ## [02:30] (14/06/2026) Creación de Proyectos y Trazabilidad
 
 **Decisión:** Incluir `coordinatorId` obligatorio en la entidad `Project` y automatizar su asignación en el backend a partir de la sesión.
+...
+
 **Motivo:** Asegurar la trazabilidad completa desde la creación del proyecto, vinculando cada proyecto a su coordinador responsable. Automatizar esta asignación evita errores de entrada del usuario y garantiza la integridad de los datos.
 **Impacto:** Los proyectos ahora quedan correctamente vinculados a su coordinador desde el momento de la creación, cumpliendo con los requisitos de negocio de auditoría.
 
