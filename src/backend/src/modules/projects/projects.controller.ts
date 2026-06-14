@@ -17,6 +17,8 @@ export class ProjectsController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('coordinador')
   findOne(@Param('id', ParseUUIDPipe) id: string): Promise<Project> {
     return this.projectsService.findOne(id);
   }

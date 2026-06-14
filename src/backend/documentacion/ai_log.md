@@ -1,11 +1,14 @@
 # AI Log - Backend
-## [11:55] (14/06/2026) Resolución de error de build en Render (test files)
+## [14:45] (14/06/2026) Implementación de endpoint de consulta detallada de proyecto
 
-**Prompt:** El deploy de Render fallaba porque `tsc` intentaba compilar archivos `.spec.ts` que tenían dependencias no disponibles en producción.
+**Prompt:** Implementar el endpoint GET /projects/:id con relaciones y seguridad.
 
-**Resultado:** Se modificó `tsconfig.json` para excluir explícitamente los archivos de pruebas (`**/*.spec.ts`, `**/*.test.ts`) de la compilación.
+**Resultado:**
+- Actualizada entidad `Project` para incluir relación `ManyToOne` con `User` (`coordinator`).
+- Actualizado `ProjectsService.findOne` para incluir las relaciones `coordinator`, `researchers` y `deliverables`.
+- Protegido el endpoint `GET /projects/:id` en `ProjectsController` con `JwtAuthGuard` y `RolesGuard` ('coordinador').
 
-**Decisión:** Excluir los archivos de test de la compilación de producción para asegurar que el proceso de build sea exitoso sin requerir las dependencias de desarrollo en el entorno de despliegue.
+**Decisión:** Se añade la relación `coordinator` en la entidad para permitir la visualización detallada del responsable del proyecto. Se protege el endpoint para asegurar que solo coordinadores puedan acceder a la información detallada de los proyectos.
 
 ---
 

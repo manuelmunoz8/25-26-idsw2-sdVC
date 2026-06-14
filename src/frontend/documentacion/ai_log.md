@@ -1,4 +1,17 @@
-## [10:00] (14/06/2026) Implementación de funcionalidad 'Crear Nuevo Proyecto'
+## [10:30] (14/06/2026) Implementación de la vista de detalle de proyecto
+
+**Prompt:** "Implementa la vista de detalle de proyecto (abrirProyecto) para el rol de Coordinador..."
+
+**Resultado:**
+- Actualización de `ProjectDetailPage.tsx`:
+    - Incorporación de todos los campos solicitados (ID, Título, Estado, Coordinador, Fechas, Descripción, Objetivos).
+    - Implementación de lógica de carga de datos mediante GET a `/projects/:id`.
+    - Implementación de botones de acción: 'Volver', 'Editar' (placeholder), 'Eliminar' (funcional), 'Abrir Entregables'.
+    - Refactorización de estilos para mantener la estética profesional y cumplir con el wireframe.
+
+**Decisión:** Se ha actualizado el componente para alinearse con los requerimientos de la documentación de diseño del coordinador, garantizando que el usuario disponga de la información completa y las acciones necesarias para la gestión del proyecto.
+
+---
 
 **Prompt:** "Actúa como experto en React y TypeScript. Tu tarea es implementar la funcionalidad de 'Crear Nuevo Proyecto' en el frontend..."
 

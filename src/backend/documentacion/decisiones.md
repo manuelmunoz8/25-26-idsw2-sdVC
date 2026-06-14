@@ -1,8 +1,17 @@
 # Registro de Decisiones - Backend
+## [14:45] (14/06/2026) Relación de Coordinador y Seguridad en Consulta de Proyectos
+
+**Decisión:** Incluir explícitamente la relación `ManyToOne` con `User` (`coordinator`) en `Project` y restringir el acceso a `GET /projects/:id` al rol 'Coordinador'.
+**Motivo:** Se requiere visualizar el responsable del proyecto (coordinador) en la consulta detallada. Además, la información detallada de los proyectos debe estar protegida para acceso exclusivo de coordinadores.
+**Impacto:** Mejora la calidad de la información expuesta por la API y garantiza el cumplimiento de los requisitos de seguridad.
+
 ---
+
 ## [11:55] (14/06/2026) Exclusión de archivos de test del proceso de build
 
 **Decisión:** Excluir explícitamente los archivos de pruebas (`*.spec.ts`, `*.test.ts`) en la configuración del compilador de TypeScript (`tsconfig.json`).
+...
+
 **Motivo:** Evitar que el proceso de compilación (`tsc` en `npm run build`) intente procesar archivos de test en el entorno de producción. Estos archivos dependen de librerías de test (`@nestjs/testing`, `jest`) que no forman parte de las dependencias de producción, causando fallos en el despliegue de Render.
 **Impacto:** El proceso de build es ahora más limpio y robusto, evitando errores relacionados con dependencias de desarrollo ausentes en producción.
 

@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, ManyToMany, JoinTable, OneToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
 import { Deliverable } from '../../deliverables/entities/deliverable.entity';
 
@@ -38,6 +38,10 @@ export class Project {
 
   @Column({ type: 'uuid' })
   coordinatorId!: string;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'coordinatorId' })
+  coordinator!: User;
 
   @CreateDateColumn()
   createdAt!: Date;

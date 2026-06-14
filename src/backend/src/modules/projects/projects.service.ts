@@ -27,7 +27,7 @@ export class ProjectsService extends BaseService<Project> {
   override async findOne(id: string): Promise<Project> {
     const project = await this.projectsRepository.findOne({
       where: { id: id as any },
-      relations: ['researchers', 'deliverables'],
+      relations: ['coordinator', 'researchers', 'deliverables'],
     });
     if (!project) throw new NotFoundException('Project not found');
     return project;

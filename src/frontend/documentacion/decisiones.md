@@ -1,4 +1,10 @@
-## [10:00] (14/06/2026) Implementación de formulario de creación de proyectos
+## [10:30] (14/06/2026) Actualización de la vista de detalle de proyectos
+
+**Decisión:** Refactorizar el componente `ProjectDetailPage` para mostrar información detallada del proyecto y exponer acciones administrativas directas para el Coordinador.
+**Motivo:** Cumplir con los requerimientos definidos en el prototipo `abrirProyecto` para mejorar la gestión de proyectos.
+**Impacto:** El Coordinador ahora puede ver todos los detalles relevantes del proyecto y realizar acciones de edición (placeholder) y eliminación directamente desde esta vista.
+
+---
 
 **Decisión:** Crear un nuevo DTO local (`CreateProjectDto.ts`) para el frontend y una nueva página `CreateProjectPage.tsx` dedicada a la creación de proyectos, evitando dependencias externas fuera de la carpeta `frontend`.
 **Motivo:** Garantizar la autonomía del módulo frontend y cumplir con los requisitos funcionales sin necesidad de modificar o acceder a carpetas restringidas fuera del workspace permitido.
