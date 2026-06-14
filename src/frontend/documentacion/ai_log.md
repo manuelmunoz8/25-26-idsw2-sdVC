@@ -1,4 +1,18 @@
-## [12:00] (14/06/2026) Implementación de funcionalidad 'Agregar Investigador al Equipo'
+## [12:30] (14/06/2026) Implementación de funcionalidad 'Eliminar Investigador del Equipo'
+
+**Prompt:** "Actúa como experto en React. Implementa la funcionalidad de Eliminar Investigador del equipo..."
+
+**Resultado:**
+- Actualización de `src/services/serviceInstances.ts`: Adición del método `removeInvestigator` en `projectsService`.
+- Actualización de `ProjectDetailPage.tsx`:
+    - Incorporación de un botón de eliminación ('X') junto a cada investigador en la lista del equipo.
+    - Implementación de un diálogo de confirmación antes de la eliminación.
+    - Lógica para realizar el DELETE al endpoint `/projects/:id/investigators/:investigatorId`.
+    - Actualización reactiva de la lista de equipo tras una eliminación exitosa.
+
+**Decisión:** Se permite al coordinador retirar investigadores del proyecto de forma segura, garantizando la confirmación explícita del usuario y una respuesta visual inmediata.
+
+---
 
 **Prompt:** "Actúa como experto en React. Implementa la capacidad de Agregar Investigador al equipo del proyecto..."
 

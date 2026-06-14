@@ -50,6 +50,17 @@ const ProjectDetailPage: React.FC = () => {
     }
   };
 
+  const handleRemoveInvestigator = async (invId: string, name: string) => {
+    if (window.confirm(`¿Estás seguro de que deseas eliminar a ${name} de este proyecto?`)) {
+      try {
+        await (projectsService as any).removeInvestigator(id!, invId);
+        await fetchProject(); // Refresh
+      } catch (err) {
+        alert('Error al eliminar investigador.');
+      }
+    }
+  };
+
   const handleDelete = async () => {
     if (window.confirm('¿Estás seguro de eliminar este proyecto?')) {
       try {
@@ -95,7 +106,10 @@ const ProjectDetailPage: React.FC = () => {
           {project.team && project.team.length > 0 ? (
             <ul className="team-list">
               {project.team.map((member: any) => (
-                <li key={member.id}>{member.name} ({member.role})</li>
+                <li key={member.id} className="team-member">
+                  <span>{member.name} ({member.role})</span>
+                  <button className="btn-danger-small" onClick={() => handleRemoveInvestigator(member.id, member.name)}>X</button>
+                </li>
               ))}
             </ul>
           ) : (
@@ -128,9 +142,11 @@ const ProjectDetailPage: React.FC = () => {
         .card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .header-actions { display: flex; gap: 1rem; }
         .add-investigator { display: flex; gap: 1rem; margin-top: 1rem; }
+        .team-member { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
         .btn-primary { background-color: #0a3b64; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; }
         .btn-secondary { background: #eee; border: 1px solid #ccc; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; }
         .btn-danger { background-color: #dc3545; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; }
+        .btn-danger-small { background-color: #dc3545; color: white; border: none; padding: 0.2rem 0.5rem; border-radius: 4px; cursor: pointer; }
       `}</style>
     </div>
   );

@@ -86,8 +86,14 @@ export class ProjectsService extends BaseService<Project> {
 
   async removeResearcher(projectId: string, userId: string): Promise<Project> {
     const project = await this.findOne(projectId);
+    
+    const researcherExists = project.researchers.find(r => r.id === userId);
+    if (!researcherExists) {
+      throw new NotFoundException('El investigador no está vinculado a este proyecto');
+    }
+
     project.researchers = project.researchers.filter(r => r.id !== userId);
     await this.projectsRepository.save(project);
-    return project;
+    return await this.findOne(projectId);
   }
 }

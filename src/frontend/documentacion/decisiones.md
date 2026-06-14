@@ -1,4 +1,10 @@
-## [12:00] (14/06/2026) Implementación de funcionalidad de gestión de equipo (Agregar Investigador)
+## [12:30] (14/06/2026) Implementación de funcionalidad de gestión de equipo (Eliminar Investigador)
+
+**Decisión:** Agregar un botón de eliminación directa a cada miembro del equipo en la lista de `ProjectDetailPage`.
+**Motivo:** Facilitar la gestión del equipo permitiendo al Coordinador retirar investigadores de forma individual y rápida, manteniendo la consistencia con la acción de agregar.
+**Impacto:** El sistema ahora soporta el ciclo de vida completo de la asignación de investigadores a proyectos (asignación y retirada).
+
+---
 
 **Decisión:** Integrar el selector y la lógica de adición de investigadores directamente en la vista de detalle del proyecto (`ProjectDetailPage`).
 **Motivo:** Proporcionar un flujo de gestión directo para el Coordinador, reduciendo la fricción al evitar navegaciones innecesarias y permitiendo una visualización inmediata del equipo actualizado.

@@ -1,13 +1,14 @@
 # AI Log - Backend
-## [17:15] (14/06/2026) Implementación de vinculación de investigadores
+## [17:45] (14/06/2026) Implementación de desvinculación de investigadores
 
-**Prompt:** Implementar el endpoint para vincular investigadores a un proyecto (POST /projects/:id/investigators).
+**Prompt:** Implementar el endpoint para desvincular investigadores de un proyecto (DELETE /projects/:id/investigators/:investigatorId).
 
 **Resultado:**
-- Actualizado endpoint `POST /projects/:id/investigators` en `ProjectsController`.
-- El servicio `addResearcher` ya manejaba la lógica de evitar duplicados y validar existencia, se mantiene.
+- Actualizada la ruta y controlador `DELETE /projects/:id/investigators/:investigatorId`.
+- Actualizado `ProjectsService.removeResearcher` para validar que el investigador esté vinculado al proyecto antes de intentar removerlo; lanza `NotFoundException` si no existe la relación.
+- Protegido el endpoint con `JwtAuthGuard` y `RolesGuard` ('coordinador').
 
-**Decisión:** Se utiliza la relación `ManyToMany` existente entre `Project` y `User`. Se aplica restricción para evitar duplicados en la tabla intermedia validando la existencia en el array de investigadores antes de añadirlo.
+**Decisión:** Se añade una validación previa en el servicio para asegurar que la desvinculación solo ocurra si la relación existe, mejorando la robustez de la API y proporcionando feedback claro en caso de error.
 
 ---
 

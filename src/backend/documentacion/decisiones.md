@@ -1,5 +1,14 @@
 # Registro de Decisiones - Backend
+## [17:45] (14/06/2026) Desvinculación de Investigadores de Proyectos
+
+**Decisión:** Implementar la desvinculación mediante el endpoint `DELETE /projects/:id/investigators/:investigatorId` con validación previa de la existencia de la relación.
+**Motivo:** Asegurar que solo se intenten eliminar relaciones existentes. Proporcionar un error claro (`NotFoundException`) si el investigador no está en el proyecto, mejorando la usabilidad y depuración de la API.
+**Impacto:** Operación segura y robusta sobre la tabla intermedia de la relación ManyToMany.
+
+---
+
 ## [17:15] (14/06/2026) Vinculación de Investigadores a Proyectos
+...
 
 **Decisión:** Utilizar el endpoint `POST /projects/:id/investigators` recibiendo `investigatorId` en el cuerpo, reutilizando la lógica ManyToMany existente.
 **Motivo:** Cumplir con la ruta especificada y asegurar la consistencia en la gestión de relaciones.

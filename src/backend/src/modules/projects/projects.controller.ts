@@ -58,11 +58,13 @@ export class ProjectsController {
     return this.projectsService.addResearcher(id, investigatorId);
   }
 
-  @Delete(':id/researchers/:userId')
+  @Delete(':id/investigators/:investigatorId')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('coordinador')
   removeResearcher(
     @Param('id', ParseUUIDPipe) id: string,
-    @Param('userId', ParseUUIDPipe) userId: string,
+    @Param('investigatorId', ParseUUIDPipe) investigatorId: string,
   ): Promise<Project> {
-    return this.projectsService.removeResearcher(id, userId);
+    return this.projectsService.removeResearcher(id, investigatorId);
   }
 }
