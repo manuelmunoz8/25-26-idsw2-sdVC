@@ -1,4 +1,12 @@
 # Registro de Decisiones - Backend
+## [23:41] (14/06/2026) Implementación de Soft Delete en Publicaciones
+
+**Decisión:** Implementar borrado lógico mediante un campo `isDeleted` de tipo booleano en la entidad `Publication` y actualizar la lógica del servicio para manejar este estado.
+**Motivo:** Garantizar la integridad de los datos, permitir auditorías históricas y mantener la consistencia con el comportamiento de eliminación y la convención técnica de otros módulos (Proyectos, Entregables y Usuarios).
+**Impacto:** Las publicaciones eliminadas ya no se borran físicamente de la base de datos, sino que se marcan como `isDeleted: true`. Se requiere filtrado manual en las consultas del servicio para excluir estos registros.
+
+---
+
 ## [19:00] (14/06/2026) Fix Dependency Injection en DeliverablesModule
 
 **Decisión:** Importar `AuthModule` dentro de `DeliverablesModule` para resolver problemas de inyección de dependencias con `JwtAuthGuard`.

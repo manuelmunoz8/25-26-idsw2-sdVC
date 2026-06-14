@@ -16,7 +16,7 @@ export class PublicationsService extends BaseService<Publication> {
 
   async findAllMain(): Promise<Publication[]> {
     return await this.publicationsRepository.find({
-      where: { parent: null as any },
+      where: { parent: null as any, isDeleted: false },
       relations: ['author', 'replies', 'replies.author'],
       order: { createdAt: 'DESC' },
     });
@@ -24,7 +24,7 @@ export class PublicationsService extends BaseService<Publication> {
 
   async findByUser(userId: string): Promise<Publication[]> {
     return await this.publicationsRepository.find({
-      where: { author: { id: userId } as any },
+      where: { author: { id: userId } as any, isDeleted: false },
       relations: ['author', 'replies'],
       order: { createdAt: 'DESC' },
     });
@@ -32,10 +32,16 @@ export class PublicationsService extends BaseService<Publication> {
 
   async findOneWithReplies(id: string): Promise<Publication> {
     const pub = await this.publicationsRepository.findOne({
-      where: { id },
+      where: { id, isDeleted: false },
       relations: ['author', 'replies', 'replies.author'],
     });
     if (!pub) throw new NotFoundException('Publication not found');
+
+    // Filter out deleted replies manually since TypeORM won't do it automatically for OneToMany without SoftDelete
+    if (pub.replies) {
+        pub.replies = pub.replies.filter(reply => !reply.isDeleted);
+    }
+
     return pub;
   }
 
@@ -59,7 +65,7 @@ export class PublicationsService extends BaseService<Publication> {
 
   async updatePublication(userId: string, id: string, data: UpdatePublicationDto): Promise<Publication> {
     const publication = await this.publicationsRepository.findOne({
-        where: { id },
+        where: { id, isDeleted: false },
         relations: ['author']
     });
     if (!publication) throw new NotFoundException('Publication not found');
@@ -74,7 +80,7 @@ export class PublicationsService extends BaseService<Publication> {
 
   async removePublication(userId: string, id: string): Promise<void> {
     const publication = await this.publicationsRepository.findOne({
-        where: { id },
+        where: { id, isDeleted: false },
         relations: ['author']
     });
     if (!publication) throw new NotFoundException('Publication not found');
@@ -83,6 +89,7 @@ export class PublicationsService extends BaseService<Publication> {
         throw new UnauthorizedException('No tienes permiso para eliminar esta publicación');
     }
 
-    await this.publicationsRepository.remove(publication);
+    publication.isDeleted = true;
+    await this.publicationsRepository.save(publication);
   }
 }

@@ -21,6 +21,9 @@ export class Publication {
   @OneToMany(() => Publication, (publication) => publication.parent)
   replies!: Publication[];
 
+  @Column({ type: 'boolean', default: false })
+  isDeleted!: boolean;
+
   @CreateDateColumn()
   createdAt!: Date;
 

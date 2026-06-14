@@ -34,8 +34,29 @@
 
 ---
 
+## [23:45] (14/06/2026) Fix: Persistencia del campo 'department' en usuarios
 
-## [16:30] (14/06/2026) Implementación de Soft Delete y Aprobaciones
+**Prompt:** "Ok hay un error a la hora de crear nuevos usuarios, el campo de departamento en el frontend recibe un valor pero en la base de datos este no se muestra..."
+
+**Resultado:**
+- Identificado que el campo `department` no estaba incluido en `CreateUserDto` ni en `UpdateUserDto`.
+- Añadido el campo `department` como opcional y validado como string en ambos DTOs.
+
+**Decisión:** Se corrigen los DTOs de usuario para incluir el campo `department`, permitiendo que el valor enviado desde el frontend sea capturado por NestJS y persistido correctamente en la base de datos a través del servicio.
+
+---
+
+**Prompt:** "¿Cuando el usuario le da eliminar a una publicacion suya, este se elimina de forma definitiva de la DB? ... Puedes hacer eso porfavor (implementar soft delete)"
+
+**Resultado:**
+- Actualizada entidad `Publication` para incluir `isDeleted: boolean`.
+- Actualizado `PublicationsService` para filtrar registros donde `isDeleted: false` en `findAllMain`, `findByUser`, `findOneWithReplies` y `updatePublication`.
+- Actualizado `PublicationsService.removePublication` para establecer `isDeleted = true`.
+- Implementado filtrado manual de respuestas eliminadas en `findOneWithReplies`.
+
+**Decisión:** Se implementa borrado lógico en publicaciones mediante un campo booleano `isDeleted` para mantener la consistencia con el resto de módulos del sistema (Proyectos, Usuarios, Entregables), siguiendo la convención establecida en el proyecto.
+
+---
 
 **Prompt:** "Implementa un flujo de borrado lógico (Soft Delete) y un sistema de aprobación para el Coordinador."
 
