@@ -7,6 +7,14 @@
 
 ---
 
+## [19:30] (14/06/2026) Implementación de Soft Delete en Entregables
+
+**Decisión:** Implementar borrado lógico mediante el campo `isDeleted` en la entidad `Deliverable` y actualizar los métodos de consulta y eliminación en `DeliverablesService` y `DeliverablesController`.
+**Motivo:** Mantener la consistencia con el módulo de Proyectos y permitir la auditoría de entregables eliminados accidentalmente.
+**Impacto:** Operación de eliminación segura y recuperable.
+
+---
+
 ## [19:15] (14/06/2026) Auditoría en Edición de Entregables
 
 **Decisión:** Registrar automáticamente la fecha de aprobación (`approvedAt`) al actualizar el estado de un entregable a 'approved'.

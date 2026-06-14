@@ -28,6 +28,9 @@ export class Deliverable {
   @ManyToOne(() => Project, (project) => project.deliverables, { onDelete: 'CASCADE' })
   project!: Project;
 
+  @Column({ type: 'boolean', default: false })
+  isDeleted!: boolean;
+
   @CreateDateColumn()
   createdAt!: Date;
 

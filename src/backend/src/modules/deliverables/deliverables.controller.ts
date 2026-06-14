@@ -37,6 +37,6 @@ export class DeliverablesController {
 
   @Delete(':id')
   remove(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
-    return this.deliverablesService.remove(id);
+    return this.deliverablesService.softDelete(id);
   }
 }

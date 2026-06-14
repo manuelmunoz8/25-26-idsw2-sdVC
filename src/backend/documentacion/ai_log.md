@@ -1,14 +1,15 @@
 # AI Log - Backend
-## [19:15] (14/06/2026) Implementación de edición de entregables
+## [19:30] (14/06/2026) Implementación de Soft Delete en Entregables
 
-**Prompt:** Implementar la funcionalidad de Edición de Entregables (PATCH /deliverables/:id).
+**Prompt:** Implementar un soft delete con los entregables.
 
 **Resultado:**
-- Actualizada entidad `Deliverable` para incluir `approvedAt` (`timestamp`, `nullable`).
-- Actualizado `DeliverablesService.updateDeliverable` para permitir actualizaciones parciales, validar que no se modifique el proyecto asociado y registrar automáticamente `approvedAt` cuando el estado cambia a 'approved'.
-- Endpoint protegido y funcional con `UpdateDeliverableDto`.
+- Añadida columna `isDeleted` (`boolean`, default: `false`) a la entidad `Deliverable`.
+- Actualizados métodos `findByProject` y `findOne` en `DeliverablesService` para filtrar por `isDeleted: false`.
+- Implementado método `softDelete` en `DeliverablesService`.
+- Actualizado endpoint `DELETE /deliverables/:id` en `DeliverablesController`.
 
-**Decisión:** Se añade el campo `approvedAt` para auditoría interna del ciclo de vida del entregable. Se mantiene la lógica de actualización parcial mediante `Object.assign`.
+**Decisión:** Se extiende la lógica de borrado lógico aplicada en Proyectos hacia el módulo de Entregables para mantener la consistencia en el manejo de eliminación de recursos y permitir auditorías.
 
 ---
 

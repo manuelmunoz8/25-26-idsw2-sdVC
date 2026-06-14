@@ -19,7 +19,7 @@ export class DeliverablesService extends BaseService<Deliverable> {
 
   async findByProject(projectId: string): Promise<Deliverable[]> {
     return await this.deliverablesRepository.find({
-      where: { project: { id: projectId } as any },
+      where: { project: { id: projectId } as any, isDeleted: false },
       order: { dueDate: 'ASC' },
     });
   }
@@ -63,9 +63,15 @@ export class DeliverablesService extends BaseService<Deliverable> {
     return await this.deliverablesRepository.save(deliverable);
   }
 
+  async softDelete(id: string): Promise<void> {
+    const deliverable = await this.findOne(id);
+    deliverable.isDeleted = true;
+    await this.deliverablesRepository.save(deliverable);
+  }
+
   override async findOne(id: string): Promise<Deliverable> {
     const deliverable = await this.deliverablesRepository.findOne({
-        where: { id: id as any },
+        where: { id: id as any, isDeleted: false },
         relations: ['project']
     });
     if (!deliverable) throw new NotFoundException('Entregable no encontrado');
