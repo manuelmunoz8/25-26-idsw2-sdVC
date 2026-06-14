@@ -14,6 +14,10 @@ export class CreateUserDto {
   @IsNotEmpty()
   name!: string;
 
+  @IsString()
+  @IsOptional()
+  department?: string;
+
   @IsEnum(['investigador', 'coordinador'])
   @IsOptional()
   role?: string;
