@@ -1,5 +1,20 @@
 # AI Log - Backend
 
+## [16:30] (14/06/2026) Implementación de Soft Delete y Aprobaciones
+
+**Prompt:** "Implementa un flujo de borrado lógico (Soft Delete) y un sistema de aprobación para el Coordinador."
+
+**Resultado:** 
+- Entidad `User`: Añadido `isDeleted` (boolean).
+- `UsersService.create`: Lógica de reactivación si el email ya existe pero está marcado como `isDeleted`.
+- `UsersService.findAll`: Filtrado por defecto para excluir usuarios eliminados, con opción `includeDeleted`.
+- `UsersController`: Añadidos endpoints `POST /api/users/:id/approve-deletion` y `POST /api/users/:id/deny-deletion`, protegidos para coordinadores.
+- `UsersService`: Implementada lógica de aprobación (`isDeleted = true`) y denegación (`isDeleted = false`).
+
+**Decisión:** Se implementa borrado lógico para auditoría y recuperación, delegando la acción final al coordinador mediante un sistema de aprobación explícita.
+
+---
+
 ## [15:00] (13/06/2026) Implementación de campo 'department' en usuarios
 
 **Prompt:** "Haz que en la base de datos se pueda guardar el departamente asociado al usuario a crear como un string"

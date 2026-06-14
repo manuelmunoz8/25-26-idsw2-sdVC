@@ -18,6 +18,9 @@ export class User {
   @Column({ type: 'text', nullable: true })
   department?: string;
 
+  @Column({ type: 'boolean', default: false })
+  isDeleted!: boolean;
+
   @Column({
     type: 'enum',
     enum: ['investigador', 'coordinador'],

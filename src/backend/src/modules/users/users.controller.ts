@@ -12,7 +12,6 @@ export class UsersController {
   ) {}
 
   private async validateRequest(req: any) {
-    // LEER EL ENCABEZADO AUTHORIZATION
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       throw new UnauthorizedException('No token provided');
@@ -30,20 +29,35 @@ export class UsersController {
   }
 
   @Get()
-  findAll(@Query('role') role?: string): Promise<User[]> {
-    return this.usersService.findAll(role);
+  findAll(@Query('role') role?: string, @Query('includeDeleted') includeDeleted?: boolean): Promise<User[]> {
+    return this.usersService.findAll(role, includeDeleted);
   }
 
   @Get('deletion-requests')
   async findDeletionRequests(@Req() req: any): Promise<User[]> {
     const user = await this.validateRequest(req);
-    console.log('Recibida petición GET /users/deletion-requests');
-    console.log('Usuario validado:', user);
     if (user.role !== 'coordinador') {
-      console.log('Acceso denegado: rol no es coordinador');
       throw new ForbiddenException('Solo los coordinadores pueden ver las solicitudes de eliminación.');
     }
     return this.usersService.findDeletionRequests();
+  }
+
+  @Post(':id/approve-deletion')
+  async approveDeletion(@Param('id', ParseUUIDPipe) id: string, @Req() req: any): Promise<User> {
+    const user = await this.validateRequest(req);
+    if (user.role !== 'coordinador') {
+      throw new ForbiddenException('Solo los coordinadores pueden aprobar solicitudes.');
+    }
+    return this.usersService.approveDeletion(id);
+  }
+
+  @Post(':id/deny-deletion')
+  async denyDeletion(@Param('id', ParseUUIDPipe) id: string, @Req() req: any): Promise<User> {
+    const user = await this.validateRequest(req);
+    if (user.role !== 'coordinador') {
+      throw new ForbiddenException('Solo los coordinadores pueden denegar solicitudes.');
+    }
+    return this.usersService.denyDeletion(id);
   }
 
   @Get(':id')

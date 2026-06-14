@@ -1,6 +1,14 @@
 # Registro de Decisiones - Backend
 ---
 
+## [16:35] (14/06/2026) Flujo de Borrado Lógico y Aprobaciones
+
+**Decisión:** Implementar borrado lógico mediante `isDeleted` en lugar de eliminación física y establecer un sistema de aprobación por parte del Coordinador.
+**Motivo:** Requisito de auditoría y gestión de estado. Los perfiles no deben desaparecer instantáneamente para permitir auditorías y evitar errores de borrado accidental, siendo el Coordinador el encargado de autorizar la baja definitiva.
+**Impacto:** Mejora la integridad de los datos y proporciona un control administrativo sobre la baja de investigadores.
+
+---
+
 ## [15:05] (13/06/2026) Inclusión de campo 'department' en esquema de Usuario
 
 **Decisión:** Añadir el campo opcional `department` (tipo `string`) en la entidad `User` y actualizar los DTOs correspondientes.

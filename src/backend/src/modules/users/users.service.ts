@@ -32,7 +32,6 @@ export class UsersService implements OnModuleInit {
       await this.usersRepository.save(admin);
       console.log('Usuario administrador creado con éxito.');
     } else {
-      // Verificar si la contraseña actual coincide con la nueva (codificada)
       const isMatch = await bcrypt.compare(rawPassword, existing.password);
       if (!isMatch) {
         console.log('Actualizando contraseña de administrador por cambio en codificación frontend...');
@@ -46,13 +45,23 @@ export class UsersService implements OnModuleInit {
   async findByEmail(email: string): Promise<User | null> {
     return await this.usersRepository.findOne({ 
       where: { email }, 
-      select: ['id', 'email', 'password', 'role', 'name', 'department'] 
+      select: ['id', 'email', 'password', 'role', 'name', 'department', 'isDeleted'] 
     });
   }
 
   async create(userData: Partial<User>): Promise<User> {
     const existing = await this.findByEmail(userData.email!);
-    if (existing) throw new ConflictException('User already exists');
+    if (existing) {
+      if (existing.isDeleted) {
+        const updatedData = { ...existing, ...userData, isDeleted: false, deletionRequested: false };
+        if (updatedData.password) {
+            updatedData.password = await bcrypt.hash(updatedData.password, 10);
+        }
+        await this.usersRepository.update(existing.id, updatedData);
+        return this.findOne(existing.id);
+      }
+      throw new ConflictException('User already exists');
+    }
     
     if (userData.password) {
       userData.password = await bcrypt.hash(userData.password, 10);
@@ -62,8 +71,10 @@ export class UsersService implements OnModuleInit {
     return await this.usersRepository.save(user);
   }
 
-  async findAll(role?: string): Promise<User[]> {
-    const where = role ? { role } : {};
+  async findAll(role?: string, includeDeleted: boolean = false): Promise<User[]> {
+    const where: any = {};
+    if (role) where.role = role;
+    if (!includeDeleted) where.isDeleted = false;
     return await this.usersRepository.find({ where });
   }
 
@@ -82,15 +93,20 @@ export class UsersService implements OnModuleInit {
   }
 
   async requestDeletion(id: string): Promise<void> {
-    console.log(`Solicitando eliminación para el usuario: ${id}`);
-    const result = await this.usersRepository.update(id, { deletionRequested: true });
-    console.log(`Resultado de la actualización:`, result);
+    await this.usersRepository.update(id, { deletionRequested: true });
+  }
+
+  async approveDeletion(id: string): Promise<User> {
+    await this.usersRepository.update(id, { isDeleted: true, deletionRequested: false });
+    return this.findOne(id);
+  }
+
+  async denyDeletion(id: string): Promise<User> {
+    await this.usersRepository.update(id, { isDeleted: false, deletionRequested: false });
+    return this.findOne(id);
   }
 
   async findDeletionRequests(): Promise<User[]> {
-    console.log('Buscando solicitudes de eliminación...');
-    const requests = await this.usersRepository.find({ where: { deletionRequested: true } });
-    console.log(`Solicitudes encontradas: ${requests.length}`);
-    return requests;
+    return await this.usersRepository.find({ where: { deletionRequested: true, isDeleted: false } });
   }
 }
