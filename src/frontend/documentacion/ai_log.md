@@ -1,4 +1,14 @@
-## [17:00] (14/06/2026) Implementación de CRUD completo para publicaciones del autor
+## [17:30] (14/06/2026) Corrección: Inclusión de authorId en creación de publicaciones
+
+**Prompt:** "Hay algun error a la hora de crear la publicacion debido a que el id del author no se pasa..."
+
+**Resultado:**
+- Identificación de error 400 al crear publicación por falta de `authorId`.
+- Actualización de `CreatePublicationPage.tsx`: Uso del hook `useAuth` para recuperar el `user.id` del usuario autenticado e incluirlo en la petición POST a `/api/publications`.
+
+**Decisión:** Asegurar que el ID del autor esté siempre presente en la creación de publicaciones, vinculando la publicación al usuario actual de manera explícita para cumplir con los requerimientos de validación del backend.
+
+---
 
 **Prompt:** "Implementa el CRUD completo para el autor en MyPublicationsPage.tsx."
 

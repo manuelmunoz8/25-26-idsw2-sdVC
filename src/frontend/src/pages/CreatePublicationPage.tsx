@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { publicationsService } from '../services/serviceInstances';
+import { useAuth } from '../context/AuthContext';
 
 const CreatePublicationPage: React.FC = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [formData, setFormData] = useState({ title: '', summary: '', content: '' });
   const [submitting, setSubmitting] = useState(false);
 
@@ -11,10 +13,13 @@ const CreatePublicationPage: React.FC = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      await publicationsService.create(formData);
+      if (!user?.id) throw new Error('Usuario no autenticado');
+      
+      await publicationsService.create({ ...formData, authorId: user.id });
       navigate('/my-publications');
     } catch (err) {
       alert('Error al crear la publicación');
+      console.error(err);
     } finally {
       setSubmitting(false);
     }

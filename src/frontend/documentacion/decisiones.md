@@ -1,4 +1,10 @@
-## [17:00] (14/06/2026) Implementación de CRUD de publicaciones
+## [17:30] (14/06/2026) Inclusión obligatoria de authorId en creación de recursos
+
+**Decisión:** Vincular explícitamente el `user.id` del autor a cualquier nuevo recurso creado (como publicaciones) desde el frontend.
+**Motivo:** Corregir errores de validación (400 Bad Request) detectados al omitir el `authorId` en las peticiones POST, cumpliendo con el contrato del backend.
+**Impacto:** Se asegura la integridad de los datos de autoría en el sistema y se cumplen los requisitos de seguridad/validación del backend.
+
+---
 
 **Decisión:** Utilizar un modal para la funcionalidad de edición en `MyPublicationsPage`.
 **Motivo:** Mejorar la experiencia de usuario (UX) al evitar navegaciones innecesarias, manteniendo al autor en el contexto de sus publicaciones mientras realiza ediciones rápidas.
