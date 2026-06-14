@@ -5,7 +5,7 @@ import { CreateDeliverableDto, UpdateDeliverableDto } from '@dtos/deliverable.dt
 // ... (existing services) ...
 
 export const deliverablesService = {
-  findAllByProject: async (projectId: string) => (await api.get(`/api/projects/${projectId}/deliverables`)).data,
+  findAllByProject: async (projectId: string) => (await api.get(`/api/deliverables/project/${projectId}`)).data,
   findOne: async (id: string) => (await api.get(`/api/deliverables/${id}`)).data,
   create: async (dto: CreateDeliverableDto) => (await api.post('/api/deliverables', dto)).data,
   update: async (id: string, dto: UpdateDeliverableDto) => (await api.patch(`/api/deliverables/${id}`, dto)).data,

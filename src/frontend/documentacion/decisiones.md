@@ -1,4 +1,10 @@
-## [15:00] (14/06/2026) Implementación de funcionalidad de edición de entregables
+## [16:00] (14/06/2026) Corrección de endpoint API para entregables
+
+**Decisión:** Actualizar el endpoint de listado de entregables de `/api/projects/:projectId/deliverables` a `/api/deliverables/project/:projectId`.
+**Motivo:** Corregir la discrepancia con la implementación real del backend según la información proporcionada.
+**Impacto:** Se restaura la comunicación correcta con el backend, permitiendo la visualización de los entregables del proyecto.
+
+---
 
 **Decisión:** Crear una página dedicada `EditDeliverablePage` que carga el estado inicial a partir de los datos existentes del entregable.
 **Motivo:** Proporcionar una experiencia de usuario consistente, reutilizando la estructura del formulario de creación y permitiendo la actualización atómica de campos mediante PATCH.

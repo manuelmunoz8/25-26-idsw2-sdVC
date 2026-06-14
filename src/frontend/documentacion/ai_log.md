@@ -1,4 +1,14 @@
-## [15:00] (14/06/2026) Implementación de funcionalidad 'Editar Entregable'
+## [16:00] (14/06/2026) Corrección de ruta de API para listado de entregables
+
+**Prompt:** "estoy en la pagina de entregables de un proyecto y no me aparece ninguno... aqui esta la ruta que me paso el backend: GET /api/deliverables/project/:projectId"
+
+**Resultado:**
+- Identificación de discrepancia: El frontend utilizaba `/api/projects/${projectId}/deliverables` en lugar de la ruta correcta proporcionada por el backend `/api/deliverables/project/${projectId}`.
+- Actualización de `deliverablesService.findAllByProject` en `serviceInstances.ts` con la ruta correcta.
+
+**Decisión:** Se ha corregido la ruta de la API para sincronizarla con el backend, permitiendo que la página de entregables recupere correctamente los datos del proyecto.
+
+---
 
 **Prompt:** "Actúa como experto en React. Implementa la vista de Edición de Entregable para el Coordinador..."
 
