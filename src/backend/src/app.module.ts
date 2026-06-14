@@ -7,6 +7,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { DeliverablesModule } from './modules/deliverables/deliverables.module';
 import { PublicationsModule } from './modules/publications/publications.module';
 import { RewardsModule } from './modules/rewards/rewards.module';
+import { WorkloadModule } from './modules/workload/workload.module';
 
 @Module({
   imports: [
@@ -49,6 +50,7 @@ import { RewardsModule } from './modules/rewards/rewards.module';
     DeliverablesModule,
     PublicationsModule,
     RewardsModule,
+    WorkloadModule,
   ],
   controllers: [],
   providers: [],

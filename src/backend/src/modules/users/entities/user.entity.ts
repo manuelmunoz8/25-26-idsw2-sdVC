@@ -32,10 +32,13 @@ export class User {
   deletionRequested!: boolean;
 
   @Column({ type: 'float', default: 0 })
-  weeklyWorkload!: number;
+  teachingHours!: number;
 
   @Column({ type: 'float', default: 0 })
-  totalWorkload!: number;
+  researchHours!: number;
+
+  @Column({ type: 'float', default: 0 })
+  academicHours!: number;
 
   @ManyToMany(() => Project, (project) => project.researchers)
   projects!: Project[];

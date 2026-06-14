@@ -34,7 +34,35 @@
 
 ---
 
-## [00:06] (15/06/2026) Implementación Completa del Módulo de Recompensas (Rewards)
+## [00:26] (15/06/2026) Implementación de Edición de Recompensas
+
+**Prompt:** "Actúa como experto en NestJS. Implementa la funcionalidad de Edición de Recompensas... PUT /rewards/:id... UpdateRewardDto... Verifica que exista... Coordinador... Documenta..."
+
+**Resultado:**
+- Confirmada implementación de `PUT /rewards/:id` en `RewardsController` utilizando `UpdateRewardDto`.
+- El servicio `RewardsService` hereda de `BaseService`, el cual incluye validación de existencia (`findOne`) antes de proceder con el `update`.
+- El controlador está protegido con `@Roles('coordinador')` para asegurar que solo usuarios con dicho rol puedan editar recompensas.
+- Sincronizado `UpdateRewardDto` en la carpeta compartida externa para evitar fallos de despliegue.
+
+**Decisión:** Se utiliza el flujo estándar de `BaseService` para garantizar consistencia en la validación de existencia de recursos. La seguridad se gestiona a nivel de controlador mediante decoradores de roles, simplificando la lógica del servicio.
+
+---
+
+**Prompt:** "Actúa como experto en NestJS. Implementa la lógica de Carga de Trabajo vinculada a los Investigadores... teachingHours... researchHours... academicHours... Endpoints... Documenta..."
+
+**Resultado:**
+- Actualizada entidad `User` para incluir `teachingHours`, `researchHours` y `academicHours`, eliminando los campos obsoletos `weeklyWorkload` y `totalWorkload`.
+- Creado `WorkloadModule` con `WorkloadController` y `WorkloadService`.
+- Implementados endpoints:
+    - `GET /workload/me`: Obtiene las horas del propio investigador.
+    - `GET /workload/:investigatorId`: Obtiene las horas de un investigador específico.
+    - `PUT /workload/:investigatorId`: Actualiza las horas (restringido a 'coordinador').
+- Creado `UpdateWorkloadDto` en la carpeta compartida `../dtos/` para sincronización con el frontend y evitar fallos de build en Render.
+- Registrado `WorkloadModule` en `AppModule`.
+
+**Decisión:** Se opta por integrar las horas directamente en la entidad `User` para simplificar las consultas y el modelo de datos, ya que estas horas son atributos intrínsecos del perfil del investigador en este sistema. Se utiliza RBAC para asegurar que solo los coordinadores puedan modificar la carga de trabajo ajena.
+
+---
 
 **Prompt:** "Actúa como experto en NestJS. Completa el módulo de Recompensas (rewards)... CRUD completo... DTO... Seguridad & Roles... Persistencia... Documenta..."
 

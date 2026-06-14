@@ -8,3 +8,4 @@ export * from './publication.dto';
 export * from './update-publication.dto';
 export * from './update-user.dto';
 export * from './create-user.dto';
+export * from './workload.dto';

@@ -1,4 +1,18 @@
-## [20:00] (14/06/2026) Alineación de modelos de datos frontend-backend
+## [18:45] (14/06/2026) Implementación de funcionalidad de edición de recompensas
+
+**Decisión:** Crear una página dedicada `EditRewardPage` que carga el estado inicial a partir de los datos existentes de la recompensa.
+**Motivo:** Proporcionar una experiencia de usuario consistente, reutilizando la estructura del formulario de creación y permitiendo la actualización atómica de campos.
+**Impacto:** El sistema permite ahora una gestión completa del ciclo de vida de las recompensas (Crear, Editar, Eliminar).
+
+---
+## [19:30] (14/06/2026) Sincronización de DTOs para persistencia de campos
+
+**Decisión:** Sincronizar el DTO de creación de usuario en el frontend con la entidad del backend para permitir la persistencia del campo departamento.
+**Motivo:** Corregir la omisión del campo `department` en `CreateUserDto` en el frontend, lo cual impedía que el backend recibiera y procesara dicho campo.
+**Impacto:** Se permite correctamente el guardado del campo departamento al crear nuevos usuarios.
+
+---
+
 
 **Decisión:** Ajustar estrictamente las interfaces de los modelos en el frontend a la estructura real de las entidades devueltas por el backend, reemplazando tipos planos por objetos anidados cuando sea necesario.
 **Motivo:** Evitar errores de renderizado de React (como el Error #31) derivados de intentos de acceder a propiedades mal definidas o inexistentes.

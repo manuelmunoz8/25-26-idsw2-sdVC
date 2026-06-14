@@ -1,4 +1,20 @@
 # Registro de Decisiones - Backend
+## [00:26] (15/06/2026) Validación de Existencia y Seguridad en Edición de Recompensas
+
+**Decisión:** Utilizar el método `update` heredado de `BaseService` para la edición de recompensas, asegurando una validación previa de existencia.
+**Motivo:** Garantizar que no se intenten actualizar registros inexistentes, retornando un `404 Not Found` en lugar de un error de base de datos. La seguridad se centraliza en el controlador para mantener la lógica de negocio desacoplada de los roles.
+**Impacto:** Flujo de actualización robusto, seguro y consistente con el resto de la API.
+
+---
+
+## [00:26] (15/06/2026) Centralización de Atributos de Carga de Trabajo en Entidad User
+
+**Decisión:** Incluir `teachingHours`, `researchHours` y `academicHours` directamente en la entidad `User` en lugar de crear una entidad separada.
+**Motivo:** Estas horas son atributos fundamentales del perfil del investigador. Mantenerlas en la tabla `users` reduce la complejidad de los JOINs y facilita la gestión de perfiles, alineándose con la simplicidad requerida por el análisis RUP.
+**Impacto:** Los servicios que consultan perfiles de usuario tienen acceso inmediato a la carga de trabajo sin peticiones adicionales a la base de datos.
+
+---
+
 ## [00:06] (15/06/2026) Implementación de Seguridad y RBAC en Módulo de Recompensas
 
 **Decisión:** Restringir operaciones de escritura en `RewardsController` exclusivamente al rol 'coordinador' mediante `@Roles('coordinador')` y `RolesGuard`.

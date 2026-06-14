@@ -1,4 +1,32 @@
-## [20:45] (14/06/2026) Corrección: TypeError en MyPublicationsPage
+## [18:45] (14/06/2026) Implementación de funcionalidad 'Editar Recompensa'
+
+**Prompt:** "Actúa como experto en React. Implementa la interfaz de Edición de Recompensa."
+
+**Resultado:**
+- Creación de `EditRewardPage.tsx`:
+    - Carga inicial mediante GET `/api/rewards/:id`.
+    - Formulario con campos Título, Descripción y Valor (Puntos).
+    - Envío mediante PUT a `/api/rewards/:id`.
+    - Redirección al listado tras éxito.
+- Actualización de `App.tsx` con la ruta `/rewards/:id/edit`.
+- Actualización de `RewardsPage.tsx` para vincular el botón 'Editar' a la ruta de edición.
+
+**Decisión:** Se ha completado la funcionalidad de edición, alineándola con el flujo CRUD del proyecto y restringiendo las acciones a usuarios con rol coordinador.
+
+---
+## [19:30] (14/06/2026) Corrección: Campo 'department' no se guardaba en creación de usuarios
+
+**Prompt:** "Ok necesito que revises como se le pasa al backend el campo de departamento de un nuevo usuario en su creacion, he creado uno y este no se guarda"
+
+**Resultado:**
+- Identificación de que el `CreateUserDto` en el frontend (`../dtos/create-user.dto.ts`) no incluía el campo `department`.
+- Actualización de `CreateUserDto` para incluir el campo `department` como opcional.
+- Verificación en `InvestigatorsPage.tsx`: El campo ya estaba incluido en el formulario y en el estado, por lo que con la actualización del DTO, el backend ahora debería recibirlo y procesarlo.
+
+**Decisión:** Sincronizar el DTO de creación de usuario en el frontend con la entidad del backend para permitir la persistencia del campo departamento.
+
+---
+
 
 **Prompt:** "Ok el usario no puede ver sus propias publicaciones... TypeError: za.getMy is not a function"
 

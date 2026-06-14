@@ -68,7 +68,7 @@ const RewardsPage: React.FC = () => {
                 <p>{reward.description}</p>
                 {user?.role === 'coordinador' && (
                   <div className="reward-actions">
-                    <button className="btn-small" onClick={() => { setEditingReward(reward); setFormData({title: reward.title, value: reward.value, description: reward.description}); }}>Editar</button>
+                    <button className="btn-small" onClick={() => navigate(`/rewards/${reward.id}/edit`)}>Editar</button>
                     <button className="btn-small btn-danger" onClick={() => handleDelete(reward.id)}>Eliminar</button>
                   </div>
                 )}

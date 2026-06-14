@@ -15,6 +15,7 @@ import ProfilePage from './pages/ProfilePage';
 import ProfileDeletionRequestsPage from './pages/ProfileDeletionRequestsPage';
 import CreatePublicationPage from './pages/CreatePublicationPage';
 import PublicationDetailPage from './pages/PublicationDetailPage';
+import EditRewardPage from './pages/EditRewardPage';
 import EditDeliverablePage from './pages/EditDeliverablePage';
 import CreateDeliverablePage from './pages/CreateDeliverablePage';
 import EditProjectPage from './pages/EditProjectPage';
@@ -60,6 +61,7 @@ const App: React.FC = () => {
             <Route path="my-publications" element={<MyPublicationsPage />} />
             <Route path="my-publications/new" element={<CreatePublicationPage />} />
             <Route path="rewards" element={<RewardsPage />} />
+            <Route path="rewards/:id/edit" element={<EditRewardPage />} />
             <Route path="workload" element={<WorkloadPage />} />
             <Route path="profile" element={<ProfilePage />} />
             <Route path="profile/deletion-requests" element={<ProfileDeletionRequestsPage />} />
