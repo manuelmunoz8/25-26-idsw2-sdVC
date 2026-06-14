@@ -6,10 +6,8 @@ import { useAuth } from '../context/AuthContext';
 interface Publication {
   id: string;
   title: string;
-  date: string;
-  status: string;
-  summary: string;
   content: string;
+  createdAt: string;
 }
 
 const MyPublicationsPage: React.FC = () => {
@@ -25,7 +23,6 @@ const MyPublicationsPage: React.FC = () => {
     setLoading(true);
     try {
       const data = await publicationsService.getMy(user.id);
-      console.log("DEBUG: MyPublications data", data);
       setPublications(Array.isArray(data) ? data : []);
     } catch (err) {
       setError('Error al cargar publicaciones');
@@ -49,7 +46,10 @@ const MyPublicationsPage: React.FC = () => {
 
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
-    await publicationsService.update(editingPub!.id, editingPub);
+    await publicationsService.update(editingPub!.id, {
+      title: editingPub!.title,
+      content: editingPub!.content
+    });
     setEditingPub(null);
     await fetchMy();
   };
@@ -66,6 +66,7 @@ const MyPublicationsPage: React.FC = () => {
           {publications.map(pub => (
             <div key={pub.id} className="publication-card">
               <h3>{pub.title}</h3>
+              <p>Creada el {new Date(pub.createdAt).toLocaleDateString()}</p>
               <div className="pub-actions">
                 <button className="btn-small" onClick={() => setEditingPub(pub)}>Editar</button>
                 <button className="btn-small btn-danger" onClick={() => handleDelete(pub.id)}>Eliminar</button>
@@ -80,7 +81,7 @@ const MyPublicationsPage: React.FC = () => {
           <form onSubmit={handleUpdate} className="card">
             <h3>Editar Publicación</h3>
             <input type="text" value={editingPub.title} onChange={e => setEditingPub({...editingPub, title: e.target.value})} />
-            <textarea value={editingPub.summary} onChange={e => setEditingPub({...editingPub, summary: e.target.value})} />
+            <textarea value={editingPub.content} onChange={e => setEditingPub({...editingPub, content: e.target.value})} />
             <button type="submit" className="btn-primary">Guardar</button>
             <button type="button" onClick={() => setEditingPub(null)}>Cancelar</button>
           </form>
