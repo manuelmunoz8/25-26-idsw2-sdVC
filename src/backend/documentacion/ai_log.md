@@ -34,7 +34,16 @@
 
 ---
 
-## [00:35] (15/06/2026) Implementación de Borrado Lógico en Recompensas
+## [00:43] (15/06/2026) Fix: Build Error en RewardsService (Import faltante)
+
+**Prompt:** "Error en deploy de render... rewards.service.ts(27,28): error TS2304: Cannot find name 'NotFoundException'."
+
+**Resultado:**
+- Añadido el import faltante `NotFoundException` desde `@nestjs/common` en `src/modules/rewards/rewards.service.ts`.
+
+**Decisión:** Corrección técnica para resolver el fallo de compilación TypeScript reportado por Render.
+
+---
 
 **Prompt:** "Actúa como experto en NestJS. Implementa la funcionalidad de Eliminar Recompensa... DELETE /rewards/:id... Restringida al Coordinador... Not Found si no existe..."
 
