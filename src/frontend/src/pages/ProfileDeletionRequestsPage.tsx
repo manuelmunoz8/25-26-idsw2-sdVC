@@ -12,27 +12,51 @@ interface DeletionRequest {
 const ProfileDeletionRequestsPage: React.FC = () => {
   const [requests, setRequests] = useState<DeletionRequest[]>([]);
   const [loading, setLoading] = useState(true);
+  const [feedback, setFeedback] = useState<{message: string, isError: boolean} | null>(null);
+
+  const fetchRequests = async () => {
+    setLoading(true);
+    try {
+      const data = await profileService.getDeletionRequests();
+      setRequests(data);
+    } catch (error) {
+      console.error('Error fetching deletion requests', error);
+      setFeedback({message: 'Error al cargar las solicitudes.', isError: true});
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchRequests = async () => {
-      try {
-        const data = await profileService.getDeletionRequests();
-        console.log('Datos recibidos de la API:', data); // Log para depuración
-        setRequests(data);
-      } catch (error) {
-        console.error('Error fetching deletion requests', error);
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchRequests();
   }, []);
+
+  const handleAction = async (userId: string, action: 'approve' | 'deny') => {
+    try {
+      if (action === 'approve') {
+        await profileService.approveDeletion(userId);
+      } else {
+        await profileService.denyDeletion(userId);
+      }
+      setFeedback({message: `Solicitud ${action === 'approve' ? 'aprobada' : 'denegada'} correctamente.`, isError: false});
+      fetchRequests(); // Actualizar reactivamente
+    } catch (error) {
+      console.error(`Error al ${action} solicitud`, error);
+      setFeedback({message: `Error al ${action === 'approve' ? 'aprobar' : 'denegar'} la solicitud.`, isError: true});
+    }
+  };
 
   return (
     <div className="deletion-requests-page">
       <div className="page-header">
         <h2>Solicitudes de Eliminación de Perfil</h2>
       </div>
+
+      {feedback && (
+        <div className={`status-message ${feedback.isError ? 'error' : 'success'}`}>
+          {feedback.message}
+        </div>
+      )}
 
       {loading ? (
         <p>Cargando solicitudes...</p>
@@ -49,8 +73,8 @@ const ProfileDeletionRequestsPage: React.FC = () => {
                   <p><strong>Fecha:</strong> {new Date(req.createdAt).toLocaleDateString()}</p>
                 </div>
                 <div className="request-actions">
-                  <button className="btn-primary">Procesar</button>
-                  <button className="btn-danger-outline">Denegar</button>
+                  <button className="btn-primary" onClick={() => handleAction(req.id, 'approve')}>Aprobar</button>
+                  <button className="btn-danger-outline" onClick={() => handleAction(req.id, 'deny')}>Denegar</button>
                 </div>
               </div>
             ))
@@ -59,6 +83,21 @@ const ProfileDeletionRequestsPage: React.FC = () => {
       )}
 
       <style>{`
+        .status-message {
+          padding: 1rem;
+          border-radius: 4px;
+          margin-bottom: 1rem;
+        }
+        .status-message.success {
+          background: #e8f5e9;
+          color: #2e7d32;
+          border: 1px solid #c8e6c9;
+        }
+        .status-message.error {
+          background: #ffebee;
+          color: #c62828;
+          border: 1px solid #ef9a9a;
+        }
         .request-card {
           background: white;
           padding: 1.5rem;

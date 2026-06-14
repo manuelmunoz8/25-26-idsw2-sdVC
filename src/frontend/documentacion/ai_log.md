@@ -39,6 +39,21 @@
 
 ---
 
+## [16:30] (13/06/2026) Implementación de gestión de solicitudes de eliminación (Aprobar/Denegar)
+
+**Prompt:** "Necesito implementar el filtrado de usuarios borrados y la interfaz de aprobación para el Coordinador."
+
+**Resultado:**
+- Actualización de `profileService` para incluir `approveDeletion` y `denyDeletion` apuntando a los nuevos endpoints de backend.
+- Actualización de `ProfileDeletionRequestsPage.tsx`:
+    - Implementación de botones para Aprobar y Denegar.
+    - Lógica de gestión de acciones con retroalimentación visual al usuario.
+    - Actualización reactiva de la lista de solicitudes tras realizar una acción.
+
+**Decisión:** Se dota al coordinador de las herramientas necesarias para gestionar las solicitudes de eliminación de perfiles, garantizando una respuesta reactiva y una experiencia de usuario clara.
+
+---
+
 ## [14:45] (13/06/2026) Corrección de visualización de solicitudes de eliminación
 
 **Prompt:** "Ok cuando entro con el perfil de coordinador y accedo a ver las solicitudes... no veo ninguna"

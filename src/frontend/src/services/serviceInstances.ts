@@ -44,4 +44,6 @@ export const profileService = {
   update: async (userId: string, dto: any) => (await api.put(`/api/users/${userId}`, dto)).data,
   requestDeletion: async (userId: string) => (await api.post(`/api/users/${userId}/request-deletion`)).data,
   getDeletionRequests: async () => (await api.get('/api/users/deletion-requests')).data,
+  approveDeletion: async (userId: string) => (await api.post(`/api/users/${userId}/approve-deletion`)).data,
+  denyDeletion: async (userId: string) => (await api.post(`/api/users/${userId}/deny-deletion`)).data,
 };
