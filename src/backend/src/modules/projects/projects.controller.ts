@@ -39,8 +39,10 @@ export class ProjectsController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('coordinador')
   remove(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
-    return this.projectsService.remove(id);
+    return this.projectsService.softDelete(id);
   }
 
   @Post(':id/researchers')

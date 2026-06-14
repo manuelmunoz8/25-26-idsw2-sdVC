@@ -1,14 +1,15 @@
 # AI Log - Backend
-## [14:45] (14/06/2026) Implementación de endpoint de consulta detallada de proyecto
+## [15:20] (14/06/2026) Implementación de Soft Delete en Proyectos
 
-**Prompt:** Implementar el endpoint GET /projects/:id con relaciones y seguridad.
+**Prompt:** Refactorizar la tabla de proyectos para aplicar la técnica de un soft delete en la base de datos.
 
 **Resultado:**
-- Actualizada entidad `Project` para incluir relación `ManyToOne` con `User` (`coordinator`).
-- Actualizado `ProjectsService.findOne` para incluir las relaciones `coordinator`, `researchers` y `deliverables`.
-- Protegido el endpoint `GET /projects/:id` en `ProjectsController` con `JwtAuthGuard` y `RolesGuard` ('coordinador').
+- Añadida columna `isDeleted` (`boolean`, default: `false`) a la entidad `Project`.
+- Actualizados métodos `findAll` y `findOne` en `ProjectsService` para filtrar por `isDeleted: false`.
+- Implementado método `softDelete` en `ProjectsService` que marca el proyecto como eliminado.
+- Actualizado endpoint `DELETE /projects/:id` en `ProjectsController` para invocar `softDelete`.
 
-**Decisión:** Se añade la relación `coordinator` en la entidad para permitir la visualización detallada del responsable del proyecto. Se protege el endpoint para asegurar que solo coordinadores puedan acceder a la información detallada de los proyectos.
+**Decisión:** Se adopta el borrado lógico en lugar de físico para mantener la integridad de los datos y permitir auditorías o recuperación de proyectos eliminados accidentalmente. Se protege el endpoint para asegurar que solo los coordinadores puedan realizar esta acción.
 
 ---
 

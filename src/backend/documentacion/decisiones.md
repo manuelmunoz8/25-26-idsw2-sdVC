@@ -1,5 +1,14 @@
 # Registro de Decisiones - Backend
+## [15:20] (14/06/2026) Implementación de Soft Delete en Proyectos
+
+**Decisión:** Implementar borrado lógico mediante el campo `isDeleted` en la entidad `Project` y actualizar el servicio y controlador para reflejar este cambio.
+**Motivo:** Garantizar la integridad de los datos, permitir auditorías históricas y facilitar la recuperación de proyectos eliminados por error.
+**Impacto:** Los métodos de consulta ahora excluyen por defecto los registros eliminados lógicamente, y el endpoint de borrado ya no destruye los datos físicamente.
+
+---
+
 ## [14:45] (14/06/2026) Relación de Coordinador y Seguridad en Consulta de Proyectos
+...
 
 **Decisión:** Incluir explícitamente la relación `ManyToOne` con `User` (`coordinator`) en `Project` y restringir el acceso a `GET /projects/:id` al rol 'Coordinador'.
 **Motivo:** Se requiere visualizar el responsable del proyecto (coordinador) en la consulta detallada. Además, la información detallada de los proyectos debe estar protegida para acceso exclusivo de coordinadores.

@@ -1,4 +1,10 @@
-## [10:30] (14/06/2026) Actualización de la vista de detalle de proyectos
+## [11:00] (14/06/2026) Seguridad de la información: Ocultar identificadores internos (ID) en la UI
+
+**Decisión:** Mantener la política de no exponer identificadores de base de datos (IDs) en la interfaz de usuario de listado de proyectos.
+**Motivo:** Evitar la exposición innecesaria de datos internos que podrían ser utilizados para ataques o enumeración de registros si un usuario intenta manipular manualmente la URL o realizar acciones no autorizadas.
+**Impacto:** Los usuarios interactúan con los proyectos mediante nombres y acciones de navegación, sin conocer el identificador interno del registro, mejorando la seguridad por oscuridad.
+
+---
 
 **Decisión:** Refactorizar el componente `ProjectDetailPage` para mostrar información detallada del proyecto y exponer acciones administrativas directas para el Coordinador.
 **Motivo:** Cumplir con los requerimientos definidos en el prototipo `abrirProyecto` para mejorar la gestión de proyectos.

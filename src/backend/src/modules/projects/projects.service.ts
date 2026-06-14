@@ -19,6 +19,7 @@ export class ProjectsService extends BaseService<Project> {
   // Sobrescribimos findAll para mantener el orden específico solicitado previamente
   override async findAll(): Promise<Project[]> {
     return await this.projectsRepository.find({
+      where: { isDeleted: false },
       order: { createdAt: 'DESC' },
       relations: ['researchers'],
     });
@@ -26,11 +27,17 @@ export class ProjectsService extends BaseService<Project> {
 
   override async findOne(id: string): Promise<Project> {
     const project = await this.projectsRepository.findOne({
-      where: { id: id as any },
+      where: { id: id as any, isDeleted: false },
       relations: ['coordinator', 'researchers', 'deliverables'],
     });
     if (!project) throw new NotFoundException('Project not found');
     return project;
+  }
+
+  async softDelete(id: string): Promise<void> {
+    const project = await this.findOne(id);
+    project.isDeleted = true;
+    await this.projectsRepository.save(project);
   }
 
   async createProject(coordinatorId: string, projectData: CreateProjectDto): Promise<Project> {

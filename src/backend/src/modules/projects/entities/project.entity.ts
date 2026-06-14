@@ -43,6 +43,9 @@ export class Project {
   @JoinColumn({ name: 'coordinatorId' })
   coordinator!: User;
 
+  @Column({ type: 'boolean', default: false })
+  isDeleted!: boolean;
+
   @CreateDateColumn()
   createdAt!: Date;
 

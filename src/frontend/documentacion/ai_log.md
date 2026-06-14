@@ -1,4 +1,14 @@
-## [10:30] (14/06/2026) Implementación de la vista de detalle de proyecto
+## [11:00] (14/06/2026) Refactorización de seguridad en ProjectsPage: Ocultar ID
+
+**Prompt:** "refactoriza la tabla de proyectos para que no se muestre el id del proyecto"
+
+**Resultado:**
+- Verificación del componente `ProjectsPage.tsx`: Se confirma que el ID del proyecto no se estaba visualizando en la interfaz (`project-card`).
+- Se mantiene el uso interno de `project.id` para la navegación (`navigate(/projects/${project.id})`).
+
+**Decisión:** Se confirma que la implementación actual de `ProjectsPage` ya cumple con el requisito de no exponer el ID en la UI, garantizando que el usuario final no tenga visibilidad sobre los identificadores internos de base de datos.
+
+---
 
 **Prompt:** "Implementa la vista de detalle de proyecto (abrirProyecto) para el rol de Coordinador..."
 
