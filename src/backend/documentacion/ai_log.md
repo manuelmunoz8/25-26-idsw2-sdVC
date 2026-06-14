@@ -34,7 +34,20 @@
 
 ---
 
-## [23:45] (14/06/2026) Fix: Persistencia del campo 'department' en usuarios
+## [00:06] (15/06/2026) Implementación Completa del Módulo de Recompensas (Rewards)
+
+**Prompt:** "Actúa como experto en NestJS. Completa el módulo de Recompensas (rewards)... CRUD completo... DTO... Seguridad & Roles... Persistencia... Documenta..."
+
+**Resultado:**
+- Actualizada entidad `Reward` con campos `title`, `description` y `value`.
+- Creado `UpdateRewardDto` y exportado en `src/dtos/index.ts`.
+- Implementado `RewardsController` con CRUD completo y protección mediante `JwtAuthGuard` y `RolesGuard`.
+- Configurado RBAC: endpoints de escritura (`POST`, `PUT`, `DELETE`) restringidos a 'coordinador', lectura abierta a todos los usuarios autenticados.
+- Importado `AuthModule` en `RewardsModule` para habilitar el funcionamiento de los guardias.
+
+**Decisión:** Se utiliza la herencia de `BaseService` para agilizar el desarrollo CRUD. Se aplican decoradores `@Roles('coordinador')` a nivel de método para una granularidad fina en la seguridad, manteniendo el controlador limpio.
+
+---
 
 **Prompt:** "Ok hay un error a la hora de crear nuevos usuarios, el campo de departamento en el frontend recibe un valor pero en la base de datos este no se muestra..."
 

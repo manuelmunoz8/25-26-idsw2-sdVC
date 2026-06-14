@@ -1,4 +1,12 @@
 # Registro de Decisiones - Backend
+## [00:06] (15/06/2026) Implementación de Seguridad y RBAC en Módulo de Recompensas
+
+**Decisión:** Restringir operaciones de escritura en `RewardsController` exclusivamente al rol 'coordinador' mediante `@Roles('coordinador')` y `RolesGuard`.
+**Motivo:** Las recompensas son recursos sensibles que deben ser gestionados únicamente por personal con autoridad (Coordinadores). Los investigadores deben poder ver las recompensas disponibles pero no modificarlas.
+**Impacto:** Garantiza la integridad del catálogo de recompensas y cumple con los requisitos de seguridad del sistema.
+
+---
+
 ## [23:41] (14/06/2026) Implementación de Soft Delete en Publicaciones
 
 **Decisión:** Implementar borrado lógico mediante un campo `isDeleted` de tipo booleano en la entidad `Publication` y actualizar la lógica del servicio para manejar este estado.
