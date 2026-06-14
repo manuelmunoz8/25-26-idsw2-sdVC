@@ -1,4 +1,16 @@
-## [18:45] (14/06/2026) Implementación de funcionalidad 'Editar Recompensa'
+## [19:00] (14/06/2026) Implementación de funcionalidad 'Eliminar Recompensa'
+
+**Prompt:** "Actúa como experto en React. Implementa la funcionalidad de Eliminar Recompensa."
+
+**Resultado:**
+- Actualización de `RewardsPage.tsx`:
+    - Incorporación de diálogo de confirmación ('¿Estás seguro de que deseas eliminar esta recompensa de forma permanente?').
+    - Implementación de la petición DELETE mediante `remove` del hook `useCrud`.
+    - Actualización reactiva de la lista tras la eliminación exitosa.
+
+**Decisión:** Se ha completado el CRUD de recompensas, asegurando la eliminación segura con confirmación explícita del usuario.
+
+---
 
 **Prompt:** "Actúa como experto en React. Implementa la interfaz de Edición de Recompensa."
 

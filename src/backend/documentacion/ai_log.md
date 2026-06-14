@@ -34,7 +34,18 @@
 
 ---
 
-## [00:26] (15/06/2026) Implementación de Edición de Recompensas
+## [00:35] (15/06/2026) Implementación de Borrado Lógico en Recompensas
+
+**Prompt:** "Actúa como experto en NestJS. Implementa la funcionalidad de Eliminar Recompensa... DELETE /rewards/:id... Restringida al Coordinador... Not Found si no existe..."
+
+**Resultado:**
+- Actualizada entidad `Reward` para incluir `isDeleted: boolean` para borrado lógico.
+- Actualizado `RewardsService` sobrescribiendo `findAll` y `findOne` para filtrar registros eliminados, e implementando `removeReward` para marcado lógico.
+- Actualizado `RewardsController` para redirigir la eliminación a `removeReward` bajo protección `@Roles('coordinador')`.
+
+**Decisión:** Se implementa borrado lógico en lugar de físico para mantener la consistencia con el patrón adoptado en otros módulos (Proyectos, Publicaciones, Entregables), permitiendo auditoría y recuperación futura si fuese necesario.
+
+---
 
 **Prompt:** "Actúa como experto en NestJS. Implementa la funcionalidad de Edición de Recompensas... PUT /rewards/:id... UpdateRewardDto... Verifica que exista... Coordinador... Documenta..."
 

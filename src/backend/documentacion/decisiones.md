@@ -1,4 +1,12 @@
 # Registro de Decisiones - Backend
+## [00:35] (15/06/2026) Borrado Lógico en Módulo de Recompensas
+
+**Decisión:** Implementar borrado lógico (`isDeleted: true`) en lugar de eliminación física en la base de datos para las recompensas.
+**Motivo:** Mantener la consistencia operativa en todo el backend. Los módulos de Proyectos, Publicaciones y Entregables ya utilizan borrado lógico para auditoría y recuperación, por lo que las recompensas deben seguir la misma convención.
+**Impacto:** Los servicios ahora deben filtrar explícitamente los registros donde `isDeleted: false` en todas las operaciones de consulta, asegurando que los usuarios no vean elementos eliminados.
+
+---
+
 ## [00:26] (15/06/2026) Validación de Existencia y Seguridad en Edición de Recompensas
 
 **Decisión:** Utilizar el método `update` heredado de `BaseService` para la edición de recompensas, asegurando una validación previa de existencia.

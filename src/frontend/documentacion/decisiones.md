@@ -1,4 +1,10 @@
-## [18:45] (14/06/2026) Implementación de funcionalidad de edición de recompensas
+## [19:00] (14/06/2026) Implementación de funcionalidad de eliminación de recompensas
+
+**Decisión:** Agregar confirmación previa antes de ejecutar la petición DELETE de una recompensa.
+**Motivo:** Prevenir la eliminación accidental de registros del catálogo de recompensas.
+**Impacto:** Se aumenta la seguridad y fiabilidad en las acciones administrativas de gestión de recompensas.
+
+---
 
 **Decisión:** Crear una página dedicada `EditRewardPage` que carga el estado inicial a partir de los datos existentes de la recompensa.
 **Motivo:** Proporcionar una experiencia de usuario consistente, reutilizando la estructura del formulario de creación y permitiendo la actualización atómica de campos.

@@ -14,6 +14,9 @@ export class Reward {
   @Column({ type: 'integer', default: 0 })
   value!: number;
 
+  @Column({ type: 'boolean', default: false })
+  isDeleted!: boolean;
+
   @CreateDateColumn()
   createdAt!: Date;
 

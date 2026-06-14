@@ -14,14 +14,19 @@ interface Reward {
 const RewardsPage: React.FC = () => {
   const { data: rewards, loading, error, create, update, remove, fetchAll } = useCrud<Reward>(rewardsService as any);
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [editingReward, setEditingReward] = useState<Reward | null>(null);
   const [isCreating, setIsCreating] = useState(false);
   const [formData, setFormData] = useState({ title: '', value: 0, description: '' });
 
   const handleDelete = async (id: string) => {
-    if (window.confirm('¿Seguro de eliminar esta recompensa?')) {
-      await remove(id);
-      await fetchAll();
+    if (window.confirm('¿Estás seguro de que deseas eliminar esta recompensa de forma permanente?')) {
+      try {
+        await remove(id);
+        await fetchAll();
+      } catch (err) {
+        alert('Error al eliminar la recompensa');
+      }
     }
   };
 

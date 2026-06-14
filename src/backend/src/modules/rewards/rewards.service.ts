@@ -12,4 +12,25 @@ export class RewardsService extends BaseService<Reward> {
   ) {
     super(rewardsRepository);
   }
+
+  override async findAll(): Promise<Reward[]> {
+    return await this.rewardsRepository.find({
+      where: { isDeleted: false },
+      order: { createdAt: 'DESC' },
+    });
+  }
+
+  override async findOne(id: string): Promise<Reward> {
+    const reward = await this.rewardsRepository.findOne({
+      where: { id: id as any, isDeleted: false },
+    });
+    if (!reward) throw new NotFoundException(`Reward with ID ${id} not found`);
+    return reward;
+  }
+
+  async removeReward(id: string): Promise<void> {
+    const reward = await this.findOne(id);
+    reward.isDeleted = true;
+    await this.rewardsRepository.save(reward);
+  }
 }
