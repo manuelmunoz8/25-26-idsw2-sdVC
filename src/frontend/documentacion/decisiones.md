@@ -1,4 +1,10 @@
-## [11:45] (14/06/2026) Implementación de funcionalidad de edición de proyectos
+## [12:00] (14/06/2026) Implementación de funcionalidad de gestión de equipo (Agregar Investigador)
+
+**Decisión:** Integrar el selector y la lógica de adición de investigadores directamente en la vista de detalle del proyecto (`ProjectDetailPage`).
+**Motivo:** Proporcionar un flujo de gestión directo para el Coordinador, reduciendo la fricción al evitar navegaciones innecesarias y permitiendo una visualización inmediata del equipo actualizado.
+**Impacto:** El sistema permite ahora una gestión completa y reactiva del equipo de investigación en el contexto de cada proyecto.
+
+---
 
 **Decisión:** Crear una página dedicada `EditProjectPage` que carga el estado inicial a partir de los datos existentes del proyecto.
 **Motivo:** Proporcionar una experiencia de usuario consistente al reutilizar la estructura de formularios existente mientras se garantiza que el usuario pueda editar campos específicos de forma atómica.

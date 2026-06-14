@@ -1,27 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { projectsService } from '../services/serviceInstances';
+import { projectsService, investigatorsService } from '../services/serviceInstances';
 
 const ProjectDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [project, setProject] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [investigators, setInvestigators] = useState<any[]>([]);
+  const [selectedInvId, setSelectedInvId] = useState('');
+  const [adding, setAdding] = useState(false);
   const navigate = useNavigate();
 
+  const fetchProject = async () => {
+    if (!id) return;
+    try {
+      const data = await projectsService.findOne(id);
+      setProject(data);
+    } catch (error) {
+      console.error('Error fetching project', error);
+    }
+  };
+
   useEffect(() => {
-    const fetchProject = async () => {
-      if (!id) return;
+    const init = async () => {
+      setLoading(true);
+      await fetchProject();
       try {
-        const data = await projectsService.findOne(id);
-        setProject(data);
-      } catch (error) {
-        console.error('Error fetching project', error);
-      } finally {
-        setLoading(false);
+        const invs = await investigatorsService.findAll();
+        setInvestigators(invs);
+      } catch (err) {
+        console.error('Error fetching investigators', err);
       }
+      setLoading(false);
     };
-    fetchProject();
+    init();
   }, [id]);
+
+  const handleAddInvestigator = async () => {
+    if (!selectedInvId) return;
+    setAdding(true);
+    try {
+      await (projectsService as any).addInvestigator(id!, selectedInvId);
+      await fetchProject(); // Refresh
+      setSelectedInvId('');
+    } catch (err) {
+      alert('Error al añadir investigador.');
+    } finally {
+      setAdding(false);
+    }
+  };
 
   const handleDelete = async () => {
     if (window.confirm('¿Estás seguro de eliminar este proyecto?')) {
@@ -36,6 +63,10 @@ const ProjectDetailPage: React.FC = () => {
 
   if (loading) return <p>Cargando detalles del proyecto...</p>;
   if (!project) return <p>Proyecto no encontrado.</p>;
+
+  const availableInvestigators = investigators.filter(
+    (inv) => !project.team?.some((member: any) => member.id === inv.id)
+  );
 
   return (
     <div className="project-detail-page">
@@ -70,6 +101,18 @@ const ProjectDetailPage: React.FC = () => {
           ) : (
             <p>No hay miembros en el equipo.</p>
           )}
+          
+          <div className="add-investigator">
+            <select value={selectedInvId} onChange={(e) => setSelectedInvId(e.target.value)}>
+              <option value="">Seleccionar investigador...</option>
+              {availableInvestigators.map((inv) => (
+                <option key={inv.id} value={inv.id}>{inv.name}</option>
+              ))}
+            </select>
+            <button className="btn-primary" onClick={handleAddInvestigator} disabled={adding || !selectedInvId}>
+              {adding ? 'Añadiendo...' : 'Añadir al Equipo'}
+            </button>
+          </div>
         </div>
 
         <div className="card">
@@ -84,6 +127,7 @@ const ProjectDetailPage: React.FC = () => {
         .project-content { display: grid; gap: 2rem; }
         .card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
         .header-actions { display: flex; gap: 1rem; }
+        .add-investigator { display: flex; gap: 1rem; margin-top: 1rem; }
         .btn-primary { background-color: #0a3b64; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; }
         .btn-secondary { background: #eee; border: 1px solid #ccc; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; }
         .btn-danger { background-color: #dc3545; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 4px; cursor: pointer; }

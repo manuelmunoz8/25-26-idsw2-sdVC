@@ -1,5 +1,14 @@
 # Registro de Decisiones - Backend
+## [17:15] (14/06/2026) Vinculación de Investigadores a Proyectos
+
+**Decisión:** Utilizar el endpoint `POST /projects/:id/investigators` recibiendo `investigatorId` en el cuerpo, reutilizando la lógica ManyToMany existente.
+**Motivo:** Cumplir con la ruta especificada y asegurar la consistencia en la gestión de relaciones.
+**Impacto:** Permite gestionar los investigadores vinculados a un proyecto asegurando integridad y evitando duplicados en la relación.
+
+---
+
 ## [16:00] (14/06/2026) Edición de Proyectos y Autorización
+...
 
 **Decisión:** Utilizar el método `PATCH` para la actualización de proyectos y validar la propiedad del proyecto (coordinador) en la capa de servicio.
 **Motivo:** `PATCH` es más adecuado para actualizaciones parciales que `PUT`. La validación de permisos en el servicio garantiza que incluso si alguien tiene el rol de 'coordinador', solo pueda editar los proyectos de los que es responsable.

@@ -48,12 +48,14 @@ export class ProjectsController {
     return this.projectsService.softDelete(id);
   }
 
-  @Post(':id/researchers')
+  @Post(':id/investigators')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('coordinador')
   addResearcher(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body('userId', ParseUUIDPipe) userId: string,
+    @Body('investigatorId', ParseUUIDPipe) investigatorId: string,
   ): Promise<Project> {
-    return this.projectsService.addResearcher(id, userId);
+    return this.projectsService.addResearcher(id, investigatorId);
   }
 
   @Delete(':id/researchers/:userId')

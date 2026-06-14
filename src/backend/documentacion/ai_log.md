@@ -1,14 +1,13 @@
 # AI Log - Backend
-## [16:00] (14/06/2026) Implementación de endpoint de edición de proyecto
+## [17:15] (14/06/2026) Implementación de vinculación de investigadores
 
-**Prompt:** Implementar el endpoint para Editar Proyecto (PATCH /projects/:id).
+**Prompt:** Implementar el endpoint para vincular investigadores a un proyecto (POST /projects/:id/investigators).
 
 **Resultado:**
-- Implementado endpoint `PATCH /projects/:id` en `ProjectsController`, protegido con `JwtAuthGuard` y `RolesGuard` ('coordinador').
-- Añadido método `updateProject` en `ProjectsService` para realizar la edición validando permisos (coordinador del proyecto) y existencia del mismo.
-- Utilizado `UpdateProjectDto` para la validación de los datos recibidos.
+- Actualizado endpoint `POST /projects/:id/investigators` en `ProjectsController`.
+- El servicio `addResearcher` ya manejaba la lógica de evitar duplicados y validar existencia, se mantiene.
 
-**Decisión:** Se utiliza `PATCH` para permitir actualizaciones parciales. Se valida que el usuario sea el coordinador del proyecto antes de permitir la edición, cumpliendo con los requisitos de seguridad.
+**Decisión:** Se utiliza la relación `ManyToMany` existente entre `Project` y `User`. Se aplica restricción para evitar duplicados en la tabla intermedia validando la existencia en el array de investigadores antes de añadirlo.
 
 ---
 

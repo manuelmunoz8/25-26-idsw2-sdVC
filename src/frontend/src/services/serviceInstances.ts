@@ -20,6 +20,7 @@ export const projectsService: IBaseService<any> = {
   create: async (dto: CreateProjectDto) => (await api.post('/api/projects', dto)).data,
   update: async (id: string, dto: UpdateProjectDto) => (await api.put(`/api/projects/${id}`, dto)).data,
   remove: async (id: string) => { await api.delete(`/api/projects/${id}`); },
+  addInvestigator: async (id: string, investigatorId: string) => (await api.post(`/api/projects/${id}/investigators`, { investigatorId })).data,
 };
 
 export const investigatorsService: any = {

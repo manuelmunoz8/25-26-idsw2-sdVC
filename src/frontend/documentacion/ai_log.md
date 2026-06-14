@@ -1,4 +1,17 @@
-## [11:45] (14/06/2026) Implementación de funcionalidad 'Editar Proyecto'
+## [12:00] (14/06/2026) Implementación de funcionalidad 'Agregar Investigador al Equipo'
+
+**Prompt:** "Actúa como experto en React. Implementa la capacidad de Agregar Investigador al equipo del proyecto..."
+
+**Resultado:**
+- Actualización de `src/services/serviceInstances.ts`: Adición del método `addInvestigator` en `projectsService`.
+- Actualización de `ProjectDetailPage.tsx`:
+    - Incorporación de un selector para investigadores disponibles (filtrando los ya presentes en el equipo).
+    - Implementación de la lógica para realizar el POST al endpoint `/projects/:id/investigators`.
+    - Actualización reactiva del componente mediante `fetchProject` al añadir un investigador exitosamente.
+
+**Decisión:** Se permite al coordinador asignar investigadores al proyecto, validando en el frontend que no se añadan duplicados y garantizando una actualización fluida de la vista sin recargar la página.
+
+---
 
 **Prompt:** "Actúa como experto en React. Implementa la funcionalidad de Editar Proyecto..."
 
