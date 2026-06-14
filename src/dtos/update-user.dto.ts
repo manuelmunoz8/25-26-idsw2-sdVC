@@ -5,6 +5,10 @@ export class UpdateUserDto {
   @IsOptional()
   name?: string;
 
+  @IsString()
+  @IsOptional()
+  department?: string;
+
   @IsNumber()
   @Min(0)
   @IsOptional()

@@ -1,4 +1,5 @@
 export * from './create-reward.dto';
+export * from './update-reward.dto';
 export * from './deliverable.dto';
 export * from './import-grant.dto';
 export * from './login.dto';

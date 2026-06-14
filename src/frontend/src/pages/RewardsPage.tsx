@@ -97,3 +97,5 @@ const RewardsPage: React.FC = () => {
     </div>
   );
 };
+
+export default RewardsPage;
