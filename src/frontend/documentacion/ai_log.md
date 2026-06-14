@@ -1,4 +1,13 @@
-## [12:30] (14/06/2026) Implementación de funcionalidad 'Eliminar Investigador del Equipo'
+## [13:00] (14/06/2026) Cambio de método de actualización de proyectos a PATCH
+
+**Prompt:** "Ok necesito que cambies el metodo de actualizar los datos de un proyecto... Cambia PUT por PATCH."
+
+**Resultado:**
+- Actualización de `src/services/serviceInstances.ts`: Modificación del método `update` en `projectsService` para utilizar `api.patch` en lugar de `api.put`.
+
+**Decisión:** Se ha migrado el método de actualización a `PATCH` conforme a las nuevas directrices del backend para asegurar la correcta persistencia parcial de los datos del proyecto.
+
+---
 
 **Prompt:** "Actúa como experto en React. Implementa la funcionalidad de Eliminar Investigador del equipo..."
 

@@ -1,4 +1,10 @@
-## [12:30] (14/06/2026) Implementación de funcionalidad de gestión de equipo (Eliminar Investigador)
+## [13:00] (14/06/2026) Cambio a método PATCH para actualizaciones de proyecto
+
+**Decisión:** Utilizar el método HTTP `PATCH` en lugar de `PUT` para las actualizaciones de recursos de proyecto.
+**Motivo:** Cumplir con la especificación del backend para permitir actualizaciones parciales de los atributos del proyecto (`/api/projects/:id`).
+**Impacto:** Mejora la eficiencia del tráfico de red y la semántica de la API al enviar únicamente los campos modificados.
+
+---
 
 **Decisión:** Agregar un botón de eliminación directa a cada miembro del equipo en la lista de `ProjectDetailPage`.
 **Motivo:** Facilitar la gestión del equipo permitiendo al Coordinador retirar investigadores de forma individual y rápida, manteniendo la consistencia con la acción de agregar.

@@ -18,7 +18,7 @@ export const projectsService: IBaseService<any> = {
   findAll: async () => (await api.get('/api/projects')).data,
   findOne: async (id: string) => (await api.get(`/api/projects/${id}`)).data,
   create: async (dto: CreateProjectDto) => (await api.post('/api/projects', dto)).data,
-  update: async (id: string, dto: UpdateProjectDto) => (await api.put(`/api/projects/${id}`, dto)).data,
+  update: async (id: string, dto: UpdateProjectDto) => (await api.patch(`/api/projects/${id}`, dto)).data,
   remove: async (id: string) => { await api.delete(`/api/projects/${id}`); },
   removeInvestigator: async (id: string, investigatorId: string) => await api.delete(`/api/projects/${id}/investigators/${investigatorId}`),
 };
