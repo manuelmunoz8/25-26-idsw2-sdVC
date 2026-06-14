@@ -1,15 +1,14 @@
 # AI Log - Backend
-## [19:30] (14/06/2026) Implementación de Soft Delete en Entregables
+## [19:45] (14/06/2026) Aseguramiento del Módulo de Publicaciones
 
-**Prompt:** Implementar un soft delete con los entregables.
+**Prompt:** Asegurar y completar el módulo de publications (autoría automática, seguridad de edición/borrado, relaciones).
 
 **Resultado:**
-- Añadida columna `isDeleted` (`boolean`, default: `false`) a la entidad `Deliverable`.
-- Actualizados métodos `findByProject` y `findOne` en `DeliverablesService` para filtrar por `isDeleted: false`.
-- Implementado método `softDelete` en `DeliverablesService`.
-- Actualizado endpoint `DELETE /deliverables/:id` en `DeliverablesController`.
+- Actualizado `PublicationsController` para integrar `JwtAuthGuard` y obtener `authorId` de `Request`.
+- Implementada lógica de validación de autoría en `PublicationsService` (métodos `updatePublication` y `removePublication`) lanzando `UnauthorizedException` en caso de discrepancia.
+- Asegurada la carga de relaciones `author` y `replies.author` en las consultas de publicaciones.
 
-**Decisión:** Se extiende la lógica de borrado lógico aplicada en Proyectos hacia el módulo de Entregables para mantener la consistencia en el manejo de eliminación de recursos y permitir auditorías.
+**Decisión:** Se garantiza que solo el autor original pueda editar o borrar sus publicaciones y se asegura que toda publicación tenga un autor vinculado automáticamente desde la sesión.
 
 ---
 

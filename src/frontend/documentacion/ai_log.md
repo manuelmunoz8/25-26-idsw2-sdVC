@@ -1,4 +1,34 @@
-## [16:00] (14/06/2026) Corrección de ruta de API para listado de entregables
+## [17:00] (14/06/2026) Implementación de CRUD completo para publicaciones del autor
+
+**Prompt:** "Implementa el CRUD completo para el autor en MyPublicationsPage.tsx."
+
+**Resultado:**
+- Actualización de `publicationsService` en `serviceInstances.ts` para incluir métodos `update` (PUT) y `remove` (DELETE).
+- Creación de `CreatePublicationPage.tsx` para el formulario de creación.
+- Actualización de `MyPublicationsPage.tsx`:
+    - Implementación de la lógica de edición mediante un modal con formulario precargado.
+    - Implementación de la lógica de eliminación con confirmación.
+    - Actualización reactiva de la lista mediante `fetchAll` del hook `useCrud`.
+- Actualización de `App.tsx` para registrar la ruta de creación.
+
+**Decisión:** Se utiliza un modal para la edición para mantener al usuario en el contexto de la lista, mejorando la usabilidad en comparación con una redirección completa.
+
+---
+
+**Prompt:** "Actúa como experto en React. Tu tarea es implementar la funcionalidad de Detalle y Respuesta de Publicaciones."
+
+**Resultado:**
+- Creación de `PublicationDetailPage.tsx`:
+    - Visualización del contenido completo de la publicación (GET `/api/publications/:id`).
+    - Visualización del historial de respuestas.
+    - Formulario de respuesta con envío POST a `/api/publications/:id/replies`.
+- Actualización de `publicationsService` para incluir `findOne` y `addReply`.
+- Actualización de `App.tsx` con ruta `/publications/:id`.
+- Actualización de `PublicationsPage.tsx` para navegar a la vista de detalle.
+
+**Decisión:** Se ha habilitado la interacción completa de la comunidad en las publicaciones, permitiendo visualizar respuestas y participar activamente mediante nuevas respuestas.
+
+---
 
 **Prompt:** "estoy en la pagina de entregables de un proyecto y no me aparece ninguno... aqui esta la ruta que me paso el backend: GET /api/deliverables/project/:projectId"
 

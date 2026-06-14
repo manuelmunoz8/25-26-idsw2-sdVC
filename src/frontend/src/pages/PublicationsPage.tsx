@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { publicationsService } from '../services/serviceInstances';
 import { useCrud } from '../hooks/useCrud';
 
@@ -12,6 +13,7 @@ interface Publication {
 
 const PublicationsPage: React.FC = () => {
   const { data: publications, loading, error } = useCrud<Publication>(publicationsService as any);
+  const navigate = useNavigate();
 
   return (
     <div className="publications-page">
@@ -34,7 +36,7 @@ const PublicationsPage: React.FC = () => {
                 <p className="pub-meta">Por {pub.author} en {pub.date}</p>
                 <p>{pub.summary}</p>
                 <div className="pub-actions">
-                  <button className="btn-small">Leer más</button>
+                  <button className="btn-small" onClick={() => navigate(`/publications/${pub.id}`)}>Leer más</button>
                   <button className="btn-small">Responder</button>
                 </div>
               </div>

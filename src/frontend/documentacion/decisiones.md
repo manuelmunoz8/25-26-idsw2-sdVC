@@ -1,4 +1,16 @@
-## [16:00] (14/06/2026) Corrección de endpoint API para entregables
+## [17:00] (14/06/2026) Implementación de CRUD de publicaciones
+
+**Decisión:** Utilizar un modal para la funcionalidad de edición en `MyPublicationsPage`.
+**Motivo:** Mejorar la experiencia de usuario (UX) al evitar navegaciones innecesarias, manteniendo al autor en el contexto de sus publicaciones mientras realiza ediciones rápidas.
+**Impacto:** Se agiliza el flujo de edición y se mantiene la consistencia visual del sistema.
+
+---
+
+**Decisión:** Crear una vista de detalle dedicada (`PublicationDetailPage`) con una sección interactiva para respuestas.
+**Motivo:** Mejorar la colaboración en la plataforma permitiendo hilos de discusión dentro de las publicaciones.
+**Impacto:** El sistema ahora soporta discusiones en tiempo real sobre las publicaciones de la comunidad.
+
+---
 
 **Decisión:** Actualizar el endpoint de listado de entregables de `/api/projects/:projectId/deliverables` a `/api/deliverables/project/:projectId`.
 **Motivo:** Corregir la discrepancia con la implementación real del backend según la información proporcionada.

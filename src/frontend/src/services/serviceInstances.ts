@@ -36,8 +36,12 @@ export const investigatorsService: any = {
 
 export const publicationsService = {
   findAll: async () => (await api.get('/api/publications')).data,
+  findOne: async (id: string) => (await api.get(`/api/publications/${id}`)).data,
   getMy: async () => (await api.get('/api/publications/my')).data,
   create: async (dto: CreatePublicationDto) => (await api.post('/api/publications', dto)).data,
+  update: async (id: string, dto: any) => (await api.put(`/api/publications/${id}`, dto)).data,
+  remove: async (id: string) => await api.delete(`/api/publications/${id}`),
+  addReply: async (id: string, reply: { content: string }) => (await api.post(`/api/publications/${id}/replies`, reply)).data,
 };
 
 export const rewardsService = {

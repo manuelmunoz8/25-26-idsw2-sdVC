@@ -1,8 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Publication } from './entities/publication.entity';
 import { BaseService } from '../../common/classes/base.service';
+import { CreatePublicationDto, CreateReplyDto, UpdatePublicationDto } from '../../dtos';
 
 @Injectable()
 export class PublicationsService extends BaseService<Publication> {
@@ -38,12 +39,50 @@ export class PublicationsService extends BaseService<Publication> {
     return pub;
   }
 
-  async reply(parentId: string, replyData: Partial<Publication>): Promise<Publication> {
+  async createPublication(authorId: string, data: CreatePublicationDto): Promise<Publication> {
+    const publication = this.publicationsRepository.create({
+      ...data,
+      author: { id: authorId } as any,
+    });
+    return await this.publicationsRepository.save(publication);
+  }
+
+  async reply(authorId: string, parentId: string, replyData: CreateReplyDto): Promise<Publication> {
     const parent = await this.findOneWithReplies(parentId);
     const reply = this.publicationsRepository.create({
       ...replyData,
       parent,
+      author: { id: authorId } as any,
     });
     return await this.publicationsRepository.save(reply);
+  }
+
+  async updatePublication(userId: string, id: string, data: UpdatePublicationDto): Promise<Publication> {
+    const publication = await this.publicationsRepository.findOne({
+        where: { id },
+        relations: ['author']
+    });
+    if (!publication) throw new NotFoundException('Publication not found');
+    
+    if (publication.author.id !== userId) {
+        throw new UnauthorizedException('No tienes permiso para editar esta publicación');
+    }
+
+    Object.assign(publication, data);
+    return await this.publicationsRepository.save(publication);
+  }
+
+  async removePublication(userId: string, id: string): Promise<void> {
+    const publication = await this.publicationsRepository.findOne({
+        where: { id },
+        relations: ['author']
+    });
+    if (!publication) throw new NotFoundException('Publication not found');
+
+    if (publication.author.id !== userId) {
+        throw new UnauthorizedException('No tienes permiso para eliminar esta publicación');
+    }
+
+    await this.publicationsRepository.remove(publication);
   }
 }

@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Param, Put, Delete, Query, ParseUUIDPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Put, Delete, ParseUUIDPipe, UseGuards, Request, UnauthorizedException } from '@nestjs/common';
 import { PublicationsService } from './publications.service';
 import { Publication } from './entities/publication.entity';
 import { CreatePublicationDto, CreateReplyDto, UpdatePublicationDto } from '../../dtos';
+import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
 
 @Controller('publications')
 export class PublicationsController {
@@ -23,28 +24,34 @@ export class PublicationsController {
   }
 
   @Post()
-  create(@Body() publicationData: CreatePublicationDto): Promise<Publication> {
-    return this.publicationsService.create(publicationData as any);
+  @UseGuards(JwtAuthGuard)
+  create(@Request() req: any, @Body() publicationData: CreatePublicationDto): Promise<Publication> {
+    return this.publicationsService.createPublication(req.user.id, publicationData);
   }
 
   @Post(':id/replies')
+  @UseGuards(JwtAuthGuard)
   reply(
+    @Request() req: any,
     @Param('id', ParseUUIDPipe) id: string,
     @Body() replyData: CreateReplyDto,
   ): Promise<Publication> {
-    return this.publicationsService.reply(id, replyData as any);
+    return this.publicationsService.reply(req.user.id, id, replyData);
   }
 
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
   update(
+    @Request() req: any,
     @Param('id', ParseUUIDPipe) id: string,
     @Body() publicationData: UpdatePublicationDto,
   ): Promise<Publication> {
-    return this.publicationsService.update(id, publicationData as any);
+    return this.publicationsService.updatePublication(req.user.id, id, publicationData);
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
-    return this.publicationsService.remove(id);
+  @UseGuards(JwtAuthGuard)
+  remove(@Request() req: any, @Param('id', ParseUUIDPipe) id: string): Promise<void> {
+    return this.publicationsService.removePublication(req.user.id, id);
   }
 }

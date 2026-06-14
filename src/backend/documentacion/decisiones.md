@@ -7,6 +7,14 @@
 
 ---
 
+## [19:45] (14/06/2026) Seguridad y Autoría en Publicaciones
+
+**Decisión:** Validar la propiedad del autor en el servicio para operaciones de edición y eliminación, y asignar el autor automáticamente desde la sesión.
+**Motivo:** Evitar acceso no autorizado a publicaciones ajenas y asegurar que todas las publicaciones tengan un autor legítimo sin depender de la entrada del usuario.
+**Impacto:** Mejora la seguridad de los datos de publicaciones y refuerza la trazabilidad del autor.
+
+---
+
 ## [19:30] (14/06/2026) Implementación de Soft Delete en Entregables
 
 **Decisión:** Implementar borrado lógico mediante el campo `isDeleted` en la entidad `Deliverable` y actualizar los métodos de consulta y eliminación en `DeliverablesService` y `DeliverablesController`.
