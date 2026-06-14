@@ -1,5 +1,15 @@
 # AI Log - Backend
 
+## [01:55] (14/06/2026) Fix Dependency Injection in ProjectsModule
+
+**Prompt:** Fix the `UnknownDependenciesException` where `JwtAuthGuard` could not resolve `AuthService` in `ProjectsModule`.
+
+**Resultado:** Imported `AuthModule` into `ProjectsModule` to provide `AuthService` dependency.
+
+**Decisión:** Se decidió importar `AuthModule` directamente en `ProjectsModule` para asegurar que `AuthService` esté disponible para `JwtAuthGuard`.
+
+---
+
 ## [16:30] (14/06/2026) Implementación de Soft Delete y Aprobaciones
 
 **Prompt:** "Implementa un flujo de borrado lógico (Soft Delete) y un sistema de aprobación para el Coordinador."

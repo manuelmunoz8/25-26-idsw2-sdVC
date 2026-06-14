@@ -1,6 +1,14 @@
 # Registro de Decisiones - Backend
 ---
 
+## [01:55] (14/06/2026) Fix Dependency Injection in ProjectsModule
+
+**Decisión:** Importar `AuthModule` dentro de `ProjectsModule` para resolver problemas de inyección de dependencias con `JwtAuthGuard`.
+**Motivo:** `ProjectsModule` utilizaba `JwtAuthGuard`, la cual depende de `AuthService`. Al no estar `AuthService` (proporcionado por `AuthModule`) en el alcance de `ProjectsModule`, NestJS fallaba al instanciar el guard.
+**Impacto:** Permite la correcta instanciación de los guardias de autenticación en las rutas protegidas del módulo de proyectos.
+
+---
+
 ## [16:35] (14/06/2026) Flujo de Borrado Lógico y Aprobaciones
 
 **Decisión:** Implementar borrado lógico mediante `isDeleted` en lugar de eliminación física y establecer un sistema de aprobación por parte del Coordinador.
@@ -75,7 +83,7 @@
 ## [19:08] (03/06/2026) Abstracción de Código Basada en UML (View-Controller-Repository)
 
 **Decisión:** Definir interfaces y clases abstractas base (`IBaseController`, `IBaseService`, `BaseService`) para los módulos del sistema.
-**Motivo:** Se identificó un patrón repetitivo en los diagramas de secuencia UML (View, Controller, Repository). El uso de abstracciones reduce el código duplicado, evita ambigüedades y asegura que la implementación sea fiel al diseño arquitectónico.
+**Motivo:** Se identificó un patrón repetitivo en los diagramas de secuencia UML (View, Controller, Repository). El uso de abstracciones reduce el código duplicado, evita ambiguedades y asegura que la implementación sea fiel al diseño arquitectónico.
 **Impacto:** Los futuros módulos deberán extender de estas clases base, simplificando la implementación de operaciones CRUD estándar y mejorando la mantenibilidad.
 
 ---
