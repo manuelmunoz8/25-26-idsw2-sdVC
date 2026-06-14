@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { projectsService } from '../services/serviceInstances';
 import { useCrud } from '../hooks/useCrud';
+import { useAuth } from '../context/AuthContext';
 
 interface Project {
   id: string;
@@ -12,13 +13,16 @@ interface Project {
 
 const ProjectsPage: React.FC = () => {
   const { data: projects, loading, error } = useCrud<Project>(projectsService as any);
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   return (
     <div className="projects-page">
       <div className="page-header">
         <h2>Gestión de Proyectos</h2>
-        <button className="btn-primary">Nuevo Proyecto</button>
+        {user?.role === 'coordinador' && (
+          <button className="btn-primary" onClick={() => alert('Funcionalidad en desarrollo')}>Nuevo Proyecto</button>
+        )}
       </div>
 
       {loading ? (

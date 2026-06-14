@@ -39,6 +39,17 @@
 
 ---
 
+## [16:45] (13/06/2026) Restricción de acceso para creación de proyectos
+
+**Prompt:** "Actúa como Senior Frontend Engineer. Necesito ocultar la funcionalidad de creación de proyectos para usuarios que no sean coordinadores."
+
+**Resultado:**
+- Actualización de `ProjectsPage.tsx`: Uso del hook `useAuth` para obtener el rol del usuario y renderizado condicional del botón "Nuevo Proyecto" (`user?.role === 'coordinador'`).
+
+**Decisión:** Se implementa el control de acceso en la UI para limitar la funcionalidad de creación de proyectos exclusivamente a los usuarios con rol de coordinador, cumpliendo con los requisitos de seguridad y control de acceso.
+
+---
+
 ## [16:30] (13/06/2026) Implementación de gestión de solicitudes de eliminación (Aprobar/Denegar)
 
 **Prompt:** "Necesito implementar el filtrado de usuarios borrados y la interfaz de aprobación para el Coordinador."
