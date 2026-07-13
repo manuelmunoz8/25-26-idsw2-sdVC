@@ -47,3 +47,11 @@
 **Resultado:** Creación de los archivos de diseño en `modelosUML/diseño/casosDeUsos/` para los casos de uso solicitados.
 
 **Decisión:** Se ha implementado cada diagrama siguiendo el estándar `strictuml`, asegurando la coherencia con los flujos definidos en los respectivos análisis.
+
+## [22:53] Sincronización masiva de estructura de diseño
+
+**Prompt:** Sincronizar la documentación en 'RUP/02-diseño/casosDeUsos/' con la de 'RUP/01-analisis/casosDeUsos/'. Crear directorios y archivos .md faltantes siguiendo una plantilla establecida.
+
+**Resultado:** Se crearon 38 directorios de casos de uso en `RUP/02-diseño/casosDeUsos/` cada uno con su respectivo archivo `[CU_NAME].md`. Además, se crearon 5 directorios faltantes en `modelosUML/diseño/casosDeUsos/`.
+
+**Decisión:** Se inicializaron los contenedores de documentación de diseño para asegurar paridad total con la fase de análisis y mantener la trazabilidad.
