@@ -40,6 +40,6 @@ export class RewardsController implements IBaseController<Reward> {
   @Delete(':id')
   @Roles('coordinador')
   remove(@Param('id', ParseUUIDPipe) id: string): Promise<void> {
-    return this.rewardsService.removeReward(id);
+    return this.rewardsService.remove(id);
   }
 }

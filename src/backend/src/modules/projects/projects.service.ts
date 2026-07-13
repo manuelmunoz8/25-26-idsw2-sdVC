@@ -34,12 +34,6 @@ export class ProjectsService extends BaseService<Project> {
     return project;
   }
 
-  async softDelete(id: string): Promise<void> {
-    const project = await this.findOne(id);
-    project.isDeleted = true;
-    await this.projectsRepository.save(project);
-  }
-
   async createProject(coordinatorId: string, projectData: CreateProjectDto): Promise<Project> {
     const existingProject = await this.projectsRepository.findOne({ where: { title: projectData.title } });
     if (existingProject) {

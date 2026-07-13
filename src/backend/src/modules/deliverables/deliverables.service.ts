@@ -63,12 +63,6 @@ export class DeliverablesService extends BaseService<Deliverable> {
     return await this.deliverablesRepository.save(deliverable);
   }
 
-  async softDelete(id: string): Promise<void> {
-    const deliverable = await this.findOne(id);
-    deliverable.isDeleted = true;
-    await this.deliverablesRepository.save(deliverable);
-  }
-
   override async findOne(id: string): Promise<Deliverable> {
     const deliverable = await this.deliverablesRepository.findOne({
         where: { id: id as any, isDeleted: false },

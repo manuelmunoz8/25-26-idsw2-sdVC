@@ -7,15 +7,6 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// Interceptor de petición para añadir el token JWT
-api.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-  return config;
-});
-
 // Interceptor de respuesta para manejo global de errores
 api.interceptors.response.use(
   (response) => response,
@@ -31,7 +22,7 @@ api.interceptors.response.use(
           break;
         case 500:
           console.error('Error interno del servidor');
-          alert('Ha ocurrido un error en el servidor, intente más tarde.');
+          // alert('Ha ocurrido un error en el servidor, intente más tarde.');
           break;
         default:
           console.error('Error:', error.response.data);

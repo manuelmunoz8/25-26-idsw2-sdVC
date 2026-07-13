@@ -89,7 +89,6 @@ export class PublicationsService extends BaseService<Publication> {
         throw new UnauthorizedException('No tienes permiso para eliminar esta publicación');
     }
 
-    publication.isDeleted = true;
-    await this.publicationsRepository.save(publication);
+    await this.remove(id);
   }
 }

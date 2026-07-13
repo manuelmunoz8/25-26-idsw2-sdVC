@@ -27,10 +27,4 @@ export class RewardsService extends BaseService<Reward> {
     if (!reward) throw new NotFoundException(`Reward with ID ${id} not found`);
     return reward;
   }
-
-  async removeReward(id: string): Promise<void> {
-    const reward = await this.findOne(id);
-    reward.isDeleted = true;
-    await this.rewardsRepository.save(reward);
-  }
 }

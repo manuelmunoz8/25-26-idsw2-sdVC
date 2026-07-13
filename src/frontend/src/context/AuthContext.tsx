@@ -13,16 +13,26 @@ const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) setUser(JSON.parse(savedUser));
+    const validateSession = async () => {
+      try {
+        const userData = await authService.validarSesion();
+        setUser(userData);
+      } catch (error) {
+        console.log('No hay sesión activa');
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+    validateSession();
   }, []);
 
   const crearSesion = (data: any) => {
     setUser(data.user);
-    localStorage.setItem('user', JSON.stringify(data.user));
-    localStorage.setItem('token', data.token); // Guardar el token
+    // Ya no guardamos el token en localStorage
   };
 
   const autenticar = async (dto: LoginDto) => {
@@ -35,11 +45,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem('user');
-    localStorage.removeItem('token'); // Eliminar el token
+  const logout = async () => {
+    try {
+      await authService.logout();
+    } catch (error) {
+      console.error('Logout error:', error);
+    } finally {
+      setUser(null);
+    }
   };
+
+  if (loading) return <div>Cargando...</div>;
 
   return (
     <AuthContext.Provider value={{ user, autenticar, logout, isAuthenticated: !!user }}>

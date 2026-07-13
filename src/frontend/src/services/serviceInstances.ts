@@ -13,10 +13,17 @@ export const deliverablesService = {
 };
 
 export const authService = {
-  validarCredenciales: async (dto: LoginDto) => {
+  validarCredenciales: async (dto: any) => {
     const response = await api.post('/api/auth/login', dto);
     return response.data;
   },
+  validarSesion: async () => {
+    const response = await api.get('/api/auth/validate');
+    return response.data;
+  },
+  logout: async () => {
+    await api.post('/api/auth/logout');
+  }
 };
 
 export const projectsService: IBaseService<any> = {
@@ -47,9 +54,12 @@ export const publicationsCustomService = {
   addReply: async (id: string, reply: { content: string }) => (await api.post(`/api/publications/${id}/replies`, reply)).data,
 };
 
-export const rewardsService = {
+export const rewardsService: IBaseService<any> = {
   findAll: async () => (await api.get('/api/rewards')).data,
-  create: async (dto: CreateRewardDto) => (await api.post('/api/rewards', dto)).data,
+  findOne: async (id: string) => (await api.get(`/api/rewards/${id}`)).data,
+  create: async (dto: any) => (await api.post('/api/rewards', dto)).data,
+  update: async (id: string, dto: any) => (await api.put(`/api/rewards/${id}`, dto)).data,
+  remove: async (id: string) => await api.delete(`/api/rewards/${id}`),
 };
 
 export const profileService = {
