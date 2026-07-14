@@ -3,11 +3,13 @@ skinparam style strictuml
 skinparam backgroundColor white
 skinparam shadowing false
 
+actor Coordinador
 participant "ListarSolicitudesView" as View
 participant "PerfilController" as Controller
 participant "SolicitudEliminacionRepository" as Repo
 participant "SolicitudEliminacion" as Model
 
+Coordinador -> View: abrirSolicituedesEliminacionPerfil()
 activate View
 View -> Controller: listarSolicitudesPendientes()
 activate Controller
@@ -18,5 +20,6 @@ Repo --> Controller: List<SolicitudEliminacion>
 deactivate Repo
 Controller --> View: List<SolicitudEliminacion>
 deactivate Controller
+View --> Coordinador: mostrarSolicitudes(List<SolicitudEliminacion>)
 deactivate View
 @enduml
