@@ -7,15 +7,12 @@ actor Coordinador
 participant "ListarSolicitudesView" as View
 participant "PerfilController" as Controller
 participant "SolicitudEliminacionRepository" as Repo
-participant "SolicitudEliminacion" as Model
 
 Coordinador -> View: abrirSolicituedesEliminacionPerfil()
 activate View
 View -> Controller: listarSolicitudesPendientes()
 activate Controller
 Controller -> Repo: obtenerTodasPendientes()
-activate Repo
-Repo -> Model: <<create>>
 Repo --> Controller: List<SolicitudEliminacion>
 deactivate Repo
 Controller --> View: List<SolicitudEliminacion>
