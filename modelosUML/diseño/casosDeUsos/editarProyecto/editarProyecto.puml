@@ -1,26 +1,28 @@
 @startuml editarProyecto
 skinparam style strictuml
-actor Usuario
-participant "EditarProyectoView" as View
-participant "ProyectoController" as Controller
-participant "ProyectoRepository" as Repo
-database "Database" as DB
+skinparam backgroundColor white
+skinparam shadowing false
 
-Usuario -> View: editarProyecto()
-View -> Controller: cargarDatosActuales()
-Controller -> Repo: obtenerPorId(proyectoId)
-Repo -> DB: SELECT * FROM Proyecto
-DB --> Repo: Proyecto
-Repo --> Controller: Proyecto
-Controller --> View: DatosProyecto
+actor Coordinador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "ProyectoRepository\n(TypeORM)" as Repo
 
-Usuario -> View: guardarCambios(datosNuevos)
-View -> Controller: guardarCambios(datosNuevos)
-Controller -> Repo: actualizar(proyecto)
-Repo -> DB: UPDATE Proyecto
-DB --> Repo: success
-Repo --> Controller: true
-Controller --> View: true
+Coordinador -> View: editarProyecto(proyectoEditado)
+activate View
 
-View -> Usuario: confirmar()
+View -> Controller: editarProyecto(proyectoEditado)
+activate Controller
+
+Controller -> Repo: editarProyecto(proyectoEditado)
+activate Repo
+
+Repo --> Controller: ProyectoActualizado
+deactivate Repo
+
+Controller --> View: ProyectoActualizado
+deactivate Controller
+
+View --> Coordinador: mostrarDetalles(ProyectoActualizado)
+deactivate View
 @enduml

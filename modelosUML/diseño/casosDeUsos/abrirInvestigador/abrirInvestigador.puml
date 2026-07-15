@@ -7,21 +7,26 @@ skinparam DefaultFontSize 12
 skinparam linetype polyline
 
 actor Usuario
-participant "PerfilInvestigadorView" as View
-participant "InvestigadorController" as Controller
-participant "InvestigadorRepository" as Repository
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "InvestigadorRepository\n(TypeORM)" as Repository
 
 Usuario -> View: abrirInvestigador(investigadorId)
 activate View
-View -> Controller: obtenerPerfil(investigadorId)
+
+View -> Controller: abrirInvestigador(investigadorId)
 activate Controller
-Controller -> Repository: obtenerPorId(investigadorId)
+
+Controller -> Repository: abrirInvestigador(investigadorId)
 activate Repository
+
 Repository --> Controller: Investigador
 deactivate Repository
+
 Controller --> View: Investigador
 deactivate Controller
-View --> Usuario: mostrarPerfil()
+
+View --> Usuario: mostrarPerfil(Investigador)
 deactivate View
 
 @enduml

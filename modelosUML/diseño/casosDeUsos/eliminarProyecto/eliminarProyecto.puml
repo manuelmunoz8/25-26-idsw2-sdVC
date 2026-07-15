@@ -1,26 +1,28 @@
 @startuml eliminarProyecto
 skinparam style strictuml
-actor Usuario
-participant "EliminarProyectoView" as View
-participant "ProyectoController" as Controller
-participant "ProyectoRepository" as Repo
-participant "EntregableRepository" as EntregableRepo
-database "Database" as DB
+skinparam backgroundColor white
+skinparam shadowing false
 
-Usuario -> View: eliminarProyecto()
-View -> Controller: solicitarConfirmacion()
-Controller -> Repo: obtenerPorId(proyectoId)
-Repo --> Controller: Proyecto
+actor Coordinador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "ProyectoRepository\n(TypeORM)" as Repo
 
-Usuario -> View: confirmarEliminacion(proyectoId)
-View -> Controller: confirmarEliminacion(proyectoId)
-Controller -> EntregableRepo: eliminarPorProyecto(proyectoId)
-EntregableRepo -> DB: DELETE FROM Entregable
-DB --> EntregableRepo: success
-Controller -> Repo: eliminar(proyectoId)
-Repo -> DB: DELETE FROM Proyecto
-DB --> Repo: success
-Repo --> Controller: true
-Controller --> View: true
-View -> Usuario: confirmacionFinal
+Coordinador -> View: eliminarProyecto(proyectoId)
+activate View
+
+View -> Controller: eliminarProyecto(proyectoId)
+activate Controller
+
+Controller -> Repo: eliminarProyecto(proyectoId)
+activate Repo
+
+Repo --> Controller: ProyectoEliminado
+deactivate Repo
+
+Controller --> View: ProyectoEliminado
+deactivate Controller
+
+View --> Coordinador: mostrarDetalle(ProyectoEliminado)
+deactivate View
 @enduml

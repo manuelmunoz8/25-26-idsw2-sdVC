@@ -3,23 +3,33 @@ skinparam style strictuml
 skinparam backgroundColor white
 skinparam shadowing false
 
-participant "CrearEntregableView" as View
-participant "EntregableController" as Controller
-participant "EntregableRepository" as Repo
+actor Investigador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "EntregableRepository\n(TypeORM)" as Repo
 participant "Entregable" as Entregable
 
+Investigador -> View: crearEntregable(proyectoId, Entregable)
 activate View
-View -> Controller: crear(proyectoId, nombre, fecha, descripcion)
+
+View -> Controller: crearEntregable(proyectoId, Entregable)
 activate Controller
+
 Controller -> Entregable: <<create>>
 activate Entregable
+
 Entregable --> Controller: entregable
 deactivate Entregable
+
 Controller -> Repo: guardar(entregable)
 activate Repo
+
 Repo --> Controller: ok
 deactivate Repo
+
 Controller --> View: entregable
 deactivate Controller
+
+View --> Investigador: mostrarDetalle(entregable)
 deactivate View
 @enduml

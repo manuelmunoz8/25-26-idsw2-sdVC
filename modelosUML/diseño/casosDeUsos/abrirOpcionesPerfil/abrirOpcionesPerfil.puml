@@ -1,26 +1,36 @@
 @startuml abrirOpcionesPerfil-diseño
 skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
 
-actor "Usuario" as user
-participant "OpcionesPerfilView" as view
-participant "OpcionesPerfilController" as controller
-participant "Sesion" as sesion
-participant "UsuarioRepository" as repo
+actor Investigador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "Sesion" as Sesion
+participant "UsuarioRepository\n(TypeORM)" as Repo
 
-user -> view : abrirOpcionesPerfil()
-activate view
-view -> controller : cargarDatosPerfil()
-activate controller
-controller -> sesion : getUsuarioActual()
-activate sesion
-sesion --> controller : usuarioId
-deactivate sesion
-controller -> repo : obtenerPerfilId(usuarioId)
-activate repo
-repo --> controller : DatosPerfil
-deactivate repo
-controller --> view : DatosPerfil
-deactivate controller
-view --> user : mostrarOpcionesPerfil()
-deactivate view
+Investigador -> View : abrirOpcionesPerfil()
+activate View
+
+View -> Controller : obtenerDatosPerfil()
+activate Controller
+
+
+Controller -> Sesion : getUsuarioActual()
+activate Sesion
+
+Sesion --> Controller : usuario
+deactivate Sesion
+
+Controller -> Repo : obtenerPerfilId(usuarioId)
+activate Repo
+
+Repo --> Controller : DatosPerfil
+deactivate Repo
+
+Controller --> View : DatosPerfil
+deactivate Controller
+
+View --> Investigador : mostrarPerfil(DatosPerfil)
+deactivate View
 @enduml

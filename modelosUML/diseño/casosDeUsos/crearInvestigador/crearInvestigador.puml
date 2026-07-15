@@ -1,26 +1,35 @@
 @startuml crearInvestigador
 skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
 
-actor InvestigadorUsuario as User
-participant "CrearInvestigadorView" as View
-participant "InvestigadorController" as Controller
-participant "Investigador" as Entidad
-participant "InvestigadorRepository" as Repository
+actor Coordinador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "Investigador\n(Entidad)" as Entidad
+participant "InvestigadorRepository\n(TypeORM)" as Repository
 
-User -> View: solicita crear investigador
+Coordinador -> View: crearInvestigador(Investigador)
 activate View
-View -> Controller: crear(id, nombre, campo)
+
+View -> Controller: crearInvestigador(Investigador)
 activate Controller
+
 Controller -> Entidad: <<create>>
 activate Entidad
+
 Entidad --> Controller: nuevoInvestigador
 deactivate Entidad
-Controller -> Repository: guardar(investigador)
+
+Controller -> Repository: guardarInvestigador(nuevoInvestigador)
 activate Repository
-Repository --> Controller: ok
+
+Repository --> Controller: Investigador
 deactivate Repository
-Controller --> View: ok
+
+Controller --> View: Investigador
 deactivate Controller
-View --> User: confirma creacion
+
+View --> Coordinador: mostrarDetalle(Investigador)
 deactivate View
 @enduml

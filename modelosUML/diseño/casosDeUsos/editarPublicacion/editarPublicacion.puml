@@ -1,26 +1,33 @@
 @startuml editarPublicacion
 skinparam style strictuml
-actor Usuario
-participant "EditarPublicacionView" as View
-participant "PublicacionController" as Controller
-participant "PublicacionRepository" as Repo
-database "Database" as DB
+skinparam backgroundColor white
+skinparam shadowing false
 
-Usuario -> View: editarPublicacion()
-View -> Controller: cargarDatosActuales()
-Controller -> Repo: obtenerPorId(publicacionId)
-Repo -> DB: SELECT * FROM Publicacion
-DB --> Repo: Publicacion
-Repo --> Controller: Publicacion
-Controller --> View: DatosPublicacion
+actor Investigador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "PublicacionRepository\n(TypeORM)" as Repo
 
-Usuario -> View: guardarCambios(datosNuevos)
-View -> Controller: guardarCambios(datosNuevos)
-Controller -> Repo: actualizar(publicacion)
-Repo -> DB: UPDATE Publicacion
-DB --> Repo: success
-Repo --> Controller: true
-Controller --> View: true
 
-View -> Usuario: confirmar()
+Investigador -> View: editarPublicacion()
+View --> Investigador: mostrarEdicion(Publicacion)
+
+
+Investigador -> View: guardarPublicacion(publicacionEditada)
+activate View
+
+View -> Controller: guardarPublicacion(publicacionEditada)
+activate Controller
+
+Controller -> Repo: guardarPublicacion(publicacionEditada)
+activate Repo
+
+Repo --> Controller: PublicacionEditada
+deactivate Repo
+
+Controller --> View: PublicacionEditada
+deactivate Controller
+
+View --> Investigador: mostrarDetalle(PublicacionEditada)
+deactivate View
 @enduml

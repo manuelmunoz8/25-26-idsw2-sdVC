@@ -1,25 +1,28 @@
-@startuml
+@startuml abrirRecompensa
 skinparam style strictuml
-actor Investigador
-boundary DetalleRecompensaView <<boundary>>
-control RecompensaController <<control>>
-entity RecompensaRepository <<entity>>
-database Database <<database>>
+skinparam backgroundColor white
+skinparam shadowing false
 
-Investigador -> DetalleRecompensaView : abrirRecompensa(recompensaId)
-activate DetalleRecompensaView
-DetalleRecompensaView -> RecompensaController : obtenerDetalleRecompensa(recompensaId)
-activate RecompensaController
-RecompensaController -> RecompensaRepository : obtenerPorId(recompensaId)
-activate RecompensaRepository
-RecompensaRepository -> Database : select * from recompensas where id = recompensaId
-activate Database
-Database --> RecompensaRepository : datosRecompensa
-deactivate Database
-RecompensaRepository --> RecompensaController : recompensa
-deactivate RecompensaRepository
-RecompensaController --> DetalleRecompensaView : recompensa
-deactivate RecompensaController
-DetalleRecompensaView --> Investigador : mostrarDetalle(recompensa)
-deactivate DetalleRecompensaView
+actor Investigador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "RecompensaRepository\n(TypeORM)" as Repository
+
+Investigador -> View : abrirRecompensa(recompensaId)
+activate View
+
+View -> Controller : obtenerRecompensa(recompensaId)
+activate Controller
+
+Controller -> Repository : obtenerRecompensa(recompensaId)
+activate Repository
+
+Repository --> Controller : Recompensa
+deactivate Repository
+
+Controller --> View : Recompensa
+deactivate Controller
+
+View --> Investigador : mostrarDetalle(Recompensa)
+deactivate View
 @enduml

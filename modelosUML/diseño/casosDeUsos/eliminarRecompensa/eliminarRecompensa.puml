@@ -1,19 +1,29 @@
 @startuml eliminarRecompensa
 skinparam style strictuml
-hide empty members
+skinparam backgroundColor white
+skinparam shadowing false
 
-actor Usuario
-participant "EliminarRecompensaView" as View
-participant "RecompensaController" as Controller
-participant "RecompensaRepository" as Repository
+actor Coordinador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "RecompensaRepository\n(TypeORM)" as Repo
 
-Usuario -> View: eliminarRecompensa()
-View -> Controller: solicitarConfirmacion()
-Controller --> View: mostrarDialogoConfirmacion()
-Usuario -> View: confirmarEliminacion(recompensaId)
-View -> Controller: eliminar(recompensaId)
-Controller -> Repository: eliminar(recompensaId)
-Repository --> Controller: ok
-Controller --> View: ok
-View --> Usuario: mostrarResultado()
+Coordinador -> View : eliminarRecompensa(recompensaId)
+activate View
+
+
+View -> Controller : eliminarRecompensa(recompensaId)
+activate Controller
+
+Controller -> Repo : eliminarRecompensa(recompensaId)
+activate Repo
+
+Repo --> Controller : RecompensaEliminada
+deactivate Repo
+
+Controller --> View : RecompensaEliminada
+deactivate Controller
+
+View --> Coordinador : mostrarDetalle(RecompensaEliminada)
+deactivate View
 @enduml

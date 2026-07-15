@@ -1,26 +1,28 @@
 @startuml editarRecompensa
 skinparam style strictuml
-actor Usuario
-participant "EditarRecompensaView" as View
-participant "RecompensaController" as Controller
-participant "RecompensaRepository" as Repo
-database "Database" as DB
+skinparam backgroundColor white
+skinparam shadowing false
 
-Usuario -> View: editarRecompensa()
-View -> Controller: cargarDatosActuales()
-Controller -> Repo: obtenerPorId(recompensaId)
-Repo -> DB: SELECT * FROM Recompensa
-DB --> Repo: Recompensa
-Repo --> Controller: Recompensa
-Controller --> View: DatosRecompensa
+actor Coordinador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "RecompensaRepository\n(TypeORM)" as Repo
 
-Usuario -> View: guardarCambios(datosNuevos)
-View -> Controller: guardarCambios(datosNuevos)
-Controller -> Repo: actualizar(recompensa)
-Repo -> DB: UPDATE Recompensa
-DB --> Repo: success
-Repo --> Controller: true
-Controller --> View: true
+Coordinador -> View: editarRecompensa(recompensaEditada)
+activate View
 
-View -> Usuario: confirmar()
+View -> Controller: editarRecompensa(recompensaEditada)
+activate Controller
+
+Controller -> Repo: editarRecompensa(recompensaEditada)
+activate Repo
+
+Repo --> Controller: RecompensaEditada
+deactivate Repo
+
+Controller --> View: RecompensaEditada
+deactivate Controller
+
+View --> Coordinador: mostrarDetalle(RecompensaEditada)
+deactivate View
 @enduml

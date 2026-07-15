@@ -1,25 +1,28 @@
-@startuml
+@startuml listarProyectos
 skinparam style strictuml
-actor Investigador
-boundary ListarProyectosView <<boundary>>
-control ProyectosController <<control>>
-entity ProyectoRepository <<entity>>
-database Database <<database>>
+skinparam backgroundColor white
+skinparam shadowing false
 
-Investigador -> ListarProyectosView : abrirProyectos()
-activate ListarProyectosView
-ListarProyectosView -> ProyectosController : listarProyectos()
-activate ProyectosController
-ProyectosController -> ProyectoRepository : obtenerTodos()
-activate ProyectoRepository
-ProyectoRepository -> Database : select * from proyectos
-activate Database
-Database --> ProyectoRepository : proyectos
-deactivate Database
-ProyectoRepository --> ProyectosController : proyectos
-deactivate ProyectoRepository
-ProyectosController --> ListarProyectosView : proyectos
-deactivate ProyectosController
-ListarProyectosView --> Investigador : mostrarProyectos(proyectos)
-deactivate ListarProyectosView
+actor Investigador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "ProyectoRepository\n(TypeORM)" as Repository
+
+Investigador -> View : abrirProyectos()
+activate View
+
+View -> Controller : abrirProyectos()
+activate Controller
+
+Controller -> Repository : abrirProyectos()
+activate Repository
+
+Repository --> Controller : List<Proyecto>
+deactivate Repository
+
+Controller --> View : List<Proyecto>
+deactivate Controller
+
+View --> Investigador : mostrarLista(List<Proyecto>)
+deactivate View
 @enduml

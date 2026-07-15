@@ -1,19 +1,35 @@
 @startuml importarConvocatoria
 skinparam style strictuml
-hide empty members
+skinparam backgroundColor white
+skinparam shadowing false
 
-actor Usuario
-participant "ImportarConvocatoriaView" as View
-participant "ConvocatoriaController" as Controller
-participant "ExternalSourceAdapter" as Adapter
-participant "ConvocatoriaRepository" as Repository
+actor Coordinador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "ExternalSourceAdapter\n(HTTP/Axios)" as Adapter
+participant "ConvocatoriaRepository\n(TypeORM)" as Repo
 
-Usuario -> View: importarConvocatoria()
-View -> Controller: solicitarImportacion(fuente)
-Controller -> Adapter: extraerDatos(fuente)
-Adapter --> Controller: datosConvocatoria
-Controller -> Repository: actualizarConDatosExternos(convocatoriaId, datos)
-Repository --> Controller: ok
-Controller --> View: ok
-View --> Usuario: mostrarResultado()
+Coordinador -> View : importarConvocatoria(nuevaConvocatoria)
+activate View
+
+View -> Controller : importarConvocatoria(nuevaConvocatoria)
+activate Controller
+
+Controller -> Adapter : extraerInformacion(nuevaConvocatoria)
+activate Adapter
+
+Adapter --> Controller : datosConvocatoria
+deactivate Adapter
+
+Controller -> Repo : crearConvocatoria(datosConvocatoria)
+activate Repo
+
+Repo --> Controller : Convocatoria
+deactivate Repo
+
+Controller --> View : Convocatoria
+deactivate Controller
+
+View --> Coordinador : mostrarDetalle(Convocatoria)
+deactivate View
 @enduml

@@ -1,25 +1,26 @@
 @startuml
 skinparam style strictuml
 actor Investigador
-boundary ListarConvocatoriasView <<boundary>>
-control ConvocatoriaController <<control>>
-entity ConvocatoriaRepository <<entity>>
-database Database <<database>>
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "ConvocatoriaRepository\n(TypeORM)" as Repository
 
-Investigador -> ListarConvocatoriasView : abrirConvocatorias()
-activate ListarConvocatoriasView
-ListarConvocatoriasView -> ConvocatoriaController : listarConvocatorias()
-activate ConvocatoriaController
-ConvocatoriaController -> ConvocatoriaRepository : obtenerTodas()
-activate ConvocatoriaRepository
-ConvocatoriaRepository -> Database : select * from convocatorias
-activate Database
-Database --> ConvocatoriaRepository : listaConvocatorias
-deactivate Database
-ConvocatoriaRepository --> ConvocatoriaController : listaConvocatorias
-deactivate ConvocatoriaRepository
-ConvocatoriaController --> ListarConvocatoriasView : listaConvocatorias
-deactivate ConvocatoriaController
-ListarConvocatoriasView --> Investigador : mostrarLista(listaConvocatorias)
-deactivate ListarConvocatoriasView
+Investigador -> View : abrirConvocatorias()
+activate View
+
+View -> Controller : listarConvocatorias()
+activate Controller
+
+Controller -> Repository : obtenerTodas()
+activate Repository
+
+Repository --> Controller : List<Convocatoria>
+deactivate Repository
+
+Controller --> View : List<Convocatoria>
+deactivate Controller
+
+View --> Investigador : mostrarLista(List<Convocatoria>)
+deactivate View
+
 @enduml

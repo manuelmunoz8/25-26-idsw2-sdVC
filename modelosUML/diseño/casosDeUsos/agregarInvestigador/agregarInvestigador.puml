@@ -3,28 +3,45 @@ skinparam style strictuml
 skinparam backgroundColor white
 skinparam shadowing false
 
-participant "AgregarInvestigadorView" as View
-participant "ProyectoController" as Controller
-participant "ProyectoRepository" as RepoProy
-participant "InvestigadorRepository" as RepoInv
+actor Coordinador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "InvestigadorRepository\n(TypeORM)" as RepoInv
+participant "ProyectoRepository\n(TypeORM)" as RepoProy
 
+Coordinador -> View: buscarInvestigadores(criterio)
 activate View
-View -> Controller: buscarInvestigador(criterio)
+
+View -> Controller: buscarInvestigadores(criterio)
 activate Controller
-Controller -> RepoInv: buscar(criterio)
+
+Controller -> RepoInv: buscarInvestigadores(criterio)
 activate RepoInv
+
 RepoInv --> Controller: List<Investigador>
 deactivate RepoInv
+
 Controller --> View: List<Investigador>
 deactivate Controller
 
+View --> Coordinador: mostrarLista(List<Investigador>)
+
+
+Coordinador -> View: agregarInvestigador(proyectoId, investigadorId)
+
 View -> Controller: asignarInvestigador(proyectoId, investigadorId)
 activate Controller
-Controller -> RepoProy: agregarAsociacion(proyectoId, investigadorId)
+
+Controller -> RepoProy: asignarInvestigador(proyectoId, investigadorId)
 activate RepoProy
+
 RepoProy --> Controller: ok
 deactivate RepoProy
+
 Controller --> View: ok
 deactivate Controller
+
+View --> Coordinador: mostrarConfirmacion(ok)
 deactivate View
+
 @enduml

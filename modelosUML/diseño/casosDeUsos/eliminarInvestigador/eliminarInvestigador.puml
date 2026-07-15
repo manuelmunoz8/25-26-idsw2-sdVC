@@ -1,21 +1,28 @@
 @startuml eliminarInvestigador
 skinparam style strictuml
-actor Usuario
-participant "EliminarInvestigadorView" as View
-participant "ProyectoController" as Controller
-participant "ProyectoRepository" as Repo
-database "Database" as DB
+skinparam backgroundColor white
+skinparam shadowing false
 
-Usuario -> View: eliminarInvestigador(investigadorId)
-View -> Controller: solicitarConfirmacionEliminacion()
-Controller --> View: mostrarConfirmacion
+actor Coordinador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "ProyectoRepository\n(TypeORM)" as Repo
 
-Usuario -> View: confirmarDesvinculacion(proyectoId, investigadorId)
-View -> Controller: confirmarDesvinculacion(proyectoId, investigadorId)
-Controller -> Repo: eliminarAsociacion(proyectoId, investigadorId)
-Repo -> DB: DELETE FROM ProyectoInvestigador
-DB --> Repo: success
-Repo --> Controller: true
-Controller --> View: true
-View -> Usuario: mostrarConfirmacionFinal
+Coordinador -> View: eliminarInvestigador(proyectoId, investigadorId)
+activate View
+
+View -> Controller: eliminarColaborador(proyectoId, investigadorId)
+activate Controller
+
+Controller -> Repo: eliminarColaborador(proyectoId, investigadorId)
+activate Repo
+
+Repo --> Controller: InvestigadorEliminado
+deactivate Repo
+
+Controller --> View: InvestigadorEliminado
+deactivate Controller
+
+View --> Coordinador: mostrarDetalle(InvestigadorEliminado)
+deactivate View
 @enduml

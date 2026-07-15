@@ -1,26 +1,35 @@
 @startuml crearProyecto
 skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
 
-actor InvestigadorUsuario as User
-participant "CrearProyectoView" as View
-participant "ProyectoController" as Controller
-participant "Proyecto" as Entidad
-participant "ProyectoRepository" as Repository
+actor Coordinador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "Proyecto\n(Entidad)" as Entidad
+participant "ProyectoRepository\n(TypeORM)" as Repository
 
-User -> View: solicita crear proyecto
+Coordinador -> View: crearProyecto(nuevoProyecto)
 activate View
-View -> Controller: crear(titulo, estado, f_inicio, f_fin, descripcion)
+
+View -> Controller: crearProyecto(nuevoProyecto)
 activate Controller
+
 Controller -> Entidad: <<create>>
 activate Entidad
+
 Entidad --> Controller: nuevoProyecto
 deactivate Entidad
-Controller -> Repository: guardar(proyecto)
+
+Controller -> Repository: guardar(nuevoProyecto)
 activate Repository
-Repository --> Controller: ok
+
+Repository --> Controller: NuevoProyecto
 deactivate Repository
-Controller --> View: ok
+
+Controller --> View: NuevoProyecto
 deactivate Controller
-View --> User: confirma creacion
+
+View --> Coordinador: mostrarDetalle(NuevoProyecto)
 deactivate View
 @enduml

@@ -1,19 +1,33 @@
 @startuml iniciarSesion
 skinparam style strictuml
-hide empty members
+skinparam backgroundColor white
+skinparam shadowing false
 
 actor Usuario
-participant "LoginView" as View
-participant "IniciarSesionController" as Controller
-participant "UsuarioRepository" as Repository
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "UsuarioRepository\n(TypeORM)" as Repo
 participant "Sesion" as Sesion
 
-Usuario -> View: iniciarSesion()
-View -> Controller: autenticar(usuario, contraseña)
-Controller -> Repository: validarCredenciales(usuario, contraseña)
-Repository --> Controller: usuario
-Controller -> Sesion: <<create>> crearSesion(usuario)
-Sesion --> Controller: sesion
-Controller --> View: ok
-View --> Usuario: abrirPanelPrincipal()
+Usuario -> View : iniciarSesion(credenciales)
+activate View
+
+View -> Controller : autenticar(credenciales)
+activate Controller
+
+Controller -> Repo : obtenerUsuario(credenciales)
+activate Repo
+Repo --> Controller : usuario
+deactivate Repo
+
+Controller -> Sesion : crearSesion(usuario)
+activate Sesion
+Sesion --> Controller : Session creada
+deactivate Sesion
+
+Controller --> View : Session creada
+deactivate Controller
+
+View --> Usuario : mostrarPanelPrincipal()
+deactivate View
 @enduml

@@ -1,26 +1,35 @@
 @startuml abrirOpcionesCargaTrabajo-diseño
 skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
 
-actor "Usuario" as user
-participant "OpcionesCargaTrabajoView" as view
-participant "CargaTrabajoController" as controller
-participant "Sesion" as sesion
-participant "InvestigadorRepository" as repo
+actor Investigador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "Sesion" as Sesion
+participant "InvestigadorRepository\n(TypeORM)" as Repo
 
-user -> view : abrirOpcionesCargaTrabajo()
-activate view
-view -> controller : cargarCargaTrabajo()
-activate controller
-controller -> sesion : getUsuarioActual()
-activate sesion
-sesion --> controller : usuarioId
-deactivate sesion
-controller -> repo : obtenerCargaTrabajo(usuarioId)
-activate repo
-repo --> controller : CargaTrabajo
-deactivate repo
-controller --> view : CargaTrabajo
-deactivate controller
-view --> user : mostrarOpcionesCargaTrabajo()
-deactivate view
+Investigador -> View : abrirOpcionesCargaTrabajo()
+activate View
+
+View -> Controller : cargarCargaTrabajo()
+activate Controller
+
+Controller -> Sesion : getUsuarioActual()
+activate Sesion
+
+Sesion --> Controller : usuario
+deactivate Sesion
+
+Controller -> Repo : obtenerCargaTrabajo(usuarioId)
+activate Repo
+
+Repo --> Controller : CargaTrabajo
+deactivate Repo
+
+Controller --> View : CargaTrabajo
+deactivate Controller
+
+View --> Investigador : mostrarDetalle(CargaTrabajo)
+deactivate View
 @enduml

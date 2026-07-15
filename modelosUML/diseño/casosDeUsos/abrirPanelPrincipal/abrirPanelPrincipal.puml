@@ -16,16 +16,16 @@ controller -> sesion : getUsuarioActual()
 activate sesion
 sesion --> controller : usuario
 deactivate sesion
-controller -> repo : obtenerOpcionesDisponibles(usuario)
+controller -> repo : obtenerOpciones(usuario)
 activate repo
 repo --> controller : List<Opcion>
 deactivate repo
 controller -> menu : crearMenu(List<Opcion>)
 activate menu
-menu --> controller : instanciaOpcionesMenu
+menu --> controller : PanelPrincipal
 deactivate menu
-controller --> view : OpcionesMenu
+controller --> view : PanelPrincipal
 deactivate controller
-view --> user : mostrarPanelPrincipal()
+view --> user : mostrarPanelPrincipal(PanelPrincipal)
 deactivate view
 @enduml

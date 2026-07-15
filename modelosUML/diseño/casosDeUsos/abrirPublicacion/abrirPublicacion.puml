@@ -1,25 +1,28 @@
-@startuml
+@startuml abrirPublicacion
 skinparam style strictuml
-actor Investigador
-boundary DetallePublicacionView <<boundary>>
-control PublicacionController <<control>>
-entity PublicacionRepository <<entity>>
-database Database <<database>>
+skinparam backgroundColor white
+skinparam shadowing false
 
-Investigador -> DetallePublicacionView : abrirPublicacion(publicacionId)
-activate DetallePublicacionView
-DetallePublicacionView -> PublicacionController : obtenerDetallePublicacion(publicacionId)
-activate PublicacionController
-PublicacionController -> PublicacionRepository : obtenerPorId(publicacionId)
-activate PublicacionRepository
-PublicacionRepository -> Database : select * from publicaciones where id = publicacionId
-activate Database
-Database --> PublicacionRepository : datosPublicacion
-deactivate Database
-PublicacionRepository --> PublicacionController : publicacion
-deactivate PublicacionRepository
-PublicacionController --> DetallePublicacionView : publicacion
-deactivate PublicacionController
-DetallePublicacionView --> Investigador : mostrarDetalle(publicacion)
-deactivate DetallePublicacionView
+actor Investigador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "PublicacionRepository\n(TypeORM)" as Repository
+
+Investigador -> View : abrirPublicacion(publicacionId)
+activate View
+
+View -> Controller : obtenerPublicacion(publicacionId)
+activate Controller
+
+Controller -> Repository : obtenerPorId(publicacionId)
+activate Repository
+
+Repository --> Controller : Publicacion
+deactivate Repository
+
+Controller --> View : Publicacion
+deactivate Controller
+
+View --> Investigador : mostrarDetalle(Publicacion)
+deactivate View
 @enduml

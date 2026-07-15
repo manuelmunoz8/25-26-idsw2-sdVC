@@ -1,19 +1,28 @@
 @startuml eliminarPublicacion
 skinparam style strictuml
-hide empty members
+skinparam backgroundColor white
+skinparam shadowing false
 
-actor Usuario
-participant "EliminarPublicacionView" as View
-participant "PublicacionController" as Controller
-participant "PublicacionRepository" as Repository
+actor Investigador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "PublicacionRepository\n(TypeORM)" as Repo
 
-Usuario -> View: eliminarPublicacion()
-View -> Controller: solicitarConfirmacion()
-Controller --> View: mostrarDialogoConfirmacion()
-Usuario -> View: confirmarEliminacion(publicacionId)
-View -> Controller: eliminar(publicacionId)
-Controller -> Repository: eliminar(publicacionId)
-Repository --> Controller: ok
-Controller --> View: ok
-View --> Usuario: mostrarResultado()
+Investigador -> View : eliminarPublicacion(publicacionId)
+activate View
+
+View -> Controller : eliminarPublicacion(publicacionId)
+activate Controller
+
+Controller -> Repo : eliminar(publicacionId)
+activate Repo
+
+Repo --> Controller : PublicacionEliminada
+deactivate Repo
+
+Controller --> View : PublicacionEliminada
+deactivate Controller
+
+View --> Investigador : mostrarDetalle(PublicacionEliminada)
+deactivate View
 @enduml

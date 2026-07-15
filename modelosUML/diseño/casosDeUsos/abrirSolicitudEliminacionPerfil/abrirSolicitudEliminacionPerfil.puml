@@ -4,20 +4,25 @@ skinparam backgroundColor white
 skinparam shadowing false
 
 actor Coordinador
-participant "DetalleSolicitudView" as View
-participant "PerfilController" as Controller
-participant "SolicitudEliminacionRepository" as Repo
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "SolicitudEliminacionRepository\n(TypeORM)" as Repo
 
 Coordinador -> View: abrirSolicitudEliminacionPerfil(solicitudId)
 activate View
-View -> Controller: obtenerDetalleSolicitud(solicitudId)
+
+View -> Controller: obtenerSolicitudEliminacionPerfil(solicitudId)
 activate Controller
-Controller -> Repo: obtenerPorId(solicitudId)
+
+Controller -> Repo: obtenerSolicitudEliminacionPerfil(solicitudId)
 activate Repo
+
 Repo --> Controller: solicitud
 deactivate Repo
+
 Controller --> View: solicitud
 deactivate Controller
-View --> Coordinador: mostrarDetalle(solicutud)
+
+View --> Coordinador: mostrarDetalle(solicitud)
 deactivate View
 @enduml

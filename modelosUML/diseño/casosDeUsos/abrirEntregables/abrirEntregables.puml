@@ -7,21 +7,26 @@ skinparam DefaultFontSize 12
 skinparam linetype polyline
 
 actor Usuario
-participant "ListarEntregablesView" as View
-participant "EntregableController" as Controller
-participant "EntregableRepository" as Repository
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "EntregableRepository\n(TypeORM)" as Repository
 
 Usuario -> View: abrirEntregables(proyectoId)
 activate View
+
 View -> Controller: listarEntregables(proyectoId)
 activate Controller
+
 Controller -> Repository: obtenerPorProyecto(proyectoId)
 activate Repository
+
 Repository --> Controller: List<Entregable>
 deactivate Repository
+
 Controller --> View: List<Entregable>
 deactivate Controller
-View --> Usuario: mostrarLista()
+
+View --> Usuario: mostrarLista(List<Entregable>)
 deactivate View
 
 @enduml

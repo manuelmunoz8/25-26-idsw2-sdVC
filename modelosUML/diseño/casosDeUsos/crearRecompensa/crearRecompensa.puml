@@ -1,26 +1,35 @@
 @startuml crearRecompensa
 skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
 
-actor InvestigadorUsuario as User
-participant "CrearRecompensaView" as View
-participant "RecompensaController" as Controller
-participant "Recompensa" as Entidad
-participant "RecompensaRepository" as Repository
+actor Coordinador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "Recompensa\n(Entidad)" as Entidad
+participant "RecompensaRepository\n(TypeORM)" as Repository
 
-User -> View: solicita crear recompensa
+Coordinador -> View: crearRecompensa(Recompensa)
 activate View
-View -> Controller: crear(tipo, cantidad)
+
+View -> Controller: crearRecompensa(Recompensa)
 activate Controller
+
 Controller -> Entidad: <<create>>
 activate Entidad
+
 Entidad --> Controller: nuevaRecompensa
 deactivate Entidad
-Controller -> Repository: guardar(recompensa)
+
+Controller -> Repository: guardarRecompensa(nuevaRecompensa)
 activate Repository
-Repository --> Controller: ok
+
+Repository --> Controller: Recompensa
 deactivate Repository
-Controller --> View: ok
+
+Controller --> View: Recompensa
 deactivate Controller
-View --> User: confirma creacion
+
+View --> Coordinador: mostrarDetalle(Recompensa)
 deactivate View
 @enduml
