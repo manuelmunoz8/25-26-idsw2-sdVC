@@ -12,7 +12,7 @@ participant "UsuarioRepository\n(TypeORM)" as Repo
 Investigador -> View : abrirOpcionesPerfil()
 activate View
 
-View -> Controller : obtenerDatosPerfil()
+View -> Controller : abrirOpcionesPerfil()
 activate Controller
 
 
@@ -22,7 +22,7 @@ activate Sesion
 Sesion --> Controller : usuario
 deactivate Sesion
 
-Controller -> Repo : obtenerPerfilId(usuarioId)
+Controller -> Repo : obtenerPerfil(usuarioId)
 activate Repo
 
 Repo --> Controller : DatosPerfil
