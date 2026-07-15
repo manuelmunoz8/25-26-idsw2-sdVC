@@ -11,10 +11,10 @@ participant "RecompensaRepository\n(TypeORM)" as Repository
 Investigador -> View : abrirRecompensas()
 activate View
 
-View -> Controller : obtenerRecompensas()
+View -> Controller : abrirRecompensas()
 activate Controller
 
-Controller -> Repository : obtenerRecompensas()
+Controller -> Repository : abrirRecompensas()
 activate Repository
 
 Repository --> Controller : List<Recompensa>
