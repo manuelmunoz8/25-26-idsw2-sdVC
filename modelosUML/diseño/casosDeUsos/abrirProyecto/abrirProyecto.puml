@@ -11,10 +11,10 @@ participant "ProyectoRepository\n(TypeORM)" as Repo
 Coordinador -> View : abrirProyecto(proyectoId)
 activate View
 
-View -> Controller : obtenerProyecto(proyectoId)
+View -> Controller : abrirProyecto(proyectoId)
 activate Controller
 
-Controller -> Repo : obtenerProyecto(proyectoId)
+Controller -> Repo : abrirProyecto(proyectoId)
 activate Repo
 
 Repo --> Controller : Proyecto
