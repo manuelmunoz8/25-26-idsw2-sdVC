@@ -11,10 +11,10 @@ participant "SolicitudEliminacionRepository\n(TypeORM)" as Repo
 Coordinador -> View: abrirSolicitudesEliminacionPerfil()
 activate View
 
-View -> Controller: obtenerSolicitudesEliminacionPerfil()
+View -> Controller: abrirSolicitudesEliminacionPerfil()
 activate Controller
 
-Controller -> Repo: obtenerSolicitudesEliminacionPerfil()
+Controller -> Repo: abrirSolicitudesEliminacionPerfil()
 activate Repo
 
 Repo --> Controller: List<SolicitudEliminacion>
