@@ -10,7 +10,7 @@ participant "OpcionesMenu" as menu
 
 user -> view : abrirPanelPrincipal()
 activate view 
-view -> controller : inicializarPanel()
+view -> controller : abrirPanelPrincipal()
 activate controller
 controller -> sesion : getUsuarioActual()
 activate sesion
@@ -20,7 +20,7 @@ controller -> repo : obtenerOpciones(usuario)
 activate repo
 repo --> controller : List<Opcion>
 deactivate repo
-controller -> menu : crearMenu(List<Opcion>)
+controller -> menu : crearPanelPrincipal(List<Opcion>)
 activate menu
 menu --> controller : PanelPrincipal
 deactivate menu
