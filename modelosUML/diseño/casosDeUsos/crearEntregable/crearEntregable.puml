@@ -24,7 +24,7 @@ deactivate Entregable
 Controller -> Repo: guardar(entregable)
 activate Repo
 
-Repo --> Controller: ok
+Repo --> Controller: entregable
 deactivate Repo
 
 Controller --> View: entregable
