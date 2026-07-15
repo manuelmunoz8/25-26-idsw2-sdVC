@@ -12,7 +12,7 @@ participant "InvestigadorRepository\n(TypeORM)" as Repo
 Investigador -> View : abrirOpcionesCargaTrabajo()
 activate View
 
-View -> Controller : cargarCargaTrabajo()
+View -> Controller : abrirOpcionesCargaTrabajo()
 activate Controller
 
 Controller -> Sesion : getUsuarioActual()
