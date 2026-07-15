@@ -11,10 +11,10 @@ participant "PublicacionRepository\n(TypeORM)" as Repository
 Investigador -> View : abrirPublicaciones()
 activate View
 
-View -> Controller : obtenerPublicaciones()
+View -> Controller : abrirPublicaciones()
 activate Controller
 
-Controller -> Repository : obtenerPublicaciones()
+Controller -> Repository : abrirPublicaciones()
 activate Repository
 
 Repository --> Controller : List<Publicacion>
