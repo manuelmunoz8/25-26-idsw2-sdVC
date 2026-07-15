@@ -1,31 +1,33 @@
-@startuml abrirPanelPrincipal-diseño
+@startuml abrirPanelPrincipal
 skinparam style strictuml
+skinparam backgroundColor white
+skinparam shadowing false
 
-actor "Usuario" as user
-participant "PanelPrincipalView" as view
-participant "PanelPrincipalController" as controller
-participant "Sesion" as sesion
-participant "PermisosRepository" as repo
-participant "OpcionesMenu" as menu
+actor Investigador
+participant "Cloudflare\n(React)" as View
+participant "Render\n(NestJS)" as Controller
+participant "Sesion" as Sesion
+participant "PermisosRepository\n(TypeORM)" as Repo
 
-user -> view : abrirPanelPrincipal()
-activate view 
-view -> controller : abrirPanelPrincipal()
-activate controller
-controller -> sesion : getUsuarioActual()
-activate sesion
-sesion --> controller : usuario
-deactivate sesion
-controller -> repo : obtenerOpciones(usuario)
-activate repo
-repo --> controller : List<Opcion>
-deactivate repo
-controller -> menu : crearPanelPrincipal(List<Opcion>)
-activate menu
-menu --> controller : PanelPrincipal
-deactivate menu
-controller --> view : PanelPrincipal
-deactivate controller
-view --> user : mostrarPanelPrincipal(PanelPrincipal)
-deactivate view
+Investigador -> View : abrirPanelPrincipal()
+activate View
+
+View -> Controller : abrirPanelPrincipal()
+activate Controller
+
+Controller -> Sesion : getUsuarioActual()
+activate Sesion
+Sesion --> Controller : usuario
+deactivate Sesion
+
+Controller -> Repo : obtenerOpciones(usuario)
+activate Repo
+Repo --> Controller : List<Opcion>
+deactivate Repo
+
+Controller --> View : List<Opcion>
+deactivate Controller
+
+View --> Investigador : mostrarPanelPrincipal(List<Opcion>)
+deactivate View
 @enduml
