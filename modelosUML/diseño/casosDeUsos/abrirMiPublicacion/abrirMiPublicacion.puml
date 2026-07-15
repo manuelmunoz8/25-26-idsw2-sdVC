@@ -14,10 +14,10 @@ participant "PublicacionRepository\n(TypeORM)" as Repository
 Investigador -> View: abrirMiPublicacion(publicacionId)
 activate View
 
-View -> Controller: obtenerPublicacion(publicacionId)
+View -> Controller: abrirMiPublicacion(publicacionId)
 activate Controller
 
-Controller -> Repository: obtenerPublicacion(publicacionId)
+Controller -> Repository: abrirMiPublicacion(publicacionId)
 activate Repository
 
 Repository --> Controller: Publicacion
