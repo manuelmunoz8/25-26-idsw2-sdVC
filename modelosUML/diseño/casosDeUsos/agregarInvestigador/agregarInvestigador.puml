@@ -35,13 +35,13 @@ activate Controller
 Controller -> RepoProy: asignarInvestigador(proyectoId, investigadorId)
 activate RepoProy
 
-RepoProy --> Controller: ok
+RepoProy --> Controller: InvestigadorAsignado
 deactivate RepoProy
 
-Controller --> View: ok
+Controller --> View: InvestigadorAsignado
 deactivate Controller
 
-View --> Coordinador: mostrarConfirmacion(ok)
+View --> Coordinador: mostrarDetalle(InvestigadorAsignado)
 deactivate View
 
 @enduml
