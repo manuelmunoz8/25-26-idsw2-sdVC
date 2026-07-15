@@ -14,10 +14,10 @@ participant "EntregableRepository\n(TypeORM)" as Repository
 Usuario -> View: abrirEntregables(proyectoId)
 activate View
 
-View -> Controller: listarEntregables(proyectoId)
+View -> Controller: abrirEntregables(proyectoId)
 activate Controller
 
-Controller -> Repository: obtenerPorProyecto(proyectoId)
+Controller -> Repository: obtenerEntregables(proyectoId)
 activate Repository
 
 Repository --> Controller: List<Entregable>
