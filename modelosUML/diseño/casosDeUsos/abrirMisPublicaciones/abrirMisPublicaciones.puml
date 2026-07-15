@@ -12,10 +12,9 @@ participant "PublicacionRepository\n(TypeORM)" as Repo
 Investigador -> View : abrirMisPublicaciones()
 activate View
 
-View -> Controller : obtenerPublicaciones()
+View -> Controller : abrirMisPublicaciones()
 activate Controller
 
-' Validación de identidad mediante sesión
 Controller -> Sesion : getUsuarioActual()
 activate Sesion
 
